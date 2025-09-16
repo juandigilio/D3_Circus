@@ -44,6 +44,11 @@ public class Bullet : MonoBehaviour
     {
         if (!isActive) return;
 
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player"))
+        {
+            Deactivate();
+        }
+
         if (isPlayerBullet)
         {
             if (collision.CompareTag("Enemy"))
@@ -60,7 +65,7 @@ public class Bullet : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (!collision.CompareTag("Player"))
             {
                 Deactivate();
             }
@@ -79,7 +84,7 @@ public class Bullet : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(!collision.CompareTag("Enemy"))
             {
                 Deactivate();
             }
