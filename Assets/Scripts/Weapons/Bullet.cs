@@ -47,13 +47,14 @@ public class Bullet : MonoBehaviour
         if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player"))
         {
             Deactivate();
+            Debug.Log("Bullet hit an obstacle and is deactivated.");
         }
 
         if (isPlayerBullet)
         {
             if (collision.CompareTag("Enemy"))
             {
-                Enemy_Shooter enemy = collision.GetComponent<Enemy_Shooter>();
+                Enemy enemy = collision.GetComponent<Enemy>();
 
                 if (enemy != null)
                 {
@@ -63,6 +64,10 @@ public class Bullet : MonoBehaviour
                     {
                         Deactivate();
                     }
+                }
+                else
+                {
+                    Debug.LogError("Enemy component missing on the collided object.");
                 }
             }
             else if (!collision.CompareTag("Player"))
@@ -83,10 +88,6 @@ public class Bullet : MonoBehaviour
                         Deactivate();
                     }
                 }
-            }
-            else if(!collision.CompareTag("Enemy"))
-            {
-                Deactivate();
             }
         }
 

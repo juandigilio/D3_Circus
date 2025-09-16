@@ -6,7 +6,6 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] protected bool isGrounded;
     [SerializeField] protected int availableLives;
     [SerializeField] private float rayLength;
-    [SerializeField] protected LayerMask layerMask;
 
     protected Rigidbody2D rb;
     protected bool jumped = false;
@@ -44,11 +43,11 @@ public abstract class MyEntity : MonoBehaviour
         float extraHeight = 0.1f;
 
         Debug.DrawRay(transform.position, Vector2.down * (rayLength + extraHeight), Color.green);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, rayLength + extraHeight, layerMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, rayLength + extraHeight);
 
         foreach (RaycastHit2D hit in hits)
         {
-            if (!hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
                 jumped = false;
