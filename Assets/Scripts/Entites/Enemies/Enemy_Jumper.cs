@@ -39,10 +39,6 @@ public class Enemy_Jumper : Enemy
             {
                 JumpTowardsPlayer();
             }
-            //else
-            //{
-            //    Patrol();
-            //}
         }
 
         CheckAttackState(distance);

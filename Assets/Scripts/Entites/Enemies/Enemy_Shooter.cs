@@ -102,11 +102,6 @@ public class Enemy_Shooter : Enemy
                     Shoot(direction);
                     isShooting = true;
                 }
-                //else
-                //{
-                //    isShooting = false;
-                //}
-
                 break;
             }
         }

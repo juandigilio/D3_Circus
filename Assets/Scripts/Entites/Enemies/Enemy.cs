@@ -17,7 +17,12 @@ public abstract class Enemy : MyEntity
         base.Start();
 
         playerController = GameManager.Instance.GetPlayerController();
-        transform.position = leftPoint.position;
+
+        if (leftPoint != null && rightPoint != null)
+        {      
+            transform.position = leftPoint.position;
+        }
+        
     }
 
     protected override void FixedUpdate()
