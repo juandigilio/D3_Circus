@@ -16,6 +16,8 @@ public class PlayerController : MyEntity
     private Vector2 inputDirection;
     private int currentWeapon = 0;
     private bool isShooting = false;
+    private Vector3 originalScale;
+    private Vector3 invertedScale;
 
 
     private void OnEnable()
@@ -32,6 +34,9 @@ public class PlayerController : MyEntity
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
         weapons[2].gameObject.SetActive(false);       
+
+        originalScale = weapons[0].transform.localScale;
+        invertedScale = new Vector3(-originalScale.x, -originalScale.y, originalScale.z);
     }
 
     private void Update()
@@ -95,15 +100,13 @@ public class PlayerController : MyEntity
 
             if (direction > 0)
             {
-                //transform.localScale = new Vector3(1, 1, 1);
-                //sight.transform.localScale = new Vector3(1, 1, 1);
-                //weapons[currentWeapon].transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
+                weapons[currentWeapon].transform.localScale = originalScale;
             }
             else if (direction < 0)
             {
-                //transform.localScale = new Vector3(-1, 1, 1);
-                //sight.transform.localScale = new Vector3(-1, 1, 1);
-                //weapons[currentWeapon].transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
+                weapons[currentWeapon].transform.localScale = invertedScale;
             }
         }
     }
@@ -117,7 +120,7 @@ public class PlayerController : MyEntity
                 NextWeapon();
             }
 
-            Vector2 shootDirection = (sight.transform.localPosition - weapons[currentWeapon].GetFirePointLocalPos()).normalized;
+            Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
 
             weapons[currentWeapon].Shoot(shootDirection);
         }
@@ -139,19 +142,19 @@ public class PlayerController : MyEntity
     private void Aim()
     {
         float angle;
-        Vector2 newDisplacement = weapons[currentWeapon].GetFirePointLocalPos();
+        sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
 
         if (inputDirection != Vector2.zero)
         {
             float rawAngle = Mathf.Atan2(inputDirection.y, inputDirection.x) * Mathf.Rad2Deg;
-
             angle = Mathf.Round(rawAngle / 45f) * 45f;
-
             float rad = angle * Mathf.Deg2Rad;
-            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+
+            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
+            quantizedDirection *= sightOffset;
 
             weapons[currentWeapon].AimAt(angle);
-            sight.transform.localPosition = newDisplacement + (quantizedDirection * sightOffset);
+            sight.transform.position  += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
         }
         else
         {
@@ -159,8 +162,8 @@ public class PlayerController : MyEntity
             else angle = 180;
 
             weapons[currentWeapon].AimAt(angle);
-            sight.transform.localPosition = new Vector2(direction * sightOffset, 0) + newDisplacement;
-        }
+            sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
+        }     
     }
 
     private void SwitchWeapon(Action onNoAmmo)
