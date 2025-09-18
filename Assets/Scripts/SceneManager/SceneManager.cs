@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 
 public class SceneManager
@@ -15,24 +14,19 @@ public class SceneManager
     private static int index = 0;
 
 
-    private static async Task LoadSceneAsync(CustomScene scene)
+    private static void LoadScene(CustomScene scene)
     {
         if (!IsSceneLoaded(scene))
         {
             loadedScenes.Add(scene.sceneName);
 
-            AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
-
-            while (!asyncLoad.isDone)
-            {
-                await Task.Yield();
-            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene.sceneName);
         }
 
         SetInputActionMap(scene);
     }
 
-    private static async Task UnloadSceneAsync(CustomScene scene)
+    private static async Task UnloadScene(CustomScene scene)
     {
         if (IsSceneLoaded(scene))
         {
@@ -42,7 +36,6 @@ public class SceneManager
             {
                 await Task.Yield();
             }
-
             loadedScenes.Remove(scene.sceneName);
         }
     }
@@ -52,21 +45,22 @@ public class SceneManager
         return loadedScenes.Contains(scene.sceneName);
     }
 
-    private static async Task LoadMainScene()
+    public static void LoadMainScene()
     {
-        await LoadSceneAsync(mainScene);
+        LoadScene(mainScene);
+        LoadFirstLevel();
     }
 
     private static async Task UnloadAll()
     {
-        await UnloadSceneAsync(gameLoaderScene);
+        await UnloadScene(gameLoaderScene);
 
         foreach (CustomScene scene in scenesPool)
         {
-            await UnloadSceneAsync(scene);
+            await UnloadScene(scene);
         }
         
-        await UnloadSceneAsync(winingScene);
+        await UnloadScene(winingScene);
     }
 
     private static void SetInputActionMap(CustomScene scene)
@@ -90,13 +84,12 @@ public class SceneManager
         winingScene = win;
     }
 
-    public static void LoadNextSceneAsync()
+    public static void LoadNextScene()
     {
         if ((index + 1) < scenesPool.Count)
         {
             index++;
-
-            _ = LoadSceneAsync(scenesPool[index]);
+            LoadScene(scenesPool[index]);
         }
     }
 
@@ -104,40 +97,38 @@ public class SceneManager
     {
         if (index > 0)
         {
-            _ = UnloadSceneAsync(scenesPool[index - 1]);
+            _ = UnloadScene(scenesPool[index - 1]);
         }
     }
 
-    public static async Task LoadGame()
+    public static void LoadGame()
     {
-        await LoadMainScene();
         LoadMenuScene();
-
-        _ = UnloadSceneAsync(gameLoaderScene);
+        _ = UnloadScene(gameLoaderScene);
     }
 
     public static void LoadMenuScene()
     {
         _ = UnloadAll();
-
-        _ = LoadSceneAsync(mainMenuScene);
+        LoadScene(mainMenuScene);
     }
 
-    public static void LoadTutorialScene()
+    public static void LoadFirstLevel()
     {
-        index = 0;
+        UnloadMainMenuScene();
 
-        _ = LoadSceneAsync(scenesPool[index]);
+        index = 0;
+        LoadScene(scenesPool[index]);
     }
 
     public static void UnloadMainMenuScene()
     {
-        _ = UnloadSceneAsync(mainMenuScene);
+        _ = UnloadScene(mainMenuScene);
     }
 
     public static void LoadWiningScene()
     {
-        _ = LoadSceneAsync(winingScene);
+        LoadScene(winingScene);
     }
 
     public static bool IsMainMenuSceneLoaded()
