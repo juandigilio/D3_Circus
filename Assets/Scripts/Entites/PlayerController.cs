@@ -7,11 +7,11 @@ public class PlayerController : MyEntity
     [SerializeField] private GameObject sight;
     [SerializeField] private float sightOffset = 1f;
     [SerializeField] private float jumpForce = 5f;
-    //[SerializeField] private LayerMask groundLayer;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
 
+    private Camera mainCamera;
     private float direction = 1f;
     private Vector2 inputDirection;
     private int currentWeapon = 0;
@@ -28,6 +28,8 @@ public class PlayerController : MyEntity
     protected override void Start()
     {
         base.Start();
+
+        mainCamera = Camera.main;
 
         availableLives = 8;
 
@@ -101,13 +103,12 @@ public class PlayerController : MyEntity
             if (direction > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
-                weapons[currentWeapon].transform.localScale = originalScale;
             }
             else if (direction < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                weapons[currentWeapon].transform.localScale = invertedScale;
             }
+            UpdateWeaponDirection();
         }
     }
 
@@ -136,6 +137,18 @@ public class PlayerController : MyEntity
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+
+        CheckScreenLimits();
+    }
+
+    private void CheckScreenLimits()
+    {
+        float leftWorldX = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, mainCamera.nearClipPlane)).x;
+
+        if (transform.position.x < leftWorldX)
+        {
+            transform.position = new Vector3(leftWorldX, transform.position.y, transform.position.z);
         }
     }
 
@@ -171,6 +184,7 @@ public class PlayerController : MyEntity
         if (weapons[currentWeapon].HasAmmo())
         {
             weapons[currentWeapon].gameObject.SetActive(true);
+            UpdateWeaponDirection();
 
             for (int i = 0; i < weapons.Count; i++)
             {
@@ -184,6 +198,18 @@ public class PlayerController : MyEntity
         else
         {
             onNoAmmo?.Invoke();
+        }
+    }
+
+    private void UpdateWeaponDirection()
+    {
+        if (direction > 0)
+        {
+            weapons[currentWeapon].transform.localScale = originalScale;
+        }
+        else if (direction < 0)
+        {
+            weapons[currentWeapon].transform.localScale = invertedScale;
         }
     }
 }

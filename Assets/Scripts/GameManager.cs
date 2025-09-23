@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     private InputManager inputManager;
     private PlayerController playerController;
+    private Camera mainCamera;
 
 
     private void Awake()
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
         this.playerController = playerController;
     }
 
+    public void RegisterMainCamera(Camera camera)
+    {
+        this.mainCamera = camera;
+    }
+
     public InputManager GetInputManager()
     {
         return inputManager;
@@ -38,5 +44,10 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayerController()
     {
         return playerController;
+    }
+
+    public Camera GetMainCamera()
+    {
+        return mainCamera;
     }
 }

@@ -8,7 +8,6 @@ public class SideScrollCamera : MonoBehaviour
     private Camera mainCamera;
     private float lastCameraX;
 
-
     private void Start()
     {
         mainCamera = Camera.main;
