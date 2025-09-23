@@ -99,6 +99,11 @@ public class Weapon : MonoBehaviour
         return currentAmmo > 0;
     }
 
+    public int GetCurrentAmmo()
+    {
+        return currentAmmo;
+    }
+
     public Vector3 GetFirePointLocalPos()
     {
         return firePoint.localPosition;
@@ -109,7 +114,7 @@ public class Weapon : MonoBehaviour
         return firePoint.position;
     }
 
-    internal float GetWeaponRange()
+    public float GetWeaponRange()
     {
         return bulletLifeDistance;
     }
