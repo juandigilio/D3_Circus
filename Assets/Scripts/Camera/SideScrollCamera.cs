@@ -16,6 +16,11 @@ public class SideScrollCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        FollowPlayer();
+    }
+
+    private void FollowPlayer()
+    {
         Vector3 viewportPos = mainCamera.WorldToViewportPoint(playerTransform.position);
 
         if (viewportPos.x > screenThreshold)
