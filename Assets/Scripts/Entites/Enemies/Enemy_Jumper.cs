@@ -31,6 +31,15 @@ public class Enemy_Jumper : Enemy
 
         if (isGrounded)
         {
+            if (transform.position.x < playerController.transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
             if (distance <= walkingRange)
             {
                 WalkTowardsPlayer();
@@ -40,6 +49,8 @@ public class Enemy_Jumper : Enemy
                 JumpTowardsPlayer();
             }
         }
+
+        UpdateAssetDirection();
 
         CheckAttackState(distance);
     }
@@ -88,5 +99,6 @@ public class Enemy_Jumper : Enemy
     protected override void Attack()
     {
         playerController.TakeDamage(damage);
+        Debug.Log("Enemy_Jumper attacked the player!");
     }
 }
