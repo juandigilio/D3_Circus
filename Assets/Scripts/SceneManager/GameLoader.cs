@@ -15,6 +15,6 @@ public class GameLoader : MonoBehaviour
     {
         SceneManager.SetScenes(gameLoader, mainScene, mainMenu, scenesPool, winingScene, gameOverScene);
 
-        SceneManager.LoadGame();
+        SceneManager.LoadMenuScene();
     }
 }

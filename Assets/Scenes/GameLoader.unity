@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLoader:
-    sceneName: 
+    sceneName: GameLoader
     actionMapType: 0
   mainScene:
     sceneName: MainScene

@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
+
 
 public class MenuController : MonoBehaviour
 {
@@ -49,6 +47,7 @@ public class MenuController : MonoBehaviour
         panel.blocksRaycasts = true;
         panel.interactable = true;
     }
+
     IEnumerator MakeItInvisible(CanvasGroup panel)
     {
         panel.blocksRaycasts = false;
@@ -68,14 +67,19 @@ public class MenuController : MonoBehaviour
         StartCoroutine(MakeItVisible(panel));
         actualPanel = panel;
     }
+
     public void CloseGame()
     {
         Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void LoadGame()
     {
-        SceneManager.LoadGame();
+        //Debug.Log("entro");
+        _ = SceneManager.LoadGame();
     }
-
 }
