@@ -2,17 +2,22 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    protected PlayerController playerController;
+    [SerializeField] protected PlayerController playerController;
 
     protected virtual void Start()
     {
-        playerController = GameManager.Instance.GetComponent<PlayerController>();
-
-        Debug.Log("Entered ");
-        Debug.Assert(playerController != null, "PlayerController not found in the scene. Make sure there is a GameManager with a PlayerController.");
+        playerController = GameManager.Instance.GetPlayerController();
+        //if (playerController == null)
+        //{
+        //    Debug.LogError("PlayerController not found in GameManager.");
+        //}
+        //else
+        //{
+        //    Debug.Log("PlayerController successfully referenced in Item.");
+        //}
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

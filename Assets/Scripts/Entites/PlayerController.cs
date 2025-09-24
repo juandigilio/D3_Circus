@@ -13,7 +13,6 @@ public class PlayerController : MyEntity
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
 
     private Camera mainCamera;
-    private float direction = 1f;
     private Vector2 inputDirection;
     private int currentWeapon = 0;
     private bool isShooting = false;
@@ -96,14 +95,7 @@ public class PlayerController : MyEntity
         {
             direction = inputDirection.x;
 
-            if (direction > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if (direction < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+           
             UpdateWeaponDirection();
         }
     }
