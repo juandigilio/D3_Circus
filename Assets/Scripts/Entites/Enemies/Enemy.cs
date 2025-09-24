@@ -8,7 +8,6 @@ public abstract class Enemy : MyEntity
     [SerializeField] protected int damage = 1;
 
     protected PlayerController playerController;
-    protected bool movingRight = true;
     protected bool isAttacking = false;
 
 
@@ -30,21 +29,24 @@ public abstract class Enemy : MyEntity
         base.FixedUpdate();
     }
 
-    protected void Patrol()
+    protected void Patroll()
     {
-        Vector2 dir;
-        if (movingRight)
+        if (isAttacking)
         {
-            dir = Vector2.right;
-            if (transform.position.x >= rightPoint.position.x) movingRight = false;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+
+        if (direction > 0)
+        {
+            if (transform.position.x >= rightPoint.position.x) direction = -1;
         }
         else
         {
-            dir = Vector2.left;
-            if (transform.position.x <= leftPoint.position.x) movingRight = true;
+            if (transform.position.x <= leftPoint.position.x) direction = 1;
         }
 
-        rb.linearVelocity = new Vector2(dir.x * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
     }
 
     protected abstract void Attack();

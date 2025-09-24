@@ -7,12 +7,12 @@ public class PlayerController : MyEntity
     [SerializeField] private GameObject sight;
     [SerializeField] private float sightOffset = 1f;
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private int maxLives = 8;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
 
     private Camera mainCamera;
-    private float direction = 1f;
     private Vector2 inputDirection;
     private int currentWeapon = 0;
     private bool isShooting = false;
@@ -31,7 +31,7 @@ public class PlayerController : MyEntity
 
         mainCamera = Camera.main;
 
-        availableLives = 8;
+        availableLives = maxLives;
 
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
@@ -39,11 +39,6 @@ public class PlayerController : MyEntity
 
         originalScale = weapons[0].transform.localScale;
         invertedScale = new Vector3(-originalScale.x, -originalScale.y, originalScale.z);
-    }
-
-    private void Update()
-    {
-
     }
 
     protected override void FixedUpdate()
@@ -100,14 +95,7 @@ public class PlayerController : MyEntity
         {
             direction = inputDirection.x;
 
-            if (direction > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if (direction < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+           
             UpdateWeaponDirection();
         }
     }
@@ -211,5 +199,30 @@ public class PlayerController : MyEntity
         {
             weapons[currentWeapon].transform.localScale = invertedScale;
         }
+    }
+
+    public void HealthUp()
+    {
+        availableLives++;
+
+        if (availableLives > maxLives)
+        {
+            availableLives = maxLives;
+        }
+    }
+
+    public int CurrentWeaponAmmo()
+    {
+        return weapons[currentWeapon].GetCurrentAmmo();
+    }
+
+    public int AvailableLives()
+    {
+        return availableLives;
+    }
+
+    public int MaxLives()
+    {
+        return maxLives;
     }
 }

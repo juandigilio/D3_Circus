@@ -8,6 +8,7 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] private float rayLength;
 
     protected Rigidbody2D rb;
+    protected float direction = 1f;
     protected bool jumped = false;
     protected bool doubleJumped = false;
 
@@ -33,6 +34,8 @@ public abstract class MyEntity : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         CheckGrounded();
+
+        UpdateAssetDirection();
     }
 
     protected void CheckGrounded()
@@ -64,6 +67,18 @@ public abstract class MyEntity : MonoBehaviour
         if (availableLives <= 0)
         {
             gameObject.SetActive(false);
+        }
+    }
+
+    protected void UpdateAssetDirection()
+    {
+        if (direction > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (direction < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 }
