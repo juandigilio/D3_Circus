@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     private InputManager inputManager;
     private PlayerController playerController;
     private Camera mainCamera;
+    private SideScrollCamera SideScrollCamera;
 
 
     private void Awake()
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
         this.mainCamera = camera;
     }
 
+    public void RegisterSideSrollCamera(SideScrollCamera sideScrollCamera)
+    {
+        this.SideScrollCamera = sideScrollCamera;
+    }
+
     public InputManager GetInputManager()
     {
         return inputManager;
@@ -49,5 +56,10 @@ public class GameManager : MonoBehaviour
     public Camera GetMainCamera()
     {
         return mainCamera;
+    }
+
+    public SideScrollCamera GetSideScrollCamera()
+    { 
+        return SideScrollCamera;
     }
 }

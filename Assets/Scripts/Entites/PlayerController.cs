@@ -39,6 +39,9 @@ public class PlayerController : MyEntity
 
         originalScale = weapons[0].transform.localScale;
         invertedScale = new Vector3(-originalScale.x, -originalScale.y, originalScale.z);
+
+        SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
+        sideScrollCamera.SetPlayerTransform(transform);
     }
 
     protected override void FixedUpdate()
