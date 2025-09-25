@@ -111,26 +111,30 @@ public class SceneManager
 
     public static async Task LoadGame()
     {
-        _ = UnloadSceneAsync(mainMenuScene);
+        await UnloadSceneAsync(mainMenuScene);
 
-        await LoadMainScene();
-        LoadTutorialScene();
+        await LoadTutorialScene();
     }
 
-    public static void LoadMenuScene()
+    public static async Task LoadMenu()
     {
-        _ = UnloadAll();
+        await LoadMainScene();
 
-        _ = LoadSceneAsync(mainMenuScene);
+        await LoadSceneAsync(mainMenuScene);
+    }
+
+    public static async void LoadMenuScene()
+    {
+        await LoadMenu();
 
         _ = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(gameLoaderScene.sceneName);
     }
 
-    public static void LoadTutorialScene()
+    public static async Task LoadTutorialScene()
     {
         index = 0;
 
-        _ = LoadSceneAsync(scenesPool[index]);
+        await LoadSceneAsync(scenesPool[index]);
     }
 
     public static void UnloadMainMenuScene()
