@@ -1,71 +1,47 @@
-using System.Collections;
 using UnityEngine;
 
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup startingPanel;
+    [SerializeField] GameObject menuButtons;
+    [SerializeField] GameObject backButton;
+    [SerializeField] GameObject credits;
+    [SerializeField] GameObject options;
 
-    private CanvasGroup actualPanel;
 
-    private void Awake()
-    {
-        actualPanel = startingPanel;
-
-        foreach (CanvasGroup canvasGroup in GetComponentsInChildren<CanvasGroup>())
-        {
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
-            canvasGroup.interactable = false;
-        }
-
-        actualPanel.alpha = 1;
-        actualPanel.blocksRaycasts = true;
-        actualPanel.interactable = true;
-
-    }
 
     private void Start()
     {
-        Time.timeScale = 1;
+        ShowMenu();
     }
 
-    public void StartPanel(CanvasGroup newPanel)
+    public void ShowOptions()
     {
-        StartCoroutine(PanelChange(newPanel));
+        menuButtons.SetActive(false);
+        credits.SetActive(false);
+        options.SetActive(true);
+        backButton.SetActive(true);
     }
 
-    IEnumerator MakeItVisible(CanvasGroup panel)
+    public void ShowCredits()
     {
-        float t = 0;
-        while (t<1)
-        {
-            t += Time.deltaTime;
-            panel.alpha = t;
-            yield return null;
-        }
-        panel.blocksRaycasts = true;
-        panel.interactable = true;
+        menuButtons.SetActive(false);
+        options.SetActive(false);
+        credits.SetActive(true);
+        backButton.SetActive(true);
     }
 
-    IEnumerator MakeItInvisible(CanvasGroup panel)
+    public void ShowMenu()
     {
-        panel.blocksRaycasts = false;
-        panel.interactable = false;
-        float t = 1;
-        while (t > 0)
-        {
-            t -= Time.deltaTime;
-            panel.alpha = t;
-            yield return null;
-        }
+        options.SetActive(false);
+        credits.SetActive(false);
+        backButton.SetActive(false);
+        menuButtons.SetActive(true);
     }
 
-    IEnumerator PanelChange(CanvasGroup panel)
+    public void LoadGame()
     {
-        yield return StartCoroutine(MakeItInvisible(actualPanel));
-        StartCoroutine(MakeItVisible(panel));
-        actualPanel = panel;
+        _ = SceneManager.LoadGame();
     }
 
     public void CloseGame()
@@ -75,11 +51,5 @@ public class MenuController : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
-    }
-
-    public void LoadGame()
-    {
-        //Debug.Log("entro");
-        _ = SceneManager.LoadGame();
     }
 }
