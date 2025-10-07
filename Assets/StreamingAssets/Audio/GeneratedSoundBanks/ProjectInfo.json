@@ -1,0 +1,36 @@
+{
+ "ProjectInfo": {
+  "Project": {
+   "Name": "D3_Circus_WwiseProject",
+   "GUID": "{F846A530-817A-4356-A1AA-B9E42730AB7F}",
+   "Generator": "2024.1.7.8863"
+  },
+  "CacheRoot": "../../../../D3_Circus_WwiseProject/.cache",
+  "Platforms": [
+   {
+    "Name": "Mac",
+    "GUID": "{8D84527F-E363-4929-AD50-0FBA87F4BBCB}",
+    "BasePlatform": "Mac",
+    "BasePlatformGUID": "{9C6217D5-DD11-4795-87C1-6CE02853C540}",
+    "Path": "../../../../D3_Circus_WwiseProject/GeneratedSoundBanks/Mac"
+   },
+   {
+    "Name": "Windows",
+    "GUID": "{90E1285D-11F4-4B6C-ADC5-276F8FBD76A8}",
+    "BasePlatform": "Windows",
+    "BasePlatformGUID": "{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}",
+    "Path": "../../../../D3_Circus_WwiseProject/GeneratedSoundBanks/Windows"
+   }
+  ],
+  "Languages": [
+   {
+    "Name": "English(US)",
+    "Id": "684519430",
+    "GUID": "{2B65F0B6-DE7C-4131-8011-6759F0428109}",
+    "Default": "true",
+    "UseAsStandIn": "true"
+   }
+  ],
+  "FileHash": "{CD68367B-B57A-CFAC-12A5-6687F295D2ED}"
+ }
+}
