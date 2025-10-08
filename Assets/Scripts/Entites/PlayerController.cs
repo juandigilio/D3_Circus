@@ -8,6 +8,8 @@ public class PlayerController : MyEntity
     [SerializeField] private float sightOffset = 1f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private int maxLives = 8;
+    [SerializeField] private float aimSmoothSpeed = 10f;
+    [SerializeField] private bool isMouseEnabled = true;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
@@ -18,6 +20,9 @@ public class PlayerController : MyEntity
     private bool isShooting = false;
     private Vector3 originalScale;
     private Vector3 invertedScale;
+    private float lastQuantizedAngle = 0f;
+    private float smoothedAngle = 0f;
+
 
 
     private void OnEnable()
@@ -35,7 +40,7 @@ public class PlayerController : MyEntity
 
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
-        weapons[2].gameObject.SetActive(false);       
+        weapons[2].gameObject.SetActive(false);
 
         originalScale = weapons[0].transform.localScale;
         invertedScale = new Vector3(-originalScale.x, -originalScale.y, originalScale.z);
@@ -89,7 +94,7 @@ public class PlayerController : MyEntity
         if (currentWeapon < 0) currentWeapon = 2;
         SwitchWeapon(PreviousWeapon);
     }
-    
+
     public void SetInputDirection(Vector2 newDirection)
     {
         inputDirection = newDirection.normalized;
@@ -98,7 +103,7 @@ public class PlayerController : MyEntity
         {
             direction = inputDirection.x;
 
-           
+
             UpdateWeaponDirection();
         }
     }
@@ -148,26 +153,54 @@ public class PlayerController : MyEntity
         float angle;
         sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
 
-        if (inputDirection != Vector2.zero)
+        if (isMouseEnabled)
         {
-            float rawAngle = Mathf.Atan2(inputDirection.y, inputDirection.x) * Mathf.Rad2Deg;
-            angle = Mathf.Round(rawAngle / 45f) * 45f;
-            float rad = angle * Mathf.Deg2Rad;
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
+            Vector2 dir = (worldMousePos - weapons[currentWeapon].GetFirePointWorldPos());
+            dir.Normalize();
 
-            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
-            quantizedDirection *= sightOffset;
+            float rawAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float quantizedAngle = Mathf.Round(rawAngle / 45f) * 45f;
 
-            weapons[currentWeapon].AimAt(angle);
-            sight.transform.position  += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+            if (Mathf.Abs(quantizedAngle - lastQuantizedAngle) < 10f)
+                quantizedAngle = lastQuantizedAngle;
+            else
+                lastQuantizedAngle = quantizedAngle;
+
+            float rad = quantizedAngle * Mathf.Deg2Rad;
+            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
+
+            weapons[currentWeapon].AimAt(quantizedAngle);
+            sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+
+            direction = Mathf.Sign(dir.x);
+            UpdateWeaponDirection();
         }
         else
         {
-            if (direction >= 0) angle = 0;
-            else angle = 180;
+            if (inputDirection != Vector2.zero)
+            {
+                float rawAngle = Mathf.Atan2(inputDirection.y, inputDirection.x) * Mathf.Rad2Deg;
+                angle = Mathf.Round(rawAngle / 45f) * 45f;
+                float rad = angle * Mathf.Deg2Rad;
 
-            weapons[currentWeapon].AimAt(angle);
-            sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
-        }     
+                Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
+                quantizedDirection *= sightOffset;
+
+                weapons[currentWeapon].AimAt(angle);
+                sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+            }
+            else
+            {
+                if (direction >= 0) angle = 0;
+                else angle = 180;
+
+                weapons[currentWeapon].AimAt(angle);
+                sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
+            }
+        }
+        
     }
 
     private void SwitchWeapon(Action onNoAmmo)
