@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
-using static UnityEngine.Timeline.DirectorControlPlayable;
 
 
 public class InputManager : MonoBehaviour
@@ -9,11 +7,10 @@ public class InputManager : MonoBehaviour
     [SerializeField] private string moveAction = "Move";
     [SerializeField] private string jumpAction = "Jump";
     [SerializeField] private string shootAction = "Shoot";
+    [SerializeField] private string aimAction = "Aim";
     [SerializeField] private string nextWeaponAction = "NextWeapon";
     [SerializeField] private string previousWeaponAction = "PreviousWeapon";
 
-    //[SerializeField] private string inGameActionMap = "InGame";
-    //[SerializeField] private string menuActionMap = "Menu";
 
     private PlayerInput playerInput;
     private PlayerController playerController;
@@ -85,6 +82,22 @@ public class InputManager : MonoBehaviour
         } 
     }
 
+    private void Aim(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.started)
+        {
+            playerController.SetAimDirection(callbackContext.ReadValue<Vector2>());
+        }
+        if (callbackContext.performed)
+        {
+            playerController.SetAimDirection(callbackContext.ReadValue<Vector2>());
+        }
+        if (callbackContext.canceled)
+        {
+            playerController.SetAimDirection(Vector2.zero);
+        }
+    }
+
     private void NextWeapon(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.started)
@@ -115,6 +128,10 @@ public class InputManager : MonoBehaviour
 
             playerInput.currentActionMap.FindAction(shootAction).started += Shoot;
             playerInput.currentActionMap.FindAction(shootAction).canceled += Shoot;
+
+            playerInput.currentActionMap.FindAction(aimAction).started += Aim;
+            playerInput.currentActionMap.FindAction(aimAction).performed += Aim;
+            playerInput.currentActionMap.FindAction(aimAction).canceled += Aim;
 
             playerInput.currentActionMap.FindAction(nextWeaponAction).started += NextWeapon;
             playerInput.currentActionMap.FindAction(previousWeaponAction).started += PreviousWeapon;
