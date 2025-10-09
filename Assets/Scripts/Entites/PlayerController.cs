@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
+
 
 public class PlayerController : MyEntity
 {
@@ -9,7 +11,7 @@ public class PlayerController : MyEntity
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private int maxLives = 8;
     [SerializeField] private float aimSmoothSpeed = 10f;
-    [SerializeField] private bool combinatedInput = true;
+    [SerializeField] private InputType inputType = InputType.Separated;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
@@ -24,6 +26,13 @@ public class PlayerController : MyEntity
     private float lastQuantizedAngle = 0f;
     private float smoothedAngle = 0f;
 
+
+    private enum InputType
+    {
+        Separated,
+        Combinated,
+        Mouse
+    }
 
 
     private void OnEnable()
@@ -156,19 +165,75 @@ public class PlayerController : MyEntity
 
     private void Aim()
     {
-        float angle;
-        Vector2 newDirection;
+        switch (inputType)
+        {
+            case InputType.Mouse:
+            {
+                AimToMouse();
+                break;
+            }
+            case InputType.Separated:
+            {
+                    AimSeparated();
+                break;
+            }
+            case InputType.Combinated:
+            {
+                    AimCombinated();
+                break;
+            }
+            default:
+            {
+                break;
+            }
+                
+        }
+    }
 
+    private void AimToMouse()
+    {
         sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
 
-        if (combinatedInput)
-        {
-            newDirection = inputDirection;          
-        }
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
+        Vector2 dir = (worldMousePos - transform.position);
+        dir.Normalize();
+
+        float rawAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float quantizedAngle = Mathf.Round(rawAngle / 45f) * 45f;
+
+        if (Mathf.Abs(quantizedAngle - lastQuantizedAngle) < 10f)
+            quantizedAngle = lastQuantizedAngle;
         else
-        {
-            newDirection = aimDirection;
-        }
+            lastQuantizedAngle = quantizedAngle;
+
+        float rad = quantizedAngle * Mathf.Deg2Rad;
+        Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
+
+        weapons[currentWeapon].AimAt(quantizedAngle);
+        sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+
+        direction = Mathf.Sign(dir.x);
+        UpdateWeaponDirection();
+    }
+
+    private void AimSeparated()
+    {
+        Vector2 newDirection = aimDirection;
+        KeyboardAim(newDirection);
+    }
+
+    private void AimCombinated()
+    {
+        Vector2 newDirection = inputDirection;
+        KeyboardAim(newDirection);
+    }
+
+    private void KeyboardAim(Vector2 newDirection)
+    {
+        float angle;
+
+        sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
 
         if (newDirection != Vector2.zero)
         {
@@ -190,8 +255,6 @@ public class PlayerController : MyEntity
             weapons[currentWeapon].AimAt(angle);
             sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
         }
-
-
     }
 
     private void SwitchWeapon(Action onNoAmmo)
