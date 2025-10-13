@@ -237,6 +237,28 @@
                 },
                 {
                     "name": "",
+                    "id": "100a08a0-d272-4274-b9a6-4a064800bdac",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c294554e-2671-452c-adef-8f9c94da9e72",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b7cdf303-a1ed-4c51-822e-f819a68fb123",
                     "path": "<Keyboard>/e",
                     "interactions": "",

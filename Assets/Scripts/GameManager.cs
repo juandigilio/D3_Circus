@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private InputManager inputManager;
-    private InputSettings inputSettings;
     private PlayerController playerController;
     private Camera mainCamera;
     private SideScrollCamera SideScrollCamera;
@@ -28,11 +27,6 @@ public class GameManager : MonoBehaviour
         this.inputManager = inputManager;
     }
 
-    public void RegisterInputSettings(InputSettings inputSettings)
-    {
-        this.inputSettings = inputSettings;
-    }
-
     public void RegisterPlayerController(PlayerController playerController)
     {
         this.playerController = playerController;
@@ -51,11 +45,6 @@ public class GameManager : MonoBehaviour
     public InputManager GetInputManager()
     {
         return inputManager;
-    }
-
-    public InputSettings GetInputSettings()
-    {
-        return inputSettings;
     }
 
     public PlayerController GetPlayerController()

@@ -38,11 +38,6 @@ public class Weapon : MonoBehaviour
         fireCooldown += Time.deltaTime;
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     public void AimAt(float angle)
     {
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -61,7 +56,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void SetWeaponType()
+    private void SetWeaponType()
     {
         if (weaponType == WeaponType.Pistol)
         {
