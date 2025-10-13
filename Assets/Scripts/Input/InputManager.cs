@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GameManager.Instance.GetPlayerInput();
 
         if (playerInput == null)
         {

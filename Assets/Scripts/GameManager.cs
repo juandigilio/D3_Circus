@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [SerializeField] private PlayerInput playerInput;
+
 
     private InputManager inputManager;
     private PlayerController playerController;
@@ -40,6 +44,11 @@ public class GameManager : MonoBehaviour
     public void RegisterSideSrollCamera(SideScrollCamera sideScrollCamera)
     {
         this.SideScrollCamera = sideScrollCamera;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        return playerInput;
     }
 
     public InputManager GetInputManager()
