@@ -11,7 +11,6 @@ public class PlayerController : MyEntity
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private int maxLives = 8;
     [SerializeField] private float aimSmoothSpeed = 10f;
-    [SerializeField] private InputType inputType = InputType.Separated;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
@@ -25,14 +24,6 @@ public class PlayerController : MyEntity
     private Vector3 invertedScale;
     private float lastQuantizedAngle = 0f;
     private float smoothedAngle = 0f;
-
-
-    private enum InputType
-    {
-        Separated,
-        Combinated,
-        Mouse
-    }
 
 
     private void OnEnable()
@@ -165,7 +156,7 @@ public class PlayerController : MyEntity
 
     private void Aim()
     {
-        switch (inputType)
+        switch (PlayerSettings.GetInputType())
         {
             case InputType.Mouse:
             {

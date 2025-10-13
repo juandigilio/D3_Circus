@@ -8,8 +8,6 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject credits;
     [SerializeField] GameObject options;
 
-
-
     private void Start()
     {
         ShowMenu();
