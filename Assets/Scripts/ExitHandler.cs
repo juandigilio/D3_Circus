@@ -6,16 +6,12 @@ public class ExitHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitGame();
+            LoadMainMenu();
         }
     }
 
-    public void ExitGame()
+    public void LoadMainMenu()
     {
-        Application.Quit();
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        _ = SceneManager.LoadMenu();
     }
 }
