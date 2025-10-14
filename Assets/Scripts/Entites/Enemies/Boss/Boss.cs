@@ -34,6 +34,8 @@ public class Boss : Enemy
         Debug.Log("Boss started");
         mouth.transform.position = mouthStart.position;
 
+        health = 15;
+
         Attack();
     }
 

@@ -1604,7 +1604,7 @@ GameObject:
   - component: {fileID: 4518162878544990586}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   rayLength: 0
   leftPoint: {fileID: 6639407792377350225}
   rightPoint: {fileID: 3748556899366169481}
-  health: 1
+  health: 20
   damage: 1
   mouth: {fileID: 861759095476892294}
   mouthStart: {fileID: 5083362836220767949}
