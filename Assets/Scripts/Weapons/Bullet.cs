@@ -13,31 +13,37 @@ public class Bullet : MonoBehaviour
     private bool isDestroyable;
     private bool isActive = false;
     private bool isPlayerBullet = true;
+    private bool isPaused = false;
 
     private void Start()
     {
         player = GameManager.Instance.GetPlayerController();
+        ExitHandler.OnGamePaused += SetPaused;
+        MenuController.OnGameStarted += StopPause;
     }
 
     private void Update()
     {
         if (!isActive) return;
 
-        transform.Translate(direction * speed * Time.deltaTime);
-
-        if (Vector2.Distance(startPosition, transform.position) >= lifeDistance)
+        if (!isPaused)
         {
-            Deactivate();
-        }
-        else
-        {
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+            transform.Translate(direction * speed * Time.deltaTime);
 
-            if (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)
+            if (Vector2.Distance(startPosition, transform.position) >= lifeDistance)
             {
                 Deactivate();
             }
-        }
+            else
+            {
+                Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+
+                if (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)
+                {
+                    Deactivate();
+                }
+            }
+        }   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -118,5 +124,15 @@ public class Bullet : MonoBehaviour
         isActive = false;
         gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
     }
 }

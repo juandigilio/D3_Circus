@@ -102,6 +102,9 @@ public class OptionsMenu : MonoBehaviour
         if (currentDevice == "Gamepad" && PlayerSettings.GetInputType() == InputType.Mouse)
         {
             PlayerSettings.SetInputType(InputType.Separated);
+
+            dropdown.value = (int)InputType.Separated;
+            dropdown.RefreshShownValue();
         }
 
         if (currentDevice == "Gamepad")

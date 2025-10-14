@@ -17,14 +17,21 @@ public class Enemy_Shooter : Enemy
 
     private void Update()
     {
+        if (!isPaused)
+        {
+
+        }
     }
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (!isPaused)
+        {
+            base.FixedUpdate();
 
-        Patroll();
-        Attack();
+            Patroll();
+            Attack();
+        }    
     }
 
     private void Shoot(Vector2 direction)

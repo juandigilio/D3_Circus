@@ -52,11 +52,14 @@ public class PlayerController : MyEntity
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (!isPaused)
+        {
+            base.FixedUpdate();
 
-        Move();
-        Aim();
-        Shoot();
+            Move();
+            Aim();
+            Shoot();
+        }
     }
 
     public void SetShooting(bool shooting)

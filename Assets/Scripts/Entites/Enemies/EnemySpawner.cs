@@ -9,17 +9,22 @@ public class EnemySpawner : MonoBehaviour
 
     private float lastSpawn;
     private int enemiesSpawned;
-
+    private bool isPaused = false;
 
 
     private void Start()
     {
         lastSpawn = Time.time;
+        ExitHandler.OnGamePaused += SetPaused;
+        MenuController.OnGameStarted += StopPause;
     }
 
     private void FixedUpdate()
     {
-        SpawnEnemies();
+        if (!isPaused)
+        {
+            SpawnEnemies();
+        }   
     }
 
     private void SpawnEnemies()
@@ -32,5 +37,15 @@ public class EnemySpawner : MonoBehaviour
             int randomIndex = Random.Range(0, spawnPoints.Length);
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
         }
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
     }
 }

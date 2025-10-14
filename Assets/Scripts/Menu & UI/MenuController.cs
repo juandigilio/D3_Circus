@@ -8,6 +8,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject credits;
     [SerializeField] GameObject options;
 
+
+    public static event System.Action OnGameStarted;
+
     private void Start()
     {
         ShowMenu();
@@ -39,6 +42,8 @@ public class MenuController : MonoBehaviour
 
     public void LoadGame()
     {
+        OnGameStarted?.Invoke();
+
         _ = SceneManager.LoadGame();
     }
 

@@ -11,6 +11,7 @@ public abstract class MyEntity : MonoBehaviour
     protected float direction = 1f;
     protected bool jumped = false;
     protected bool doubleJumped = false;
+    protected bool isPaused = false;
 
 
 
@@ -29,13 +30,19 @@ public abstract class MyEntity : MonoBehaviour
         }
 
         rayLength = col.bounds.extents.y;
+
+        ExitHandler.OnGamePaused += SetPaused;
+        MenuController.OnGameStarted += StopPause;
     }
 
     protected virtual void FixedUpdate()
     {
-        CheckGrounded();
+        if (!isPaused)
+        {
+            CheckGrounded();
 
-        UpdateAssetDirection();
+            UpdateAssetDirection();
+        }  
     }
 
     protected void CheckGrounded()
@@ -80,5 +87,17 @@ public abstract class MyEntity : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+    }
+
+    protected void SetPaused()
+    {
+        isPaused = true;
+        rb.Sleep();
+    }
+
+    protected void StopPause()
+    {
+        isPaused = false;
+        rb.WakeUp();
     }
 }

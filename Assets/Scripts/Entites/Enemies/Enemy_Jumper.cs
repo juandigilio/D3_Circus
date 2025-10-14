@@ -20,9 +20,12 @@ public class Enemy_Jumper : Enemy
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (!isPaused)
+        {
+            base.FixedUpdate();
 
-        UpdateCurrentState();
+            UpdateCurrentState();
+        }  
     }
 
     private void UpdateCurrentState()
