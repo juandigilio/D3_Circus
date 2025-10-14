@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Boss : MonoBehaviour
+public class Boss : Enemy
 {
     [SerializeField] private GameObject mouth;
     [SerializeField] private Transform mouthStart;
@@ -24,31 +24,29 @@ public class Boss : MonoBehaviour
     private bool isMouthOpen = false;
 
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        Debug.Log("Boss started");
         mouth.transform.position = mouthStart.position;
     }
 
-    void Update()
+    protected void Update()
     {
+        Patroll();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isMouthOpen)
                 StartOpenMouth();
         }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (shootingRoutine == null)
-                shootingRoutine = StartCoroutine(ShootPattern());
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (shootingRoutine != null)
-            {
-                StopCoroutine(shootingRoutine);
-                shootingRoutine = null;
-            }
-        }
+
+        Attack();
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     private void StartOpenMouth()
@@ -109,6 +107,23 @@ public class Boss : MonoBehaviour
             ShootFireball(leftCannon, true);
             ShootFireball(rightCannon, false);
             yield return new WaitForSeconds(fireRate);
+        }
+    }
+
+    protected override void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (shootingRoutine == null)
+                shootingRoutine = StartCoroutine(ShootPattern());
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (shootingRoutine != null)
+            {
+                StopCoroutine(shootingRoutine);
+                shootingRoutine = null;
+            }
         }
     }
 }
