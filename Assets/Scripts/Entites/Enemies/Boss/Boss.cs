@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Boss : MonoBehaviour
 {
@@ -10,10 +12,16 @@ public class Boss : MonoBehaviour
     [SerializeField] private float openDuration = 2f;
     [SerializeField] private Transform leftCannon;
     [SerializeField] private Transform rightCannon;
+    [SerializeField] private FireBall fireBallPrefab;
+    [SerializeField] private List<Transform> targets = new List<Transform>();
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float arcHeight = 2f;
+    [SerializeField] private float fireballSpeed = 2f;
 
 
-    private bool isMouthOpen = false;
     private Coroutine mouthRoutine;
+    private Coroutine shootingRoutine;
+    private bool isMouthOpen = false;
 
 
     void Start()
@@ -27,6 +35,19 @@ public class Boss : MonoBehaviour
         {
             if (!isMouthOpen)
                 StartOpenMouth();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (shootingRoutine == null)
+                shootingRoutine = StartCoroutine(ShootPattern());
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (shootingRoutine != null)
+            {
+                StopCoroutine(shootingRoutine);
+                shootingRoutine = null;
+            }
         }
     }
 
@@ -60,6 +81,34 @@ public class Boss : MonoBehaviour
             t += Time.deltaTime * mouthSpeed;
             mouth.transform.position = Vector3.Lerp(from, to, t);
             yield return null;
+        }
+    }
+
+    private void ShootFireball(Transform cannon, bool lefCannon)
+    {
+        Vector3 target;
+
+        if (lefCannon)
+        {
+            target = targets[Random.Range(0, targets.Count / 2)].position;
+        }
+        else 
+        {
+            target = targets[Random.Range(targets.Count / 2, targets.Count)].position;
+        }
+
+        FireBall fb = Instantiate(fireBallPrefab, cannon.position, Quaternion.identity);
+
+        fb.Init(cannon.position, target, arcHeight, fireballSpeed);
+    }
+
+    private IEnumerator ShootPattern()
+    {
+        while (true)
+        {
+            ShootFireball(leftCannon, true);
+            ShootFireball(rightCannon, false);
+            yield return new WaitForSeconds(fireRate);
         }
     }
 }
