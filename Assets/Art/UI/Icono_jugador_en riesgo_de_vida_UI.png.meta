@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icono_jugador_en riesgo_de_vida_UI_0: 8681047839558708161
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

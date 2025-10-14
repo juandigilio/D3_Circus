@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 61e78d36399f2224698482e9f539984a
+guid: 0862b6f379b270b44b5de0736196d1ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 646558973043785830
-    second: Icono_jugador_UI_0
+      213: -2758809752013395461
+    second: Boss_A_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icono_jugador_UI_0
+      name: Boss_A_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 523
-        height: 592
+        x: 7
+        y: 235
+        width: 786
+        height: 374
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 660cd9ad5f909f800800000000000000
-      internalID: 646558973043785830
+      spriteID: bf9ab58b52db6b9d0800000000000000
+      internalID: -2758809752013395461
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Icono_jugador_UI_0: 646558973043785830
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

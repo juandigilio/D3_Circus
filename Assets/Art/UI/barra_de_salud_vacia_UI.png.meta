@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      barra_de_salud_vacia_UI_0: 7098971471576285646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
