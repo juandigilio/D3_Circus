@@ -1601,6 +1601,7 @@ GameObject:
   - component: {fileID: 1209054386667578413}
   - component: {fileID: 7177021883241126403}
   - component: {fileID: 4618422851778533061}
+  - component: {fileID: 4518162878544990586}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1650,7 +1651,6 @@ MonoBehaviour:
   mouthStart: {fileID: 5083362836220767949}
   mouthEnd: {fileID: 2620905271184361041}
   mouthSpeed: 1.5
-  openDuration: 2
   leftCannon: {fileID: 7087752840261079931}
   rightCannon: {fileID: 6386919328726704718}
   fireBallPrefab: {fileID: 8920439719521855458, guid: 04bbc72b50e32784bbaf913a68116080, type: 3}
@@ -1666,9 +1666,11 @@ MonoBehaviour:
   - {fileID: 2245893269118252175}
   - {fileID: 811013900623805241}
   - {fileID: 2203906777339187469}
-  fireRate: 1
-  arcHeight: 2
-  fireballSpeed: 2
+  fireRate: 0.5
+  arcHeight: 8
+  fireballSpeed: 4.5
+  idleTime: 4
+  attackDuration: 6
 --- !u!50 &4618422851778533061
 Rigidbody2D:
   serializedVersion: 5
@@ -1696,6 +1698,52 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!61 &4518162878544990586
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168717652431264223}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.8877735, y: 0.13658047}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.778729, y: 6.3721685}
+  m_EdgeRadius: 0
 --- !u!1 &8596887978385776295
 GameObject:
   m_ObjectHideFlags: 0

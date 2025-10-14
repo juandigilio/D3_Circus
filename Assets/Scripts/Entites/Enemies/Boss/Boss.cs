@@ -5,11 +5,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Boss : Enemy
 {
+    [Header("Mouth")]
     [SerializeField] private GameObject mouth;
     [SerializeField] private Transform mouthStart;
     [SerializeField] private Transform mouthEnd;
     [SerializeField] private float mouthSpeed = 1.5f;
-    [SerializeField] private float openDuration = 2f;
+
+    [Header("Cannon")]
     [SerializeField] private Transform leftCannon;
     [SerializeField] private Transform rightCannon;
     [SerializeField] private FireBall fireBallPrefab;
@@ -18,10 +20,12 @@ public class Boss : Enemy
     [SerializeField] private float arcHeight = 2f;
     [SerializeField] private float fireballSpeed = 2f;
 
+    [Header("Attak")]
+    [SerializeField] private float idleTime = 4f;
+    [SerializeField] private float attackDuration = 3f;
 
     private Coroutine mouthRoutine;
-    private Coroutine shootingRoutine;
-    private bool isMouthOpen = false;
+    private Coroutine shootRoutine;
 
 
     protected override void Start()
@@ -29,46 +33,18 @@ public class Boss : Enemy
         base.Start();
         Debug.Log("Boss started");
         mouth.transform.position = mouthStart.position;
+
+        Attack();
     }
 
     protected void Update()
     {
         Patroll();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!isMouthOpen)
-                StartOpenMouth();
-        }
-
-        Attack();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-    }
-
-    private void StartOpenMouth()
-    {
-        if (mouthRoutine != null)
-            StopCoroutine(mouthRoutine);
-
-        mouthRoutine = StartCoroutine(OpenMouthRoutine());
-    }
-
-    private IEnumerator OpenMouthRoutine()
-    {
-        isMouthOpen = true;
-
-        yield return MoveMouth(mouthStart.position, mouthEnd.position);
-
-        yield return new WaitForSeconds(openDuration);
-
-        yield return MoveMouth(mouthEnd.position, mouthStart.position);
-
-        isMouthOpen = false;
-        mouthRoutine = null;
     }
 
     private IEnumerator MoveMouth(Vector3 from, Vector3 to)
@@ -110,20 +86,30 @@ public class Boss : Enemy
         }
     }
 
+    private IEnumerator AttackCycle()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(idleTime);
+
+            isAttacking = true;
+
+            yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
+
+            shootRoutine = StartCoroutine(ShootPattern());
+
+            yield return new WaitForSeconds(attackDuration);
+
+            StopCoroutine(shootRoutine);
+
+            yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
+
+            isAttacking = false;
+        }
+    }
+
     protected override void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (shootingRoutine == null)
-                shootingRoutine = StartCoroutine(ShootPattern());
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (shootingRoutine != null)
-            {
-                StopCoroutine(shootingRoutine);
-                shootingRoutine = null;
-            }
-        }
+        StartCoroutine(AttackCycle());
     }
 }

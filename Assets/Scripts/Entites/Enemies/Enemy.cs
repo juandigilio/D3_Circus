@@ -29,6 +29,14 @@ public abstract class Enemy : MyEntity
         base.FixedUpdate();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+    }
+
     protected void Patroll()
     {
         if (isAttacking)
