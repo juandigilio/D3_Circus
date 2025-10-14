@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9d3c405573e09be49b639fc1bd23490d
+guid: 8c1fab47e60cad742a2ced0e7e206994
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2264019553407294369
-    second: Fondo_Menu_V1_0
+      213: 7098971471576285646
+    second: barra_de_salud_vacia_UI_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fondo_Menu_V1_0
+      name: barra_de_salud_vacia_UI_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 1327
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ab516dd9c96b6f10800000000000000
-      internalID: 2264019553407294369
+      spriteID: ec1cfe101fc948260800000000000000
+      internalID: 7098971471576285646
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Fondo_Menu_V1_0: 2264019553407294369
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

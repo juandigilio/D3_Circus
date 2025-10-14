@@ -309,4 +309,14 @@ public class PlayerController : MyEntity
     {
         return maxLives;
     }
+
+    public WeaponType GetCurrentWeaponType()
+    {
+        return weapons[currentWeapon].GetWeaponType();
+    }
+
+    public float HealthPercentage()
+    {
+        return (float)availableLives / (float)maxLives;
+    }
 }

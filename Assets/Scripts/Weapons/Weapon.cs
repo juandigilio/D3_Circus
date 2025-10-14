@@ -113,4 +113,9 @@ public class Weapon : MonoBehaviour
     {
         return bulletLifeDistance;
     }
+
+    public WeaponType GetWeaponType()
+    {
+        return weaponType;
+    }
 }
