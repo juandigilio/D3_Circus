@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offSprite: {fileID: 459193853461402981, guid: f175ade2db2888e4ab6e55ce63f3e292, type: 3}
-  onFrame1: {fileID: 6605853683781768526, guid: fa918f75f9067094584ccc835f4c34f4, type: 3}
-  onFrame2: {fileID: 6379440112789260239, guid: 18143fde29b84e54aa7927fdce8e06bd, type: 3}
+  onFrame1: {fileID: 1445078278972430771, guid: 19de3d6022e1d0949933db6766699b4b, type: 3}
+  onFrame2: {fileID: -4327503843394666132, guid: 4b32156cf519480478b70163e3b01bbe, type: 3}
   animationSpeed: 0.2
 --- !u!223 &1074862066713813857
 Canvas:
@@ -226,8 +226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2}
-  m_SizeDelta: {x: -34.462, y: -19.2291}
+  m_AnchoredPosition: {x: 0, y: -2.2302}
+  m_SizeDelta: {x: -44.5918, y: -20.6104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4472220363264732955
 CanvasRenderer:
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.25
+  m_fontSize: 33.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
