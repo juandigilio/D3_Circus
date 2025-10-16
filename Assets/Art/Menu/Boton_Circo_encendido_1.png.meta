@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 920c9c2b022d34144ad8c584f938a011
+guid: 19de3d6022e1d0949933db6766699b4b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 258573107772540024
-    second: barra de salud de gameplay_0
+      213: 1445078278972430771
+    second: Boton_Circo_encendido_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barra de salud de gameplay_0
+      name: Boton_Circo_encendido_1_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 14
-        width: 783
-        height: 71
+        x: 8
+        y: 0
+        width: 553
+        height: 285
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 874404d1fd2a69300800000000000000
-      internalID: 258573107772540024
+      spriteID: 3b9d8c2d903fd0410800000000000000
+      internalID: 1445078278972430771
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      barra de salud de gameplay_0: 258573107772540024
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

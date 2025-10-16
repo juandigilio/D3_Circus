@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 18143fde29b84e54aa7927fdce8e06bd
+guid: c7999d4afbe0e6345bddcff99ef43c77
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6379440112789260239
-    second: Boton_Circo_encendido_5_0
-  - first:
-      213: 5544302821896438562
-    second: Boton_Circo_encendido_5_1
-  - first:
-      213: -1536703484648819539
-    second: Boton_Circo_encendido_5_2
+      213: 116188023499678857
+    second: Barra_de_salud_llena_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boton_Circo_encendido_5_0
+      name: Barra_de_salud_llena_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 567
-        height: 284
+        width: 1325
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc78eac9bf2588850800000000000000
-      internalID: 6379440112789260239
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boton_Circo_encendido_5_1
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 283
-        width: 184
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2234552aa0251fc40800000000000000
-      internalID: 5544302821896438562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boton_Circo_encendido_5_2
-      rect:
-        serializedVersion: 2
-        x: 310
-        y: 283
-        width: 184
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da4f66092588caae0800000000000000
-      internalID: -1536703484648819539
+      spriteID: 9846adb4468cc9100800000000000000
+      internalID: 116188023499678857
       vertices: []
       indices: 
       edges: []
@@ -184,10 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Boton_Circo_encendido_5_0: 6379440112789260239
-      Boton_Circo_encendido_5_1: 5544302821896438562
-      Boton_Circo_encendido_5_2: -1536703484648819539
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
