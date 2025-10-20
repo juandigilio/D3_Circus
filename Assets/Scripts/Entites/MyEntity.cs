@@ -33,6 +33,16 @@ public abstract class MyEntity : MonoBehaviour
 
         ExitHandler.OnGamePaused += SetPaused;
         MenuController.OnGameStarted += StopPause;
+        SceneManager.OnGamePaused += SetPaused;
+        SceneManager.OnGameStarted += StopPause;
+    }
+
+    private void OnDestroy()
+    {
+        ExitHandler.OnGamePaused -= SetPaused;
+        MenuController.OnGameStarted -= StopPause;
+        SceneManager.OnGamePaused -= SetPaused;
+        SceneManager.OnGameStarted -= StopPause;
     }
 
     protected virtual void FixedUpdate()

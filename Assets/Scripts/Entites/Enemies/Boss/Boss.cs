@@ -81,9 +81,12 @@ public class Boss : Enemy
     {
         while (true)
         {
-            ShootFireball(leftCannon, true);
-            ShootFireball(rightCannon, false);
-            yield return new WaitForSeconds(fireRate);
+            if (!isPaused)
+            {
+                ShootFireball(leftCannon, true);
+                ShootFireball(rightCannon, false);
+                yield return new WaitForSeconds(fireRate);
+            }   
         }
     }
 

@@ -17,6 +17,16 @@ public class EnemySpawner : MonoBehaviour
         lastSpawn = Time.time;
         ExitHandler.OnGamePaused += SetPaused;
         MenuController.OnGameStarted += StopPause;
+        SceneManager.OnGamePaused += SetPaused;
+        SceneManager.OnGameStarted += StopPause;
+    }
+
+    private void OnDestroy()
+    {
+        ExitHandler.OnGamePaused -= SetPaused;
+        MenuController.OnGameStarted -= StopPause;
+        SceneManager.OnGamePaused -= SetPaused;
+        SceneManager.OnGameStarted -= StopPause;
     }
 
     private void FixedUpdate()

@@ -217,6 +217,9 @@ MonoBehaviour:
   scenesPool:
   - sceneName: Game
     actionMapType: 0
+  pauseScene:
+    sceneName: Pause
+    actionMapType: 0
   winingScene:
     sceneName: 
     actionMapType: 0

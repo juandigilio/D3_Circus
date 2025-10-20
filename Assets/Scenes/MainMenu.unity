@@ -614,10 +614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2372d2cf9d16764439bc79fbe1de78d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuButtons: {fileID: 2101315980}
-  backButton: {fileID: 1218775876}
-  credits: {fileID: 154980544}
-  options: {fileID: 940702753}
+  menuButtonsObj: {fileID: 2101315980}
+  backButtonObj: {fileID: 1218775876}
+  creditsObj: {fileID: 154980544}
+  optionsObj: {fileID: 2004111710}
 --- !u!4 &135448875
 Transform:
   m_ObjectHideFlags: 0

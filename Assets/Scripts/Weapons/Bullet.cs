@@ -20,6 +20,16 @@ public class Bullet : MonoBehaviour
         player = GameManager.Instance.GetPlayerController();
         ExitHandler.OnGamePaused += SetPaused;
         MenuController.OnGameStarted += StopPause;
+        SceneManager.OnGamePaused += SetPaused;
+        SceneManager.OnGameStarted += StopPause;
+    }
+
+    private void OnDestroy()
+    {
+        ExitHandler.OnGamePaused -= SetPaused;
+        MenuController.OnGameStarted -= StopPause;
+        SceneManager.OnGamePaused -= SetPaused;
+        SceneManager.OnGameStarted -= StopPause;
     }
 
     private void Update()

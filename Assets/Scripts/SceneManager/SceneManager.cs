@@ -1,47 +1,55 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager
+public static class SceneManager
 {
+    public static event Action OnGameStarted;
+    public static event Action OnGamePaused;
+
     private static HashSet<string> loadedScenes = new HashSet<string>();
     private static CustomScene gameLoaderScene;
     private static CustomScene mainScene;
     private static CustomScene mainMenuScene;
     private static List<CustomScene> scenesPool = new List<CustomScene>();
+    private static CustomScene pauseScene;
     private static CustomScene winingScene;
 
     private static int index = 0;
 
 
-    private static async Task LoadSceneAsync(CustomScene scene)
+    private static void LoadSceneAsync(CustomScene scene)
     {
         if (!IsSceneLoaded(scene))
         {
             loadedScenes.Add(scene.sceneName);
 
-            AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
+            //AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene.sceneName, LoadSceneMode.Additive);
 
-            while (!asyncLoad.isDone)
-            {
-                await Task.Yield();
-            }
+            //while (!asyncLoad.isDone)
+            //{
+            //    await Task.Yield();
+            //}
         }
-
-        SetInputActionMap(scene);
     }
 
-    private static async Task UnloadSceneAsync(CustomScene scene)
+    private static void UnloadSceneAsync(CustomScene scene)
     {
         if (IsSceneLoaded(scene))
         {
-            AsyncOperation asyncUnload = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene.sceneName);
+            UnityEngine.SceneManagement.SceneManager.UnloadScene(scene.sceneName);
+            //AsyncOperation asyncUnload = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene.sceneName);
 
-            while (!asyncUnload.isDone)
-            {
-                await Task.Yield();
-            }
+            Debug.Log("Unloading scene: " + scene.sceneName);
+
+            //while (!asyncUnload.isDone)
+            //{
+            //    await Task.Yield();
+            //}
 
             loadedScenes.Remove(scene.sceneName);
         }
@@ -52,31 +60,31 @@ public class SceneManager
         return loadedScenes.Contains(scene.sceneName);
     }
 
-    private static async Task LoadMainScene()
+    private static void LoadMainScene()
     {
-        await LoadSceneAsync(mainScene);
+        LoadSceneAsync(mainScene);
     }
 
-    private static async Task UnloadAll()
-    {
-        await UnloadSceneAsync(gameLoaderScene);
+    //private static async Task UnloadAll()
+    //{
+    //    await UnloadSceneAsync(gameLoaderScene);
 
-        foreach (CustomScene scene in scenesPool)
-        {
-            await UnloadSceneAsync(scene);
-        }
+    //    foreach (CustomScene scene in scenesPool)
+    //    {
+    //        await UnloadSceneAsync(scene);
+    //    }
 
-        await UnloadSceneAsync(winingScene);
-    }
+    //    await UnloadSceneAsync(winingScene);
+    //}
 
-    private static void SetInputActionMap(CustomScene scene)
-    {
-        //InputManager inputManager = GameManager.Instance.GetInputManager();
+    //private static void SetInputActionMap(CustomScene scene)
+    //{
+    //    //InputManager inputManager = GameManager.Instance.GetInputManager();
 
-        //inputManager.SetActionMap(scene.actionMapType);
-    }
+    //    //inputManager.SetActionMap(scene.actionMapType);
+    //}
 
-    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, List<CustomScene> sceneDictionary, CustomScene win, CustomScene gameOver)
+    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, List<CustomScene> sceneDictionary, CustomScene pause, CustomScene win, CustomScene gameOver)
     {
         gameLoaderScene = gameLoader;
         mainScene = main;
@@ -87,7 +95,10 @@ public class SceneManager
             scenesPool.Add(scene);
         }
 
+        pauseScene = pause;
         winingScene = win;
+
+        loadedScenes.Add(gameLoaderScene.sceneName);
     }
 
     public static void LoadNextSceneAsync()
@@ -96,7 +107,7 @@ public class SceneManager
         {
             index++;
 
-            _ = LoadSceneAsync(scenesPool[index]);
+            LoadSceneAsync(scenesPool[index]);
         }
     }
 
@@ -104,50 +115,86 @@ public class SceneManager
     {
         if (index > 0)
         {
-            _ = UnloadSceneAsync(scenesPool[index - 1]);
+            UnloadSceneAsync(scenesPool[index - 1]);
         }
     }
 
-    public static async Task LoadGame()
+    public static void LoadGame()
     {
-        await UnloadSceneAsync(mainMenuScene);
+        UnloadSceneAsync(mainMenuScene);
 
-        await LoadTutorialScene();
+        LoadTutorialScene();
     }
 
-    public static async Task LoadMenu()
+    private static void LoadMenu()
     {
-        await LoadMainScene();
+        LoadMainScene();
 
-        await LoadSceneAsync(mainMenuScene);
+        UnloadSceneAsync(gameLoaderScene);
+
+        LoadSceneAsync(mainMenuScene);
     }
 
-    public static async void LoadMenuScene()
+    public static void LoadMenuScene()
     {
-        await LoadMenu();
+        LoadMenu();
 
-        _ = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(gameLoaderScene.sceneName);
+        UnloadSceneAsync(gameLoaderScene);
+
+        foreach (CustomScene scene in scenesPool)
+        {
+            UnloadSceneAsync(scene);
+        }
     }
 
-    public static async Task LoadTutorialScene()
+    public static void LoadTutorialScene()
     {
         index = 0;
 
-        await LoadSceneAsync(scenesPool[index]);
+        LoadSceneAsync(scenesPool[index]);
     }
 
     public static void UnloadMainMenuScene()
     {
-        _ = UnloadSceneAsync(mainMenuScene);
+        UnloadSceneAsync(mainMenuScene);
     }
 
     public static void LoadWiningScene()
     {
-        _ = LoadSceneAsync(winingScene);
+        LoadSceneAsync(winingScene);
     }
 
     public static bool IsMainMenuSceneLoaded()
     {
         return IsSceneLoaded(mainMenuScene);
+    }
+
+    private static void LoadPause()
+    {
+        LoadSceneAsync(pauseScene);
+    }
+
+    private static void UnloadPause()
+    {
+        UnloadSceneAsync(pauseScene);
+    }
+
+    public static void TogglePause()
+    {
+        if (IsSceneLoaded(pauseScene))
+        {
+            OnGameStarted?.Invoke();
+            UnloadPause();
+        }
+        else
+        {
+            OnGamePaused?.Invoke();
+            LoadPause();
+        }
+    }
+
+    public static void GobackToMenu()
+    {
+        LoadMenuScene();
     }
 }

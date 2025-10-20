@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private ExitHandler exitHandler;
 
 
     private InputManager inputManager;
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
     public void RegisterSideSrollCamera(SideScrollCamera sideScrollCamera)
     {
         this.SideScrollCamera = sideScrollCamera;
+    }
+
+    public ExitHandler GetExitHandler()
+    {
+        return exitHandler;
     }
 
     public PlayerInput GetPlayerInput()

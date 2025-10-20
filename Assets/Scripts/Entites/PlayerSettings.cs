@@ -9,7 +9,7 @@ public enum InputType
 
 public static class PlayerSettings
 {
-    private static InputType inputType;
+    private static InputType inputType = InputType.Combinated;
 
     public static void SetInputType(InputType input)
     {

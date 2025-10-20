@@ -3,16 +3,26 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] GameObject menuButtons;
-    [SerializeField] GameObject backButton;
-    [SerializeField] GameObject credits;
-    [SerializeField] GameObject options;
+    [SerializeField] private GameObject menuButtonsObj;
+    [SerializeField] private GameObject backButtonObj;
+    [SerializeField] private GameObject creditsObj;
+    [SerializeField] private GameObject optionsObj;
+
+    private static GameObject menuButtons;
+    private static GameObject backButton;
+    private static GameObject credits;
+    private static GameObject options;
 
 
     public static event System.Action OnGameStarted;
 
     private void Start()
     {
+        menuButtons = menuButtonsObj;
+        backButton = backButtonObj;
+        credits = creditsObj;
+        options = optionsObj;
+
         ShowMenu();
     }
 
@@ -32,7 +42,7 @@ public class MenuController : MonoBehaviour
         backButton.SetActive(true);
     }
 
-    public void ShowMenu()
+    public static void ShowMenu()
     {
         options.SetActive(false);
         credits.SetActive(false);
@@ -44,7 +54,7 @@ public class MenuController : MonoBehaviour
     {
         OnGameStarted?.Invoke();
 
-        _ = SceneManager.LoadGame();
+        SceneManager.LoadGame();
     }
 
     public void CloseGame()

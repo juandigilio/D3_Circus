@@ -160,4 +160,14 @@ public class OptionsMenu : MonoBehaviour
             }
         }
     }
+
+    public void UnloadPause()
+    {
+        SceneManager.TogglePause();
+    }
+
+    public void UnloadGame()
+    {
+        //SceneManager.LoadMenuScene();
+    }
 }

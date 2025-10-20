@@ -1,22 +1,28 @@
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class ExitHandler : MonoBehaviour
 {
     public static event System.Action OnGamePaused;
 
-    void Update()
+
+    private void Update()
+    {
+        HandleExit();
+    }
+
+    private void HandleExit()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OnGamePaused?.Invoke();
-            LoadMainMenu();
+            if (SceneManager.IsMainMenuSceneLoaded())
+            {
+                //MenuController.ShowMenu();
+            }
+            else
+            {
+                //OnGamePaused?.Invoke();
+                SceneManager.TogglePause();
+            }      
         }
-    }
-
-    public void LoadMainMenu()
-    {
-        _ = SceneManager.LoadMenu();
     }
 }
