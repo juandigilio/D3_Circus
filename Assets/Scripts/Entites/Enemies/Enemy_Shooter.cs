@@ -82,7 +82,6 @@ public class Enemy_Shooter : Enemy
         }
         else
         {
-            Debug.Log("No estoy mirando al player");
             isAttacking = false;
         }
     }

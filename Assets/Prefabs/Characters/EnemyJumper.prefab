@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1550590201024403848}
   - component: {fileID: 4942158735101556532}
   - component: {fileID: 7352628118959276929}
+  - component: {fileID: 7357428159729606719}
   m_Layer: 0
   m_Name: EnemyJumper
   m_TagString: Enemy
@@ -103,23 +104,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6429b5cc88a8af840879a130b0bc0a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   isGrounded: 0
-  availableLives: 0
+  health: 1
   rayLength: 0
+  jumpManager: {fileID: 7357428159729606719}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 0}
-  health: 1
   damage: 1
-  walkingRange: 2
-  jumpingRange: 16.06
-  maxJumpHeight: 4.74
-  minJumpHeight: 1.8
-  attackRange: 0.1
-  attackCooldown: 1
-  groundMask:
+  walkingRange: 5.14
+  attackRange: 0.7
+  retreatDistance: 6.9
+  jumpingRange: 7.66
+  jumpForceBase: 0.18
+  retractForce: 13.8
+  horizontalForceMultiplier: 1
+  maxJumpHeight: 17.7
+  checkStep: 0.5
+  obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
+  jumpCooldown: 0.6
 --- !u!50 &4942158735101556532
 Rigidbody2D:
   serializedVersion: 5
@@ -135,7 +140,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3.16
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -184,6 +189,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.006122589, y: -0.0020407438}
   m_Size: {x: 0.21221161, y: 1.9959185}
   m_Direction: 0
+--- !u!114 &7357428159729606719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176053963910588387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bf359beb5bb364485851bdd3adf5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 56.4
+  fallMultiplier: 3.5
+  lowJumpMultiplier: 2.61
+  jumpPressed: 0
 --- !u!1 &5772241562902994622
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +232,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.101, y: 0, z: 0}
-  m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
+  m_LocalScale: {x: 0.36000004, y: 0.36000004, z: 0.36000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6971756626446664051}

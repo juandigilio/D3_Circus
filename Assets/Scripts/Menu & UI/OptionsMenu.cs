@@ -32,7 +32,7 @@ public class OptionsMenu : MonoBehaviour
 
         string[] enumNames = Enum.GetNames(typeof(InputType));
         dropdown.AddOptions(new System.Collections.Generic.List<string>(enumNames));
-
+        dropdown.value = (int)PlayerSettings.GetInputType();
         dropdown.onValueChanged.AddListener(OnDropdownChanged);
 
 

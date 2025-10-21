@@ -485,6 +485,9 @@ GameObject:
   - component: {fileID: 6380668201935724669}
   - component: {fileID: 1168607410764096063}
   - component: {fileID: 2140769015998517328}
+  - component: {fileID: 8277721271122332236}
+  - component: {fileID: 3184320123294367803}
+  - component: {fileID: 1570147260129583636}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -639,16 +642,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isGrounded: 0
-  health: 0
+  health: 999
   rayLength: 0
-  sight: {fileID: 4974974786571436529}
-  sightOffset: 4.5
-  jumpForce: 5
-  maxLives: 8
-  weapons:
-  - {fileID: 2222498569532621544}
-  - {fileID: 2663309142317945082}
-  - {fileID: 6674040792871698573}
+  jumpManager: {fileID: 8277721271122332236}
+  maxHealth: 999
+  weaponsManager: {fileID: 3184320123294367803}
+  aimController: {fileID: 1570147260129583636}
 --- !u!70 &1168607410764096063
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -704,6 +703,54 @@ MonoBehaviour:
   aimAction: Aim
   nextWeaponAction: NextWeapon
   previousWeaponAction: PreviousWeapon
+--- !u!114 &8277721271122332236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373533662242557326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bf359beb5bb364485851bdd3adf5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 10
+  fallMultiplier: 3.5
+  lowJumpMultiplier: 2
+  jumpPressed: 0
+--- !u!114 &3184320123294367803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373533662242557326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0816b8061794514abf231965067bd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 2222498569532621544}
+  - {fileID: 2663309142317945082}
+  - {fileID: 6674040792871698573}
+  sight: {fileID: 4974974786571436529}
+--- !u!114 &1570147260129583636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373533662242557326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb39cf5a5b71e04e9201db2596ed7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sight: {fileID: 4974974786571436529}
+  sightOffset: 10
+  weapon: {fileID: 2222498569532621544}
 --- !u!1 &7964963633291267659
 GameObject:
   m_ObjectHideFlags: 0

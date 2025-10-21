@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class PlayerController : MyEntity
 {
-    [SerializeField] private GameObject sight;
-    [SerializeField] private float sightOffset = 1f;
     [SerializeField] private int maxHealth = 8;
-
-    //1-Pistol 2-Automatic 3-Rifle
-    [SerializeField] private List<Weapon> weapons = new List<Weapon>();
+    [SerializeField] private WeaponsManager weaponsManager;
+    [SerializeField] private AimController aimController;
 
     private Camera mainCamera;
     private Vector2 inputDirection;
-    private Vector2 aimDirection;
-    private int currentWeapon = 0;
-    private bool isShooting = false;
-    private Vector3 originalScale;
-    private Vector3 invertedScale;
-    private float lastQuantizedAngle = 0f;
-
 
     private void OnEnable()
     {
@@ -35,13 +23,6 @@ public class PlayerController : MyEntity
 
         health = maxHealth;
 
-        weapons[0].gameObject.SetActive(true);
-        weapons[1].gameObject.SetActive(false);
-        weapons[2].gameObject.SetActive(false);
-
-        originalScale = weapons[0].transform.localScale;
-        invertedScale = new Vector3(-originalScale.x, -originalScale.y, originalScale.z);
-
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
         sideScrollCamera.SetPlayerTransform(transform);
     }
@@ -53,33 +34,8 @@ public class PlayerController : MyEntity
             base.FixedUpdate();
 
             Move();
-            Aim();
-            Shoot();
+            SetAimControllerDirection();
         }
-    }
-
-    public void SetShooting(bool shooting)
-    {
-        isShooting = shooting;
-    }
-
-    public void Jump()
-    {
-        jumpManager.Jump();
-    }
-
-    public void NextWeapon()
-    {
-        currentWeapon++;
-        if (currentWeapon > 2) currentWeapon = 0;
-        SwitchWeapon(NextWeapon);
-    }
-
-    public void PreviousWeapon()
-    {
-        currentWeapon--;
-        if (currentWeapon < 0) currentWeapon = 2;
-        SwitchWeapon(PreviousWeapon);
     }
 
     public void SetInputDirection(Vector2 newDirection)
@@ -89,25 +45,19 @@ public class PlayerController : MyEntity
         if (inputDirection.x != 0)
         {
             direction = inputDirection.x;
-
-
-            UpdateWeaponDirection();
         }
+
+        aimController.SetInputDirection(inputDirection);
     }
 
-    private void Shoot()
+    public void SetAimDirection(Vector2 aimDirection)
     {
-        if (isShooting)
-        {
-            if (!weapons[currentWeapon].HasAmmo())
-            {
-                NextWeapon();
-            }
+        aimController.SetAimDirection(aimDirection);
+    }
 
-            Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
-
-            weapons[currentWeapon].Shoot(shootDirection);
-        }
+    private void SetAimControllerDirection()
+    {
+        aimController.SetDirection(direction);
     }
 
     private void Move()
@@ -125,9 +75,31 @@ public class PlayerController : MyEntity
         CheckScreenLimits();
     }
 
-    public void SetAimDirection(Vector2 direction)
+    public void Jump()
     {
-        aimDirection = direction;
+        if (isPaused) return;
+
+        jumpManager.Jump();
+    }
+
+    public void StopJump()
+    {
+        jumpManager.StopJump();
+    }
+
+    public void SetShooting(bool shooting)
+    {
+        weaponsManager.SetShooting(shooting);
+    }
+
+    public void NextWeapon()
+    {
+        weaponsManager.NextWeapon();
+    }
+
+    public void PreviousWeapon()
+    {
+        weaponsManager.PreviousWeapon();
     }
 
     private void CheckScreenLimits()
@@ -140,147 +112,14 @@ public class PlayerController : MyEntity
         }
     }
 
-    private void Aim()
-    {
-        switch (PlayerSettings.GetInputType())
-        {
-            case InputType.Mouse:
-            {
-                AimToMouse();
-                break;
-            }
-            case InputType.Separated:
-            {
-                    AimSeparated();
-                break;
-            }
-            case InputType.Combinated:
-            {
-                    AimCombinated();
-                break;
-            }
-            default:
-            {
-                break;
-            }
-                
-        }
-    }
-
-    private void AimToMouse()
-    {
-        sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
-
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
-        Vector2 dir = (worldMousePos - transform.position);
-        dir.Normalize();
-
-        float rawAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        float quantizedAngle = Mathf.Round(rawAngle / 45f) * 45f;
-
-        if (Mathf.Abs(quantizedAngle - lastQuantizedAngle) < 10f)
-            quantizedAngle = lastQuantizedAngle;
-        else
-            lastQuantizedAngle = quantizedAngle;
-
-        float rad = quantizedAngle * Mathf.Deg2Rad;
-        Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
-
-        weapons[currentWeapon].AimAt(quantizedAngle);
-        sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
-
-        direction = Mathf.Sign(dir.x);
-        UpdateWeaponDirection();
-    }
-
-    private void AimSeparated()
-    {
-        Vector2 newDirection = aimDirection;
-        KeyboardAim(newDirection);
-    }
-
-    private void AimCombinated()
-    {
-        Vector2 newDirection = inputDirection;
-        KeyboardAim(newDirection);
-    }
-
-    private void KeyboardAim(Vector2 newDirection)
-    {
-        float angle;
-
-        sight.transform.position = weapons[currentWeapon].GetFirePointWorldPos();
-
-        if (newDirection != Vector2.zero)
-        {
-            float rawAngle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
-            angle = Mathf.Round(rawAngle / 45f) * 45f;
-            float rad = angle * Mathf.Deg2Rad;
-
-            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
-            quantizedDirection *= sightOffset;
-
-            weapons[currentWeapon].AimAt(angle);
-            sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
-        }
-        else
-        {
-            if (direction >= 0) angle = 0;
-            else angle = 180;
-
-            weapons[currentWeapon].AimAt(angle);
-            sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
-        }
-    }
-
-    private void SwitchWeapon(Action onNoAmmo)
-    {
-        if (weapons[currentWeapon].HasAmmo())
-        {
-            weapons[currentWeapon].gameObject.SetActive(true);
-            UpdateWeaponDirection();
-
-            for (int i = 0; i < weapons.Count; i++)
-            {
-                if (i != currentWeapon)
-                {
-                    weapons[i].gameObject.SetActive(false);
-                }
-            }
-            return;
-        }
-        else
-        {
-            onNoAmmo?.Invoke();
-        }
-    }
-
-    private void UpdateWeaponDirection()
-    {
-        if (direction > 0)
-        {
-            weapons[currentWeapon].transform.localScale = originalScale;
-        }
-        else if (direction < 0)
-        {
-            weapons[currentWeapon].transform.localScale = invertedScale;
-        }
-    }
-
-    public void HealthUp()
-    {
-        health++;
-
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
-    }
-
     public int CurrentWeaponAmmo()
     {
-        return weapons[currentWeapon].GetCurrentAmmo();
+        return weaponsManager.CurrentWeaponAmmo();
+    }
+
+    public WeaponType GetCurrentWeaponType()
+    {
+        return weaponsManager.GetCurrentWeaponType();
     }
 
     public int AvailableLives()
@@ -293,13 +132,28 @@ public class PlayerController : MyEntity
         return maxHealth;
     }
 
-    public WeaponType GetCurrentWeaponType()
+    public void HealthUp()
     {
-        return weapons[currentWeapon].GetWeaponType();
+        health++;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 
     public float HealthPercentage()
     {
         return (float)health / (float)maxHealth;
+    }
+
+    public void SetDirection(float direction)
+    {
+        this.direction = direction;
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
     }
 }

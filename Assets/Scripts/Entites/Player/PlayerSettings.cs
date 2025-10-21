@@ -6,7 +6,6 @@ public enum InputType
     Mouse
 }
 
-
 public static class PlayerSettings
 {
     private static InputType inputType = InputType.Combinated;

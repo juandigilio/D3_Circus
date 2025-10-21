@@ -41,11 +41,6 @@ public class InputManager : MonoBehaviour
         LoadActions();
     }
 
-    private void Update()
-    {
-
-    }
-
     private void Move(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.started)
@@ -67,6 +62,12 @@ public class InputManager : MonoBehaviour
         if (callbackContext.started)
         {
             playerController.Jump();
+            Debug.Log("Jump button pressed (started)");
+        }
+        if (callbackContext.canceled)
+        {
+            playerController.StopJump();
+            Debug.Log("Jump button released (canceled)");
         }
     }
 
@@ -125,6 +126,7 @@ public class InputManager : MonoBehaviour
             playerInput.currentActionMap.FindAction(moveAction).canceled += Move;
 
             playerInput.currentActionMap.FindAction(jumpAction).started += Jump;
+            playerInput.currentActionMap.FindAction(jumpAction).canceled += Jump;
 
             playerInput.currentActionMap.FindAction(shootAction).started += Shoot;
             playerInput.currentActionMap.FindAction(shootAction).canceled += Shoot;

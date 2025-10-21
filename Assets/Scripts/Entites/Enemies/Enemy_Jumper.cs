@@ -2,106 +2,102 @@ using UnityEngine;
 
 public class Enemy_Jumper : Enemy
 {
-    [SerializeField] private float walkingRange = 3f;  
-    [SerializeField] private float jumpingRange = 7f;  
-    [SerializeField] private float maxJumpHeight = 4f; 
-    [SerializeField] private float minJumpHeight = 2f; 
-    [SerializeField] private float attackRange = 0.8f; 
-    [SerializeField] private float attackCooldown = 1f;
+    [Header("Ranges")]
+    [SerializeField] private float walkingRange = 3f;
+    [SerializeField] private float attackRange = 0.8f;
+    [SerializeField] private float retreatDistance = 4f;
+    [SerializeField] private float jumpingRange = 7f;
 
-    [SerializeField] private LayerMask groundMask;
+    [Header("Jump Forces")]
+    [SerializeField] private float jumpForceBase = 10f;
+    [SerializeField] private float retractForce = 10f;
+    [SerializeField] private float horizontalForceMultiplier = 0.8f;
+    [SerializeField] private float maxJumpHeight = 4f;
+    [SerializeField] private float checkStep = 0.5f;
+    [SerializeField] private LayerMask obstacleMask;
 
-    protected override void Start()
-    {
-        base.Start();
+    [Header("Behavior Timing")]
+    [SerializeField] private float jumpCooldown = 0.6f;
+    private float nextJumpTime = 0f;
 
-        health = 1;
-    }
+    private bool retreating = false;
 
     protected override void FixedUpdate()
     {
-        if (!isPaused)
+        if (isPaused) return;
+        base.FixedUpdate();
+
+        if (!isGrounded) return;
+
+        if (retreating)
         {
-            base.FixedUpdate();
-
-            UpdateCurrentState();
-        }  
-    }
-
-    private void UpdateCurrentState()
-    {
-        float distance = Vector2.Distance(transform.position, playerController.transform.position);
-
-        if (isGrounded)
-        {
-            if (transform.position.x < playerController.transform.position.x)
-            {
-                direction = 1;
-            }
-            else
-            {
-                direction = -1;
-            }
-
-            if (distance <= walkingRange)
-            {
-                WalkTowardsPlayer();
-            }
-            else if (distance <= jumpingRange)
-            {
-                JumpTowardsPlayer();
-            }
+            RetreatJump();
+            return;
         }
 
-        UpdateAssetDirection();
+        float distance = Vector2.Distance(transform.position, playerController.transform.position);
 
-        CheckAttackState(distance);
-    }
-
-    private void CheckAttackState(float distance)
-    {
-        if (distance <= attackRange)
+        if (distance <= walkingRange && distance > attackRange)
         {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-                InvokeRepeating(nameof(Attack), 0f, attackCooldown);
-            }
+            WalkTowardsPlayer();
+        }
+        else if (distance > attackRange)
+        {
+            JumpTowardsPlayer();
         }
         else
         {
-            if (isAttacking)
-            {
-                isAttacking = false;
-                CancelInvoke(nameof(Attack));
-            }
+            Attack();
         }
     }
 
     private void WalkTowardsPlayer()
     {
-        float dir = Mathf.Sign(playerController.transform.position.x - transform.position.x);
-        rb.linearVelocity = new Vector2(dir * speed, rb.linearVelocity.y);
+        float horizontalDir = Mathf.Sign(playerController.transform.position.x - transform.position.x);
+        direction = horizontalDir;
+        rb.linearVelocity = new Vector2(horizontalDir * speed, rb.linearVelocity.y);
     }
 
     private void JumpTowardsPlayer()
     {
-        Vector2 dir = playerController.transform.position - transform.position;
-        float dirX = Mathf.Sign(dir.x);
-        float jumpForceY = Mathf.Clamp(dir.y + 2f, minJumpHeight, maxJumpHeight);
+        Vector2 playerPos = playerController.transform.position;
+        Vector2 from = transform.position;
+        float horizontalDir = Mathf.Sign(playerPos.x - from.x);
+        direction = horizontalDir;
+        float distance = Mathf.Abs(playerPos.x - from.x);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, jumpForceY, groundMask);
-        if (hit.collider != null)
+        float minVertical = 3f;
+        float verticalForce = Mathf.Lerp(minVertical, maxJumpHeight, distance / jumpingRange);
+        float horizontalForce = horizontalDir * Mathf.Lerp(2f, 6f, distance / jumpingRange);
+
+        for (float y = 0f; y < maxJumpHeight; y += checkStep)
         {
-            jumpForceY = hit.distance * 0.9f;
+            Vector2 origin = from + new Vector2(0, y);
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, checkStep, obstacleMask);
+            if (hit.collider != null)
+            {
+                verticalForce = Mathf.Max(2f, y * 0.8f);
+                break;
+            }
         }
 
-        rb.linearVelocity = new Vector2(dirX * speed * 1.2f, jumpForceY);
+        jumpManager.JumpWithForce(horizontalForce, verticalForce);
+    }
+
+    private void RetreatJump()
+    {
+        float horizontalDir = -Mathf.Sign(playerController.transform.position.x - transform.position.x);
+        direction = horizontalDir;
+        float horizontalForce = horizontalDir * retractForce;
+        float verticalForce = retractForce * 0.8f;
+
+        jumpManager.JumpWithForce(horizontalForce, verticalForce);
+        retreating = false;
     }
 
     protected override void Attack()
     {
         playerController.TakeDamage(damage);
-        Debug.Log("Enemy_Jumper attacked the player!");
+        retreating = true;
     }
 }
