@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 
@@ -8,8 +7,7 @@ public class PlayerController : MyEntity
 {
     [SerializeField] private GameObject sight;
     [SerializeField] private float sightOffset = 1f;
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private int maxLives = 8;
+    [SerializeField] private int maxHealth = 8;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
@@ -35,7 +33,7 @@ public class PlayerController : MyEntity
 
         mainCamera = Camera.main;
 
-        health = maxLives;
+        health = maxHealth;
 
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
@@ -67,20 +65,7 @@ public class PlayerController : MyEntity
 
     public void Jump()
     {
-        if (!doubleJumped)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-            if (!jumped)
-            {
-                jumped = true;
-            }
-            else
-            {
-                doubleJumped = true;
-            }
-        }
+        jumpManager.Jump();
     }
 
     public void NextWeapon()
@@ -287,9 +272,9 @@ public class PlayerController : MyEntity
     {
         health++;
 
-        if (health > maxLives)
+        if (health > maxHealth)
         {
-            health = maxLives;
+            health = maxHealth;
         }
     }
 
@@ -305,7 +290,7 @@ public class PlayerController : MyEntity
 
     public int MaxLives()
     {
-        return maxLives;
+        return maxHealth;
     }
 
     public WeaponType GetCurrentWeaponType()
@@ -315,6 +300,6 @@ public class PlayerController : MyEntity
 
     public float HealthPercentage()
     {
-        return (float)health / (float)maxLives;
+        return (float)health / (float)maxHealth;
     }
 }

@@ -6,13 +6,11 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] protected bool isGrounded;
     [SerializeField] protected int health;
     [SerializeField] private float rayLength;
+    [SerializeField] protected JumpManager jumpManager;
 
     protected Rigidbody2D rb;
     protected float direction = 1f;
-    protected bool jumped = false;
-    protected bool doubleJumped = false;
     protected bool isPaused = false;
-
 
 
     protected virtual void Start()
@@ -68,8 +66,12 @@ public abstract class MyEntity : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
-                jumped = false;
-                doubleJumped = false;
+
+                if (jumpManager)
+                {
+                    jumpManager.ResetJumps();
+                }
+                    
                 break;
             }
         }
@@ -99,7 +101,6 @@ public abstract class MyEntity : MonoBehaviour
 
     private void SetPaused()
     {
-        Debug.Log("Pausing entity: ");
         isPaused = true;
         rb.Sleep();
     }
