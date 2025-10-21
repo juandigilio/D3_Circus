@@ -10,7 +10,6 @@ public class PlayerController : MyEntity
     [SerializeField] private float sightOffset = 1f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private int maxLives = 8;
-    [SerializeField] private float aimSmoothSpeed = 10f;
 
     //1-Pistol 2-Automatic 3-Rifle
     [SerializeField] private List<Weapon> weapons = new List<Weapon>();
@@ -23,7 +22,6 @@ public class PlayerController : MyEntity
     private Vector3 originalScale;
     private Vector3 invertedScale;
     private float lastQuantizedAngle = 0f;
-    private float smoothedAngle = 0f;
 
 
     private void OnEnable()
@@ -37,7 +35,7 @@ public class PlayerController : MyEntity
 
         mainCamera = Camera.main;
 
-        availableLives = maxLives;
+        health = maxLives;
 
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
@@ -287,11 +285,11 @@ public class PlayerController : MyEntity
 
     public void HealthUp()
     {
-        availableLives++;
+        health++;
 
-        if (availableLives > maxLives)
+        if (health > maxLives)
         {
-            availableLives = maxLives;
+            health = maxLives;
         }
     }
 
@@ -302,7 +300,7 @@ public class PlayerController : MyEntity
 
     public int AvailableLives()
     {
-        return availableLives;
+        return health;
     }
 
     public int MaxLives()
@@ -317,6 +315,6 @@ public class PlayerController : MyEntity
 
     public float HealthPercentage()
     {
-        return (float)availableLives / (float)maxLives;
+        return (float)health / (float)maxLives;
     }
 }

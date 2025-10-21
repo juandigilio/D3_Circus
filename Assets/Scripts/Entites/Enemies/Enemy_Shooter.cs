@@ -11,7 +11,7 @@ public class Enemy_Shooter : Enemy
     {
         base.Start();
 
-        availableLives = 1;
+        health = 1;
         shootDistance = weapon.GetWeaponRange();
     }
 

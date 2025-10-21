@@ -4,7 +4,7 @@ public abstract class MyEntity : MonoBehaviour
 {
     [SerializeField] protected float speed = 5f;
     [SerializeField] protected bool isGrounded;
-    [SerializeField] protected int availableLives;
+    [SerializeField] protected int health;
     [SerializeField] private float rayLength;
 
     protected Rigidbody2D rb;
@@ -31,28 +31,26 @@ public abstract class MyEntity : MonoBehaviour
 
         rayLength = col.bounds.extents.y;
 
-        ExitHandler.OnGamePaused += SetPaused;
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
         MenuController.OnGameStarted += StopPause;
-        SceneManager.OnGamePaused += SetPaused;
-        SceneManager.OnGameStarted += StopPause;
     }
 
     private void OnDestroy()
     {
-        ExitHandler.OnGamePaused -= SetPaused;
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
         MenuController.OnGameStarted -= StopPause;
-        SceneManager.OnGamePaused -= SetPaused;
-        SceneManager.OnGameStarted -= StopPause;
     }
 
     protected virtual void FixedUpdate()
     {
-        if (!isPaused)
-        {
-            CheckGrounded();
+        if (isPaused) return;
 
-            UpdateAssetDirection();
-        }  
+        CheckGrounded();
+
+        UpdateAssetDirection();
+
     }
 
     protected void CheckGrounded()
@@ -79,9 +77,9 @@ public abstract class MyEntity : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        availableLives -= damage;
+        health -= damage;
 
-        if (availableLives <= 0)
+        if (health <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -99,13 +97,14 @@ public abstract class MyEntity : MonoBehaviour
         }
     }
 
-    protected void SetPaused()
+    private void SetPaused()
     {
+        Debug.Log("Pausing entity: ");
         isPaused = true;
         rb.Sleep();
     }
 
-    protected void StopPause()
+    private void StopPause()
     {
         isPaused = false;
         rb.WakeUp();

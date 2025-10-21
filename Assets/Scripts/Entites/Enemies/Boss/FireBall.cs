@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour
@@ -11,8 +12,32 @@ public class FireBall : MonoBehaviour
     private float duration;
     private float timer;
     private int damage = 1;
+    private bool isPaused = false;
 
-    
+
+    private void Start()
+    {
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
+        MenuController.OnGameStarted += StopPause;
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
+    }
+
+    private void OnDestroy()
+    {
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
+        MenuController.OnGameStarted -= StopPause;
+    }
 
     private void Update()
     {
@@ -34,6 +59,8 @@ public class FireBall : MonoBehaviour
 
     private void Move()
     {
+        if (isPaused) return;
+
         timer += Time.deltaTime / duration;
 
         float t = Mathf.Clamp01(timer);

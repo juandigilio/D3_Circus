@@ -85,8 +85,8 @@ public class Boss : Enemy
             {
                 ShootFireball(leftCannon, true);
                 ShootFireball(rightCannon, false);
-                yield return new WaitForSeconds(fireRate);
-            }   
+            }  
+            yield return new WaitForSeconds(fireRate);
         }
     }
 

@@ -26,6 +26,11 @@ public class MenuController : MonoBehaviour
         ShowMenu();
     }
 
+    private void Update()
+    {
+        CheckInput();
+    }
+
     public void ShowOptions()
     {
         menuButtons.SetActive(false);
@@ -50,11 +55,20 @@ public class MenuController : MonoBehaviour
         menuButtons.SetActive(true);
     }
 
-    public void LoadGame()
+    public async void LoadGame()
     {
         OnGameStarted?.Invoke();
 
-        SceneManager.LoadGame();
+        await SceneManager.LoadGameAsync();
+    }
+
+    private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowMenu();
+            Debug.Log("Showing Menu from MenuController");
+        }
     }
 
     public void CloseGame()

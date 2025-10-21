@@ -7,15 +7,14 @@ public class GameLoader : MonoBehaviour
     [SerializeField] private CustomScene mainScene;
     [SerializeField] private CustomScene mainMenu;
     [SerializeField] private List<CustomScene> scenesPool;
-    [SerializeField] private CustomScene pauseScene;
     [SerializeField] private CustomScene winingScene;
     [SerializeField] private CustomScene gameOverScene;
 
 
-    void Start()
+    private async void Start()
     {
-        SceneManager.SetScenes(gameLoader, mainScene, mainMenu, scenesPool, pauseScene, winingScene, gameOverScene);
+        SceneManager.SetScenes(gameLoader, mainScene, mainMenu, scenesPool, winingScene, gameOverScene);
 
-        SceneManager.LoadMenuScene();
+        await SceneManager.LoadMenuSceneAsync();
     }
 }

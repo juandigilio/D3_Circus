@@ -4,7 +4,6 @@ public abstract class Enemy : MyEntity
 {
     [SerializeField] protected Transform leftPoint;
     [SerializeField] protected Transform rightPoint;
-    [SerializeField] protected int health = 1;
     [SerializeField] protected int damage = 1;
 
     protected PlayerController playerController;

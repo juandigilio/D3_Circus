@@ -15,7 +15,7 @@ public class Enemy_Jumper : Enemy
     {
         base.Start();
 
-        availableLives = 1;
+        health = 1;
     }
 
     protected override void FixedUpdate()
