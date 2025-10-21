@@ -17,6 +17,12 @@ namespace AK
         static const AkUniqueID PLAY_ENEMY_HIT = 2045007312U;
         static const AkUniqueID PLAY_ENEMY_SHOT = 3160529173U;
         static const AkUniqueID PLAY_ENEMY_SLASH = 4254899904U;
+        static const AkUniqueID PLAY_PLAYER2_DEATH = 3505043934U;
+        static const AkUniqueID PLAY_PLAYER2_HIT = 217605711U;
+        static const AkUniqueID PLAY_PLAYER2_JUMP = 2515698252U;
+        static const AkUniqueID PLAY_PLAYER2_PICKUP_AMMO = 318049585U;
+        static const AkUniqueID PLAY_PLAYER2_PICKUP_HEALTH = 2299033457U;
+        static const AkUniqueID PLAY_PLAYER2_PICKUP_WEAPONS = 1163250174U;
         static const AkUniqueID PLAY_PLAYER_DEATH = 1835085974U;
         static const AkUniqueID PLAY_PLAYER_HIT = 1864892471U;
         static const AkUniqueID PLAY_PLAYER_JUMP = 562256996U;

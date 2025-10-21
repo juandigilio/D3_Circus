@@ -3,47 +3,20 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{61A7FDAB-1890-4BE4-978D-7DF089E05E00}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Play_Player_Death" ID="{EC1544D0-0AB0-493D-8D5B-8CC6AD4AF2E8}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-				</Event>
-				<Event Name="Play_Player_Jump" ID="{3C5AC05E-7314-4843-9071-1E4EF5217619}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-				</Event>
 				<Event Name="Play_Player_Shot" ID="{948300F4-7973-4DF6-94E1-07D989D50FAD}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="4"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
-				</Event>
-				<Event Name="Play_Player_Pickup_Ammo" ID="{7C562257-874F-4477-A0E9-F3779364CA43}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-				</Event>
-				<Event Name="Play_Player_Pickup_Health" ID="{19C53EAC-3342-4C6E-8B4F-9543804867C8}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-				</Event>
-				<Event Name="Play_Player_Pickup_Weapons" ID="{1A1FB130-52CF-477B-B035-400E2900330E}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-				</Event>
-				<Event Name="Play_Player_Hit" ID="{D1840F2E-ED51-47E2-ABC7-1CC00C6D475C}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{254B3C8A-1584-4FD2-A3C2-71E4C6AFEF0F}" ShortID="721377566">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Player_Gunshot" ID="{653438A8-8982-4551-B3F2-DB4280B9876D}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Ambiance" ID="{5DA475CC-8193-4AAE-AB7E-41B85F4DAC2E}">
 					<PropertyList>
@@ -62,6 +35,15 @@
 						<Property Name="Color" Type="int16" Value="10"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{8F79EE3A-FA9B-4051-BE00-3EC95B41B6D4}" ShortID="531989218">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Enemy_Gunshot" ID="{F03B7A95-A30D-4956-B031-2B75537FF990}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Enemy_Slash" ID="{5797EF63-BC1E-404E-ACA5-4C0F7EF95EE5}">
 					<PropertyList>
@@ -81,6 +63,182 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 				</Event>
+				<Folder Name="Player1" ID="{69DEED91-0D8C-4521-8F02-04675B866F9A}" ShortID="765374879">
+					<ChildrenList>
+						<Event Name="Play_Player_Death" ID="{EC1544D0-0AB0-493D-8D5B-8CC6AD4AF2E8}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{5BFF8B58-BB65-43BD-98AE-472800379FAE}" ShortID="421286389">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Death" ID="{E667CCBD-2EE4-42DF-81F8-BDF57464B9FF}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Jump" ID="{3C5AC05E-7314-4843-9071-1E4EF5217619}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{E5FFB39F-C44C-41C9-930C-79F6413E9C90}" ShortID="1027727610">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Jump" ID="{102BF7A7-4682-4352-A8F2-DA3D78D19F53}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Pickup_Ammo" ID="{7C562257-874F-4477-A0E9-F3779364CA43}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{0F0F8550-446E-4387-9B9F-9CEC983DBB91}" ShortID="41419263">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Ammo" ID="{FDDD8BA9-86AF-431D-8610-2017E56EEF60}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Pickup_Health" ID="{19C53EAC-3342-4C6E-8B4F-9543804867C8}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{6E56CD5B-C856-4FC6-91C1-2F7753412D45}" ShortID="767261922">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Health" ID="{1E06D91B-8A56-4C1C-828B-4900A0BBCCF6}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Pickup_Weapons" ID="{1A1FB130-52CF-477B-B035-400E2900330E}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{C14B60DA-E996-4E99-8421-2B45904CED76}" ShortID="279936927">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Weapon" ID="{90D7618F-38E1-424C-B225-D586334C2DED}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Hit" ID="{D1840F2E-ED51-47E2-ABC7-1CC00C6D475C}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player2" ID="{22D77B3C-A792-44EA-9520-50D53FA2B352}" ShortID="181753201">
+					<ChildrenList>
+						<Event Name="Play_Player2_Jump" ID="{904E1E24-54F7-47C2-81D6-EE15A56D01F9}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{CCD1514E-57C3-4FB8-B796-AE47D0FA874B}" ShortID="644641461">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Jump" ID="{102BF7A7-4682-4352-A8F2-DA3D78D19F53}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player2_Pickup_Ammo" ID="{05D25337-35B0-4C41-87C3-57D154A8FE2C}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{E5D37976-9564-4EFB-9977-7F3BF6AC7366}" ShortID="244526937">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Ammo" ID="{FDDD8BA9-86AF-431D-8610-2017E56EEF60}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player2_Pickup_Health" ID="{39D07F18-CA3E-4636-AB92-ABB6500ED279}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{F78D973E-2B01-4C02-8DE8-AA8D505AFBAF}" ShortID="259132733">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Health" ID="{1E06D91B-8A56-4C1C-828B-4900A0BBCCF6}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player2_Death" ID="{6676F44D-1CF6-4907-953A-BB17B6FD2569}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{2CEEA2DF-A43B-4D70-84FD-1A10307B1A8E}" ShortID="773737543">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Death" ID="{E667CCBD-2EE4-42DF-81F8-BDF57464B9FF}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player2_Hit" ID="{3F6C6925-D1F6-472D-B110-ACE129CC4731}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+						</Event>
+						<Event Name="Play_Player2_Pickup_Weapons" ID="{B6BE984A-91A5-4809-8976-2B427D1FA204}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="11"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{A49C9248-554E-4189-845B-C17D011CFC4B}" ShortID="304970281">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Pickup_Weapon" ID="{90D7618F-38E1-424C-B225-D586334C2DED}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
