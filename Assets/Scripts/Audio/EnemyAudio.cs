@@ -17,7 +17,7 @@ public class EnemyAudio : MonoBehaviour
         shootEvent.Post(gameObject);
     }
 
-    public void PlayPickAmmoSound()
+    public void PlaySlashSound()
     {
         slashEvent.Post(gameObject);
     }

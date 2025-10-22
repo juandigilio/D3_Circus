@@ -637,15 +637,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7373533662242557326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3e06d9bbaf495439d26316b403d969, type: 3}
+  m_Script: {fileID: 11500000, guid: db1d4848497c4454f9a738ef7856c072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 9
   isGrounded: 0
-  health: 999
+  health: 100
   rayLength: 0
   jumpManager: {fileID: 8277721271122332236}
-  maxHealth: 999
+  maxHealth: 8
   weaponsManager: {fileID: 3184320123294367803}
   aimController: {fileID: 1570147260129583636}
 --- !u!70 &1168607410764096063
@@ -715,10 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bf359beb5bb364485851bdd3adf5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10
+  jumpForce: 13.3
   fallMultiplier: 3.5
-  lowJumpMultiplier: 2
-  jumpPressed: 0
+  lowJumpMultiplier: 3.56
 --- !u!114 &3184320123294367803
 MonoBehaviour:
   m_ObjectHideFlags: 0

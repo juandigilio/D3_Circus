@@ -7,6 +7,7 @@ public abstract class Enemy : MyEntity
     [SerializeField] protected int damage = 1;
 
     protected PlayerController playerController;
+    protected EnemyAudio enemyAudio;
     protected bool isAttacking = false;
 
 
@@ -15,12 +16,12 @@ public abstract class Enemy : MyEntity
         base.Start();
 
         playerController = GameManager.Instance.GetPlayerController();
+        enemyAudio = GetComponent<EnemyAudio>();
 
         if (leftPoint != null && rightPoint != null)
         {      
             transform.position = leftPoint.position;
-        }
-        
+        }       
     }
 
     protected override void FixedUpdate()
@@ -57,5 +58,11 @@ public abstract class Enemy : MyEntity
     }
 
     protected abstract void Attack();
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        //enemyAudio.PlayHitSound();
+    }
 }
 

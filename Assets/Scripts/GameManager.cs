@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private PauseHandler exitHandler;
+    [SerializeField] private UIAudio uiAudio;
 
 
     private InputManager inputManager;
@@ -75,5 +75,10 @@ public class GameManager : MonoBehaviour
     public SideScrollCamera GetSideScrollCamera()
     { 
         return SideScrollCamera;
+    }
+
+    public UIAudio GetUIAudio()
+    {
+        return uiAudio;
     }
 }

@@ -7,11 +7,6 @@ public class UIAudio : MonoBehaviour
     [SerializeField] private AK.Wwise.Event onHoverEvent;
 
 
-    private void Start()
-    {
-        GameManager.Instance.RegisterUIAudio(this);
-    }
-
     public void PlayAmbianceSound()
     {
         ambianceEvent.Post(gameObject);

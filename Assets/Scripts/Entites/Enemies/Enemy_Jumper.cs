@@ -16,10 +16,8 @@ public class Enemy_Jumper : Enemy
     [SerializeField] private float checkStep = 0.5f;
     [SerializeField] private LayerMask obstacleMask;
 
-    [Header("Behavior Timing")]
-    [SerializeField] private float jumpCooldown = 0.6f;
-    private float nextJumpTime = 0f;
 
+    [SerializeField] private EnemyAudio enemyAudio;
     private bool retreating = false;
 
     protected override void FixedUpdate()
@@ -99,5 +97,6 @@ public class Enemy_Jumper : Enemy
     {
         playerController.TakeDamage(damage);
         retreating = true;
+        //enemyAudio.PlaySlashSound();
     }
 }

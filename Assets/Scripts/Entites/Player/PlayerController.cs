@@ -157,4 +157,10 @@ public class PlayerController : MyEntity
     {
         return isPaused;
     }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        //characterAudio.PlayHitSound();
+    }
 }
