@@ -61,32 +61,33 @@ public class Weapon : MonoBehaviour
         if (weaponType == WeaponType.Pistol)
         {
             magazineSize = 999999;
-            fireRate = 0.5f;
+            fireRate = 0.25f;
             bulletSpeed = 10f;
             bulletLifeDistance = 8f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
+            currentAmmo = 700;
         }
         else if (weaponType == WeaponType.Automatic)
         {
-            magazineSize = 500;
+            magazineSize = 999999;
             fireRate = 0.1f;
             bulletSpeed = 15f;
             bulletLifeDistance = 10f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
+            currentAmmo = 300;
         }
         else if (weaponType == WeaponType.Rifle)
         {
-            magazineSize = 50;
-            fireRate = 1f;
+            magazineSize = 999999;
+            fireRate = 0.5f;
             bulletSpeed = 20f;
             bulletLifeDistance = 20f;
             bulletDamage = 3;
             bulletIsDestroyable = false;
+            currentAmmo = 100;
         }
-
-        currentAmmo = magazineSize;
     }
 
     public bool HasAmmo()

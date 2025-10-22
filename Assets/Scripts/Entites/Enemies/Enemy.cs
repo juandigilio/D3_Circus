@@ -62,6 +62,12 @@ public abstract class Enemy : MyEntity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
         //enemyAudio.PlayHitSound();
     }
 }

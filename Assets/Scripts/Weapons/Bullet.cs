@@ -105,7 +105,6 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void Activate(Vector2 startPosition, Vector2 direction, float speed, float lifeDistance, int damage, bool isDestroyable, bool isPlayerWeapon)

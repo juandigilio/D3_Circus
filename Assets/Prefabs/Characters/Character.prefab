@@ -645,7 +645,7 @@ MonoBehaviour:
   health: 100
   rayLength: 0
   jumpManager: {fileID: 8277721271122332236}
-  maxHealth: 8
+  maxHealth: 100
   weaponsManager: {fileID: 3184320123294367803}
   aimController: {fileID: 1570147260129583636}
 --- !u!70 &1168607410764096063

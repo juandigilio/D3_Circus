@@ -114,17 +114,17 @@ MonoBehaviour:
   damage: 1
   walkingRange: 5.14
   attackRange: 0.7
-  retreatDistance: 6.9
+  retreatDistance: 8.74
   jumpingRange: 7.66
   jumpForceBase: 0.18
-  retractForce: 13.8
+  retractForce: 13.9
   horizontalForceMultiplier: 1
   maxJumpHeight: 17.7
   checkStep: 0.5
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  jumpCooldown: 0.6
+  enemyAudio: {fileID: 0}
 --- !u!50 &4942158735101556532
 Rigidbody2D:
   serializedVersion: 5
@@ -204,7 +204,6 @@ MonoBehaviour:
   jumpForce: 56.4
   fallMultiplier: 3.5
   lowJumpMultiplier: 2.61
-  jumpPressed: 0
 --- !u!1 &5772241562902994622
 GameObject:
   m_ObjectHideFlags: 0

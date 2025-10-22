@@ -79,12 +79,7 @@ public abstract class MyEntity : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            gameObject.SetActive(false);
-        }
+        health -= damage; 
     }
 
     protected void UpdateAssetDirection()

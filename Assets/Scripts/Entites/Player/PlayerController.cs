@@ -162,6 +162,17 @@ public class PlayerController : MyEntity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
+        if (health <= 0)
+        {
+            KillPlayer();
+        }
+
         //characterAudio.PlayHitSound();
+    }
+
+    private async void KillPlayer()
+    {
+        await SceneManager.LoadMenuSceneAsync();
     }
 }
