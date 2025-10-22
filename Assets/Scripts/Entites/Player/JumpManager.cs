@@ -44,7 +44,7 @@ public class JumpManager : MonoBehaviour
                 doubleJumped = true;
             }
 
-            characterAudio.PlayJumpSound();
+            //characterAudio.PlayJumpSound();
         }
     }
 

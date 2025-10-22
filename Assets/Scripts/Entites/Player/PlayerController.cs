@@ -81,6 +81,7 @@ public class PlayerController : MyEntity
     public void Jump()
     {
         if (isPaused) return;
+        jumpManager.Jump();
     }
 
     public void StopJump()

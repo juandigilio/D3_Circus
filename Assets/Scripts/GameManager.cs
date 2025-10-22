@@ -47,11 +47,6 @@ public class GameManager : MonoBehaviour
         this.SideScrollCamera = sideScrollCamera;
     }
 
-    public PauseHandler GetExitHandler()
-    {
-        return exitHandler;
-    }
-
     public PlayerInput GetPlayerInput()
     {
         return playerInput;
