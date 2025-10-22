@@ -198,7 +198,7 @@ MonoBehaviour:
   bulletLifeDistance: 0
   bulletDamage: 0
   bulletIsDestroyable: 0
-  isPlayerWeapon: 0
+  isPlayerWeapon: 1
 --- !u!1 &9019350567585078595
 GameObject:
   m_ObjectHideFlags: 0
