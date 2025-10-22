@@ -60,14 +60,33 @@ public class AimController : MonoBehaviour
 
     private void AimSeparated()
     {
-        Vector2 newDirection = aimDirection.normalized;
+        Vector2 newDirection = aimDirection;
+        newDirection.Normalize();
         KeyboardAim(newDirection);
     }
 
     private void AimCombinated()
     {
-        Vector2 newDirection = inputDirection.normalized;
+        Vector2 newDirection = inputDirection;
+        newDirection.Normalize();
         KeyboardAim(newDirection);
+    }
+
+    private void AimTo(Vector2 newDirection)
+    {
+        float rawAngle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
+        float quantizedAngle = Mathf.Round(rawAngle / 45f) * 45f;
+
+        if (Mathf.Abs(quantizedAngle - lastQuantizedAngle) < 10f)
+            quantizedAngle = lastQuantizedAngle;
+        else
+            lastQuantizedAngle = quantizedAngle;
+
+        float rad = quantizedAngle * Mathf.Deg2Rad;
+        Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
+
+        weapon.AimAt(quantizedAngle);
+        sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
     }
 
     private void AimToMouse()
@@ -99,31 +118,25 @@ public class AimController : MonoBehaviour
         }
         else
         {
-            if (direction >= 0) angle = 0;
-            else angle = 180;
 
+            if (direction >= 0)
+            {
+                angle = 0;
+            }
+            else
+            {
+                angle = 180;
+            }
+
+            float rad = angle * Mathf.Deg2Rad;
+            Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
             weapon.AimAt(angle);
-            sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
+            sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+            //weapon.AimAt(angle);
+            //sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
         }
 
         UpdateWeaponDirection();
-    }
-
-    private void AimTo(Vector2 newDirection)
-    {
-        float rawAngle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
-        float quantizedAngle = Mathf.Round(rawAngle / 45f) * 45f;
-
-        if (Mathf.Abs(quantizedAngle - lastQuantizedAngle) < 10f)
-            quantizedAngle = lastQuantizedAngle;
-        else
-            lastQuantizedAngle = quantizedAngle;
-
-        float rad = quantizedAngle * Mathf.Deg2Rad;
-        Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
-
-        weapon.AimAt(quantizedAngle);
-        sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
     }
 
     private void UpdateWeaponDirection()
