@@ -10,6 +10,7 @@ public class AnimatedButton : MonoBehaviour
     [SerializeField] private Sprite onFrame2;
     [SerializeField] private float animationSpeed = 0.2f;
 
+    private UIAudio uiAudio;
     private Image image;
     private Coroutine animCoroutine;
 
@@ -17,6 +18,11 @@ public class AnimatedButton : MonoBehaviour
     {
         image = GetComponent<Image>();
         image.sprite = offSprite;
+    }
+
+    private void Start()
+    {
+        uiAudio = GameManager.Instance.GetComponent<UIAudio>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -42,5 +48,22 @@ public class AnimatedButton : MonoBehaviour
             image.sprite = onFrame2;
             yield return new WaitForSeconds(animationSpeed);
         }
+    }
+
+    public void PlayHoverSound()
+    {
+        //uiAudio.PlayHoverSound();
+        Debug.Log("hover sound played");
+    }
+
+    public void StopHoverSound()
+    {
+
+    }
+
+    public void PlayClickSound()
+    {
+        //uiAudio.PlayClickSound();
+        Debug.Log("click sound played");
     }
 }

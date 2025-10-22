@@ -7,14 +7,17 @@ public class JumpManager : MonoBehaviour
     [SerializeField] private float lowJumpMultiplier = 2f;
 
     private Rigidbody2D rb;
+    private CharacterAudio characterAudio;
     private bool jumped = false;
     private bool doubleJumped = false;
-    [SerializeField] private bool jumpPressed;
+    private bool jumpPressed;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        characterAudio = GetComponent<CharacterAudio>();
+
         jumpPressed = false;
     }
 
@@ -40,6 +43,8 @@ public class JumpManager : MonoBehaviour
             {
                 doubleJumped = true;
             }
+
+            characterAudio.PlayJumpSound();
         }
     }
 

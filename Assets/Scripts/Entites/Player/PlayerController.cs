@@ -7,6 +7,7 @@ public class PlayerController : MyEntity
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private AimController aimController;
 
+    private CharacterAudio characterAudio;
     private Camera mainCamera;
     private Vector2 inputDirection;
 
@@ -25,6 +26,8 @@ public class PlayerController : MyEntity
 
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
         sideScrollCamera.SetPlayerTransform(transform);
+
+        characterAudio = GetComponent<CharacterAudio>();
     }
 
     protected override void FixedUpdate()
@@ -78,8 +81,6 @@ public class PlayerController : MyEntity
     public void Jump()
     {
         if (isPaused) return;
-
-        jumpManager.Jump();
     }
 
     public void StopJump()

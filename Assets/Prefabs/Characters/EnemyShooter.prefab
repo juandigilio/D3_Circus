@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6643840894709920759}
   - component: {fileID: 6235432941158318743}
   - component: {fileID: 7467169678719977994}
+  - component: {fileID: 3329599067632952325}
   m_Layer: 0
   m_Name: EnemyShooter
   m_TagString: Enemy
@@ -133,14 +134,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isGrounded: 0
-  availableLives: 0
+  health: 1
   rayLength: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  jumpManager: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 0}
-  health: 1
   damage: 1
   weapon: {fileID: 1387231787952698217}
 --- !u!70 &7467169678719977994
@@ -180,6 +178,30 @@ CapsuleCollider2D:
   m_Offset: {x: -0.14418411, y: -0.046344757}
   m_Size: {x: 1.2059765, y: 2.0926895}
   m_Direction: 0
+--- !u!114 &3329599067632952325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41020040890474377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8bd47eedd81ef459c562bcd3447cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  shootEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  slashEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!1 &152634733299804373
 GameObject:
   m_ObjectHideFlags: 0

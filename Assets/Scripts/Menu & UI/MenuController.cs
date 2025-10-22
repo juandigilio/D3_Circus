@@ -13,7 +13,6 @@ public class MenuController : MonoBehaviour
     private static GameObject credits;
     private static GameObject options;
 
-
     public static event System.Action OnGameStarted;
 
     private void Start()
