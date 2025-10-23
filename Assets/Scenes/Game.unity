@@ -4566,8 +4566,16 @@ PrefabInstance:
       value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: jumpForce
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: jumpManager

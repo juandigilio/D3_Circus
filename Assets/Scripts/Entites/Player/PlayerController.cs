@@ -173,6 +173,6 @@ public class PlayerController : MyEntity
 
     private async void KillPlayer()
     {
-        await SceneManager.LoadMenuSceneAsync();
+        await SceneManager.GoBackToMenuAsync();
     }
 }

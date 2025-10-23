@@ -107,8 +107,9 @@ public static class SceneManager
 
     public static async Task LoadGameAsync()
     {
-        await UnloadSceneAsync(mainMenuScene);
         await LoadTutorialSceneAsync();    
+        await UnloadSceneAsync(mainMenuScene);
+        await UnloadSceneAsync(mainMenuScene);
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(scenesPool[0].sceneName));
     }
 
@@ -145,5 +146,6 @@ public static class SceneManager
     public static async Task GoBackToMenuAsync()
     {
         await LoadMenuSceneAsync();
+        UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(mainScene.sceneName));
     }
 }
