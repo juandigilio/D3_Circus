@@ -6,6 +6,7 @@ public class PlayerController : MyEntity
     [SerializeField] private int maxHealth = 8;
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private AimController aimController;
+    [SerializeField] private Transform startPos;
 
     private CharacterAudio characterAudio;
     private Camera mainCamera;
@@ -22,12 +23,16 @@ public class PlayerController : MyEntity
 
         mainCamera = Camera.main;
 
-        health = maxHealth;
 
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
         sideScrollCamera.SetPlayerTransform(transform);
 
         characterAudio = GetComponent<CharacterAudio>();
+
+        health = maxHealth;
+        transform.position = startPos.position;
+
+        GameManager.Instance.GetSideScrollCamera().RestartCamera();
     }
 
     protected override void FixedUpdate()
