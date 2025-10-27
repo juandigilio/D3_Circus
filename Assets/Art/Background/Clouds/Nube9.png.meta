@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: fa87866b086f50f4a8525372a6dc340a
+guid: 3064fee3f6f682a499b4906de8fa2502
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6159358234494509086
-    second: AssetNieblaBG_0
-  - first:
-      213: 3806504129430840348
-    second: AssetNieblaBG_1
-  - first:
-      213: 1631783995643287096
-    second: AssetNieblaBG_2
+      213: -7247824765515367666
+    second: Nube9_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AssetNieblaBG_0
+      name: Nube9_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30000
-        height: 1239
+        width: 5847
+        height: 1470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102c6b3eaf6a7550800000000000000
-      internalID: 6159358234494509086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AssetNieblaBG_1
-      rect:
-        serializedVersion: 2
-        x: 29042
-        y: 1224
-        width: 44
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1468c6865b63d430800000000000000
-      internalID: 3806504129430840348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AssetNieblaBG_2
-      rect:
-        serializedVersion: 2
-        x: 29281
-        y: 1192
-        width: 52
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8365c7206e245a610800000000000000
-      internalID: 1631783995643287096
+      spriteID: e0b7d21c6cd8a6b90800000000000000
+      internalID: -7247824765515367666
       vertices: []
       indices: 
       edges: []
@@ -184,10 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      AssetNieblaBG_0: 6159358234494509086
-      AssetNieblaBG_1: 3806504129430840348
-      AssetNieblaBG_2: 1631783995643287096
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

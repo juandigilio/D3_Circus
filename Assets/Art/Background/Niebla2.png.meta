@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: c6161afc57a2d7d4698685e69e7872db
+guid: 0623c1e7898740e4fa64d927ca951f0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6881392817491486311
-    second: AssetPiso_0
+      213: 1090210928742470646
+    second: Niebla2_0
+  - first:
+      213: 6892475385709942952
+    second: Niebla2_1
+  - first:
+      213: 5152955689589852241
+    second: Niebla2_2
+  - first:
+      213: -4701202294695434924
+    second: Niebla2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AssetPiso_0
+      name: Niebla2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30000
-        height: 162
+        width: 15000
+        height: 1229
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 999de7111b16080a0800000000000000
-      internalID: -6881392817491486311
+      spriteID: 6f391f14015312f00800000000000000
+      internalID: 1090210928742470646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Niebla2_1
+      rect:
+        serializedVersion: 2
+        x: 5884
+        y: 1207
+        width: 57
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a85d5c68ddf6af50800000000000000
+      internalID: 6892475385709942952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Niebla2_2
+      rect:
+        serializedVersion: 2
+        x: 11851
+        y: 1211
+        width: 91
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 158c45de5e9f28740800000000000000
+      internalID: 5152955689589852241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Niebla2_3
+      rect:
+        serializedVersion: 2
+        x: 12291
+        y: 1210
+        width: 86
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4556d67cb69f1ceb0800000000000000
+      internalID: -4701202294695434924
       vertices: []
       indices: 
       edges: []

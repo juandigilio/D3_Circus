@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c6161afc57a2d7d4698685e69e7872db
+guid: d414482c215315b4cb31be1ffc9fc939
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6881392817491486311
-    second: AssetPiso_0
+      213: -4253722158711841747
+    second: NubeFinal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AssetPiso_0
+      name: NubeFinal_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30000
-        height: 162
+        width: 1051
+        height: 952
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 999de7111b16080a0800000000000000
-      internalID: -6881392817491486311
+      spriteID: d2cd5ccdb3eb7f4c0800000000000000
+      internalID: -4253722158711841747
       vertices: []
       indices: 
       edges: []
