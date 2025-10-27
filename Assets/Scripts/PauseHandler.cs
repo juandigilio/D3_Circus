@@ -1,11 +1,12 @@
 using UnityEngine;
+using System;
 
 public class PauseHandler : MonoBehaviour
 {
     [SerializeField] private GameObject optionsMenu;
 
-    public static event System.Action OnGamePaused;
-    public static event System.Action OnGameContinue;
+    public static event Action OnGamePaused;
+    public static event Action OnGameContinue;
 
     private bool isPaused = false;
 

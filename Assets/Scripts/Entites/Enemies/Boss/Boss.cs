@@ -27,6 +27,9 @@ public class Boss : Enemy
     private Coroutine shootRoutine;
 
 
+    public static event System.Action OnBossDied;
+
+
     protected override void Start()
     {
         base.Start();
@@ -115,5 +118,17 @@ public class Boss : Enemy
     protected override void Attack()
     {
         StartCoroutine(AttackCycle());
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        if (health <= 0)
+        {
+            OnBossDied?.Invoke();
+        }
+
+        //enemyAudio.PlayHitSound();
     }
 }

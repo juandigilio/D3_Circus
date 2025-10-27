@@ -32,7 +32,7 @@ public class OptionsMenu : MonoBehaviour
 
         string[] enumNames = Enum.GetNames(typeof(InputType));
         dropdown.AddOptions(new System.Collections.Generic.List<string>(enumNames));
-        dropdown.value = (int)PlayerSettings.GetInputType();
+        dropdown.value = (int)PlayerInfo.GetInputType();
         dropdown.onValueChanged.AddListener(OnDropdownChanged);
 
 
@@ -56,7 +56,7 @@ public class OptionsMenu : MonoBehaviour
         InputType selected = (InputType)index;
         Debug.Log("Seleccionado: " + selected);
 
-        PlayerSettings.SetInputType(selected);
+        PlayerInfo.SetInputType(selected);
     }
 
     private void OnVolumeChanged(float value)
@@ -96,12 +96,12 @@ public class OptionsMenu : MonoBehaviour
 
     private void UpdateControls()
     {
-        InputType selected = PlayerSettings.GetInputType();
+        InputType selected = PlayerInfo.GetInputType();
         string currentDevice = playerInput.currentControlScheme;
 
-        if (currentDevice == "Gamepad" && PlayerSettings.GetInputType() == InputType.Mouse)
+        if (currentDevice == "Gamepad" && PlayerInfo.GetInputType() == InputType.Mouse)
         {
-            PlayerSettings.SetInputType(InputType.Separated);
+            PlayerInfo.SetInputType(InputType.Separated);
 
             dropdown.value = (int)InputType.Separated;
             dropdown.RefreshShownValue();

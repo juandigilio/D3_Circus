@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 
 public class PlayerController : MyEntity
@@ -7,6 +8,10 @@ public class PlayerController : MyEntity
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private AimController aimController;
     [SerializeField] private Transform startPos;
+
+
+    public static event Action OnPlayerDied;
+
 
     private CharacterAudio characterAudio;
     private Camera mainCamera;
@@ -167,17 +172,18 @@ public class PlayerController : MyEntity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        //characterAudio.PlayHitSound();
 
         if (health <= 0)
         {
             KillPlayer();
         }
-
-        //characterAudio.PlayHitSound();
     }
 
     private async void KillPlayer()
     {
-        await SceneManager.GoBackToMenuAsync();
+        //await SceneManager.LoadEndSceneAsync();
+
+        OnPlayerDied?.Invoke();
     }
 }
