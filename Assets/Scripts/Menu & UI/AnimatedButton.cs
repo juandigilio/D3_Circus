@@ -66,4 +66,9 @@ public class AnimatedButton : MonoBehaviour
         //uiAudio.PlayClickSound();
         Debug.Log("click sound played");
     }
+
+    public async void LoadCreditsScene()
+    {
+        await SceneManager.LoadCreditsScene();
+    }
 }

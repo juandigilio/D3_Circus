@@ -13,8 +13,8 @@ public static class SceneManager
     private static CustomScene mainScene;
     private static CustomScene mainMenuScene;
     private static List<CustomScene> scenesPool = new List<CustomScene>();
-    private static CustomScene winingScene;
-    private static CustomScene gameOverScene;
+    private static CustomScene endScene;
+    private static CustomScene creditsScene;
 
     private static int index = 0;
 
@@ -72,13 +72,13 @@ public static class SceneManager
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(mainScene.sceneName));
     }
 
-    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, List<CustomScene> sceneDictionary, CustomScene win, CustomScene gameOver)
+    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, List<CustomScene> sceneDictionary, CustomScene end, CustomScene credits)
     {
         gameLoaderScene = gameLoader;
         mainScene = main;
         mainMenuScene = menu;
-        winingScene = win;
-        gameOverScene = gameOver;
+        endScene = end;
+        creditsScene = credits;
 
         scenesPool.Clear();
         scenesPool.AddRange(sceneDictionary);
@@ -107,19 +107,19 @@ public static class SceneManager
 
     public static async Task LoadGameAsync()
     {
-        await UnloadSceneAsync(mainMenuScene);
         await LoadTutorialSceneAsync();    
+        await UnloadSceneAsync(mainMenuScene);
+        await UnloadSceneAsync(mainMenuScene);
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(scenesPool[0].sceneName));
     }
 
     public static async Task LoadMenuSceneAsync()
     {
         await LoadMainScene();
+
+        await UnloadAll();
         await LoadSceneAsync(mainMenuScene);
         await UnloadSceneAsync(gameLoaderScene);
-
-        foreach (CustomScene scene in scenesPool)
-            await UnloadSceneAsync(scene);
     }
 
     public static async Task LoadTutorialSceneAsync()
@@ -133,17 +133,35 @@ public static class SceneManager
         await UnloadSceneAsync(mainMenuScene);
     }
 
-    public static async Task LoadWiningSceneAsync()
+    public static async Task LoadEndSceneAsync()
     {
-        await LoadSceneAsync(winingScene);
+        await UnloadAll();
+        await LoadSceneAsync(endScene);
     }
 
     public static bool IsMainMenuSceneLoaded() =>
         IsSceneLoaded(mainMenuScene);
 
-
     public static async Task GoBackToMenuAsync()
     {
         await LoadMenuSceneAsync();
+        UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(mainScene.sceneName));
+    }
+
+    public static async Task LoadCreditsScene()
+    {
+        await UnloadAll();
+        await LoadSceneAsync(creditsScene);
+    }
+
+    private static async Task UnloadAll()
+    {
+        foreach (CustomScene scene in scenesPool)
+            await UnloadSceneAsync(scene);
+
+        await UnloadSceneAsync(gameLoaderScene);
+        await UnloadSceneAsync(creditsScene);
+        await UnloadSceneAsync(mainMenuScene);
+        await UnloadSceneAsync(endScene);
     }
 }

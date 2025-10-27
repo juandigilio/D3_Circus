@@ -34,7 +34,7 @@ public class AimController : MonoBehaviour
 
     private void Aim()
     {
-        switch (PlayerSettings.GetInputType())
+        switch (PlayerInfo.GetInputType())
         {
             case InputType.Mouse:
                 {

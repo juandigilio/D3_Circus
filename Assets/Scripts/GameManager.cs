@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     private Camera mainCamera;
     private SideScrollCamera SideScrollCamera;
+    private LevelManager levelManager;
 
 
     private void Awake()
@@ -47,6 +50,11 @@ public class GameManager : MonoBehaviour
         this.SideScrollCamera = sideScrollCamera;
     }
 
+    public void RegisterLevelManager(LevelManager levelManager)
+    {
+        this.levelManager = levelManager;
+    }
+
     public PlayerInput GetPlayerInput()
     {
         return playerInput;
@@ -75,5 +83,10 @@ public class GameManager : MonoBehaviour
     public UIAudio GetUIAudio()
     {
         return uiAudio;
+    }
+
+    public LevelManager GetLevelManager()
+    {
+        return levelManager;
     }
 }

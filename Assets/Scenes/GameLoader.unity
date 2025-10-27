@@ -217,14 +217,11 @@ MonoBehaviour:
   scenesPool:
   - sceneName: Game
     actionMapType: 0
-  pauseScene:
-    sceneName: Pause
+  endScene:
+    sceneName: EndGame
     actionMapType: 0
-  winingScene:
-    sceneName: 
-    actionMapType: 0
-  gameOverScene:
-    sceneName: 
+  creditsScene:
+    sceneName: Credits
     actionMapType: 0
 --- !u!4 &1852589648
 Transform:

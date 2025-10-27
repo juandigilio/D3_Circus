@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 
 public class PlayerController : MyEntity
@@ -6,6 +7,11 @@ public class PlayerController : MyEntity
     [SerializeField] private int maxHealth = 8;
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private AimController aimController;
+    [SerializeField] private Transform startPos;
+
+
+    public static event Action OnPlayerDied;
+
 
     private CharacterAudio characterAudio;
     private Camera mainCamera;
@@ -22,12 +28,16 @@ public class PlayerController : MyEntity
 
         mainCamera = Camera.main;
 
-        health = maxHealth;
 
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
         sideScrollCamera.SetPlayerTransform(transform);
 
         characterAudio = GetComponent<CharacterAudio>();
+
+        health = maxHealth;
+        transform.position = startPos.position;
+
+        GameManager.Instance.GetSideScrollCamera().RestartCamera();
     }
 
     protected override void FixedUpdate()
@@ -162,17 +172,18 @@ public class PlayerController : MyEntity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        //characterAudio.PlayHitSound();
 
         if (health <= 0)
         {
             KillPlayer();
         }
-
-        //characterAudio.PlayHitSound();
     }
 
     private async void KillPlayer()
     {
-        await SceneManager.LoadMenuSceneAsync();
+        //await SceneManager.LoadEndSceneAsync();
+
+        OnPlayerDied?.Invoke();
     }
 }

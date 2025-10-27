@@ -7,6 +7,7 @@ public class SideScrollCamera : MonoBehaviour
     [SerializeField] private float lowerThresholdY = 0.35f;
 
     private Transform playerTransform;
+    private Vector3 startPos;
     private Camera mainCamera;
     private float lastCameraX;
 
@@ -15,6 +16,8 @@ public class SideScrollCamera : MonoBehaviour
         mainCamera = Camera.main;
         lastCameraX = mainCamera.transform.position.x;
         GameManager.Instance.RegisterSideSrollCamera(this);
+
+        startPos = mainCamera.transform.position;
     }
 
     private void LateUpdate()
@@ -55,5 +58,11 @@ public class SideScrollCamera : MonoBehaviour
     public void SetPlayerTransform(Transform playerTransform)
     {
         this.playerTransform = playerTransform;
+    }
+
+    public void RestartCamera()
+    {
+        lastCameraX = 0;
+        transform.position = startPos;
     }
 }

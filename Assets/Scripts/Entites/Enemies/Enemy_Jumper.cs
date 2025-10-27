@@ -17,7 +17,6 @@ public class Enemy_Jumper : Enemy
     [SerializeField] private LayerMask obstacleMask;
 
 
-    [SerializeField] private EnemyAudio enemyAudio;
     private bool retreating = false;
 
     protected override void FixedUpdate()
