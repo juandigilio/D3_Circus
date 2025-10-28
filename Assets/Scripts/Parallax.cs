@@ -96,7 +96,7 @@ public class Parallax : MonoBehaviour
 
         float yPos = Random.Range(cloudYRange.x, cloudYRange.y);
         cloud.transform.position = new Vector3(xPos, yPos, prefab.transform.position.z);
-        cloud.transform.localScale = Vector3.one * Random.Range(0.5f, 1f);
+        cloud.transform.localScale = Vector3.one * Random.Range(0.25f, 0.6f);
         cloud.color = new Color(1, 1, 1, Random.Range(0.5f, 1f));
     }
 }
