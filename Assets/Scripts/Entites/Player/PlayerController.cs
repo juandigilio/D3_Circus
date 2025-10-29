@@ -8,6 +8,7 @@ public class PlayerController : MyEntity
     [SerializeField] private WeaponsManager weaponsManager;
     [SerializeField] private AimController aimController;
     [SerializeField] private Transform startPos;
+    [SerializeField] private PlayerAnimator animator;
 
 
     public static event Action OnPlayerDied;
@@ -79,10 +80,13 @@ public class PlayerController : MyEntity
         {
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
+
+            animator.SetRunning(true);
         }
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetRunning(false);
         }
 
         CheckScreenLimits();

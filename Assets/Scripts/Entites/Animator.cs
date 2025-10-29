@@ -19,6 +19,15 @@ public class PlayerAnimator : MonoBehaviour
         public List<SpriteRenderer> down;
         public Transform firePoint_Down ;
 
+        public void Start()
+        {
+            up = new List<SpriteRenderer>();
+            front_Up = new List<SpriteRenderer>();
+            front = new List<SpriteRenderer>();
+            front_Down = new List<SpriteRenderer>();
+            down = new List<SpriteRenderer>();
+        }
+
         public void Clear()
         {
             foreach (SpriteRenderer sprite in up)
@@ -57,6 +66,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         public List<SpriteRenderer> animation;
         public Transform firePoint;
+
+        public void Start()
+        {
+            animation = new List<SpriteRenderer>();
+        }
 
         public void Clear()
         {
@@ -123,14 +137,17 @@ public class PlayerAnimator : MonoBehaviour
     private int currentFrame;
 
     private SpriteRenderer currentTorso;
-    private List<SpriteRenderer> currentLegs;
-    private CurrentWeaponSet currentWeaponSet;
-    private CurrentWeaponAnimation currentWeaponAnimation;
+    private List<SpriteRenderer> currentLegs = new List<SpriteRenderer>();
+    private CurrentWeaponSet currentWeaponSet = new CurrentWeaponSet();
+    private CurrentWeaponAnimation currentWeaponAnimation = new CurrentWeaponAnimation();
     private bool isRunning;
 
 
     private void Start()
     {
+        currentWeaponSet.Start();
+        currentWeaponAnimation.Start();
+
         HideAll();
         SetWeapon(0);
         ShowStand();
@@ -183,7 +200,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    public void SetIsRunning(bool running)
+    public void SetRunning(bool running)
     {
         isRunning = running;
 
@@ -346,7 +363,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void SetTorso(SpriteRenderer torso)
     {
-        currentTorso.enabled = false;
+        if (currentTorso)
+        {
+            currentTorso.enabled = false;
+        }  
         currentTorso = torso;
         currentTorso.enabled = true;
     }

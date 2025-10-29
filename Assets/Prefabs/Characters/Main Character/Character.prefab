@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4453836940487754396
 Transform:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3341383455834601536
 Transform:
   m_ObjectHideFlags: 0
@@ -862,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &810712533299702099
 Transform:
   m_ObjectHideFlags: 0
@@ -896,7 +896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8115798948227991229
 Transform:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7124637392601660900
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1347068510604686159
 Transform:
   m_ObjectHideFlags: 0
@@ -1429,6 +1429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3973797950992274220}
+  - component: {fileID: 4136894496927318949}
   m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
@@ -1451,10 +1452,118 @@ Transform:
   m_Children:
   - {fileID: 6003375702017187298}
   - {fileID: 5476245083611829773}
-  - {fileID: 810712533299702099}
   - {fileID: 8540216041624572812}
+  - {fileID: 810712533299702099}
   m_Father: {fileID: 7243748329351957169}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4136894496927318949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346831132448912539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadc9d67b329edc488340da25a74deb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun_1_Up:
+  - {fileID: 5716911984041575728}
+  - {fileID: 1552670783373605938}
+  - {fileID: 5218691830303268161}
+  gun_1_FirePoint_Up: {fileID: 3103457292769412386}
+  gun_1_Front_Up:
+  - {fileID: 5716911984041575728}
+  - {fileID: 1552670783373605938}
+  - {fileID: 5218691830303268161}
+  gun_1_FirePoint_Front_Up: {fileID: 3103457292769412386}
+  gun_1_Front:
+  - {fileID: 6886059101058100176}
+  - {fileID: 3606100800173600524}
+  - {fileID: 4083567451013115040}
+  gun_1_FirePoint_Front: {fileID: 8421057675678328152}
+  gun_1_Front_Down:
+  - {fileID: 3745235822665013933}
+  - {fileID: 7694511295009819802}
+  - {fileID: 5638217293349863442}
+  gun_1_FirePoint_FrontDown: {fileID: 7797624382764275249}
+  gun_1_Down:
+  - {fileID: 3745235822665013933}
+  - {fileID: 7694511295009819802}
+  - {fileID: 5638217293349863442}
+  gun_1_FirePoint_Down: {fileID: 7797624382764275249}
+  gun_2_Up:
+  - {fileID: 3599178410446665503}
+  - {fileID: 6953511148012875661}
+  - {fileID: 8332938420684267873}
+  gun_2_FirePoint_Up: {fileID: 1849076575724533488}
+  gun_2_Front_Up:
+  - {fileID: 3599178410446665503}
+  - {fileID: 6953511148012875661}
+  - {fileID: 8332938420684267873}
+  gun_2_FirePoint_Front_Up: {fileID: 1849076575724533488}
+  gun_2_Front:
+  - {fileID: 1015333060414510316}
+  - {fileID: 8242435807619897322}
+  - {fileID: 8242435807619897322}
+  gun_2_FirePoint_Front: {fileID: 1293765235449323818}
+  gun_2_Front_Down:
+  - {fileID: 1076554557345717823}
+  - {fileID: 3355398699922472524}
+  - {fileID: 6233402353542491719}
+  gun_2_FirePoint_FrontDown: {fileID: 5791539135489697265}
+  gun_2_Down:
+  - {fileID: 1076554557345717823}
+  - {fileID: 3355398699922472524}
+  - {fileID: 6233402353542491719}
+  gun_2_FirePoint_Down: {fileID: 5791539135489697265}
+  gun_3_Up:
+  - {fileID: 3599178410446665503}
+  - {fileID: 6953511148012875661}
+  - {fileID: 8332938420684267873}
+  gun_3_FirePoint_Up: {fileID: 1849076575724533488}
+  gun_3_Front_Up:
+  - {fileID: 3599178410446665503}
+  - {fileID: 6953511148012875661}
+  - {fileID: 8332938420684267873}
+  gun_3_FirePoint_Front_Up: {fileID: 1849076575724533488}
+  gun_3_Front:
+  - {fileID: 1015333060414510316}
+  - {fileID: 8242435807619897322}
+  - {fileID: 8242435807619897322}
+  gun_3_FirePoint_Front: {fileID: 1293765235449323818}
+  gun_3_Front_Down:
+  - {fileID: 1076554557345717823}
+  - {fileID: 3355398699922472524}
+  - {fileID: 6233402353542491719}
+  gun_3_FirePoint_FrontDown: {fileID: 5791539135489697265}
+  gun_3_Down:
+  - {fileID: 1076554557345717823}
+  - {fileID: 3355398699922472524}
+  - {fileID: 6233402353542491719}
+  gun_3_FirePoint_Down: {fileID: 5791539135489697265}
+  torso_Front_Up: {fileID: 3495047448906002188}
+  torso_Front: {fileID: 5049461478545866225}
+  torso_Front_Down: {fileID: 6977355519758119881}
+  torso_Hit: {fileID: 3555298332636634883}
+  legs_Stand: {fileID: 2301915381047435286}
+  legs_Running:
+  - {fileID: 3945826083742632257}
+  - {fileID: 4954008007887578620}
+  - {fileID: 4914229012344555968}
+  - {fileID: 6057392951913464908}
+  - {fileID: 2504654372181354900}
+  - {fileID: 4022682363494353254}
+  - {fileID: 1973256962196360136}
+  - {fileID: 1221700447126209481}
+  - {fileID: 2451583423008362957}
+  legs_Jumping:
+  - {fileID: 8901412570870862677}
+  - {fileID: 7567218884677959380}
+  - {fileID: 103870913808685090}
+  - {fileID: 5264141376996056768}
+  frameRate: 10
 --- !u!1 &2392351559961952900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3181322779647319675
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,7 +1667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8094575011795497342
 Transform:
   m_ObjectHideFlags: 0
@@ -1819,7 +1928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3726325611582026478
 Transform:
   m_ObjectHideFlags: 0
@@ -2523,7 +2632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5902370185396993697
 Transform:
   m_ObjectHideFlags: 0
@@ -3810,7 +3919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5757703820965530008
 Transform:
   m_ObjectHideFlags: 0
@@ -3897,7 +4006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5649564327022767394
 Transform:
   m_ObjectHideFlags: 0
@@ -3983,7 +4092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5089721430494229688
 Transform:
   m_ObjectHideFlags: 0
@@ -4337,7 +4446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1499856388587858005
 Transform:
   m_ObjectHideFlags: 0
@@ -4747,6 +4856,7 @@ MonoBehaviour:
   weaponsManager: {fileID: 3184320123294367803}
   aimController: {fileID: 1570147260129583636}
   startPos: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!70 &1168607410764096063
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4900,7 +5010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7459927532226966036
 Transform:
   m_ObjectHideFlags: 0
@@ -5273,7 +5383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &661316408178613890
 Transform:
   m_ObjectHideFlags: 0
@@ -5568,7 +5678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5950359895914593720
 Transform:
   m_ObjectHideFlags: 0
