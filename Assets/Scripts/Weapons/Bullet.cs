@@ -127,6 +127,16 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public bool IsPlayerBullet()
+    {
+        return isPlayerBullet;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
+    }
+
     private void Deactivate()
     {
         isActive = false;

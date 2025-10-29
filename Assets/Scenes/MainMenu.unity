@@ -3657,6 +3657,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2409326932900516811, guid: 02bf107929c09024d992023611e82133, type: 3}
+      propertyPath: m_text
+      value: 'Weapon with:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257985937652929243, guid: 02bf107929c09024d992023611e82133, type: 3}
+      propertyPath: m_text
+      value: 'Move with:'
+      objectReference: {fileID: 0}
     - target: {fileID: 4482718500085929538, guid: 02bf107929c09024d992023611e82133, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3668,6 +3676,18 @@ PrefabInstance:
     - target: {fileID: 4482718500085929538, guid: 02bf107929c09024d992023611e82133, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515739295795466408, guid: 02bf107929c09024d992023611e82133, type: 3}
+      propertyPath: m_text
+      value: 'Jump with:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661761048790014670, guid: 02bf107929c09024d992023611e82133, type: 3}
+      propertyPath: m_text
+      value: 'Shoot with:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346262987771851842, guid: 02bf107929c09024d992023611e82133, type: 3}
+      propertyPath: m_text
+      value: 'Aim with:'
       objectReference: {fileID: 0}
     - target: {fileID: 7788188658252875225, guid: 02bf107929c09024d992023611e82133, type: 3}
       propertyPath: m_LocalPosition.x
