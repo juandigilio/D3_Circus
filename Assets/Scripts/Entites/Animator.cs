@@ -161,6 +161,7 @@ public class PlayerAnimator : MonoBehaviour
         currentJumpFrame = 0;
         isGrounded = false;
         isJumping = false;
+        isRunning = false;
 
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
@@ -172,6 +173,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CheckGround(playerController.IsGrounded());
         Animate();
     }
 
@@ -300,21 +302,28 @@ public class PlayerAnimator : MonoBehaviour
 
     private void CheckGround(bool grounded)
     {
-        if (isGrounded == grounded) return;
+        bool wasGrounded = isGrounded;
 
         isGrounded = grounded;
 
-        if (isGrounded)
+        if (isGrounded && !wasGrounded)
         {
-            isJumping = false;
-            currentLegsFrame = 0;
-            SetLegs(legs_Stand);
+            isJumping = false; 
+            currentJumpFrame = 0;
+
+            if (isRunning)
+            {
+                SetLegs(legs_Running);
+                return;
+            }
+            else
+            {
+                SetLegs(legs_Stand);
+            }
         }
-        else
+        else if (!isGrounded && !isJumping)
         {
-            if (isJumping) return;
-          
-            //SetLegs(legs_Jumping[0]);
+            SetLegs(legs_Jumping[0]);
         }
     }
 
@@ -325,7 +334,6 @@ public class PlayerAnimator : MonoBehaviour
         if (currentJumpFrame >= currentLegs.Count)
         {
             currentJumpFrame = currentLegs.Count;
-            CheckGround(playerController.IsGrounded());
             return;
         }
 
@@ -340,11 +348,11 @@ public class PlayerAnimator : MonoBehaviour
                 sprite.enabled = false;
             }
 
-            currentJumpFrame++;
             Debug.Log($"Current jump frame: " + currentJumpFrame);
             Debug.Log($"List size: " + currentLegs.Count);
-
             currentLegs[currentJumpFrame].enabled = true;
+
+            currentJumpFrame++;
         }
     }
 
@@ -423,7 +431,10 @@ public class PlayerAnimator : MonoBehaviour
         currentLegs.Clear();
         currentLegs.AddRange(legs);
 
-        //currentLegs[0].enabled = true;
+        currentJumpFrame = 0;
+        currentLegsFrame = 0;
+
+        currentLegs[0].enabled = true;
     }
 
     private void SetLegs(SpriteRenderer leg)

@@ -1446,7 +1446,7 @@ Transform:
   m_GameObject: {fileID: 2346831132448912539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.12, z: -1}
+  m_LocalPosition: {x: 0, y: 0.06, z: -1}
   m_LocalScale: {x: 0.245, y: 0.245, z: 0.245}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1564,7 +1564,8 @@ MonoBehaviour:
   - {fileID: 7567218884677959380}
   - {fileID: 103870913808685090}
   - {fileID: 5264141376996056768}
-  legsFrameRate: 0.1
+  legsFrameRate: 0.04
+  jumpFrameRate: 0.06
   weaponFrameRate: 0.2
 --- !u!1 &2392351559961952900
 GameObject:

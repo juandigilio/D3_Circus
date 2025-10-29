@@ -214,8 +214,6 @@ public class PlayerController : MyEntity
 
     private async void KillPlayer()
     {
-        //await SceneManager.LoadEndSceneAsync();
-
         OnPlayerDied?.Invoke();
     }
 }
