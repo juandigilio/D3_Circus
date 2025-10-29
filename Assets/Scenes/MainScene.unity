@@ -139,15 +139,15 @@ MonoBehaviour:
   ambianceEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 57796bcf5431f704c848a7e22e43c600, type: 2}
   onClickEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: c570d8bc168f3d140946ae10a0849517, type: 2}
   onHoverEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 5451447f0c5deda4f81eb1de8f03dd48, type: 2}
 --- !u!1 &590291010
 GameObject:
   m_ObjectHideFlags: 0

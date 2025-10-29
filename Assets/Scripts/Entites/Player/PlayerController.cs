@@ -81,6 +81,7 @@ public class PlayerController : MyEntity
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
 
+            Debug.Log("Setting Animator");
             animator.SetRunning(true);
         }
         else

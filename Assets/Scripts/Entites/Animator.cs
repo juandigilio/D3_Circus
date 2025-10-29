@@ -145,6 +145,9 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Start()
     {
+        timer = 0f;
+        currentFrame = 0;
+
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
 
@@ -153,7 +156,7 @@ public class PlayerAnimator : MonoBehaviour
         ShowStand();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Animate();
     }
@@ -202,6 +205,8 @@ public class PlayerAnimator : MonoBehaviour
 
     public void SetRunning(bool running)
     {
+        if (running == isRunning) return;
+
         isRunning = running;
 
         if (isRunning)
@@ -304,6 +309,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (isRunning)
         {
+            Debug.Log("Animating legs, isRunning: " + isRunning);
             AnimateLegs();
         }
     }
@@ -311,15 +317,18 @@ public class PlayerAnimator : MonoBehaviour
     private void AnimateLegs()
     {
         timer += Time.deltaTime;
-        if (timer >= 1f / frameRate)
+
+        if (timer >= frameRate)
         {
             timer = 0f;
+
             foreach (SpriteRenderer sprite in currentLegs)
             {
                 sprite.enabled = false;
             }
 
             currentFrame++;
+            Debug.Log("Current leg frame: " + currentFrame);
 
             if (currentFrame >= currentLegs.Count)
             {
