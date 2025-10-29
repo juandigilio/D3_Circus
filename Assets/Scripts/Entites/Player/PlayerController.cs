@@ -81,16 +81,38 @@ public class PlayerController : MyEntity
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
 
-            Debug.Log("Setting Animator");
             animator.SetRunning(true);
+            animator.SetWeaponDirection(SetAnimatorDirection());
         }
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             animator.SetRunning(false);
+            animator.SetWeaponDirection(Vector2.zero);
         }
 
         CheckScreenLimits();
+    }
+
+    private Vector2 SetAnimatorDirection()
+    {
+        Vector2 animatorDirection = Vector2.zero;
+
+        if (inputDirection.x != 0)
+        {
+            animatorDirection.x = 1;
+        }
+
+        if (inputDirection.y > 0)
+        {
+            animatorDirection.y = 1;
+        }
+        else if (inputDirection.y < 0)
+        {
+            animatorDirection.y = -1;
+        }
+
+        return animatorDirection;
     }
 
     public void Jump()

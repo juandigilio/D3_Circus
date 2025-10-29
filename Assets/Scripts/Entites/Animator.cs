@@ -161,7 +161,6 @@ public class PlayerAnimator : MonoBehaviour
         Animate();
     }
 
-
     public void SetWeaponDirection(Vector2 direction)
     {
         switch (direction)
@@ -201,26 +200,11 @@ public class PlayerAnimator : MonoBehaviour
                 break;
             }
         }
-    }
-
-    public void SetRunning(bool running)
-    {
-        if (running == isRunning) return;
-
-        isRunning = running;
-
-        if (isRunning)
-        {
-            SetLegs(legs_Running);
-        }
-        else
-        {
-            SetLegs(legs_Stand);
-        }
-    }
+    }   
 
     public void SetWeapon(int weapon)
     {
+        Debug.Log("Setting weapon: " + weapon);
         switch (weapon)
         {
             case 0:
@@ -274,6 +258,22 @@ public class PlayerAnimator : MonoBehaviour
         StartCoroutine(ShootAnimationCoroutine());
     }
 
+    public void SetRunning(bool running)
+    {
+        if (running == isRunning) return;
+
+        isRunning = running;
+
+        if (isRunning)
+        {
+            SetLegs(legs_Running);
+        }
+        else
+        {
+            SetLegs(legs_Stand);
+        }
+    }
+
     private IEnumerator ShootAnimationCoroutine()
     {
         List<SpriteRenderer> anim = currentWeaponAnimation.animation;
@@ -309,7 +309,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (isRunning)
         {
-            Debug.Log("Animating legs, isRunning: " + isRunning);
             AnimateLegs();
         }
     }
@@ -328,7 +327,6 @@ public class PlayerAnimator : MonoBehaviour
             }
 
             currentFrame++;
-            Debug.Log("Current leg frame: " + currentFrame);
 
             if (currentFrame >= currentLegs.Count)
             {
@@ -384,7 +382,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         currentWeaponAnimation.Clear();
 
-        currentWeaponAnimation.animation = weapon_Animation;
+        currentWeaponAnimation.animation.AddRange(weapon_Animation);
+        currentWeaponAnimation.animation[0].enabled = true;
         currentWeaponAnimation.firePoint = firepoint;
     }
 
@@ -398,15 +397,15 @@ public class PlayerAnimator : MonoBehaviour
     {
         currentWeaponSet.Clear();
 
-        currentWeaponSet.up = up;
+        currentWeaponSet.up.AddRange(up);
         currentWeaponSet.firePoint_Up = firePoint_Up;
-        currentWeaponSet.front_Up = front_Up;
+        currentWeaponSet.front_Up.AddRange(front_Up);
         currentWeaponSet.firePoint_Front_Up = firePoint_Front_Up;
-        currentWeaponSet.front = front;
+        currentWeaponSet.front.AddRange(front);
         currentWeaponSet.firePoint_Front = firePoint_Front;
-        currentWeaponSet.front_Down = front_Down;
+        currentWeaponSet.front_Down.AddRange(front_Down);
         currentWeaponSet.firePoint_Front_Down = firePoint_Front_Down;
-        currentWeaponSet.down = down;
+        currentWeaponSet.down.AddRange(down);
         currentWeaponSet.firePoint_Down = firePoint_Down;
 
         SetCurrentWeaponAnimation(front, firePoint_Front);

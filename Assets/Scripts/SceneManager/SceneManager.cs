@@ -30,7 +30,6 @@ public static class SceneManager
 
         if (!IsSceneLoaded(scene))
         {
-            Debug.Log($"Loading scene: {scene.sceneName}");
 
             AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
             asyncLoad.allowSceneActivation = true;
@@ -52,7 +51,6 @@ public static class SceneManager
 
         if (IsSceneLoaded(scene))
         {
-            Debug.Log($"Unloading scene: {scene.sceneName}");
 
             AsyncOperation asyncUnload = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene.sceneName);
             while (!asyncUnload.isDone)
