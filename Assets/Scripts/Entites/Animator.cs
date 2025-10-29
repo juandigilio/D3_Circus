@@ -183,43 +183,7 @@ public class PlayerAnimator : MonoBehaviour
 
         lastDirection = direction;
 
-        switch (lastDirection)
-        {
-            case Vector2 d when (d.x == 0 && d.y == 1):
-            {
-                SetCurrentWeaponAnimation(currentWeaponSet.up, currentWeaponSet.firePoint_Up);
-                SetTorso(torso_Front_Up);
-                break;
-            }
-            case Vector2 d when (d.x == 1 && d.y == 1):
-            {
-                SetCurrentWeaponAnimation(currentWeaponSet.front_Up, currentWeaponSet.firePoint_Front_Up);
-                SetTorso(torso_Front_Up);
-                break;
-            }
-            case Vector2 d when (d.x == 1 && d.y == 0) || (d.x == 0 && d.y == 0):
-            {
-                SetCurrentWeaponAnimation(currentWeaponSet.front, currentWeaponSet.firePoint_Front);
-                SetTorso(torso_Front);
-                break;
-            }
-            case Vector2 d when (d.x == 1 && d.y == -1):
-            {
-                SetCurrentWeaponAnimation(currentWeaponSet.front_Down, currentWeaponSet.firePoint_Front_Down);
-                SetTorso(torso_Front_Down);
-                break;
-            }
-            case Vector2 d when (d.x == 0 && d.y == -1):
-            {
-                SetCurrentWeaponAnimation(currentWeaponSet.down, currentWeaponSet.firePoint_Down);
-                SetTorso(torso_Front_Down);
-                break;
-            }
-            default:
-            {
-                break;
-            }
-        }
+        UpdateWeaponDirection();
     }
 
     public void SetWeapon(int weapon)
@@ -264,6 +228,8 @@ public class PlayerAnimator : MonoBehaviour
                     break;
                 }
         }
+
+        UpdateWeaponDirection();
     }
 
     public Vector3 GetFirePoint()
@@ -298,6 +264,47 @@ public class PlayerAnimator : MonoBehaviour
         isJumping = true;
 
         SetLegs(legs_Jumping);
+    }
+
+    private void UpdateWeaponDirection()
+    {
+        switch (lastDirection)
+        {
+            case Vector2 d when (d.x == 0 && d.y == 1):
+            {
+                SetCurrentWeaponAnimation(currentWeaponSet.up, currentWeaponSet.firePoint_Up);
+                SetTorso(torso_Front_Up);
+                break;
+            }
+            case Vector2 d when (d.x == 1 && d.y == 1):
+            {
+                SetCurrentWeaponAnimation(currentWeaponSet.front_Up, currentWeaponSet.firePoint_Front_Up);
+                SetTorso(torso_Front_Up);
+                break;
+            }
+            case Vector2 d when (d.x == 1 && d.y == 0) || (d.x == 0 && d.y == 0):
+            {
+                SetCurrentWeaponAnimation(currentWeaponSet.front, currentWeaponSet.firePoint_Front);
+                SetTorso(torso_Front);
+                break;
+            }
+            case Vector2 d when (d.x == 1 && d.y == -1):
+            {
+                SetCurrentWeaponAnimation(currentWeaponSet.front_Down, currentWeaponSet.firePoint_Front_Down);
+                SetTorso(torso_Front_Down);
+                break;
+            }
+            case Vector2 d when (d.x == 0 && d.y == -1):
+            {
+                SetCurrentWeaponAnimation(currentWeaponSet.down, currentWeaponSet.firePoint_Down);
+                SetTorso(torso_Front_Down);
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
     }
 
     private void CheckGround(bool grounded)
