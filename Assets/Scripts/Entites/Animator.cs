@@ -312,7 +312,9 @@ public class PlayerAnimator : MonoBehaviour
         }
         else
         {
-            SetLegs(legs_Jumping[0]);
+            if (isJumping) return;
+          
+            //SetLegs(legs_Jumping[0]);
         }
     }
 
@@ -322,6 +324,7 @@ public class PlayerAnimator : MonoBehaviour
 
         if (currentJumpFrame >= currentLegs.Count)
         {
+            currentJumpFrame = currentLegs.Count;
             CheckGround(playerController.IsGrounded());
             return;
         }
@@ -338,6 +341,8 @@ public class PlayerAnimator : MonoBehaviour
             }
 
             currentJumpFrame++;
+            Debug.Log($"Current jump frame: " + currentJumpFrame);
+            Debug.Log($"List size: " + currentLegs.Count);
 
             currentLegs[currentJumpFrame].enabled = true;
         }
@@ -414,10 +419,11 @@ public class PlayerAnimator : MonoBehaviour
         {
             sprite.enabled = false;
         }
+
         currentLegs.Clear();
         currentLegs.AddRange(legs);
 
-        currentLegs[0].enabled = true;
+        //currentLegs[0].enabled = true;
     }
 
     private void SetLegs(SpriteRenderer leg)
