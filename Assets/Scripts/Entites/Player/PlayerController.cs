@@ -196,6 +196,11 @@ public class PlayerController : MyEntity
         return isPaused;
     }
 
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);

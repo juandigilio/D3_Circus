@@ -83,6 +83,8 @@ public class PlayerAnimator : MonoBehaviour
     }
 
 
+    [SerializeField] private PlayerController playerController;
+
     [Header("Gun 1")]
     [SerializeField] private List<SpriteRenderer> gun_1_Up = new List<SpriteRenderer>();
     [SerializeField] private Transform gun_1_FirePoint_Up;
@@ -132,11 +134,13 @@ public class PlayerAnimator : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float legsFrameRate = 0.1f;
+    [SerializeField] private float jumpFrameRate = 0.01f;
     [SerializeField] private float weaponFrameRate = 0.2f;
 
     private float legsTimer;
     private float jumpTimer;
-    private int currentFrame;
+    private int currentLegsFrame;
+    private int currentJumpFrame;
 
     private bool isJumping;
     private bool isGrounded;
@@ -152,7 +156,9 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         legsTimer = 0f;
-        currentFrame = 0;
+        jumpTimer = 0;
+        currentLegsFrame = 0;
+        currentJumpFrame = 0;
         isGrounded = false;
         isJumping = false;
 
@@ -287,9 +293,42 @@ public class PlayerAnimator : MonoBehaviour
 
     public void AnimateJump()
     {
+        isJumping = true;
+
+        SetLegs(legs_Jumping);
+    }
+
+    private void CheckGround(bool grounded)
+    {
+        if (isGrounded == grounded) return;
+
+        isGrounded = grounded;
+
+        if (isGrounded)
+        {
+            isJumping = false;
+            currentLegsFrame = 0;
+            SetLegs(legs_Stand);
+        }
+        else
+        {
+            SetLegs(legs_Jumping[0]);
+        }
+    }
+
+    private void UpdateJumpAnimation()
+    {
+        if (!isJumping) return;
+
+        if (currentJumpFrame >= currentLegs.Count)
+        {
+            CheckGround(playerController.IsGrounded());
+            return;
+        }
+
         jumpTimer += Time.deltaTime;
 
-        if (jumpTimer >= legsFrameRate)
+        if (jumpTimer >= jumpFrameRate)
         {
             jumpTimer = 0f;
 
@@ -298,13 +337,9 @@ public class PlayerAnimator : MonoBehaviour
                 sprite.enabled = false;
             }
 
-            currentFrame++;
+            currentJumpFrame++;
 
-            if (currentFrame >= currentLegs.Count)
-            {
-                currentFrame = 0;
-            }
-            currentLegs[currentFrame].enabled = true;
+            currentLegs[currentJumpFrame].enabled = true;
         }
     }
 
@@ -337,6 +372,8 @@ public class PlayerAnimator : MonoBehaviour
         {
             AnimateLegs();
         }
+
+        UpdateJumpAnimation();
     }
 
     private void AnimateLegs()
@@ -354,13 +391,13 @@ public class PlayerAnimator : MonoBehaviour
                 sprite.enabled = false;
             }
 
-            currentFrame++;
+            currentLegsFrame++;
 
-            if (currentFrame >= currentLegs.Count)
+            if (currentLegsFrame >= currentLegs.Count)
             {
-                currentFrame = 0;
+                currentLegsFrame = 0;
             }
-            currentLegs[currentFrame].enabled = true;
+            currentLegs[currentLegsFrame].enabled = true;
         }
     }
 

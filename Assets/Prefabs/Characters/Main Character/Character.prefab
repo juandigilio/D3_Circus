@@ -1468,6 +1468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadc9d67b329edc488340da25a74deb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 6380668201935724669}
   gun_1_Up:
   - {fileID: 5716911984041575728}
   - {fileID: 1552670783373605938}
@@ -1563,7 +1564,8 @@ MonoBehaviour:
   - {fileID: 7567218884677959380}
   - {fileID: 103870913808685090}
   - {fileID: 5264141376996056768}
-  frameRate: 0.2
+  legsFrameRate: 0.1
+  weaponFrameRate: 0.2
 --- !u!1 &2392351559961952900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4927,6 +4929,7 @@ MonoBehaviour:
   jumpForce: 13.3
   fallMultiplier: 3.5
   lowJumpMultiplier: 3.5
+  animator: {fileID: 4136894496927318949}
 --- !u!114 &3184320123294367803
 MonoBehaviour:
   m_ObjectHideFlags: 0
