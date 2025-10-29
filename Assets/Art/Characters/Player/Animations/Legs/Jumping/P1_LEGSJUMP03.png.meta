@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      P1_LEGSJUMP03_0: 3389189073986439275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,8 +134,12 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private float legsFrameRate = 0.1f;
     [SerializeField] private float weaponFrameRate = 0.2f;
 
-    private float timer;
+    private float legsTimer;
+    private float jumpTimer;
     private int currentFrame;
+
+    private bool isJumping;
+    private bool isGrounded;
 
     private SpriteRenderer currentTorso;
     private List<SpriteRenderer> currentLegs = new List<SpriteRenderer>();
@@ -147,8 +151,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Start()
     {
-        timer = 0f;
+        legsTimer = 0f;
         currentFrame = 0;
+        isGrounded = false;
+        isJumping = false;
 
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
@@ -279,6 +285,29 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
+    public void AnimateJump()
+    {
+        jumpTimer += Time.deltaTime;
+
+        if (jumpTimer >= legsFrameRate)
+        {
+            jumpTimer = 0f;
+
+            foreach (SpriteRenderer sprite in currentLegs)
+            {
+                sprite.enabled = false;
+            }
+
+            currentFrame++;
+
+            if (currentFrame >= currentLegs.Count)
+            {
+                currentFrame = 0;
+            }
+            currentLegs[currentFrame].enabled = true;
+        }
+    }
+
     private IEnumerator ShootAnimationCoroutine()
     {
         foreach (SpriteRenderer sprite in currentWeaponAnimation.animation)
@@ -312,11 +341,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void AnimateLegs()
     {
-        timer += Time.deltaTime;
+        if (isJumping || !isGrounded) return;
 
-        if (timer >= legsFrameRate)
+        legsTimer += Time.deltaTime;
+
+        if (legsTimer >= legsFrameRate)
         {
-            timer = 0f;
+            legsTimer = 0f;
 
             foreach (SpriteRenderer sprite in currentLegs)
             {

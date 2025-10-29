@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Niebla2_0: 1090210928742470646
+      Niebla2_1: 6892475385709942952
+      Niebla2_2: 5152955689589852241
+      Niebla2_3: -4701202294695434924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
