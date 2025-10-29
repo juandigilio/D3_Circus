@@ -5,6 +5,7 @@ public class JumpManager : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float fallMultiplier = 3.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
+    //[SerializeField] private PlayerAnimator animator;
 
     private Rigidbody2D rb;
     private CharacterAudio characterAudio;

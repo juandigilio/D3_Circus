@@ -41,6 +41,7 @@ public class WeaponsManager : MonoBehaviour
             Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
 
             weapons[currentWeapon].Shoot(shootDirection);
+            animator.AnimateShoot();
         }
     }
 

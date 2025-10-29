@@ -17,7 +17,7 @@ public class PlayerAnimator : MonoBehaviour
         public List<SpriteRenderer> front_Down;
         public Transform firePoint_Front_Down;
         public List<SpriteRenderer> down;
-        public Transform firePoint_Down ;
+        public Transform firePoint_Down;
 
         public void Start()
         {
@@ -131,7 +131,8 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> legs_Jumping = new List<SpriteRenderer>();
 
     [Header("Settings")]
-    [SerializeField] private float frameRate = 10f;
+    [SerializeField] private float legsFrameRate = 0.1f;
+    [SerializeField] private float weaponFrameRate = 0.2f;
 
     private float timer;
     private int currentFrame;
@@ -141,6 +142,7 @@ public class PlayerAnimator : MonoBehaviour
     private CurrentWeaponSet currentWeaponSet = new CurrentWeaponSet();
     private CurrentWeaponAnimation currentWeaponAnimation = new CurrentWeaponAnimation();
     private bool isRunning;
+    private Vector2 lastDirection = new Vector2();
 
 
     private void Start()
@@ -163,9 +165,13 @@ public class PlayerAnimator : MonoBehaviour
 
     public void SetWeaponDirection(Vector2 direction)
     {
-        switch (direction)
+        if (direction == lastDirection) return;
+
+        lastDirection = direction;
+
+        switch (lastDirection)
         {
-            case Vector2 d when( d.x == 0 && d.y == 1):
+            case Vector2 d when (d.x == 0 && d.y == 1):
             {
                 SetCurrentWeaponAnimation(currentWeaponSet.up, currentWeaponSet.firePoint_Up);
                 SetTorso(torso_Front_Up);
@@ -200,50 +206,49 @@ public class PlayerAnimator : MonoBehaviour
                 break;
             }
         }
-    }   
+    }
 
     public void SetWeapon(int weapon)
     {
-        Debug.Log("Setting weapon: " + weapon);
         switch (weapon)
         {
             case 0:
-            {
-                ActivateWeapon(
-                gun_1_Up, gun_1_FirePoint_Up,
-                gun_1_Front_Up, gun_1_FirePoint_Front_Up,
-                gun_1_Front, gun_1_FirePoint_Front,
-                gun_1_Front_Down, gun_1_FirePoint_FrontDown,
-                gun_1_Down, gun_1_FirePoint_Down
-                );
-                break;
-            }               
+                {
+                    ActivateWeapon(
+                    gun_1_Up, gun_1_FirePoint_Up,
+                    gun_1_Front_Up, gun_1_FirePoint_Front_Up,
+                    gun_1_Front, gun_1_FirePoint_Front,
+                    gun_1_Front_Down, gun_1_FirePoint_FrontDown,
+                    gun_1_Down, gun_1_FirePoint_Down
+                    );
+                    break;
+                }
             case 1:
-            {
-                ActivateWeapon(
-                gun_2_Up, gun_2_FirePoint_Up,
-                gun_2_Front_Up, gun_2_FirePoint_Front_Up,
-                gun_2_Front, gun_2_FirePoint_Front,
-                gun_2_Front_Down, gun_2_FirePoint_FrontDown,
-                gun_2_Down, gun_2_FirePoint_Down
-                );
-                break;
-            }
+                {
+                    ActivateWeapon(
+                    gun_2_Up, gun_2_FirePoint_Up,
+                    gun_2_Front_Up, gun_2_FirePoint_Front_Up,
+                    gun_2_Front, gun_2_FirePoint_Front,
+                    gun_2_Front_Down, gun_2_FirePoint_FrontDown,
+                    gun_2_Down, gun_2_FirePoint_Down
+                    );
+                    break;
+                }
             case 2:
-            {
-                ActivateWeapon(
-                gun_3_Up, gun_3_FirePoint_Up,
-                gun_3_Front_Up, gun_3_FirePoint_Front_Up,
-                gun_3_Front, gun_3_FirePoint_Front,
-                gun_3_Front_Down, gun_3_FirePoint_FrontDown,
-                gun_3_Down, gun_3_FirePoint_Down
-                );
-                break;
-            }            
+                {
+                    ActivateWeapon(
+                    gun_3_Up, gun_3_FirePoint_Up,
+                    gun_3_Front_Up, gun_3_FirePoint_Front_Up,
+                    gun_3_Front, gun_3_FirePoint_Front,
+                    gun_3_Front_Down, gun_3_FirePoint_FrontDown,
+                    gun_3_Down, gun_3_FirePoint_Down
+                    );
+                    break;
+                }
             default:
-            {
-                break;
-            }         
+                {
+                    break;
+                }
         }
     }
 
@@ -276,33 +281,25 @@ public class PlayerAnimator : MonoBehaviour
 
     private IEnumerator ShootAnimationCoroutine()
     {
-        List<SpriteRenderer> anim = currentWeaponAnimation.animation;
-
-        if (anim.Count < 2)
-        {
-            anim[0].enabled = true;
-            yield break;
-        }
-
-        foreach (SpriteRenderer sprite in anim)
+        foreach (SpriteRenderer sprite in currentWeaponAnimation.animation)
         {
             sprite.enabled = false;
         }
 
-
-        for (int i = 1; i < anim.Count; i++)
+        for (int i = 1; i < currentWeaponAnimation.animation.Count; i++)
         {
-            anim[i].enabled = true;
+            currentWeaponAnimation.animation[i - 1].enabled = false;
+            currentWeaponAnimation.animation[i].enabled = true;
 
-            if (i > 1)
-            {
-                anim[i - 1].enabled = false;
-            }
-            yield return new WaitForSeconds(1f / frameRate);
+            yield return new WaitForSeconds(weaponFrameRate);
         }
 
-        anim[anim.Count - 1].enabled = false;
-        anim[0].enabled = true;
+        foreach (SpriteRenderer sprite in currentWeaponAnimation.animation)
+        {
+            sprite.enabled = false;
+        }
+
+        currentWeaponAnimation.animation[0].enabled = true;
     }
 
     private void Animate()
@@ -317,7 +314,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= frameRate)
+        if (timer >= legsFrameRate)
         {
             timer = 0f;
 
@@ -373,7 +370,7 @@ public class PlayerAnimator : MonoBehaviour
         if (currentTorso)
         {
             currentTorso.enabled = false;
-        }  
+        }
         currentTorso = torso;
         currentTorso.enabled = true;
     }
@@ -432,7 +429,7 @@ public class PlayerAnimator : MonoBehaviour
         {
             sprite.enabled = false;
         }
-    }   
+    }
 
     private void HideGunSet(params List<SpriteRenderer>[] animations)
     {

@@ -4091,6 +4091,10 @@ PrefabInstance:
       propertyPath: frameRate
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4136894496927318949, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: weaponFrameRate
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 4476409383562256002, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: m_Enabled
       value: 0
