@@ -9,6 +9,7 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] private PlayerAnimator animator;
 
     private PlayerController playerController;
+    private CharacterAudio characterAudio;
     private int currentWeapon = 0;
     private bool isShooting = false;
 
@@ -16,6 +17,7 @@ public class WeaponsManager : MonoBehaviour
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
+        characterAudio = GetComponent<CharacterAudio>();
 
         weapons[0].gameObject.SetActive(true);
         weapons[1].gameObject.SetActive(false);
@@ -41,6 +43,7 @@ public class WeaponsManager : MonoBehaviour
             Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
 
             weapons[currentWeapon].Shoot(shootDirection);
+            characterAudio.PlayShootSound();
             animator.AnimateShoot();
         }
     }

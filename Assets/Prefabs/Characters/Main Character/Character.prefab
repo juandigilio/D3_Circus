@@ -4728,6 +4728,7 @@ GameObject:
   - component: {fileID: 8277721271122332236}
   - component: {fileID: 3184320123294367803}
   - component: {fileID: 1570147260129583636}
+  - component: {fileID: 8374596602571213581}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -4964,6 +4965,46 @@ MonoBehaviour:
   sight: {fileID: 4974974786571436529}
   sightOffset: 10
   weapon: {fileID: 2222498569532621544}
+--- !u!114 &8374596602571213581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373533662242557326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1828bea299a756c43b94c78f3a41b0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1e759a97c8f91864889578c6b29ebf25, type: 2}
+  deathEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c1396625e3613fc49abc5ec55a9f3186, type: 2}
+  hitEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 41c02b06aa494d54a89fb201a3f3c04a, type: 2}
+  jumpEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 587242497b95fe24194c3ca5f04daf8d, type: 2}
+  pickAmmoEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4b9304e3acf7e6f47ae526a23e133f11, type: 2}
+  pickHealthEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 46f7afabb2efba447871c3bd39f98c00, type: 2}
+  pickWeaponEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ae0aa84ba90cca44dad77b71359ad6e2, type: 2}
 --- !u!1 &7409983275545625502
 GameObject:
   m_ObjectHideFlags: 0

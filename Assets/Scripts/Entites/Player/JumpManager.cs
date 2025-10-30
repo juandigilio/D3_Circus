@@ -46,7 +46,7 @@ public class JumpManager : MonoBehaviour
             }
 
             animator.AnimateJump();
-            //characterAudio.PlayJumpSound();
+            characterAudio.PlayJumpSound();
         }
     }
 
