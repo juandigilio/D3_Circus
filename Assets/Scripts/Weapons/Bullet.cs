@@ -59,10 +59,20 @@ public class Bullet : MonoBehaviour
     {
         if (!isActive) return;
 
+        if (collision.CompareTag("Cage"))
+        {
+            Deactivate();
+
+            Cage cage = collision.GetComponent<Cage>();
+            if (cage != null)
+            {
+                cage.TakeDamage(damage);
+            }
+        }
+
         if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player"))
         {
             Deactivate();
-            Debug.Log("Bullet hit an obstacle and is deactivated.");
         }
 
         if (isPlayerBullet)
@@ -73,6 +83,7 @@ public class Bullet : MonoBehaviour
 
                 if (enemy != null)
                 {
+                    player.AddScore(enemy.GetScoreValue());
                     enemy.TakeDamage(damage);
 
                     if (isDestroyable)

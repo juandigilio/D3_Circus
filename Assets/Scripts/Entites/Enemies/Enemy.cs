@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Enemy : MyEntity
@@ -5,6 +6,7 @@ public abstract class Enemy : MyEntity
     [SerializeField] protected Transform leftPoint;
     [SerializeField] protected Transform rightPoint;
     [SerializeField] protected int damage = 1;
+    [SerializeField] protected int socreValue = 10;
 
     protected PlayerController playerController;
     protected EnemyAudio enemyAudio;
@@ -69,6 +71,11 @@ public abstract class Enemy : MyEntity
         }
 
         //enemyAudio.PlayHitSound();
+    }
+
+    public int GetScoreValue()
+    {
+        return socreValue;
     }
 }
 

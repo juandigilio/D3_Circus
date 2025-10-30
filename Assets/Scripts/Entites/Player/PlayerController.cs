@@ -17,6 +17,7 @@ public class PlayerController : MyEntity
     private CharacterAudio characterAudio;
     private Camera mainCamera;
     private Vector2 inputDirection;
+    private int score;
 
     private void OnEnable()
     {
@@ -37,6 +38,7 @@ public class PlayerController : MyEntity
 
         health = maxHealth;
         transform.position = startPos.position;
+        score = 0;
 
         GameManager.Instance.GetSideScrollCamera().RestartCamera();
     }
@@ -210,6 +212,16 @@ public class PlayerController : MyEntity
         {
             KillPlayer();
         }
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
+    }
+
+    public void AddAmmo(WeaponType weaponType, int ammoAmount)
+    {
+        weaponsManager.AddAmmo(weaponType, ammoAmount);
     }
 
     private async void KillPlayer()
