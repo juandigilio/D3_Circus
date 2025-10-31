@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject machineGun;
     [SerializeField] private GameObject rifle;
     [SerializeField] private TextMeshProUGUI ammo;
+    [SerializeField] private TextMeshProUGUI timer;
+    [SerializeField] private TextMeshProUGUI score;
 
     private PlayerController playerController;
 
@@ -20,7 +22,7 @@ public class UIManager : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateWeaponState();
-        UpdateLifes();
+        UpdatePlayerInfo();
     }
 
     private void UpdateWeaponState()
@@ -47,8 +49,15 @@ public class UIManager : MonoBehaviour
         ammo.text = "" + playerController.CurrentWeaponAmmo();
     }
 
-    private void UpdateLifes()
+    private void UpdatePlayerInfo()
     {
         healthBar.fillAmount = playerController.HealthPercentage();
+
+        float totalTime = GameManager.Instance.GetLevelManager().GetTotalTime();
+        int minutes = Mathf.FloorToInt(totalTime / 60);
+        int seconds = Mathf.FloorToInt(totalTime % 60);
+
+        timer.text = $"{minutes:00}:{seconds:00}.{(totalTime % 1f) * 10:0}";
+        score.text = "" + GameManager.Instance.GetLevelManager().GetCurrentScore();
     }
 }

@@ -22,6 +22,8 @@ public class MenuController : MonoBehaviour
         credits = creditsObj;
         options = optionsObj;
 
+        PlayerInfo.LoadPlayerData();
+
         ShowMenu();
     }
 

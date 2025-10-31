@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public abstract class Enemy : MyEntity
 {
     [SerializeField] protected Transform leftPoint;
     [SerializeField] protected Transform rightPoint;
     [SerializeField] protected int damage = 1;
-    [SerializeField] protected int socreValue = 10;
+    [SerializeField] protected int scoreValue = 10;
 
     protected PlayerController playerController;
     protected EnemyAudio enemyAudio;
@@ -67,15 +68,16 @@ public abstract class Enemy : MyEntity
 
         if (health <= 0)
         {
+            GameManager.Instance.GetLevelManager().AddKillScore(scoreValue);
             gameObject.SetActive(false);
         }
-
-        //enemyAudio.PlayHitSound();
+        
+        enemyAudio.PlayHitSound();
     }
 
     public int GetScoreValue()
     {
-        return socreValue;
+        return scoreValue;
     }
 }
 

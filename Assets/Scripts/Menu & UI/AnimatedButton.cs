@@ -52,7 +52,7 @@ public class AnimatedButton : MonoBehaviour
 
     public void PlayHoverSound()
     {
-        //uiAudio.PlayHoverSound();
+        uiAudio.PlayHoverSound();
         Debug.Log("hover sound played");
     }
 
@@ -63,12 +63,17 @@ public class AnimatedButton : MonoBehaviour
 
     public void PlayClickSound()
     {
-        //uiAudio.PlayClickSound();
+        uiAudio.PlayClickSound();
         Debug.Log("click sound played");
     }
 
     public async void LoadCreditsScene()
     {
         await SceneManager.LoadCreditsScene();
+    }
+
+    public async void LoadMainMenuScene()
+    {
+        await SceneManager.GoBackToMenuAsync();
     }
 }

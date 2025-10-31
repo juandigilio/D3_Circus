@@ -83,7 +83,6 @@ public class Bullet : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    player.AddScore(enemy.GetScoreValue());
                     enemy.TakeDamage(damage);
 
                     if (isDestroyable)

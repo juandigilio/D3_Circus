@@ -11,6 +11,6 @@ public class Coin : Item
 
     protected override void PickUp()
     {
-        playerController.AddScore(scoreValue);
+        GameManager.Instance.GetLevelManager().AddItemScore(scoreValue);
     }
 }
