@@ -101,4 +101,16 @@ public class WeaponsManager : MonoBehaviour
             onNoAmmo?.Invoke();
         }
     }
+
+    public void AddAmmo(WeaponType weaponType, int ammoAmount)
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == weaponType)
+            {
+                weapon.AddAmmo(ammoAmount);
+                return;
+            }
+        }
+    }
 }

@@ -63,7 +63,7 @@ public abstract class MyEntity : MonoBehaviour
 
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider.CompareTag("Ground"))
+            if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Cage"))
             {
                 isGrounded = true;
 

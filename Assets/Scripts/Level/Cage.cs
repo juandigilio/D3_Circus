@@ -19,23 +19,15 @@ public class Cage : MonoBehaviour
         if (spriteRenderer_2 != null) originalColor_2 = spriteRenderer_2.color;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TakeDamage(int damage)
     {
-        if (collision.CompareTag("PlayerWeapon"))
+        health -= damage;
+
+        StartCoroutine(FlashRed());
+
+        if (health <= 0)
         {
-            Bullet bullet = collision.GetComponent<Bullet>();
-            if (bullet == null) return;
-
-            if (bullet.IsPlayerBullet())
-            {
-                health -= bullet.GetDamage();
-                StartCoroutine(FlashRed());
-
-                if (health <= 0)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            Destroy(gameObject);
         }
     }
 

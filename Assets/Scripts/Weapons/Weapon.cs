@@ -119,4 +119,9 @@ public class Weapon : MonoBehaviour
     {
         return weaponType;
     }
+
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo += ammoAmount;
+    }
 }
