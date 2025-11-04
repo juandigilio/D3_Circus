@@ -355,8 +355,6 @@ public class PlayerAnimator : MonoBehaviour
                 sprite.enabled = false;
             }
 
-            Debug.Log($"Current jump frame: " + currentJumpFrame);
-            Debug.Log($"List size: " + currentLegs.Count);
             currentLegs[currentJumpFrame].enabled = true;
 
             currentJumpFrame++;

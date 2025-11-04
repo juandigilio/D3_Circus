@@ -161,7 +161,7 @@ public class PlayerController : MyEntity
         return weaponsManager.GetCurrentWeaponType();
     }
 
-    public int AvailableLives()
+    public float AvailableLives()
     {
         return health;
     }
@@ -201,7 +201,7 @@ public class PlayerController : MyEntity
         return isGrounded;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         //characterAudio.PlayHitSound();
@@ -217,7 +217,7 @@ public class PlayerController : MyEntity
         weaponsManager.AddAmmo(weaponType, ammoAmount);
     }
 
-    private async void KillPlayer()
+    private void KillPlayer()
     {
         OnPlayerDied?.Invoke();
     }

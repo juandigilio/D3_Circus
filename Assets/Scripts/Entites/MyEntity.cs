@@ -4,7 +4,7 @@ public abstract class MyEntity : MonoBehaviour
 {
     [SerializeField] protected float speed = 5f;
     [SerializeField] protected bool isGrounded;
-    [SerializeField] protected int health;
+    [SerializeField] protected float health;
     [SerializeField] private float rayLength;
     [SerializeField] protected JumpManager jumpManager;
 
@@ -77,7 +77,7 @@ public abstract class MyEntity : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage; 
     }

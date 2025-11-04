@@ -6,8 +6,6 @@ public class LevelManager : MonoBehaviour
 
     private GameData gameData;
 
-
-
     private void Start()
     {
         GameManager.Instance.RegisterLevelManager(this);
@@ -47,6 +45,11 @@ public class LevelManager : MonoBehaviour
     {
         gameData.collectablesScore += value;
         gameData.collectedItems++;
+    }
+
+    public float GetLevelTime()
+    {
+        return levelTime;
     }
 
     public float GetTotalTime()

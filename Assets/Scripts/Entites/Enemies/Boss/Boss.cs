@@ -120,7 +120,7 @@ public class Boss : Enemy
         StartCoroutine(AttackCycle());
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
 

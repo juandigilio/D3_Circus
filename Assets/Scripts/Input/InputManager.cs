@@ -62,12 +62,10 @@ public class InputManager : MonoBehaviour
         if (callbackContext.started)
         {
             playerController.Jump();
-            Debug.Log("Jump button pressed (started)");
         }
         if (callbackContext.canceled)
         {
             playerController.StopJump();
-            Debug.Log("Jump button released (canceled)");
         }
     }
 
