@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    public void Shoot(Vector2 direction)
+    public bool Shoot(Vector2 direction)
     {
         if (fireCooldown > fireRate)
         {
@@ -53,7 +53,11 @@ public class Weapon : MonoBehaviour
             newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
 
             currentAmmo--;
+
+            return true;
         }
+
+        return false;
     }
 
     private void SetWeaponType()

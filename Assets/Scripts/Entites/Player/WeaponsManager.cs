@@ -42,9 +42,11 @@ public class WeaponsManager : MonoBehaviour
 
             Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
 
-            weapons[currentWeapon].Shoot(shootDirection);
-            characterAudio.PlayShootSound();
-            animator.AnimateShoot();
+            if (weapons[currentWeapon].Shoot(shootDirection))
+            {
+                characterAudio.PlayShootSound();
+                animator.AnimateShoot();
+            }          
         }
     }
 
@@ -55,9 +57,7 @@ public class WeaponsManager : MonoBehaviour
 
     public void NextWeapon()
     {
-        Debug.Log("Before: " + currentWeapon);
         currentWeapon++;
-        Debug.Log("After: " + currentWeapon);
         if (currentWeapon > 2) currentWeapon = 0;
         SwitchWeapon(NextWeapon);
     }
@@ -85,7 +85,6 @@ public class WeaponsManager : MonoBehaviour
         {
             weapons[currentWeapon].gameObject.SetActive(true);
             animator.SetWeapon(currentWeapon);
-            Debug.Log("Switched to weapon: " + currentWeapon);
 
             for (int i = 0; i < weapons.Count; i++)
             {

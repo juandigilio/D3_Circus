@@ -70,7 +70,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player"))
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") && !collision.CompareTag("Cloud"))
         {
             Deactivate();
         }
@@ -95,7 +95,7 @@ public class Bullet : MonoBehaviour
                     Debug.LogError("Enemy component missing on the collided object.");
                 }
             }
-            else if (!collision.CompareTag("Player"))
+            else if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud"))
             {
                 Deactivate();
             }

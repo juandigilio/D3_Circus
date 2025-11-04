@@ -54,13 +54,16 @@ public class ToxicFog : MonoBehaviour
         HandleClouds();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (isPaused) return;
 
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Toxic Fog Damage");
+
             damageTimer -= Time.deltaTime;
+
             if (damageTimer <= 0f)
             {
                 player.TakeDamage(damagePerSecond * toxicPercent);
