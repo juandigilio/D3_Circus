@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 358259245885099803, guid: 3cd3b129561ae8144b2ed8b727b060a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 358259245885099803, guid: 3cd3b129561ae8144b2ed8b727b060a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -228,6 +228,14 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 8037390537784557639}
+    - target: {fileID: 4280846992363237978, guid: 3cd3b129561ae8144b2ed8b727b060a7, type: 3}
+      propertyPath: cloudSpawnDistance
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280846992363237978, guid: 3cd3b129561ae8144b2ed8b727b060a7, type: 3}
+      propertyPath: cloudSpawnInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4569608045727174903, guid: 3cd3b129561ae8144b2ed8b727b060a7, type: 3}
       propertyPath: m_Name
       value: ToxicFog
