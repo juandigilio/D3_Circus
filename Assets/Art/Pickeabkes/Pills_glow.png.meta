@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pills_glow_0: 6192286259664493385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

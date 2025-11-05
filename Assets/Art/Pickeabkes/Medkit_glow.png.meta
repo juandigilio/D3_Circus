@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Medkit_glow_0: -2415288021076469659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

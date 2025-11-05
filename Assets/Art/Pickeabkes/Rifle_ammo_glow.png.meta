@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rifle_ammo_glow_0: 4900047004797544521
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

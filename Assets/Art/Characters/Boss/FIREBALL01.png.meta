@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 388bd3f9e80f6a14083d1d61af7827b0
+guid: 65a596c278bcb6a4995ffbe659d1eaa6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -818810366431652886
-    second: Balloon_06_0
+      213: -8740330071929456226
+    second: FIREBALL01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Balloon_06_0
+      name: FIREBALL01_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 228
-        height: 801
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae31f6a5f4003a4f0800000000000000
-      internalID: -818810366431652886
+      spriteID: e99fafa9b1c14b680800000000000000
+      internalID: -8740330071929456226
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Balloon_06_0: -818810366431652886
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
