@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Cage
   - Cloud
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -41,7 +41,7 @@ public class ToxicFog : MonoBehaviour
         nextCloudX = cam.position.x + cloudSpawnDistance;
         levelTime = levelManager.GetLevelTime();
         restingTime = levelManager.GetTotalTime();
-        toxicPercent = 1f - (restingTime / levelTime);
+        toxicPercent = 0;
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
@@ -144,12 +144,19 @@ public class ToxicFog : MonoBehaviour
 
     private void UpdateToxicPercen()
     {
-        restingTime = levelManager.GetTotalTime();
-        toxicPercent = 1f - (restingTime / levelTime);
+        if (toxicPercent < 1f)
+        {
+            restingTime = levelManager.GetTotalTime();
+            toxicPercent = 1f - (restingTime / levelTime);
 
-        if (toxicPercent < minToxicPercent)
-            toxicPercent = minToxicPercent;
-     
+            if (toxicPercent < minToxicPercent)
+                toxicPercent = minToxicPercent;
+        }
+        else
+        {
+            toxicPercent += 0.01f;
+        }
+        
         cloudColor = new Color(0, 1, 0, toxicPercent * 2);
     }
 

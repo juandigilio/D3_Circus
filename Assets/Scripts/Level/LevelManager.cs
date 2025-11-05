@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
             if (gameData.totalTime <= 0f)
             {
                 gameData.totalTime = 0f;
-                LoadGameOver();
+                //LoadGameOver();
             }
         }
     }

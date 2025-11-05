@@ -59,24 +59,27 @@ public class Bullet : MonoBehaviour
     {
         if (!isActive) return;
 
-        if (collision.CompareTag("Cage"))
-        {
-            Deactivate();
+        
 
-            Cage cage = collision.GetComponent<Cage>();
-            if (cage != null)
-            {
-                cage.TakeDamage(damage);
-            }
-        }
-
-        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") && !collision.CompareTag("Cloud"))
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") &&
+            !collision.CompareTag("Cloud") && !collision.CompareTag("Item"))
         {
             Deactivate();
         }
 
         if (isPlayerBullet)
         {
+            if (collision.CompareTag("Cage"))
+            {
+                Deactivate();
+
+                Cage cage = collision.GetComponent<Cage>();
+                if (cage != null)
+                {
+                    cage.TakeDamage(damage);
+                }
+            }
+
             if (collision.CompareTag("Enemy"))
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
@@ -95,7 +98,9 @@ public class Bullet : MonoBehaviour
                     Debug.LogError("Enemy component missing on the collided object.");
                 }
             }
-            else if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud"))
+            
+            if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud") && 
+                !collision.CompareTag("Cloud") && !collision.CompareTag("Item"))
             {
                 Deactivate();
             }
