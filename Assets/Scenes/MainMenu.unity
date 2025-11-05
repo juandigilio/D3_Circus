@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 303384157}
   - component: {fileID: 303384156}
   m_Layer: 0
-  m_Name: Person_3
+  m_Name: Poidomani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Person 3
+  m_text: Andres Poidomani
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 626148904}
   - component: {fileID: 626148903}
   m_Layer: 0
-  m_Name: Person_4
+  m_Name: Cerrato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Person 4
+  m_text: Pablo Cerrato
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
