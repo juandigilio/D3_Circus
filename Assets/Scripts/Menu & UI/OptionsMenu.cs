@@ -118,7 +118,7 @@ public class OptionsMenu : MonoBehaviour
 
         switch (selected)
         {
-            case InputType.Combinated:
+            case InputType.Combined:
             {
                 if (currentDevice == "Gamepad")
                 {

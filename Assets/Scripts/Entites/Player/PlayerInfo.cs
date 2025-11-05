@@ -3,7 +3,7 @@ using UnityEngine;
 public enum InputType
 {
     Separated,
-    Combinated,
+    Combined,
     Mouse
 }
 
@@ -22,7 +22,7 @@ public struct GameData
 
 public static class PlayerInfo
 {
-    private static InputType inputType = InputType.Combinated;
+    private static InputType inputType = InputType.Combined;
 
     private static GameData gameData = new GameData();
 
@@ -33,7 +33,7 @@ public static class PlayerInfo
     public static void LoadPlayerData()
     {
         gameData.maxScore = PlayerPrefs.GetInt(MAX_SCORE_KEY, 0);
-        inputType = (InputType)PlayerPrefs.GetInt(INPUT_TYPE_KEY, (int)InputType.Combinated);
+        inputType = (InputType)PlayerPrefs.GetInt(INPUT_TYPE_KEY, (int)InputType.Combined);
     }
 
     public static void SavePlayerData()

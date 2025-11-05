@@ -46,7 +46,7 @@ public class AimController : MonoBehaviour
                     AimSeparated();
                     break;
                 }
-            case InputType.Combinated:
+            case InputType.Combined:
                 {
                     AimCombinated();
                     break;
