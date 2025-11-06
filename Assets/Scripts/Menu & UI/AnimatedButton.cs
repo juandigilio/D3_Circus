@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AnimatedButton : MonoBehaviour
+
+public class AnimatedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Sprite offSprite;
     [SerializeField] private Sprite onFrame1;
@@ -14,10 +17,14 @@ public class AnimatedButton : MonoBehaviour
     private Image image;
     private Coroutine animCoroutine;
 
+    private Button button;
+
     void Awake()
     {
         image = GetComponent<Image>();
         image.sprite = offSprite;
+
+        button = GetComponent<Button>();
     }
 
     private void Start()
@@ -25,18 +32,19 @@ public class AnimatedButton : MonoBehaviour
         uiAudio = GameManager.Instance.GetComponent<UIAudio>();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        animCoroutine = StartCoroutine(Animate());
 
-        Debug.Log("pointer entered");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         if (animCoroutine != null)
             StopCoroutine(animCoroutine);
         image.sprite = offSprite;
+    }
+
+    public void AnimateButton()
+    {
+        animCoroutine = StartCoroutine(Animate());
+
+        Debug.Log("pointer entered");
     }
 
     IEnumerator Animate()
@@ -48,17 +56,6 @@ public class AnimatedButton : MonoBehaviour
             image.sprite = onFrame2;
             yield return new WaitForSeconds(animationSpeed);
         }
-    }
-
-    public void PlayHoverSound()
-    {
-        uiAudio.PlayHoverSound();
-        Debug.Log("hover sound played");
-    }
-
-    public void StopHoverSound()
-    {
-
     }
 
     public void PlayClickSound()
@@ -75,5 +72,18 @@ public class AnimatedButton : MonoBehaviour
     public async void LoadMainMenuScene()
     {
         await SceneManager.GoBackToMenuAsync();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("mouse en botoncito");
+        AnimateButton();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (animCoroutine != null)
+            StopCoroutine(animCoroutine);
+        image.sprite = offSprite;
     }
 }
