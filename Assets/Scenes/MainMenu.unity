@@ -3813,6 +3813,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889582359853884676, guid: 157d0cb5325a40247911867d86cf3cb1, type: 3}
+      propertyPath: m_fontSize
+      value: 51.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889582359853884676, guid: 157d0cb5325a40247911867d86cf3cb1, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
+    - target: {fileID: 3889582359853884676, guid: 157d0cb5325a40247911867d86cf3cb1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
+    - target: {fileID: 3889582359853884676, guid: 157d0cb5325a40247911867d86cf3cb1, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4938751101909419611, guid: 157d0cb5325a40247911867d86cf3cb1, type: 3}
       propertyPath: m_Name
       value: VersionControl
