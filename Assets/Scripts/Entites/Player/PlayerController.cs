@@ -76,7 +76,7 @@ public class PlayerController : MyEntity
 
     private void Move()
     {
-        if (inputDirection != Vector2.zero)
+        if (inputDirection.x != 0)
         {
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
