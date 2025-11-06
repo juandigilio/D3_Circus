@@ -82,7 +82,7 @@ public abstract class MyEntity : MonoBehaviour
         health -= damage; 
     }
 
-    protected void UpdateAssetDirection()
+    protected virtual void UpdateAssetDirection()
     {
         if (direction > 0)
         {

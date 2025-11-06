@@ -51,6 +51,10 @@ public class Boss : Enemy
         base.FixedUpdate();
     }
 
+    protected override void UpdateAssetDirection()
+    {
+    }
+
     private IEnumerator MoveMouth(Vector3 from, Vector3 to)
     {
         float t = 0f;
