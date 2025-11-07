@@ -59,7 +59,16 @@ public class Bullet : MonoBehaviour
     {
         if (!isActive) return;
 
-        
+        if (collision.CompareTag("Baloon"))
+        {
+            Deactivate();
+
+            Baloon baloon = collision.GetComponent<Baloon>();
+            if (baloon != null)
+            {
+                baloon.Pop();
+            }
+        }
 
         if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") &&
             !collision.CompareTag("Cloud") && !collision.CompareTag("Item"))

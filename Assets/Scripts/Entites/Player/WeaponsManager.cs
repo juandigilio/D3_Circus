@@ -129,4 +129,28 @@ public class WeaponsManager : MonoBehaviour
     {
         return currentFirePoint;
     }
+
+    public int GetMachineGunAmmo()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == WeaponType.Automatic)
+            {
+                return weapon.GetCurrentAmmo();
+            }
+        }
+        return 0;
+    }
+
+    public int GetRifleAmmo()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == WeaponType.Rifle)
+            {
+                return weapon.GetCurrentAmmo();
+            }
+        }
+        return 0;
+    }
 }

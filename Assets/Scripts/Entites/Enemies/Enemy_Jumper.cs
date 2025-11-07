@@ -5,13 +5,13 @@ public class Enemy_Jumper : Enemy
     [Header("Ranges")]
     [SerializeField] private float walkingRange = 3f;
     [SerializeField] private float attackRange = 0.8f;
-    [SerializeField] private float retreatDistance = 4f;
+    //[SerializeField] private float retreatDistance = 4f;
     [SerializeField] private float jumpingRange = 7f;
 
     [Header("Jump Forces")]
-    [SerializeField] private float jumpForceBase = 10f;
+    //[SerializeField] private float jumpForceBase = 10f;
     [SerializeField] private float retractForce = 10f;
-    [SerializeField] private float horizontalForceMultiplier = 0.8f;
+    //[SerializeField] private float horizontalForceMultiplier = 0.8f;
     [SerializeField] private float maxJumpHeight = 4f;
     [SerializeField] private float checkStep = 0.5f;
     [SerializeField] private LayerMask obstacleMask;

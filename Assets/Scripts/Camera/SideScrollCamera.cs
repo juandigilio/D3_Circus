@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SideScrollCamera : MonoBehaviour
 {
-    [SerializeField] private float screenThresholdX = 0.75f;
-    [SerializeField] private float upperThresholdY = 0.7f;
-    [SerializeField] private float lowerThresholdY = 0.35f;
+    //[SerializeField] private float screenThresholdX = 0.75f;
+    //[SerializeField] private float upperThresholdY = 0.7f;
+    //[SerializeField] private float lowerThresholdY = 0.35f;
+    [SerializeField] private List<Transform> sideSpawnPoints = new List<Transform>();
 
     private Transform playerTransform;
     private Vector3 startPos;
@@ -53,5 +55,10 @@ public class SideScrollCamera : MonoBehaviour
     {
         lastCameraX = 0;
         transform.position = startPos;
+    }
+
+    public List<Transform> GetSideSpawnPoints()
+    {
+        return sideSpawnPoints;
     }
 }

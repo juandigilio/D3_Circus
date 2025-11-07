@@ -6004,6 +6004,46 @@ PrefabInstance:
       propertyPath: cloudSpawnInterval
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: cloudPrefabs.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8158137617381460164, guid: 3892c1bbd8e0b18478c8116f7976edf3, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7313970482983258480, guid: e0a195436f80c714489dd13f7a77c8e8, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3577130061929673325, guid: 2d0881be8344c3b4990318059cc73645, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1722084343489283641, guid: e7942b381f01ac1489979d32283955b0, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 3345833286427027696, guid: 76a17c8ad4b1c5348976d885fdbec8d2, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 3476479934260372920, guid: a34b8200f645ac747adc066a44202cd3, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2441629953775437703, guid: 874d7938ff5c8514fa9f6e26c9095432, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2345534601240184874, guid: 343a2308f425dda4a9e129249088f5c7, type: 3}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: 'cloudPrefabs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 3792468614090166284, guid: f94fc8a556dc0084f94b4ebfd3eb27e3, type: 3}
     - target: {fileID: 8037390537784557639, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
       propertyPath: levelTime
       value: 180
@@ -6015,8 +6055,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5776266621606090055, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 325081276367636654}
   m_SourcePrefab: {fileID: 100100000, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+--- !u!1 &325081276367636653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5776266621606090055, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+  m_PrefabInstance: {fileID: 325081276367636652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &325081276367636654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325081276367636653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb4695411c5e9843970419ccbf61ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallHealth: {fileID: 4952416413503185910, guid: 70cfdecf3c3bc1640a731ab1d52ba38e, type: 3}
+  bigHealth: {fileID: 5555354480945222891, guid: d33e2d5c7edf98d4e93d057d858c0086, type: 3}
+  machinegunAmmo: {fileID: 794742431605409229, guid: 76ac33ce45ab1524dbc5d7b86c839532, type: 3}
+  rifleAmmo: {fileID: 1291837062735505177, guid: 7d232c56e69f3364794753bc857b5129, type: 3}
+  smallCoin: {fileID: 5866870531422514993, guid: 5e7b4364e5058b44fa8d999964ff97dd, type: 3}
+  bigCoin: {fileID: 6057144601450000603, guid: d02fd97707d3d174b8f6505dd8cbef78, type: 3}
+  spawnPoints: []
+  healthSpawnInterval: 10
 --- !u!1001 &3047512736519712764
 PrefabInstance:
   m_ObjectHideFlags: 0

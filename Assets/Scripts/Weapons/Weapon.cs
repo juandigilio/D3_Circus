@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
             bulletLifeDistance = 10f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
-            currentAmmo = 300;
+            currentAmmo = 80;
         }
         else if (weaponType == WeaponType.Rifle)
         {
@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
             bulletLifeDistance = 20f;
             bulletDamage = 3;
             bulletIsDestroyable = false;
-            currentAmmo = 100;
+            currentAmmo = 40;
         }
     }
 

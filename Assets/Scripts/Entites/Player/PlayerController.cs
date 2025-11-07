@@ -161,12 +161,12 @@ public class PlayerController : MyEntity
         return weaponsManager.GetCurrentWeaponType();
     }
 
-    public float AvailableLives()
+    public float CurrentHealth()
     {
         return health;
     }
 
-    public int MaxLives()
+    public int MaxHealth()
     {
         return maxHealth;
     }
