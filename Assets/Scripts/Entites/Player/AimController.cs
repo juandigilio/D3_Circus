@@ -34,6 +34,8 @@ public class AimController : MonoBehaviour
 
     private void Aim()
     {
+        sight.transform.position = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint().position;
+
         switch (PlayerInfo.GetInputType())
         {
             case InputType.Mouse:
@@ -91,7 +93,8 @@ public class AimController : MonoBehaviour
 
     private void AimToMouse()
     {
-        sight.transform.position = weapon.GetFirePointWorldPos();
+        //sight.transform.position = weapon.GetFirePointWorldPos();
+        //sight.transform.position = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint().position;
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
@@ -110,7 +113,7 @@ public class AimController : MonoBehaviour
     {
         float angle;
 
-        sight.transform.position = weapon.GetFirePointWorldPos();
+        //sight.transform.position = weapon.GetFirePointWorldPos();
 
         if (newDirection != Vector2.zero)
         {
