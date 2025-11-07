@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
+    [SerializeField] private Image infinite;
     [SerializeField] private GameObject pistol;
     [SerializeField] private GameObject machineGun;
     [SerializeField] private GameObject rifle;
@@ -32,21 +33,29 @@ public class UIManager : MonoBehaviour
             pistol.SetActive(true);
             machineGun.SetActive(false);
             rifle.SetActive(false);
-        }
-        else if (playerController.GetCurrentWeaponType() == WeaponType.Automatic)
-        {
-            pistol.SetActive(false);
-            machineGun.SetActive(true);
-            rifle.SetActive(false);
-        }
-        else if (playerController.GetCurrentWeaponType() == WeaponType.Rifle)
-        {
-            pistol.SetActive(false);
-            machineGun.SetActive(false);
-            rifle.SetActive(true);
-        }
 
-        ammo.text = "" + playerController.CurrentWeaponAmmo();
+            infinite.enabled = true;
+            ammo.enabled = false;
+        }
+        else
+        {
+            if (playerController.GetCurrentWeaponType() == WeaponType.Automatic)
+            {
+                pistol.SetActive(false);
+                machineGun.SetActive(true);
+                rifle.SetActive(false);
+            }
+            else if (playerController.GetCurrentWeaponType() == WeaponType.Rifle)
+            {
+                pistol.SetActive(false);
+                machineGun.SetActive(false);
+                rifle.SetActive(true);
+            }
+
+            ammo.text = "" + playerController.CurrentWeaponAmmo();
+            infinite.enabled = false;
+            ammo.enabled = true;
+        }  
     }
 
     private void UpdatePlayerInfo()
