@@ -12,7 +12,14 @@ public class WeaponsManager : MonoBehaviour
     private CharacterAudio characterAudio;
     private int currentWeapon = 0;
     private bool isShooting = false;
+    private Transform currentFirePoint;
 
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterWeaponsManager(this);
+        currentFirePoint = transform;
+
+    }
 
     private void Start()
     {
@@ -46,7 +53,7 @@ public class WeaponsManager : MonoBehaviour
             {
                 characterAudio.PlayShootSound();
                 animator.AnimateShoot();
-            }          
+            }
         }
     }
 
@@ -111,5 +118,15 @@ public class WeaponsManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SetCurrentFirePoint(Transform firePoint)
+    {
+        currentFirePoint = firePoint;
+    }
+
+    public Transform GetCurrentFirePoint()
+    {
+        return currentFirePoint;
     }
 }

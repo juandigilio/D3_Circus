@@ -39,17 +39,6 @@ public class SideScrollCamera : MonoBehaviour
                 newCamPos.x = Mathf.Max(newCameraX, lastCameraX);
             }
 
-            //if (viewportPos.y > upperThresholdY)
-            //{
-            //    float deltaY = playerTransform.position.y - mainCamera.ViewportToWorldPoint(new Vector3(viewportPos.x, upperThresholdY, viewportPos.z)).y;
-            //    newCamPos.y += deltaY;
-            //}
-            //else if (viewportPos.y < lowerThresholdY)
-            //{
-            //    float deltaY = playerTransform.position.y - mainCamera.ViewportToWorldPoint(new Vector3(viewportPos.x, lowerThresholdY, viewportPos.z)).y;
-            //    newCamPos.y += deltaY;
-            //}
-
             transform.position = newCamPos;
             lastCameraX = transform.position.x;
         }

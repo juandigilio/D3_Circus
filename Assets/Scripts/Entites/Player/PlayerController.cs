@@ -217,6 +217,11 @@ public class PlayerController : MyEntity
         weaponsManager.AddAmmo(weaponType, ammoAmount);
     }
 
+    public WeaponsManager GetWeaponsManager()
+    {
+        return weaponsManager;
+    }
+
     private void KillPlayer()
     {
         OnPlayerDied?.Invoke();

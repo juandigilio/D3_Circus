@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public enum WeaponType
@@ -12,8 +11,6 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] Transform firePoint;
-    [SerializeField] int magazineSize;
 
     [SerializeField] float fireRate;
     [SerializeField] float bulletSpeed;
@@ -24,6 +21,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isPlayerWeapon;
 
 
+    private Transform firePoint;
     private float fireCooldown;
     private int currentAmmo;
 
@@ -31,6 +29,11 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         SetWeaponType();
+    }
+
+    private void Start()
+    {
+        firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
     }
 
     private void Update()
@@ -47,13 +50,17 @@ public class Weapon : MonoBehaviour
     {
         if (fireCooldown > fireRate)
         {
+            firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
             fireCooldown = 0f;
 
             Bullet newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
 
-            currentAmmo--;
-
+            if (isPlayerWeapon && weaponType != WeaponType.Pistol)
+            {
+                currentAmmo--;
+            }
+                
             return true;
         }
 
@@ -64,17 +71,15 @@ public class Weapon : MonoBehaviour
     {
         if (weaponType == WeaponType.Pistol)
         {
-            magazineSize = 999999;
             fireRate = 0.25f;
             bulletSpeed = 10f;
             bulletLifeDistance = 8f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
-            currentAmmo = 700;
+            currentAmmo = 999999999;
         }
         else if (weaponType == WeaponType.Automatic)
         {
-            magazineSize = 999999;
             fireRate = 0.1f;
             bulletSpeed = 15f;
             bulletLifeDistance = 10f;
@@ -84,7 +89,6 @@ public class Weapon : MonoBehaviour
         }
         else if (weaponType == WeaponType.Rifle)
         {
-            magazineSize = 999999;
             fireRate = 0.5f;
             bulletSpeed = 20f;
             bulletLifeDistance = 20f;

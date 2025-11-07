@@ -472,6 +472,8 @@ public class PlayerAnimator : MonoBehaviour
         currentWeaponAnimation.animation.AddRange(weapon_Animation);
         currentWeaponAnimation.animation[0].enabled = true;
         currentWeaponAnimation.firePoint = firepoint;
+
+        GameManager.Instance.GetWeaponsManager().SetCurrentFirePoint(firepoint);
     }
 
     private void ActivateWeapon(
