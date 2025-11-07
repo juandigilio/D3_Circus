@@ -10,6 +10,7 @@ TagManager:
   - Cage
   - Cloud
   - Item
+  - Baloon
   layers:
   - Default
   - TransparentFX

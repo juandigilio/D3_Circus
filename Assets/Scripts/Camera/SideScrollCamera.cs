@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SideScrollCamera : MonoBehaviour
 {
-    //[SerializeField] private float screenThresholdX = 0.75f;
-    //[SerializeField] private float upperThresholdY = 0.7f;
-    //[SerializeField] private float lowerThresholdY = 0.35f;
+    [SerializeField] private float screenThresholdX = 0.75f;
+    [SerializeField] private float upperThresholdY = 0.7f;
+    [SerializeField] private float lowerThresholdY = 0.35f;
     [SerializeField] private List<Transform> sideSpawnPoints = new List<Transform>();
 
     private Transform playerTransform;
