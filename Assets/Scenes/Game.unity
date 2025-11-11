@@ -6083,8 +6083,8 @@ MonoBehaviour:
   rifleAmmo: {fileID: 1291837062735505177, guid: 7d232c56e69f3364794753bc857b5129, type: 3}
   smallCoin: {fileID: 5866870531422514993, guid: 5e7b4364e5058b44fa8d999964ff97dd, type: 3}
   bigCoin: {fileID: 6057144601450000603, guid: d02fd97707d3d174b8f6505dd8cbef78, type: 3}
-  spawnPoints: []
   healthSpawnInterval: 10
+  coinSpawnInterval: 30
 --- !u!1001 &3047512736519712764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6221,58 +6221,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1670387255868854745, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3184320123294367803, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: animator
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: torso_Hit
       value: 
-      objectReference: {fileID: 4578406654615916034}
-    - target: {fileID: 3819294307530020649, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3988772341089906193, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136894496927318949, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: frameRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136894496927318949, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: jumpFrameRate
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136894496927318949, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: weaponFrameRate
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476409383562256002, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372453839613993175, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: health
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 4578406654615916034}
     - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: startPos
       value: 
       objectReference: {fileID: 614309784}
-    - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: maxHealth
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7243748329351957169, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.74
@@ -6317,14 +6273,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 7373533662242557326, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8540229011460240626, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6350,17 +6298,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7888605457448986725, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
   m_PrefabInstance: {fileID: 4578406654615916029}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4578406654615916034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4136894496927318949, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
-  m_PrefabInstance: {fileID: 4578406654615916029}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadc9d67b329edc488340da25a74deb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5880356882469637063
 PrefabInstance:
   m_ObjectHideFlags: 0

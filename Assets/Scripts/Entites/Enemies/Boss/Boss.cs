@@ -33,7 +33,6 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
-        Debug.Log("Boss started");
         mouth.transform.position = mouthStart.position;
 
         health = 15;

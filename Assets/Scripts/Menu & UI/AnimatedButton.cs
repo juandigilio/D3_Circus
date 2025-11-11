@@ -41,8 +41,6 @@ public class AnimatedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void AnimateButton()
     {
         animCoroutine = StartCoroutine(Animate());
-
-        Debug.Log("pointer entered");
     }
 
     IEnumerator Animate()
@@ -59,7 +57,6 @@ public class AnimatedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void PlayClickSound()
     {
         uiAudio.PlayClickSound();
-        Debug.Log("click sound played");
     }
 
     public async void LoadCreditsScene()
@@ -74,7 +71,6 @@ public class AnimatedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("mouse en botoncito");
         AnimateButton();
     }
 

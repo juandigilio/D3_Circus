@@ -76,13 +76,17 @@ public class PlayerController : MyEntity
 
     private void Move()
     {
-        if (inputDirection.x != 0)
+        if (inputDirection != Vector2.zero)
         {
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
 
-            animator.SetRunning(true);
             animator.SetWeaponDirection(SetAnimatorDirection());
+
+            if (inputDirection.x != 0)
+            {
+                animator.SetRunning(true);
+            }
         }
         else
         {
