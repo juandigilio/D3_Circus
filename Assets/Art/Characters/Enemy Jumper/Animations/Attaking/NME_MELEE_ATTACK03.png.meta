@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_MELEE_ATTACK03_0: -7359328123815630198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

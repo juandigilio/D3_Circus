@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_MELEE_WALK01_0: 6798846389608915824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
