@@ -41,7 +41,7 @@ public class Enemy_Shooter : Enemy
 
     protected override void Attack()
     {
-        bool movingRight = direction > 0;
+        bool movingRight = spriteDirection > 0;
 
         if ((movingRight && playerController.transform.position.x > transform.position.x) || 
             (!movingRight && playerController.transform.position.x < transform.position.x))

@@ -6225,6 +6225,18 @@ PrefabInstance:
       propertyPath: torso_Hit
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: death.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'death.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4578406654615916035}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'death.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4578406654615916034}
     - target: {fileID: 6380668201935724669, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: startPos
       value: 
@@ -6296,6 +6308,16 @@ Transform:
 --- !u!4 &4578406654615916033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7888605457448986725, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+  m_PrefabInstance: {fileID: 4578406654615916029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4578406654615916034 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7183373612746375077, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+  m_PrefabInstance: {fileID: 4578406654615916029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4578406654615916035 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6364820639294686029, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
   m_PrefabInstance: {fileID: 4578406654615916029}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5880356882469637063

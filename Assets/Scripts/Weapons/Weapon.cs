@@ -19,9 +19,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool bulletIsDestroyable;
 
     [SerializeField] bool isPlayerWeapon;
+    [SerializeField] private Transform firePoint;
 
 
-    private Transform firePoint;
     private float fireCooldown;
     private int currentAmmo;
 
@@ -33,7 +33,10 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+        if (isPlayerWeapon)
+        {
+            firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+        }     
     }
 
     private void Update()
@@ -50,7 +53,11 @@ public class Weapon : MonoBehaviour
     {
         if (fireCooldown > fireRate)
         {
-            firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+            if (isPlayerWeapon)
+            {
+                firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+            }
+
             fireCooldown = 0f;
 
             Bullet newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);

@@ -527,9 +527,11 @@ public class PlayerAnimator : MonoBehaviour
 
     private void HideTorso()
     {
+        torso_Up.enabled = false;
         torso_Front_Up.enabled = false;
         torso_Front.enabled = false;
         torso_Front_Down.enabled = false;
+        torso_Down.enabled = false;
 
         foreach (SpriteRenderer sprite in death)
         {

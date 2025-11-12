@@ -7,6 +7,7 @@ public class AimController : MonoBehaviour
     [SerializeField] private Weapon weapon;
 
     private PlayerController playerController;
+    private PlayerAnimator animator;
     private Camera mainCamera;
     private Vector3 originalScale;
     private Vector3 invertedScale;
@@ -18,6 +19,7 @@ public class AimController : MonoBehaviour
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
+        animator = playerController.GetPlayerAnimator();
 
         mainCamera = Camera.main;
 
@@ -35,22 +37,22 @@ public class AimController : MonoBehaviour
     private void Aim()
     {
         sight.transform.position = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint().position;
-
+    
         switch (PlayerInfo.GetInputType())
         {
             case InputType.Mouse:
                 {
-                    AimToMouse();
+                    AimToMouse();                                                          
                     break;
                 }
             case InputType.Separated:
                 {
-                    AimSeparated();
+                    AimSeparated();                                                      
                     break;
                 }
             case InputType.Combined:
                 {
-                    AimCombinated();
+                    AimCombinated();                     
                     break;
                 }
             default:
@@ -65,6 +67,9 @@ public class AimController : MonoBehaviour
         Vector2 newDirection = aimDirection;
         newDirection.Normalize();
         KeyboardAim(newDirection);
+
+        if (aimDirection == Vector2.zero)
+            animator.SetWeaponDirection(aimDirection);
     }
 
     private void AimCombinated()
@@ -72,6 +77,9 @@ public class AimController : MonoBehaviour
         Vector2 newDirection = inputDirection;
         newDirection.Normalize();
         KeyboardAim(newDirection);
+
+        if (inputDirection == Vector2.zero)
+            animator.SetWeaponDirection(inputDirection);
     }
 
     private void AimTo(Vector2 newDirection)
@@ -89,13 +97,13 @@ public class AimController : MonoBehaviour
 
         weapon.AimAt(quantizedAngle);
         sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
+
+        quantizedAngle = NormalizeAngle(quantizedAngle);
+        animator.SetWeaponDirection(NormalizeQuantizedAngle(quantizedAngle));
     }
 
     private void AimToMouse()
     {
-        //sight.transform.position = weapon.GetFirePointWorldPos();
-        //sight.transform.position = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint().position;
-
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
         Vector2 dir = (worldMousePos - transform.position);
@@ -113,15 +121,12 @@ public class AimController : MonoBehaviour
     {
         float angle;
 
-        //sight.transform.position = weapon.GetFirePointWorldPos();
-
         if (newDirection != Vector2.zero)
         {
             AimTo(newDirection);
         }
         else
         {
-
             if (direction >= 0)
             {
                 angle = 0;
@@ -135,11 +140,25 @@ public class AimController : MonoBehaviour
             Vector2 quantizedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized * sightOffset;
             weapon.AimAt(angle);
             sight.transform.position += new Vector3(quantizedDirection.x, quantizedDirection.y, 0);
-            //weapon.AimAt(angle);
-            //sight.transform.position += new Vector3(direction * sightOffset, 0, 0);
         }
 
         UpdateWeaponDirection();
+    }
+
+    private Vector2 NormalizeQuantizedAngle(float quantizedAngle)
+    {
+        Vector2 animatorDir = Vector2.zero;
+
+        if (quantizedAngle > -5f && quantizedAngle < 5f) animatorDir = new Vector2(1, 0);
+        else if (quantizedAngle >= 22.5f && quantizedAngle < 67.5f) animatorDir = new Vector2(1, 1);
+        else if (quantizedAngle >= 67.5f && quantizedAngle < 112.5f) animatorDir = new Vector2(0, 1);
+        else if (quantizedAngle >= 112.5f && quantizedAngle < 157.5f) animatorDir = new Vector2(1, 1);
+        else if (quantizedAngle >= 157.5f || quantizedAngle < -157.5f) animatorDir = new Vector2(1, 0);
+        else if (quantizedAngle >= -157.5f && quantizedAngle < -112.5f) animatorDir = new Vector2(1, -1);
+        else if (quantizedAngle >= -112.5f && quantizedAngle < -67.5f) animatorDir = new Vector2(0, -1);
+        else if (quantizedAngle >= -67.5f && quantizedAngle < -22.5f) animatorDir = new Vector2(1, -1);
+
+        return animatorDir;
     }
 
     private void UpdateWeaponDirection()
@@ -152,6 +171,14 @@ public class AimController : MonoBehaviour
         {
             weapon.transform.localScale = invertedScale;
         }
+    }
+
+    private float NormalizeAngle(float angle)
+    {
+        angle %= 360f;
+        if (angle > 180f) angle -= 360f;
+        else if (angle < -180f) angle += 360f;
+        return angle;
     }
 
     public void SetDirection(float direction)

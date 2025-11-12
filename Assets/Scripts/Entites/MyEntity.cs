@@ -9,7 +9,7 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] protected JumpManager jumpManager;
 
     protected Rigidbody2D rb;
-    protected float direction = 1f;
+    protected float spriteDirection = 1f;
     protected bool isPaused = false;
 
 
@@ -84,11 +84,11 @@ public abstract class MyEntity : MonoBehaviour
 
     protected virtual void UpdateAssetDirection()
     {
-        if (direction > 0)
+        if (spriteDirection > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (direction < 0)
+        else if (spriteDirection < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
