@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789bf9db99fde6f40a9d403b0eaa321f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineRenderer: {fileID: 0}
+  pulseSpeed: 3.5
+  minAlpha: 0.1
+  maxAlpha: 0.6
   scoreValue: 2500
 --- !u!212 &996309920342011733
 SpriteRenderer:

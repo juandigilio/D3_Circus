@@ -71,7 +71,7 @@ public abstract class Enemy : MyEntity
             gameObject.SetActive(false);
         }
         
-        enemyAudio.PlayHitSound();
+        //enemyAudio.PlayHitSound();
     }
 
     public int GetScoreValue()

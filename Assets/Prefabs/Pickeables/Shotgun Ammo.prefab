@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineRenderer: {fileID: 5091345862850010878}
-  pulseSpeed: 2
-  minAlpha: 0.3
-  maxAlpha: 1
+  pulseSpeed: 3.5
+  minAlpha: 0.1
+  maxAlpha: 0.6
   weaponType: 2
   ammoAmount: 150
 --- !u!50 &7333680129544063873

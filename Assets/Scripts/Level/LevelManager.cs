@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float levelTime = 300f;
 
     private GameData gameData;
+    private bool isPaused = false;
 
     private void Start()
     {
@@ -19,10 +21,15 @@ public class LevelManager : MonoBehaviour
 
         PlayerController.OnPlayerDied += LoadGameOver;
         Boss.OnBossDied += LoadWin;
+
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
     }
 
     private void FixedUpdate()
     {
+        if (isPaused) return;
+
         if (gameData.totalTime > 0f)
         {
             gameData.totalTime -= Time.fixedDeltaTime;
@@ -33,6 +40,15 @@ public class LevelManager : MonoBehaviour
                 //LoadGameOver();
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.OnPlayerDied -= LoadGameOver;
+        Boss.OnBossDied -= LoadWin;
+
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
     }
 
     public void AddKillScore(int value)
@@ -60,6 +76,16 @@ public class LevelManager : MonoBehaviour
     public int GetCurrentScore()
     {
         return gameData.killsScore + gameData.collectablesScore;
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
     }
 
     private void LoadGameOver()

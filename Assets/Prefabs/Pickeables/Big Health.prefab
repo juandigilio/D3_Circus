@@ -191,9 +191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineRenderer: {fileID: 877492702252453444}
-  pulseSpeed: 2
-  minAlpha: 0.3
-  maxAlpha: 1
+  pulseSpeed: 3.5
+  minAlpha: 0.1
+  maxAlpha: 0.6
   healthAmount: 50
 --- !u!50 &2716797879102038278
 Rigidbody2D:
