@@ -5,19 +5,18 @@ public class Enemy_Jumper : Enemy
     [Header("Ranges")]
     [SerializeField] private float walkingRange = 3f;
     [SerializeField] private float attackRange = 0.8f;
-    //[SerializeField] private float retreatDistance = 4f;
     [SerializeField] private float jumpingRange = 7f;
 
     [Header("Jump Forces")]
-    //[SerializeField] private float jumpForceBase = 10f;
     [SerializeField] private float retractForce = 10f;
-    //[SerializeField] private float horizontalForceMultiplier = 0.8f;
     [SerializeField] private float maxJumpHeight = 4f;
     [SerializeField] private float checkStep = 0.5f;
     [SerializeField] private LayerMask obstacleMask;
 
+    [SerializeField] private JumperAnimator animator;
 
     private bool retreating = false;
+    private bool isAttacking = false;
 
     protected override void FixedUpdate()
     {
@@ -26,11 +25,11 @@ public class Enemy_Jumper : Enemy
 
         if (!isGrounded) return;
 
-        if (retreating)
-        {
-            RetreatJump();
-            return;
-        }
+        //if (retreating)
+        //{
+        //    //RetreatJump();
+        //    return;
+        //}
 
         float distance = Vector2.Distance(transform.position, playerController.transform.position);
 
@@ -45,18 +44,24 @@ public class Enemy_Jumper : Enemy
         else
         {
             Attack();
-        }
+        }   
     }
 
     private void WalkTowardsPlayer()
     {
+        isAttacking = false;
+
         float horizontalDir = Mathf.Sign(playerController.transform.position.x - transform.position.x);
         spriteDirection = horizontalDir;
         rb.linearVelocity = new Vector2(horizontalDir * speed, rb.linearVelocity.y);
+
+        animator.SetWalking(true);
     }
 
     private void JumpTowardsPlayer()
     {
+        isAttacking = false;
+
         Vector2 playerPos = playerController.transform.position;
         Vector2 from = transform.position;
         float horizontalDir = Mathf.Sign(playerPos.x - from.x);
@@ -79,9 +84,11 @@ public class Enemy_Jumper : Enemy
         }
 
         jumpManager.JumpWithForce(horizontalForce, verticalForce);
+
+        animator.SetWalking(true);
     }
 
-    private void RetreatJump()
+    public void RetreatJump()
     {
         float horizontalDir = -Mathf.Sign(playerController.transform.position.x - transform.position.x);
         spriteDirection = horizontalDir;
@@ -94,8 +101,13 @@ public class Enemy_Jumper : Enemy
 
     protected override void Attack()
     {
+        if (isAttacking) return;
+
+        isAttacking = true;
+
         playerController.TakeDamage(damage);
         retreating = true;
+        animator.SetAttaking(true);
         //enemyAudio.PlaySlashSound();
     }
 }

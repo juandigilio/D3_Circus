@@ -59,6 +59,8 @@ public class JumpManager : MonoBehaviour
 
     private void ApplyBetterJumpPhysics()
     {
+        if (!rb) return;
+
         if (rb.linearVelocityY < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;

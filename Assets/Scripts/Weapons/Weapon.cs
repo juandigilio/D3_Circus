@@ -21,7 +21,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isPlayerWeapon;
     [SerializeField] private Transform firePoint;
 
-
     private float fireCooldown;
     private int currentAmmo;
 
