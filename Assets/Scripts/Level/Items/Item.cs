@@ -10,12 +10,15 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private float minAlpha = 0.3f;
     [SerializeField] private float maxAlpha = 1f;
 
+
+    private float timer = 0;
+    private float alpha = 1;
     protected virtual void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         AnimateOutline();
     }
@@ -28,6 +31,25 @@ public abstract class Item : MonoBehaviour
             return;
         }
 
+        //timer += Time.fixedDeltaTime;
+
+        //if (timer >= pulseSpeed)
+        //{
+        //    timer = 0;
+
+        //    if (alpha == minAlpha)
+        //    {
+        //        alpha = maxAlpha;
+        //    }
+        //    else
+        //    {
+        //        alpha = minAlpha;
+        //    }
+
+        //    Color c = outlineRenderer.color;
+        //    c.a = alpha;
+        //    outlineRenderer.color = c;
+        //}
         float t = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
         float alpha = Mathf.Lerp(minAlpha, maxAlpha, t);
 
