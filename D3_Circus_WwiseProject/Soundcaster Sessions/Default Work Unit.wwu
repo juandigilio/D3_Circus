@@ -25,7 +25,7 @@
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="Boss" ID="{9AB45658-A738-4467-9DE2-4B07EF6A6CA0}"/>
+						<CurrentStateRef Name="Menu" ID="{D70683F5-A6C9-4C4F-A2CF-373F8DE02B31}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

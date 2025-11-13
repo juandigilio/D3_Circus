@@ -49,6 +49,57 @@
 												</DestinationFadeIn>
 											</TransitionInfo>
 										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{1E1BA25F-E661-47DC-B849-0DFB1DF9E0A9}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="3"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Menu_Music" ID="{8EF46A8B-C70D-4758-AF7F-4816491086E5}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Gameplay_Music" ID="{EA31FA95-79D0-405E-BB2E-BF0C2538B568}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Transition" ID="{77377F40-3A5D-428C-AAC2-700ED067E480}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{786316E8-B30B-4376-A5AA-7E28DA44DAD2}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="1"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Credits_Music" ID="{A870EB91-4D2A-4F6F-A25B-8B6EC5298CAB}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Menu_Music" ID="{8EF46A8B-C70D-4758-AF7F-4816491086E5}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo/>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{BE1E04F8-D6F3-457E-B66C-746A317831D0}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="1"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Menu_Music" ID="{8EF46A8B-C70D-4758-AF7F-4816491086E5}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Credits_Music" ID="{A870EB91-4D2A-4F6F-A25B-8B6EC5298CAB}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo/>
+										</MusicTransition>
 										<MusicTransition Name="Transition" ID="{BB15783A-EBE9-46EB-9ECF-38DAD1B31671}">
 											<PropertyList>
 												<Property Name="DestinationContextType" Type="int16" Value="2"/>
