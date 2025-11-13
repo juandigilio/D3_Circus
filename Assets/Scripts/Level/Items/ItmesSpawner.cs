@@ -23,6 +23,7 @@ public class ItmesSpawner : MonoBehaviour
     private float lastAmmoSpawnTime = 0f;
     private float lastCoinSpawnTime = 0f;
     private bool wasBigCoin = false;
+    private bool isPaused = false;
 
 
     private void Start()
@@ -31,13 +32,24 @@ public class ItmesSpawner : MonoBehaviour
 
         spawnPoints.Clear();
         spawnPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetSideSpawnPoints());
+
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
     }
 
     private void FixedUpdate()
     {
+        if (isPaused) return;
+
         CheckHealth();
         CheckAmmo();
         SpawnCoin();
+    }
+
+    private void OnDestroy()
+    {
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
     }
 
     private void SpawnCoin()
@@ -76,7 +88,7 @@ public class ItmesSpawner : MonoBehaviour
         {
             SpawnBaloon(smallHealth);
             lastHealthSpawnTime = 0f;
-        } 
+        }
     }
 
     private void CheckAmmo()
@@ -95,12 +107,22 @@ public class ItmesSpawner : MonoBehaviour
         {
             SpawnBaloon(rifleAmmo);
             lastAmmoSpawnTime = 0f;
-        }  
+        }
     }
 
     private void SpawnBaloon(Baloon baloon)
     {
         int spawnIndex = Random.Range(0, spawnPoints.Count);
         Instantiate(baloon, spawnPoints[spawnIndex].position, Quaternion.identity);
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
     }
 }

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Icono de globo_0: 5545425547277436526
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

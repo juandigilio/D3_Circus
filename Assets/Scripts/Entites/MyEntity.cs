@@ -82,6 +82,11 @@ public abstract class MyEntity : MonoBehaviour
         health -= damage; 
     }
 
+    public bool IsPaused()
+    {
+        return isPaused;
+    }
+
     protected virtual void UpdateAssetDirection()
     {
         if (spriteDirection > 0)

@@ -25,6 +25,8 @@ public class JumperAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (jumper.IsPaused()) return;
+       
         UpdateAnimations();
     }
 
@@ -68,16 +70,9 @@ public class JumperAnimator : MonoBehaviour
 
     private void UpdateAnimations()
     {
-        //Debug.Log("Animating Attack" + isAttaking);
         if (isWalking)
         {
             AnimateWalk();
-        }
-        else if (isAttaking)
-        {
-            //Debug.Log("Animating Attack");
-            //StopAllCoroutines();
-            //StartCoroutine(AnimateAttak());
         }
         else if(isJumping)
         {
@@ -117,7 +112,6 @@ public class JumperAnimator : MonoBehaviour
         }
 
         jumper.RetreatJump();
-        //SetIsJumping(true);
         SetWalking(true);
     }
 
@@ -128,19 +122,6 @@ public class JumperAnimator : MonoBehaviour
         if (animationTimer >= animationSpeed)
         {
             HideAll();
-            //Debug.Log($"Animating index: {jumpingIndex} of {jumping.Count}");
-            //animationTimer = 0f;
-
-            //jumping[jumpingIndex].enabled = true;
-
-            //jumpingIndex++;
-
-            //Debug.Log($"Animating index after: {jumpingIndex}");
-
-            //if (jumpingIndex >= jumping.Count)
-            //{
-            //    jumpingIndex = 0;
-            //}
         }
     }
 
