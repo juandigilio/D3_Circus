@@ -320,6 +320,30 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="Play_Fireball" ID="{7B549382-911B-400C-A52A-6BB85159FEE4}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="9"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+				</Event>
+				<Event Name="Play_Score" ID="{81BD4484-E389-4296-A09A-7AE5FA3DECE7}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="20"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+				</Event>
+				<Event Name="Play_Enemy_Laugh" ID="{7B5ACA72-A029-4D72-9AF7-621A4EE284E4}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+				</Event>
+				<Event Name="Play_Balloon_Pop" ID="{734471D5-3BF8-431A-AE40-4C901D363CB6}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
