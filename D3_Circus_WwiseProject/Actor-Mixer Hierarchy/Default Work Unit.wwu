@@ -1038,6 +1038,136 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="Play_Ambiance" ID="{F20DAC5A-D7DF-4447-A6DE-BAEF2A2C6E1D}" ShortID="331515306">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Ambiance" ID="{96A7775A-1403-4785-B217-70B949B02F69}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Ambiance.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="524737428"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Ambiance" ID="{96A7775A-1403-4785-B217-70B949B02F69}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_Balloon_Pop" ID="{A6560328-6727-4325-8153-717FF11F51E6}" ShortID="1056208180">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Balloon_Pop" ID="{C6B83854-9F93-4D0B-84B6-960CE071CC65}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Balloon_Pop.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="421361690"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Balloon_Pop" ID="{C6B83854-9F93-4D0B-84B6-960CE071CC65}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_Enemy_Laugh" ID="{8D6DABB5-5F01-40A9-9013-380340DDACCB}" ShortID="472342262">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Enemy_Laugh" ID="{7082B52D-9530-47BA-BF3A-5026F0AD048A}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Enemy_Laugh.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="900717606"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Enemy_Laugh" ID="{7082B52D-9530-47BA-BF3A-5026F0AD048A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_UI_On_Hover" ID="{FD54994F-F6F3-4C4A-8DE6-8C471900F629}" ShortID="564354775">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="7"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_UI_On_Hover" ID="{ADC4F4B3-49BF-4BEE-A974-349F8CCB2DE7}">
+							<Language>SFX</Language>
+							<AudioFile>Play_UI_On_Hover.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="8148753"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_UI_On_Hover" ID="{ADC4F4B3-49BF-4BEE-A974-349F8CCB2DE7}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_UI_OnClick" ID="{9CE53CA1-9D2D-4B37-AD7F-B69A83A500A1}" ShortID="628903681">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="7"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_UI_OnClick" ID="{5976C190-0BDC-41E8-B958-C6B1AFBD5502}">
+							<Language>SFX</Language>
+							<AudioFile>Play_UI_OnClick.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="404264541"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_UI_OnClick" ID="{5976C190-0BDC-41E8-B958-C6B1AFBD5502}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

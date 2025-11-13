@@ -23,6 +23,15 @@
 						<Property Name="Color" Type="int16" Value="12"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{30D52222-4FE7-4CFC-8247-64DB8B0C922F}" ShortID="977103859">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Ambiance" ID="{F20DAC5A-D7DF-4447-A6DE-BAEF2A2C6E1D}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Enemy_Hit" ID="{A3AF75ED-35AF-43B1-9146-F4A86C593B57}">
 					<PropertyList>
@@ -56,12 +65,30 @@
 						<Property Name="Color" Type="int16" Value="20"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{258F8739-6B43-4221-BAD2-C566BA479C46}" ShortID="626233123">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_UI_OnClick" ID="{9CE53CA1-9D2D-4B37-AD7F-B69A83A500A1}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_UI_OnHover" ID="{91F6DF34-FC99-4CE2-830F-0C8C91CA8386}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="20"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{454E3A58-2A2A-4A9E-9A66-6AE6FF10AC6F}" ShortID="49868141">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_UI_On_Hover" ID="{FD54994F-F6F3-4C4A-8DE6-8C471900F629}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Folder Name="Player1" ID="{69DEED91-0D8C-4521-8F02-04675B866F9A}" ShortID="765374879">
 					<ChildrenList>
@@ -337,12 +364,30 @@
 						<Property Name="Color" Type="int16" Value="10"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{8E00EB7C-2C53-4E70-8723-2BE33567019C}" ShortID="119280034">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Enemy_Laugh" ID="{8D6DABB5-5F01-40A9-9013-380340DDACCB}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Balloon_Pop" ID="{734471D5-3BF8-431A-AE40-4C901D363CB6}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="12"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{AD9213C7-43FF-42D6-AF00-93FBC10A7DB3}" ShortID="194619254">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Balloon_Pop" ID="{A6560328-6727-4325-8153-717FF11F51E6}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 			</ChildrenList>
 		</WorkUnit>
