@@ -12,6 +12,7 @@ public class Baloon : MonoBehaviour
     [SerializeField] private float swayFrequency = 0.7f;
 
 
+    private PlayerController player;
     private Camera mainCam;
     private Vector3 startPos;
     private float randomOffset;
@@ -21,10 +22,14 @@ public class Baloon : MonoBehaviour
         startPos = transform.position;
         randomOffset = Random.Range(0f, 1f);
         mainCam = Camera.main;
+
+        player = GameManager.Instance.GetPlayerController();
     }
 
     private void Update()
     {
+        if (player.IsPaused()) return;
+
         CheckOffScreen();
         FloatMovement();
     }

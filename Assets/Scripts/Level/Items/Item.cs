@@ -2,8 +2,6 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    protected PlayerController playerController;
-
     [Header("Outline Effect")]
     [SerializeField] private SpriteRenderer outlineRenderer;
     [SerializeField] private float pulseSpeed = 2f;
@@ -11,16 +9,27 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private float maxAlpha = 1f;
 
 
-    private float timer = 0;
-    private float alpha = 1;
+    protected PlayerController playerController;
+    private Rigidbody2D rb;
+
     protected virtual void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
+        rb = GetComponent<Rigidbody2D>();
+
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
     }
 
     protected virtual void FixedUpdate()
     {
         AnimateOutline();
+    }
+
+    protected void OnDestroy()
+    {
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
     }
 
     private void AnimateOutline()
@@ -31,25 +40,6 @@ public abstract class Item : MonoBehaviour
             return;
         }
 
-        //timer += Time.fixedDeltaTime;
-
-        //if (timer >= pulseSpeed)
-        //{
-        //    timer = 0;
-
-        //    if (alpha == minAlpha)
-        //    {
-        //        alpha = maxAlpha;
-        //    }
-        //    else
-        //    {
-        //        alpha = minAlpha;
-        //    }
-
-        //    Color c = outlineRenderer.color;
-        //    c.a = alpha;
-        //    outlineRenderer.color = c;
-        //}
         float t = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
         float alpha = Mathf.Lerp(minAlpha, maxAlpha, t);
 
@@ -74,4 +64,14 @@ public abstract class Item : MonoBehaviour
     }
 
     protected abstract void PickUp();
+
+    private void SetPaused()
+    {
+        rb.Sleep();
+    }
+
+    private void StopPause()
+    {
+        rb.WakeUp();
+    }
 }
