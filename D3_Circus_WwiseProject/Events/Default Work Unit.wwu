@@ -239,6 +239,87 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Music" ID="{E8936660-ABB6-40D9-B24E-EB9F50A97877}" ShortID="694100494">
+					<ChildrenList>
+						<Event Name="Game_Start" ID="{EA2050D4-46F6-402E-944A-E3D44F869818}">
+							<ChildrenList>
+								<Action Name="" ID="{D888E2B6-229E-473A-A8CC-F9D779C07DAF}" ShortID="614112827">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music_Switch" ID="{A176421A-0233-4870-9E80-887B5D42EAB8}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{0BA12B61-9801-4790-9AB6-0EDBB13C5BCB}" ShortID="248576063">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Menu" ID="{D70683F5-A6C9-4C4F-A2CF-373F8DE02B31}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Level_State" ID="{AAEE5076-5406-4C5B-A6AB-C17882CDAD0A}">
+							<ChildrenList>
+								<Action Name="" ID="{7E4C1EB7-3CC1-44AA-9336-B823DB60DA41}" ShortID="618936542">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Gameplay" ID="{5143EE51-70E2-409C-A44F-1B8ED7A79839}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Boss_State" ID="{382AA7F5-2CD3-4C35-ABCD-C04D0CED3C2D}">
+							<ChildrenList>
+								<Action Name="" ID="{9D0AD7CD-1FF7-4CBE-A0AC-2A5DBF6D29CC}" ShortID="621623721">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Boss" ID="{9AB45658-A738-4467-9DE2-4B07EF6A6CA0}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Credits_State" ID="{24A5B4BC-1ED6-4C63-9E5A-1D1EA7EF3974}">
+							<ChildrenList>
+								<Action Name="" ID="{2F2AA9D5-D900-45D4-970D-1E050D7AEC1B}" ShortID="965505295">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Credits" ID="{C04FDB05-A6E4-480D-AD09-5923ECA0B5F0}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Death_State" ID="{60EDE934-A2A4-4550-B953-D983EAF4C73D}">
+							<ChildrenList>
+								<Action Name="" ID="{BE35ED9A-CBB0-4F89-B548-6850FF0053FD}" ShortID="895658070">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Death" ID="{82F556D9-C738-4094-85D6-01A1DB44D22C}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
