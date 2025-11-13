@@ -21,7 +21,7 @@ public class EndGame : MonoBehaviour
     {
         bool isGameOver = PlayerInfo.GetGameData().gameOver;
 
-        gameObject.SetActive(isGameOver);
+        gameOverText.SetActive(isGameOver);
         winText.SetActive(!isGameOver);
         creditsButton.SetActive(!isGameOver);
         menuButton.SetActive(isGameOver);
