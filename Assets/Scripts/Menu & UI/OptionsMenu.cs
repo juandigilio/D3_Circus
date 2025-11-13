@@ -38,8 +38,11 @@ public class OptionsMenu : MonoBehaviour
 
         float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
         volume.value = savedVolume;
+
         //pasar esta linea a wwise
-        AudioListener.volume = savedVolume;
+
+        // AudioListener.volume = savedVolume;
+        AkUnitySoundEngine.SetRTPCValue("MasterVolume", savedVolume);
 
         volume.onValueChanged.AddListener(OnVolumeChanged);
 
@@ -61,8 +64,8 @@ public class OptionsMenu : MonoBehaviour
 
     private void OnVolumeChanged(float value)
     {
-        //pasar a wwise
-        AudioListener.volume = value;
+        // Actualizar el volumen en Wwise
+        AkUnitySoundEngine.SetRTPCValue("MasterVolume", value);
         PlayerPrefs.SetFloat(VolumeKey, value);
     }
 
@@ -118,7 +121,7 @@ public class OptionsMenu : MonoBehaviour
 
         switch (selected)
         {
-            case InputType.Combinated:
+            case InputType.Combined:
             {
                 if (currentDevice == "Gamepad")
                 {

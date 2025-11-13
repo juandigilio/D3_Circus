@@ -122,15 +122,19 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Transform gun_3_FirePoint_Down;
 
     [Header("Torso")]
+    [SerializeField] private SpriteRenderer torso_Up;
     [SerializeField] private SpriteRenderer torso_Front_Up;
     [SerializeField] private SpriteRenderer torso_Front;
     [SerializeField] private SpriteRenderer torso_Front_Down;
-    [SerializeField] private SpriteRenderer torso_Hit;
+    [SerializeField] private SpriteRenderer torso_Down;
 
     [Header("Legs")]
     [SerializeField] private SpriteRenderer legs_Stand;
     [SerializeField] private List<SpriteRenderer> legs_Running = new List<SpriteRenderer>();
     [SerializeField] private List<SpriteRenderer> legs_Jumping = new List<SpriteRenderer>();
+
+    [Header("Death")]
+    [SerializeField] private List<SpriteRenderer> death;
 
     [Header("Settings")]
     [SerializeField] private float legsFrameRate = 0.1f;
@@ -163,6 +167,9 @@ public class PlayerAnimator : MonoBehaviour
         isJumping = false;
         isRunning = false;
 
+        //borrar cuando tenga las animaciones de weapon_3
+        DuplicateWeapon();
+
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
 
@@ -184,6 +191,24 @@ public class PlayerAnimator : MonoBehaviour
         lastDirection = direction;
 
         UpdateWeaponDirection();
+    }
+
+    private void DuplicateWeapon()
+    {
+        gun_3_Up.AddRange(gun_2_Up);
+        gun_3_FirePoint_Up = gun_2_FirePoint_Up;
+
+        gun_3_Front_Up.AddRange(gun_2_Front_Up);
+        gun_3_FirePoint_Front_Up = gun_2_FirePoint_Front_Up;
+
+        gun_3_Front.AddRange(gun_2_Front);
+        gun_3_FirePoint_Front = gun_2_FirePoint_Front;
+
+        gun_3_Front_Down.AddRange(gun_2_Front_Down);
+        gun_3_FirePoint_FrontDown = gun_2_FirePoint_FrontDown;
+
+        gun_3_Down.AddRange(gun_2_Down);
+        gun_3_FirePoint_Down = gun_2_FirePoint_Down;
     }
 
     public void SetWeapon(int weapon)
@@ -355,8 +380,6 @@ public class PlayerAnimator : MonoBehaviour
                 sprite.enabled = false;
             }
 
-            Debug.Log($"Current jump frame: " + currentJumpFrame);
-            Debug.Log($"List size: " + currentLegs.Count);
             currentLegs[currentJumpFrame].enabled = true;
 
             currentJumpFrame++;
@@ -474,6 +497,8 @@ public class PlayerAnimator : MonoBehaviour
         currentWeaponAnimation.animation.AddRange(weapon_Animation);
         currentWeaponAnimation.animation[0].enabled = true;
         currentWeaponAnimation.firePoint = firepoint;
+
+        GameManager.Instance.GetWeaponsManager().SetCurrentFirePoint(firepoint);
     }
 
     private void ActivateWeapon(
@@ -502,10 +527,16 @@ public class PlayerAnimator : MonoBehaviour
 
     private void HideTorso()
     {
+        torso_Up.enabled = false;
         torso_Front_Up.enabled = false;
         torso_Front.enabled = false;
         torso_Front_Down.enabled = false;
-        torso_Hit.enabled = false;
+        torso_Down.enabled = false;
+
+        foreach (SpriteRenderer sprite in death)
+        {
+            sprite.enabled = false;
+        } 
     }
 
     private void HideLegs()

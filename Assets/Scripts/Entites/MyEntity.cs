@@ -4,12 +4,12 @@ public abstract class MyEntity : MonoBehaviour
 {
     [SerializeField] protected float speed = 5f;
     [SerializeField] protected bool isGrounded;
-    [SerializeField] protected int health;
+    [SerializeField] protected float health;
     [SerializeField] private float rayLength;
     [SerializeField] protected JumpManager jumpManager;
 
     protected Rigidbody2D rb;
-    protected float direction = 1f;
+    protected float spriteDirection = 1f;
     protected bool isPaused = false;
 
 
@@ -63,7 +63,7 @@ public abstract class MyEntity : MonoBehaviour
 
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider.CompareTag("Ground"))
+            if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Cage"))
             {
                 isGrounded = true;
 
@@ -77,18 +77,23 @@ public abstract class MyEntity : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage; 
     }
 
-    protected void UpdateAssetDirection()
+    public bool IsPaused()
     {
-        if (direction > 0)
+        return isPaused;
+    }
+
+    protected virtual void UpdateAssetDirection()
+    {
+        if (spriteDirection > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (direction < 0)
+        else if (spriteDirection < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }

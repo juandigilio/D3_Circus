@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AnimatedButton : MonoBehaviour
+
+public class AnimatedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Sprite offSprite;
     [SerializeField] private Sprite onFrame1;
@@ -14,10 +15,14 @@ public class AnimatedButton : MonoBehaviour
     private Image image;
     private Coroutine animCoroutine;
 
+    private Button button;
+
     void Awake()
     {
         image = GetComponent<Image>();
         image.sprite = offSprite;
+
+        button = GetComponent<Button>();
     }
 
     private void Start()
@@ -25,18 +30,17 @@ public class AnimatedButton : MonoBehaviour
         uiAudio = GameManager.Instance.GetComponent<UIAudio>();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        animCoroutine = StartCoroutine(Animate());
 
-        Debug.Log("pointer entered");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         if (animCoroutine != null)
             StopCoroutine(animCoroutine);
         image.sprite = offSprite;
+    }
+
+    public void AnimateButton()
+    {
+        animCoroutine = StartCoroutine(Animate());
     }
 
     IEnumerator Animate()
@@ -50,25 +54,30 @@ public class AnimatedButton : MonoBehaviour
         }
     }
 
-    public void PlayHoverSound()
-    {
-        //uiAudio.PlayHoverSound();
-        Debug.Log("hover sound played");
-    }
-
-    public void StopHoverSound()
-    {
-
-    }
-
     public void PlayClickSound()
     {
-        //uiAudio.PlayClickSound();
-        Debug.Log("click sound played");
+        uiAudio.PlayClickSound();
     }
 
     public async void LoadCreditsScene()
     {
         await SceneManager.LoadCreditsScene();
+    }
+
+    public async void LoadMainMenuScene()
+    {
+        await SceneManager.GoBackToMenuAsync();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        AnimateButton();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (animCoroutine != null)
+            StopCoroutine(animCoroutine);
+        image.sprite = offSprite;
     }
 }

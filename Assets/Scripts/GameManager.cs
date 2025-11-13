@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Camera mainCamera;
     private SideScrollCamera SideScrollCamera;
     private LevelManager levelManager;
+    private WeaponsManager weaponsManager;
 
 
     private void Awake()
@@ -55,6 +56,11 @@ public class GameManager : MonoBehaviour
         this.levelManager = levelManager;
     }
 
+    public void RegisterWeaponsManager(WeaponsManager weaponsManager)
+    {
+        this.weaponsManager = weaponsManager;
+    }
+
     public PlayerInput GetPlayerInput()
     {
         return playerInput;
@@ -88,5 +94,10 @@ public class GameManager : MonoBehaviour
     public LevelManager GetLevelManager()
     {
         return levelManager;
+    }
+
+    public WeaponsManager GetWeaponsManager()
+    {
+        return weaponsManager;
     }
 }

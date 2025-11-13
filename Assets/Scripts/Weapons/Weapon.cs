@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public enum WeaponType
@@ -12,8 +11,6 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] Transform firePoint;
-    [SerializeField] int magazineSize;
 
     [SerializeField] float fireRate;
     [SerializeField] float bulletSpeed;
@@ -22,7 +19,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool bulletIsDestroyable;
 
     [SerializeField] bool isPlayerWeapon;
-
+    [SerializeField] private Transform firePoint;
 
     private float fireCooldown;
     private int currentAmmo;
@@ -31,6 +28,14 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         SetWeaponType();
+    }
+
+    private void Start()
+    {
+        if (isPlayerWeapon)
+        {
+            firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+        }     
     }
 
     private void Update()
@@ -43,50 +48,59 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    public void Shoot(Vector2 direction)
+    public bool Shoot(Vector2 direction)
     {
         if (fireCooldown > fireRate)
         {
+            if (isPlayerWeapon)
+            {
+                firePoint = GameManager.Instance.GetWeaponsManager().GetCurrentFirePoint();
+            }
+
             fireCooldown = 0f;
 
             Bullet newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
 
-            currentAmmo--;
+            if (isPlayerWeapon && weaponType != WeaponType.Pistol)
+            {
+                currentAmmo--;
+            }
+                
+            return true;
         }
+
+        return false;
     }
 
     private void SetWeaponType()
     {
         if (weaponType == WeaponType.Pistol)
         {
-            magazineSize = 999999;
             fireRate = 0.25f;
             bulletSpeed = 10f;
             bulletLifeDistance = 8f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
-            currentAmmo = 700;
+            currentAmmo = 999999999;
         }
         else if (weaponType == WeaponType.Automatic)
         {
-            magazineSize = 999999;
             fireRate = 0.1f;
             bulletSpeed = 15f;
             bulletLifeDistance = 10f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
-            currentAmmo = 300;
+            currentAmmo = 80;
         }
         else if (weaponType == WeaponType.Rifle)
         {
-            magazineSize = 999999;
             fireRate = 0.5f;
             bulletSpeed = 20f;
             bulletLifeDistance = 20f;
             bulletDamage = 3;
             bulletIsDestroyable = false;
-            currentAmmo = 100;
+            currentAmmo = 40;
         }
     }
 
@@ -118,5 +132,10 @@ public class Weapon : MonoBehaviour
     public WeaponType GetWeaponType()
     {
         return weaponType;
+    }
+
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo += ammoAmount;
     }
 }

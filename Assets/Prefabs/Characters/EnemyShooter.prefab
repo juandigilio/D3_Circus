@@ -575,6 +575,7 @@ MonoBehaviour:
   leftPoint: {fileID: 816739724745526703}
   rightPoint: {fileID: 3563306453177879838}
   damage: 1
+  scoreValue: 10
   weapon: {fileID: 6187841728989235467}
 --- !u!70 &9150645813087280233
 CapsuleCollider2D:
@@ -775,11 +776,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   bulletPrefab: {fileID: 7608452157467363585, guid: dd4dd78d0ccada44582e3057cb8dbe95, type: 3}
-  firePoint: {fileID: 4457741350402368706}
-  magazineSize: 0
   fireRate: 0
   bulletSpeed: 0
   bulletLifeDistance: 0
   bulletDamage: 0
   bulletIsDestroyable: 0
   isPlayerWeapon: 0
+  firePoint: {fileID: 4457741350402368706}

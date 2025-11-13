@@ -18,27 +18,20 @@ public class Parallax : MonoBehaviour
     [SerializeField] private float fogSpeed = 0.3f;
     [SerializeField] private float mountainsSpeed = 0.6f;
     [SerializeField] private float groundSpeed = 0f;
-    [SerializeField] private float cloudsSpeed = 0.8f;
-
-    [Header("Clouds")]
-    [SerializeField] private List<SpriteRenderer> cloudPrefabs = new List<SpriteRenderer>();
-    [SerializeField] private Transform cloudsParent;
-    [SerializeField] private Vector2 cloudYRange = new Vector2(2f, 6f);
-    [SerializeField] private float cloudSpawnDistance = 25f;
-    [SerializeField] private float cloudDespawnX = -30f;
+    
 
     private Transform cam;
     private Vector3 prevCamPos;
-    private float nextCloudX;
 
-    void Start()
+
+    private void Start()
     {
         cam = Camera.main.transform;
         prevCamPos = cam.position;
-        nextCloudX = cam.position.x + cloudSpawnDistance;
+        
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 delta = cam.position - prevCamPos;
 
@@ -47,12 +40,10 @@ public class Parallax : MonoBehaviour
         MoveLayer(mountains, mountains_1, delta.x, mountainsSpeed);
         MoveLayer(ground, ground_1, delta.x, groundSpeed);
 
-        HandleClouds();
-
         prevCamPos = cam.position;
     }
 
-    void MoveLayer(Transform a, Transform b, float deltaX, float speed)
+    private void MoveLayer(Transform a, Transform b, float deltaX, float speed)
     {
         a.position += Vector3.left * deltaX * speed;
         b.position += Vector3.left * deltaX * speed;
@@ -67,36 +58,5 @@ public class Parallax : MonoBehaviour
         {
             b.position = new Vector3(a.position.x + width, b.position.y, b.position.z);
         }
-    }
-
-    void HandleClouds()
-    {
-        if (cam.position.x >= nextCloudX)
-        {
-            SpawnRandomCloud(nextCloudX + 25);
-            nextCloudX += cloudSpawnDistance;
-        }
-
-        for (int i = cloudsParent.childCount - 1; i >= 0; i--)
-        {
-            Transform c = cloudsParent.GetChild(i);
-            c.position += Vector3.left * cloudsSpeed * Time.deltaTime;
-
-            if (c.position.x < cam.position.x + cloudDespawnX)
-                Destroy(c.gameObject);
-        }
-    }
-
-    void SpawnRandomCloud(float xPos)
-    {
-        if (cloudPrefabs.Count == 0) return;
-
-        var prefab = cloudPrefabs[Random.Range(0, cloudPrefabs.Count)];
-        var cloud = Instantiate(prefab, cloudsParent);
-
-        float yPos = Random.Range(cloudYRange.x, cloudYRange.y);
-        cloud.transform.position = new Vector3(xPos, yPos, prefab.transform.position.z);
-        cloud.transform.localScale = Vector3.one * Random.Range(0.25f, 0.6f);
-        cloud.color = new Color(1, 1, 1, Random.Range(0.5f, 1f));
-    }
+    }  
 }

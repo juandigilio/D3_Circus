@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5113434460555273620}
   - component: {fileID: 8920439719521855458}
   - component: {fileID: 1299411991163088290}
+  - component: {fileID: 5181108409733273861}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -29,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.7676206, y: 2.2475324, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -8740330071929456226, guid: 65a596c278bcb6a4995ffbe659d1eaa6, type: 3}
   m_Color: {r: 1, g: 0.57254905, b: 0.23113209, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,5 +138,23 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.59430146, y: -0.23005223}
+  m_Radius: 3.433163
+--- !u!114 &5181108409733273861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415074292324156562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55c0aade16c7df49af5874453db76ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5113434460555273620}
+  animationFrames:
+  - {fileID: -8740330071929456226, guid: 65a596c278bcb6a4995ffbe659d1eaa6, type: 3}
+  - {fileID: 8035694046930485010, guid: 792153c73ce5d9e438f5be895b920b1d, type: 3}
+  frameRate: 4
+  randomStartFrame: 0

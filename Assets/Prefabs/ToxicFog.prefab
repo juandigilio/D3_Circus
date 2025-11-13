@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4569608045727174903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 358259245885099803}
+  - component: {fileID: 4280846992363237978}
+  m_Layer: 0
+  m_Name: ToxicFog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &358259245885099803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569608045727174903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.161614, y: 1.8152981, z: 0.6427347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4280846992363237978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569608045727174903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f385607fa00974ab02a0c567431f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudPrefabs:
+  - {fileID: 193234450515629423, guid: 036619c9df196734085ada9f920d0365, type: 3}
+  - {fileID: 8158137617381460164, guid: 3892c1bbd8e0b18478c8116f7976edf3, type: 3}
+  - {fileID: 7313970482983258480, guid: e0a195436f80c714489dd13f7a77c8e8, type: 3}
+  - {fileID: 3577130061929673325, guid: 2d0881be8344c3b4990318059cc73645, type: 3}
+  - {fileID: 1722084343489283641, guid: e7942b381f01ac1489979d32283955b0, type: 3}
+  - {fileID: 3345833286427027696, guid: 76a17c8ad4b1c5348976d885fdbec8d2, type: 3}
+  - {fileID: 3476479934260372920, guid: a34b8200f645ac747adc066a44202cd3, type: 3}
+  - {fileID: 2441629953775437703, guid: 874d7938ff5c8514fa9f6e26c9095432, type: 3}
+  - {fileID: 2345534601240184874, guid: 343a2308f425dda4a9e129249088f5c7, type: 3}
+  - {fileID: 3792468614090166284, guid: f94fc8a556dc0084f94b4ebfd3eb27e3, type: 3}
+  cloudsParent: {fileID: 358259245885099803}
+  cloudYRange: {x: 2, y: 6}
+  cloudSpawnDistance: 25
+  cloudDespawnX: -50
+  cloudsSpeed: 0
+  damagePerSecond: 0.2

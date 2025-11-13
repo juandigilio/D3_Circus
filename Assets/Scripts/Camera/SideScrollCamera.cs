@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SideScrollCamera : MonoBehaviour
@@ -5,6 +6,7 @@ public class SideScrollCamera : MonoBehaviour
     [SerializeField] private float screenThresholdX = 0.75f;
     [SerializeField] private float upperThresholdY = 0.7f;
     [SerializeField] private float lowerThresholdY = 0.35f;
+    [SerializeField] private List<Transform> sideSpawnPoints = new List<Transform>();
 
     private Transform playerTransform;
     private Vector3 startPos;
@@ -39,17 +41,6 @@ public class SideScrollCamera : MonoBehaviour
                 newCamPos.x = Mathf.Max(newCameraX, lastCameraX);
             }
 
-            if (viewportPos.y > upperThresholdY)
-            {
-                float deltaY = playerTransform.position.y - mainCamera.ViewportToWorldPoint(new Vector3(viewportPos.x, upperThresholdY, viewportPos.z)).y;
-                newCamPos.y += deltaY;
-            }
-            else if (viewportPos.y < lowerThresholdY)
-            {
-                float deltaY = playerTransform.position.y - mainCamera.ViewportToWorldPoint(new Vector3(viewportPos.x, lowerThresholdY, viewportPos.z)).y;
-                newCamPos.y += deltaY;
-            }
-
             transform.position = newCamPos;
             lastCameraX = transform.position.x;
         }
@@ -64,5 +55,10 @@ public class SideScrollCamera : MonoBehaviour
     {
         lastCameraX = 0;
         transform.position = startPos;
+    }
+
+    public List<Transform> GetSideSpawnPoints()
+    {
+        return sideSpawnPoints;
     }
 }

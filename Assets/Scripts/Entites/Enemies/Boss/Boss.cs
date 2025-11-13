@@ -33,7 +33,6 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
-        Debug.Log("Boss started");
         mouth.transform.position = mouthStart.position;
 
         health = 15;
@@ -49,6 +48,10 @@ public class Boss : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void UpdateAssetDirection()
+    {
     }
 
     private IEnumerator MoveMouth(Vector3 from, Vector3 to)
@@ -120,7 +123,7 @@ public class Boss : Enemy
         StartCoroutine(AttackCycle());
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
 

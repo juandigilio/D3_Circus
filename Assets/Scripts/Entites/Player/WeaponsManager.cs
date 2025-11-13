@@ -12,7 +12,14 @@ public class WeaponsManager : MonoBehaviour
     private CharacterAudio characterAudio;
     private int currentWeapon = 0;
     private bool isShooting = false;
+    private Transform currentFirePoint;
 
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterWeaponsManager(this);
+        currentFirePoint = transform;
+
+    }
 
     private void Start()
     {
@@ -42,9 +49,11 @@ public class WeaponsManager : MonoBehaviour
 
             Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
 
-            weapons[currentWeapon].Shoot(shootDirection);
-            characterAudio.PlayShootSound();
-            animator.AnimateShoot();
+            if (weapons[currentWeapon].Shoot(shootDirection))
+            {
+                characterAudio.PlayShootSound();
+                animator.AnimateShoot();
+            }
         }
     }
 
@@ -55,9 +64,7 @@ public class WeaponsManager : MonoBehaviour
 
     public void NextWeapon()
     {
-        Debug.Log("Before: " + currentWeapon);
         currentWeapon++;
-        Debug.Log("After: " + currentWeapon);
         if (currentWeapon > 2) currentWeapon = 0;
         SwitchWeapon(NextWeapon);
     }
@@ -85,7 +92,6 @@ public class WeaponsManager : MonoBehaviour
         {
             weapons[currentWeapon].gameObject.SetActive(true);
             animator.SetWeapon(currentWeapon);
-            Debug.Log("Switched to weapon: " + currentWeapon);
 
             for (int i = 0; i < weapons.Count; i++)
             {
@@ -100,5 +106,51 @@ public class WeaponsManager : MonoBehaviour
         {
             onNoAmmo?.Invoke();
         }
+    }
+
+    public void AddAmmo(WeaponType weaponType, int ammoAmount)
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == weaponType)
+            {
+                weapon.AddAmmo(ammoAmount);
+                return;
+            }
+        }
+    }
+
+    public void SetCurrentFirePoint(Transform firePoint)
+    {
+        currentFirePoint = firePoint;
+    }
+
+    public Transform GetCurrentFirePoint()
+    {
+        return currentFirePoint;
+    }
+
+    public int GetMachineGunAmmo()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == WeaponType.Automatic)
+            {
+                return weapon.GetCurrentAmmo();
+            }
+        }
+        return 0;
+    }
+
+    public int GetRifleAmmo()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.GetWeaponType() == WeaponType.Rifle)
+            {
+                return weapon.GetCurrentAmmo();
+            }
+        }
+        return 0;
     }
 }

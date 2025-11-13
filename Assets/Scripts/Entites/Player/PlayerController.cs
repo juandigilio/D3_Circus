@@ -58,7 +58,7 @@ public class PlayerController : MyEntity
 
         if (inputDirection.x != 0)
         {
-            direction = inputDirection.x;
+            spriteDirection = inputDirection.x;
         }
 
         aimController.SetInputDirection(inputDirection);
@@ -71,7 +71,7 @@ public class PlayerController : MyEntity
 
     private void SetAimControllerDirection()
     {
-        aimController.SetDirection(direction);
+        aimController.SetDirection(spriteDirection);
     }
 
     private void Move()
@@ -81,14 +81,25 @@ public class PlayerController : MyEntity
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
 
-            animator.SetRunning(true);
-            animator.SetWeaponDirection(SetAnimatorDirection());
+            if (PlayerInfo.GetInputType() == InputType.Combined)
+            {
+                //animator.SetWeaponDirection(SetAnimatorDirection());
+            }
+
+            if (inputDirection.x != 0)
+            {
+                animator.SetRunning(true);
+            }
         }
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             animator.SetRunning(false);
-            animator.SetWeaponDirection(Vector2.zero);
+
+            if (PlayerInfo.GetInputType() == InputType.Combined)
+            {
+                //animator.SetWeaponDirection(Vector2.zero);
+            }     
         }
 
         CheckScreenLimits();
@@ -141,16 +152,6 @@ public class PlayerController : MyEntity
         weaponsManager.PreviousWeapon();
     }
 
-    private void CheckScreenLimits()
-    {
-        float leftWorldX = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, mainCamera.nearClipPlane)).x;
-
-        if (transform.position.x < leftWorldX)
-        {
-            transform.position = new Vector3(leftWorldX, transform.position.y, transform.position.z);
-        }
-    }
-
     public int CurrentWeaponAmmo()
     {
         return weaponsManager.CurrentWeaponAmmo();
@@ -161,19 +162,19 @@ public class PlayerController : MyEntity
         return weaponsManager.GetCurrentWeaponType();
     }
 
-    public int AvailableLives()
+    public float CurrentHealth()
     {
         return health;
     }
 
-    public int MaxLives()
+    public int MaxHealth()
     {
         return maxHealth;
     }
 
-    public void HealthUp()
+    public void HealthUp(int healthAmount)
     {
-        health++;
+        health += healthAmount;
 
         if (health > maxHealth)
         {
@@ -188,7 +189,7 @@ public class PlayerController : MyEntity
 
     public void SetDirection(float direction)
     {
-        this.direction = direction;
+        spriteDirection = direction;
     }
 
     public bool IsPaused()
@@ -201,7 +202,7 @@ public class PlayerController : MyEntity
         return isGrounded;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         //characterAudio.PlayHitSound();
@@ -212,8 +213,33 @@ public class PlayerController : MyEntity
         }
     }
 
-    private async void KillPlayer()
+    public void AddAmmo(WeaponType weaponType, int ammoAmount)
+    {
+        weaponsManager.AddAmmo(weaponType, ammoAmount);
+    }
+
+    public WeaponsManager GetWeaponsManager()
+    {
+        return weaponsManager;
+    }
+
+    public PlayerAnimator GetPlayerAnimator()
+    {
+        return animator;
+    }
+
+    private void KillPlayer()
     {
         OnPlayerDied?.Invoke();
+    }
+
+    private void CheckScreenLimits()
+    {
+        float leftWorldX = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, mainCamera.nearClipPlane)).x;
+
+        if (transform.position.x < leftWorldX)
+        {
+            transform.position = new Vector3(leftWorldX, transform.position.y, transform.position.z);
+        }
     }
 }

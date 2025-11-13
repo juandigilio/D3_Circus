@@ -1,10 +1,12 @@
 using UnityEngine;
 
+
 public abstract class Enemy : MyEntity
 {
     [SerializeField] protected Transform leftPoint;
     [SerializeField] protected Transform rightPoint;
     [SerializeField] protected int damage = 1;
+    [SerializeField] protected int scoreValue = 10;
 
     protected PlayerController playerController;
     protected EnemyAudio enemyAudio;
@@ -45,30 +47,36 @@ public abstract class Enemy : MyEntity
             return;
         }
 
-        if (direction > 0)
+        if (spriteDirection > 0)
         {
-            if (transform.position.x >= rightPoint.position.x) direction = -1;
+            if (transform.position.x >= rightPoint.position.x) spriteDirection = -1;
         }
         else
         {
-            if (transform.position.x <= leftPoint.position.x) direction = 1;
+            if (transform.position.x <= leftPoint.position.x) spriteDirection = 1;
         }
 
-        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(spriteDirection * speed, rb.linearVelocity.y);
     }
 
     protected abstract void Attack();
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
 
         if (health <= 0)
         {
+            GameManager.Instance.GetLevelManager().AddKillScore(scoreValue);
             gameObject.SetActive(false);
         }
-
+        
         //enemyAudio.PlayHitSound();
+    }
+
+    public int GetScoreValue()
+    {
+        return scoreValue;
     }
 }
 

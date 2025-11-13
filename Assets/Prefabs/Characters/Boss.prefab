@@ -1452,8 +1452,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.08581591, y: 5.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1209054386667578413}
   - {fileID: 6639407792377350225}
@@ -1641,12 +1641,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isGrounded: 0
-  availableLives: 0
+  health: 20
   rayLength: 0
+  jumpManager: {fileID: 0}
   leftPoint: {fileID: 6639407792377350225}
   rightPoint: {fileID: 3748556899366169481}
-  health: 20
   damage: 1
+  scoreValue: 10
   mouth: {fileID: 861759095476892294}
   mouthStart: {fileID: 5083362836220767949}
   mouthEnd: {fileID: 2620905271184361041}
@@ -1667,7 +1668,7 @@ MonoBehaviour:
   - {fileID: 811013900623805241}
   - {fileID: 2203906777339187469}
   fireRate: 0.5
-  arcHeight: 8
+  arcHeight: 14
   fireballSpeed: 4.5
   idleTime: 4
   attackDuration: 6
