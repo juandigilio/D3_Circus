@@ -1041,6 +1041,7 @@
 				<Sound Name="Play_Ambiance" ID="{F20DAC5A-D7DF-4447-A6DE-BAEF2A2C6E1D}" ShortID="331515306">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ReferenceList>
@@ -1053,6 +1054,14 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AudioFileSource Name="Play_Ambiance" ID="{96A7775A-1403-4785-B217-70B949B02F69}">
+							<PropertyList>
+								<Property Name="CrossfadeDuration" Type="Real64" Value="2343.75"/>
+								<Property Name="FadeInDuration" Type="Real64" Value="5.64777327935223"/>
+								<Property Name="LoopBegin" Type="Real64" Value="4.67051070840198"/>
+								<Property Name="LoopEnd" Type="Real64" Value="40.8484349258649"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimBegin" Type="Real64" Value="1.26029654036244"/>
+							</PropertyList>
 							<Language>SFX</Language>
 							<AudioFile>Play_Ambiance.wav</AudioFile>
 							<MediaIDList>
@@ -1168,6 +1177,185 @@
 						<ActiveSource Name="Play_UI_OnClick" ID="{5976C190-0BDC-41E8-B958-C6B1AFBD5502}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Play_Coin_Big" ID="{0926C013-51F7-45FF-AB19-BB515E4AE365}" ShortID="716843556">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="7"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Coin_Big" ID="{6FFF3B94-3587-4B1D-BBFD-A89C42BB6685}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Coin_Big.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="56202253"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Coin_Big" ID="{6FFF3B94-3587-4B1D-BBFD-A89C42BB6685}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_Coin_Small" ID="{ECDF2D1F-88C4-466D-8FAE-263578DB8046}" ShortID="751720674">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="7"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Coin_Small" ID="{AEBC85D9-A3E2-4247-8A16-F9A3E847AEC0}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Coin_Small.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="1012527776"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Coin_Small" ID="{AEBC85D9-A3E2-4247-8A16-F9A3E847AEC0}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_Fireball_01" ID="{E4064132-769B-4E15-8FBC-B9C068C09EC6}" ShortID="273318877">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Fireball_01" ID="{C0E9E8A2-C40F-4A82-9ACC-9B2CD59E562D}">
+							<PropertyList>
+								<Property Name="CrossfadeDuration" Type="Real64" Value="476.542"/>
+								<Property Name="LoopBegin" Type="Real64" Value="1.31073980001484"/>
+								<Property Name="LoopEnd" Type="Real64" Value="6.13426215416985"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>Play_Fireball_01.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="983800885"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Fireball_01" ID="{C0E9E8A2-C40F-4A82-9ACC-9B2CD59E562D}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Play_Jail_Door" ID="{9FD180AC-EE03-49C7-89FC-5DC618F54AB3}" ShortID="432650326">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Play_Jail_Door" ID="{E3A7AAEB-7F8B-4620-96B6-68C313F7FE47}">
+							<Language>SFX</Language>
+							<AudioFile>Play_Jail_Door.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="288185065"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Play_Jail_Door" ID="{E3A7AAEB-7F8B-4620-96B6-68C313F7FE47}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<RandomSequenceContainer Name="Play_Enemy_Slash" ID="{20E574CB-DBDB-49AF-8934-14DBC9E35327}" ShortID="891933816">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Play_Enemy_Slash_01" ID="{9E99D9D2-3F7F-4274-A224-CF5F9EDDCA85}" ShortID="112569880">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Play_Enemy_Slash_01" ID="{B3FEB217-758B-45D0-81A8-A96265CBB62A}">
+									<Language>SFX</Language>
+									<AudioFile>Play_Enemy_Slash_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="597182312"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Play_Enemy_Slash_01" ID="{B3FEB217-758B-45D0-81A8-A96265CBB62A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Play_Enemy_Slash_02" ID="{C8CA8E8F-A2B5-406D-9A7F-0ADDA8E8EF0A}" ShortID="414148566">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Play_Enemy_Slash_02" ID="{2097F41A-8256-4B37-ABBA-4375F9F3E891}">
+									<Language>SFX</Language>
+									<AudioFile>Play_Enemy_Slash_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="672234441"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Play_Enemy_Slash_02" ID="{2097F41A-8256-4B37-ABBA-4375F9F3E891}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

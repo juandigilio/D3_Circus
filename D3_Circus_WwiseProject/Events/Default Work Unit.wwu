@@ -3,21 +3,6 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{61A7FDAB-1890-4BE4-978D-7DF089E05E00}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Play_Player_Shot" ID="{948300F4-7973-4DF6-94E1-07D989D50FAD}">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="4"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Action Name="" ID="{254B3C8A-1584-4FD2-A3C2-71E4C6AFEF0F}" ShortID="721377566">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="Player_Gunshot" ID="{653438A8-8982-4551-B3F2-DB4280B9876D}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="Play_Ambiance" ID="{5DA475CC-8193-4AAE-AB7E-41B85F4DAC2E}">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="12"/>
@@ -59,6 +44,15 @@
 						<Property Name="Color" Type="int16" Value="10"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{723D8449-4574-4895-AE14-E1F5D46CD4DA}" ShortID="282716799">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Enemy_Slash" ID="{20E574CB-DBDB-49AF-8934-14DBC9E35327}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_UI_OnClick" ID="{39AAC2A7-17EF-4B02-85C3-478402BB1C90}">
 					<PropertyList>
@@ -175,6 +169,21 @@
 								<Property Name="Color" Type="int16" Value="4"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
+						</Event>
+						<Event Name="Play_Player_Shot" ID="{948300F4-7973-4DF6-94E1-07D989D50FAD}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{254B3C8A-1584-4FD2-A3C2-71E4C6AFEF0F}" ShortID="721377566">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Gunshot" ID="{653438A8-8982-4551-B3F2-DB4280B9876D}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
 						</Event>
 					</ChildrenList>
 				</Folder>
@@ -352,6 +361,15 @@
 						<Property Name="Color" Type="int16" Value="9"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{60C73F3D-67EF-46B9-AFC3-3CE6AC046F15}" ShortID="580730090">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Fireball_01" ID="{E4064132-769B-4E15-8FBC-B9C068C09EC6}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Score" ID="{81BD4484-E389-4296-A09A-7AE5FA3DECE7}">
 					<PropertyList>
@@ -384,6 +402,36 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Play_Balloon_Pop" ID="{A6560328-6727-4325-8153-717FF11F51E6}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Pickup_Coin_Small" ID="{8D51B534-B318-47EC-8A96-3D51E5DE32DC}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="20"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{A03B9D04-782A-46E3-8010-FDDCDEFCDBDF}" ShortID="836935976">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Coin_Small" ID="{ECDF2D1F-88C4-466D-8FAE-263578DB8046}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Pickup_Coin_Big" ID="{D2077129-ED74-4BBA-ADBC-32D756B42520}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="20"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{6F9CAD4C-AAD9-415A-BA86-7D04608FC6C0}" ShortID="947695475">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Coin_Big" ID="{0926C013-51F7-45FF-AB19-BB515E4AE365}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
