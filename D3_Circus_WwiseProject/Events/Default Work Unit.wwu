@@ -23,6 +23,15 @@
 						<Property Name="Color" Type="int16" Value="10"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
+					<ChildrenList>
+						<Action Name="" ID="{F08F3BDF-ECDB-4BB5-98CB-F1DA6994A9D1}" ShortID="833545000">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Play_Enemy_Hit" ID="{B12CC33F-8215-4451-8552-A613580987B8}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
 				</Event>
 				<Event Name="Play_Enemy_Shot" ID="{DEC1A351-439F-4CA5-85EB-E33146F7E58F}">
 					<PropertyList>
@@ -169,6 +178,15 @@
 								<Property Name="Color" Type="int16" Value="4"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{A6086034-824A-4122-8BB3-5DE4B91829A4}" ShortID="794602965">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Play_Player_Hit" ID="{F7B81E80-3ACD-4085-9610-3C41733BC9A8}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
 						</Event>
 						<Event Name="Play_Player_Shot" ID="{948300F4-7973-4DF6-94E1-07D989D50FAD}">
 							<PropertyList>
@@ -180,6 +198,21 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Player_Gunshot" ID="{653438A8-8982-4551-B3F2-DB4280B9876D}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Player_Cough" ID="{4648FF9E-6D32-4F75-8159-717AC994DD98}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="4"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{642DE684-1980-448E-B5D1-9DE7351A7A2A}" ShortID="210218179">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Play_Player_Cough" ID="{07F88D7D-0218-452D-8677-212B78AEF813}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
