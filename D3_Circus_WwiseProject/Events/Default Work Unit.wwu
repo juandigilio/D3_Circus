@@ -161,13 +161,10 @@
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Action Name="" ID="{C14B60DA-E996-4E99-8421-2B45904CED76}" ShortID="279936927">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="2"/>
-									</PropertyList>
+								<Action Name="" ID="{7A0AC617-30E5-4631-A704-CC77161EA9DB}" ShortID="327259483">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Player_Pickup_Weapon" ID="{90D7618F-38E1-424C-B225-D586334C2DED}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
+											<ObjectRef Name="Player_Pickup_Weapon" ID="{3D15B32F-2D8B-4F49-B12A-8BCE76465B0E}" WorkUnitID="{9C3D9FDE-ACAF-46B4-ADE1-E11E6D24FA63}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
