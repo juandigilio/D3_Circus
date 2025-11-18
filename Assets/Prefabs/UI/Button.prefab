@@ -71,7 +71,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 459193853461402981, guid: f175ade2db2888e4ab6e55ce63f3e292, type: 3}
+  m_Sprite: {fileID: 111284467527950335, guid: 2b132b659913a60408a6d9800ea93f1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -161,9 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ab23786592ad843bea7611c2422fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offSprite: {fileID: 459193853461402981, guid: f175ade2db2888e4ab6e55ce63f3e292, type: 3}
-  onFrame1: {fileID: 21300000, guid: 19de3d6022e1d0949933db6766699b4b, type: 3}
-  onFrame2: {fileID: -4327503843394666132, guid: 4b32156cf519480478b70163e3b01bbe, type: 3}
+  offSprite: {fileID: 111284467527950335, guid: 2b132b659913a60408a6d9800ea93f1d, type: 3}
+  onFrame1: {fileID: -7865613812187598963, guid: 16b256a5b3572bd43bb3ab0924c5771d, type: 3}
+  onFrame2: {fileID: -3204126675049078474, guid: a45bc1fb01e18844790999282f6742b6, type: 3}
   animationSpeed: 0.3
 --- !u!223 &1074862066713813857
 Canvas:
