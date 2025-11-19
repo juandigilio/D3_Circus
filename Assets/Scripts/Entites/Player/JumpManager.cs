@@ -11,7 +11,7 @@ public class JumpManager : MonoBehaviour
     private CharacterAudio characterAudio;
     private bool jumped = false;
     private bool doubleJumped = false;
-    private bool jumpPressed;
+    public bool jumpPressed;
 
 
     private void Start()

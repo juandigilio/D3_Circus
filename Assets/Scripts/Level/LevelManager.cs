@@ -4,6 +4,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float levelTime = 300f;
+    [SerializeField] private JumperEnemiesManager jumperEnemiesManager;
 
     private GameData gameData;
     private bool isPaused = false;
@@ -26,6 +27,15 @@ public class LevelManager : MonoBehaviour
         PauseHandler.OnGamePaused += SetPaused;
     }
 
+    private void OnDestroy()
+    {
+        PlayerController.OnPlayerDied -= LoadGameOver;
+        Boss.OnBossDied -= LoadWin;
+
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
+    }
+
     private void FixedUpdate()
     {
         if (isPaused) return;
@@ -42,13 +52,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void NotifyJumperEnemiesCleared()
     {
-        PlayerController.OnPlayerDied -= LoadGameOver;
-        Boss.OnBossDied -= LoadWin;
-
-        PauseHandler.OnGameContinue -= StopPause;
-        PauseHandler.OnGamePaused -= SetPaused;
+       GameManager.Instance.GetSideScrollCamera().Unlock();
     }
 
     public void AddKillScore(int value)

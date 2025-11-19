@@ -384,7 +384,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LogoIC_Fondo_Claro_Sin-Slogan_0: 1131678416328401909
+      LogoIC_Fondo_Claro_Sin-Slogan_1: 4148691851747909290
+      LogoIC_Fondo_Claro_Sin-Slogan_10: -4868881100306681720
+      LogoIC_Fondo_Claro_Sin-Slogan_2: 8916444926785925360
+      LogoIC_Fondo_Claro_Sin-Slogan_3: 1607046465268386980
+      LogoIC_Fondo_Claro_Sin-Slogan_4: -5607330926997822222
+      LogoIC_Fondo_Claro_Sin-Slogan_5: 7263030882502920242
+      LogoIC_Fondo_Claro_Sin-Slogan_6: -8017859502207610200
+      LogoIC_Fondo_Claro_Sin-Slogan_7: 3461556297573714133
+      LogoIC_Fondo_Claro_Sin-Slogan_8: -315094768177253560
+      LogoIC_Fondo_Claro_Sin-Slogan_9: -4955986018191467984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

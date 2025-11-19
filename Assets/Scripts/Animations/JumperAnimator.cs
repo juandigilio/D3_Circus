@@ -7,11 +7,12 @@ public class JumperAnimator : MonoBehaviour
     [SerializeField] private Enemy_Jumper jumper;
     [SerializeField] private List<SpriteRenderer> walking = new List<SpriteRenderer>();
     [SerializeField] private List<SpriteRenderer> attaking = new List<SpriteRenderer>();
+    [SerializeField] private List<SpriteRenderer> jumping = new List<SpriteRenderer>();
+    [SerializeField] private List<SpriteRenderer> death = new List<SpriteRenderer>();
     [SerializeField] private float animationSpeed = 0.05f;
 
     private float animationTimer = 0f;
     private int walkingIndex = 0;
-    private int attakingIndex = 0;
     private int jumpingIndex = 0;
     private bool isWalking = false;
     private bool isAttaking = false;
@@ -39,9 +40,10 @@ public class JumperAnimator : MonoBehaviour
         isJumping = !walking;
 
         walkingIndex = 0;
+        animationTimer = animationSpeed;
     }
 
-    public void SetAttaking(bool attacking)
+    public void SetAttacking(bool attacking)
     {
         if (isAttaking == attacking) return;
 
@@ -49,23 +51,18 @@ public class JumperAnimator : MonoBehaviour
         isWalking = !attacking;
         isJumping = !attacking;
 
-        attakingIndex = 0;
-
         StopAllCoroutines();
         StartCoroutine(AnimateAttak());
-
-        Debug.Log("Animating Attack" + isAttaking);
     }
 
-    public void SetIsJumping(bool jumping)
+    public void SetIsJumping()
     {
-        if (isJumping == jumping) return;
-
-        isJumping = jumping;
-        isWalking = !jumping;
-        isAttaking = !jumping;
+        isJumping = true;
+        isWalking = false;
+        isAttaking = false;
 
         jumpingIndex = 0;
+        animationTimer = animationSpeed * 2;
     }
 
     private void UpdateAnimations()
@@ -100,9 +97,25 @@ public class JumperAnimator : MonoBehaviour
         }
     }
 
+    private void AnimateJump()
+    {
+        if (jumpingIndex >= jumping.Count) return;
+
+        animationTimer += Time.fixedDeltaTime;
+
+        if (animationTimer >= animationSpeed * 2)
+        {
+            HideAll();
+
+            animationTimer = 0f;
+
+            jumping[jumpingIndex].enabled = true;
+            jumpingIndex++;
+        }
+    }
+
     private IEnumerator AnimateAttak()
     {
-        Debug.Log("Animating Attack");
         for (int i = 0; i < attaking.Count; i++)
         {
             HideAll();
@@ -115,13 +128,29 @@ public class JumperAnimator : MonoBehaviour
         SetWalking(true);
     }
 
-    private void AnimateJump()
+    public void AnimateDeath()
     {
-        animationTimer += Time.fixedDeltaTime;
+        StopAllCoroutines();
+        
+        isJumping = false;
+        isWalking = false;
+        isAttaking = false;
 
-        if (animationTimer >= animationSpeed)
+
+        StopAllCoroutines();
+        StartCoroutine(DeathCoroutine());
+    }
+
+    private IEnumerator DeathCoroutine()
+    {
+        Debug.Log("Animating Death");
+
+        for (int i = 0; i < death.Count; i++)
         {
             HideAll();
+            death[i].enabled = true;
+
+            yield return new WaitForSeconds(animationSpeed);
         }
     }
 
@@ -132,6 +161,14 @@ public class JumperAnimator : MonoBehaviour
             sprite.enabled = false;
         }
         foreach (SpriteRenderer sprite in attaking)
+        {
+            sprite.enabled = false;
+        }
+        foreach (SpriteRenderer sprite in jumping)
+        {
+            sprite.enabled = false;
+        }
+        foreach (SpriteRenderer sprite in death)
         {
             sprite.enabled = false;
         }

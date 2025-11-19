@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boton_Circo_encendido_v1_new_0: -7865613812187598963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

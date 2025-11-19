@@ -31,7 +31,7 @@ public class ItmesSpawner : MonoBehaviour
         playerController = GameManager.Instance.GetPlayerController();
 
         spawnPoints.Clear();
-        spawnPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetSideSpawnPoints());
+        spawnPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetBaloonSpawnPoints());
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;

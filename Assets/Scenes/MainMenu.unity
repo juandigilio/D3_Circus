@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quispe Laura
+  m_text: Laura Quispe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
@@ -3091,7 +3091,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Digilio Juan
+  m_text: Juan Digilio
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
@@ -3363,7 +3363,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Aria Franco
+  m_text: Franco Aria
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
@@ -3956,7 +3956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grosso Mariano
+  m_text: Mariano Grosso
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}
   m_sharedMaterial: {fileID: -1089420758731854117, guid: 17863ca18ad3f6d45b103d9046f579d6, type: 2}

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private SideScrollCamera SideScrollCamera;
     private LevelManager levelManager;
     private WeaponsManager weaponsManager;
+    private JumperEnemiesManager jumperEnemiesManager;
 
 
     private void Awake()
@@ -41,6 +42,13 @@ public class GameManager : MonoBehaviour
         this.playerController = playerController;
     }
 
+    public void UnregisterPlayerController()
+    {
+        playerController = null;
+
+        inputManager.UnregisterPlayerController();
+    }
+
     public void RegisterMainCamera(Camera camera)
     {
         this.mainCamera = camera;
@@ -59,6 +67,11 @@ public class GameManager : MonoBehaviour
     public void RegisterWeaponsManager(WeaponsManager weaponsManager)
     {
         this.weaponsManager = weaponsManager;
+    }
+
+    public void RegisterJumperEnemiesManager(JumperEnemiesManager jumperEnemiesManager)
+    {
+        this.jumperEnemiesManager = jumperEnemiesManager;
     }
 
     public PlayerInput GetPlayerInput()
@@ -99,5 +112,10 @@ public class GameManager : MonoBehaviour
     public WeaponsManager GetWeaponsManager()
     {
         return weaponsManager;
+    }
+
+    public JumperEnemiesManager GetJumperEnemiesManager()
+    {
+        return jumperEnemiesManager;
     }
 }

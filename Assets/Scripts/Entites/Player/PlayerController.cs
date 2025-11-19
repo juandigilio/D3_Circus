@@ -31,7 +31,6 @@ public class PlayerController : MyEntity
 
 
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
-        sideScrollCamera.SetPlayerTransform(transform);
 
         characterAudio = GetComponent<CharacterAudio>();
 
@@ -105,26 +104,26 @@ public class PlayerController : MyEntity
         CheckScreenLimits();
     }
 
-    private Vector2 SetAnimatorDirection()
-    {
-        Vector2 animatorDirection = Vector2.zero;
+    //private Vector2 SetAnimatorDirection()
+    //{
+    //    Vector2 animatorDirection = Vector2.zero;
 
-        if (inputDirection.x != 0)
-        {
-            animatorDirection.x = 1;
-        }
+    //    if (inputDirection.x != 0)
+    //    {
+    //        animatorDirection.x = 1;
+    //    }
 
-        if (inputDirection.y > 0)
-        {
-            animatorDirection.y = 1;
-        }
-        else if (inputDirection.y < 0)
-        {
-            animatorDirection.y = -1;
-        }
+    //    if (inputDirection.y > 0)
+    //    {
+    //        animatorDirection.y = 1;
+    //    }
+    //    else if (inputDirection.y < 0)
+    //    {
+    //        animatorDirection.y = -1;
+    //    }
 
-        return animatorDirection;
-    }
+    //    return animatorDirection;
+    //}
 
     public void Jump()
     {
@@ -190,16 +189,6 @@ public class PlayerController : MyEntity
     public void SetDirection(float direction)
     {
         spriteDirection = direction;
-    }
-
-    public bool IsPaused()
-    {
-        return isPaused;
-    }
-
-    public bool IsGrounded()
-    {
-        return isGrounded;
     }
 
     public override void TakeDamage(float damage)

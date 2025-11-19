@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a45bc1fb01e18844790999282f6742b6
+guid: 6c23fd5a328f06146b969e8633720d51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3204126675049078474
-    second: Boton_Circo_encendido_v2_new2_0
+      213: -8147045985961902337
+    second: NME_MELEE_PAIN_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boton_Circo_encendido_v2_new2_0
+      name: NME_MELEE_PAIN_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 559
-        height: 293
+        x: 11
+        y: 14
+        width: 1008
+        height: 1056
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 631a856e3c7a883d0800000000000000
-      internalID: -3204126675049078474
+      spriteID: ffef7f537d0efee80800000000000000
+      internalID: -8147045985961902337
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Boton_Circo_encendido_v2_new2_0: -3204126675049078474
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

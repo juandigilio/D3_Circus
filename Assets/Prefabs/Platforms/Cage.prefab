@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1062719511616097228}
   - component: {fileID: 476564330673796471}
   - component: {fileID: 6703527597044286730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,9 @@ GameObject:
   - component: {fileID: 2689366994477713424}
   - component: {fileID: 6000781547451336395}
   - component: {fileID: 5529260898698493121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cage
-  m_TagString: Ground
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 7848332589772853000}
   - component: {fileID: 8115511071118439446}
   - component: {fileID: 3502721649584752449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 2544826211939172307}
   - component: {fileID: 2391214571241399554}
   - component: {fileID: 3643725240244314441}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Doors
   m_TagString: Cage
   m_Icon: {fileID: 0}

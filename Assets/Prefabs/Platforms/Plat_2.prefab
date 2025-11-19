@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6880588819186127875}
   - component: {fileID: 3932586350680333035}
   - component: {fileID: 7329030191620283160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plat_2
-  m_TagString: Ground
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

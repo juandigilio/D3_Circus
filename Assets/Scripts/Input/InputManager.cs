@@ -33,12 +33,18 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
+
         if (playerController == null)
         {
             Debug.LogError("PlayerController is not registered in GameManager.");
         }
 
         LoadActions();
+    }
+
+    public void UnregisterPlayerController()
+    {
+        playerController = null;
     }
 
     private void Move(InputAction.CallbackContext callbackContext)
@@ -78,7 +84,7 @@ public class InputManager : MonoBehaviour
         if (callbackContext.canceled)
         {
             playerController.SetShooting(false);
-        } 
+        }
     }
 
     private void Aim(InputAction.CallbackContext callbackContext)
