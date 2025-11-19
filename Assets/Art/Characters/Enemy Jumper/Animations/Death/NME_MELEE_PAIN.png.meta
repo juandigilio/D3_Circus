@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_MELEE_PAIN_0: -8147045985961902337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
