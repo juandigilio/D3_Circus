@@ -1,64 +1,80 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SideScrollCamera : MonoBehaviour
 {
-    [SerializeField] private float screenThresholdX = 0.75f;
-    [SerializeField] private float upperThresholdY = 0.7f;
-    [SerializeField] private float lowerThresholdY = 0.35f;
-    [SerializeField] private List<Transform> sideSpawnPoints = new List<Transform>();
+    [SerializeField] GameObject continueCollider;
+    [SerializeField] private float scrollDuration = 2f;
+    //[SerializeField] private float upperThresholdY = 0.7f;
+    //[SerializeField] private float lowerThresholdY = 0.35f;
+    [SerializeField] private List<Transform> baloonsSpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> jumperLateralPoints = new List<Transform>();
+    [SerializeField] private List<Transform> jumperUpperPoints = new List<Transform>();
 
-    private Transform playerTransform;
     private Vector3 startPos;
     private Camera mainCamera;
-    private float lastCameraX;
 
     private void Start()
     {
         mainCamera = Camera.main;
-        lastCameraX = mainCamera.transform.position.x;
         GameManager.Instance.RegisterSideSrollCamera(this);
 
         startPos = mainCamera.transform.position;
+
+        continueCollider.SetActive(false);
     }
 
-    private void LateUpdate()
+    public void Continue()
     {
-        FollowPlayer();
+        continueCollider.SetActive(false);
+
+        StartCoroutine(MoveCamera());
     }
 
-    private void FollowPlayer()
+    private IEnumerator MoveCamera()
     {
-        if (playerTransform != null)
+        float screenWidth = mainCamera.orthographicSize * 2f * mainCamera.aspect;
+        float distance = screenWidth * 0.9f;
+
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos + new Vector3(distance, 0f, 0f);
+        
+        float t = 0f;
+
+        while (t < 1f)
         {
-            Vector3 viewportPos = mainCamera.WorldToViewportPoint(playerTransform.position);
-            Vector3 newCamPos = transform.position;
-
-            if (viewportPos.x > screenThresholdX)
-            {
-                float deltaX = playerTransform.position.x - mainCamera.ViewportToWorldPoint(new Vector3(screenThresholdX, viewportPos.y, viewportPos.z)).x;
-                float newCameraX = transform.position.x + deltaX;
-                newCamPos.x = Mathf.Max(newCameraX, lastCameraX);
-            }
-
-            transform.position = newCamPos;
-            lastCameraX = transform.position.x;
+            t += Time.deltaTime / scrollDuration;
+            transform.position = Vector3.Lerp(startPos, targetPos, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
         }
+
+        transform.position = targetPos;
     }
 
-    public void SetPlayerTransform(Transform playerTransform)
+    public void Unlock()
     {
-        this.playerTransform = playerTransform;
+        Debug.Log("Camera Unlocked");
+        continueCollider.SetActive(true);
     }
 
     public void RestartCamera()
     {
-        lastCameraX = 0;
         transform.position = startPos;
     }
 
-    public List<Transform> GetSideSpawnPoints()
+    public List<Transform> GetBaloonSpawnPoints()
     {
-        return sideSpawnPoints;
+        return baloonsSpawnPoints;
+    }
+
+    public List<Transform> GetJumperLateralPoints()
+    {
+        return jumperLateralPoints;
+    }
+
+    public List<Transform> GetJumperUpperPoints()
+    {
+        return jumperUpperPoints;
     }
 }
