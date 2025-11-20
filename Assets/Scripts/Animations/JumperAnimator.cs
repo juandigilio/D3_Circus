@@ -21,7 +21,7 @@ public class JumperAnimator : MonoBehaviour
     private void Start()
     {
         HideAll();
-        isWalking = true;
+        isJumping = true;
     }
 
     private void FixedUpdate()
@@ -63,6 +63,15 @@ public class JumperAnimator : MonoBehaviour
 
         jumpingIndex = 0;
         animationTimer = animationSpeed * 2;
+    }
+
+    public void SetFalling()
+    {
+        isJumping = true;
+        isWalking = false;
+        isAttaking = false;
+
+        jumpingIndex = 1;
     }
 
     private void UpdateAnimations()

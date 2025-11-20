@@ -33,6 +33,8 @@ public class Enemy_Jumper : Enemy
         int platformLayer = LayerMask.NameToLayer("Platform");
 
         Physics2D.IgnoreLayerCollision(enemyLayer, platformLayer, true);
+
+        animator.SetFalling();
     }
 
     private void OnDestroy()
@@ -74,14 +76,11 @@ public class Enemy_Jumper : Enemy
         float dirX = Mathf.Sign(to.x - from.x);
 
         float distX = Mathf.Abs(to.x - from.x);
-        float verticalForce = Random.Range(6f, 10f) * 3f; // escala para parecerse al salto normal
+        float verticalForce = Random.Range(6f, 10f) * 3f;
         float horizontalForce = Mathf.Clamp(distX * 1.5f, 6f, 14f) * 2f;
 
         jumpManager.JumpWithForce(dirX * horizontalForce, verticalForce);
         jumpManager.jumpPressed = false;
-
-        // Opcional: para evitar que choque con paredes mientras sube
-        //rb.linearVelocity = new Vector2(dirX * horizontalForce, verticalForce);
 
         animator.SetIsJumping();
     }
@@ -149,7 +148,7 @@ public class Enemy_Jumper : Enemy
         Vector2 from = transform.position;
         Vector2 target = manager.GetPlayerTransform().position;
 
-        float randomOffset = Random.Range(-2f, 2f); //podés ajustar este valor
+        float randomOffset = Random.Range(-3f, 3f);
         target.x += randomOffset;
 
         float dirX = Mathf.Sign(target.x - from.x);
