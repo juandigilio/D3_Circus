@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AutoAnimator : MonoBehaviour
@@ -5,6 +6,7 @@ public class AutoAnimator : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] animationFrames;
     [SerializeField] private float frameRate = 4f;
+    [SerializeField] private bool isPausable = false;
 
     [Header("Breath + Wiggle")]
     [SerializeField] private bool breath = false;
@@ -16,6 +18,7 @@ public class AutoAnimator : MonoBehaviour
     private float timer;
     private Vector3 startPos;
     private Vector3 startScale;
+    private bool isPaused = false;
 
     private void Start()
     {
@@ -33,10 +36,23 @@ public class AutoAnimator : MonoBehaviour
 
         startPos = transform.localPosition;
         startScale = transform.localScale;
+
+        PauseHandler.OnGameContinue += StopPause;
+        PauseHandler.OnGamePaused += SetPaused;
+        MenuController.OnGameStarted += StopPause;
+    }
+
+    private void OnDestroy()
+    {
+        PauseHandler.OnGameContinue -= StopPause;
+        PauseHandler.OnGamePaused -= SetPaused;
+        MenuController.OnGameStarted -= StopPause;
     }
 
     private void Update()
     {
+        if (isPausable && isPaused) return;
+
         AnimateFrames();
         BreathAndWiggle();
     }
@@ -64,5 +80,15 @@ public class AutoAnimator : MonoBehaviour
 
         float scale = 1f + t * pulseAmplitude;
         transform.localScale = startScale * scale;
+    }
+
+    private void SetPaused()
+    {
+        isPaused = true;
+    }
+
+    private void StopPause()
+    {
+        isPaused = false;
     }
 }

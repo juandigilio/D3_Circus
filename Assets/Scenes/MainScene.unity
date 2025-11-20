@@ -1545,6 +1545,7 @@ MonoBehaviour:
   - {fileID: -3944520947720701698, guid: 81989e91682a9a547aa7e5a19916c4f2, type: 3}
   - {fileID: -9014012834705879961, guid: eb904e763dcfd8242978859a56e229c5, type: 3}
   frameRate: 4
+  isPausable: 1
   breath: 1
   horizontalAmplitude: 0.93
   pulseAmplitude: 0.07
