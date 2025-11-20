@@ -42,6 +42,7 @@ public class Boss : Enemy
 
     protected void Update()
     {
+        if (isPaused) return;
         Patroll();
     }
 
@@ -99,22 +100,22 @@ public class Boss : Enemy
     private IEnumerator AttackCycle()
     {
         while (true)
-        {
-            yield return new WaitForSeconds(idleTime);
+        {         
+                yield return new WaitForSeconds(idleTime);
 
-            isAttacking = true;
+                isAttacking = true;
 
-            yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
+                yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
 
-            shootRoutine = StartCoroutine(ShootPattern());
+                shootRoutine = StartCoroutine(ShootPattern());
 
-            yield return new WaitForSeconds(attackDuration);
+                yield return new WaitForSeconds(attackDuration);
 
-            StopCoroutine(shootRoutine);
+                StopCoroutine(shootRoutine);
 
-            yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
+                yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
 
-            isAttacking = false;
+                isAttacking = false;
         }
     }
 
