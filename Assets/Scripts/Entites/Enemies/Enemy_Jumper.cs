@@ -29,10 +29,11 @@ public class Enemy_Jumper : Enemy
         manager = GameManager.Instance.GetJumperEnemiesManager();
         manager.Register(this);
 
-        int enemyLayer = LayerMask.NameToLayer("EnemyJumper");
-        int platformLayer = LayerMask.NameToLayer("Platform");
+        //int enemyLayer = LayerMask.NameToLayer("EnemyJumper");
+        //int platformLayer = LayerMask.NameToLayer("Platform");
+        //Debug.Log(platformLayer);
 
-        Physics2D.IgnoreLayerCollision(enemyLayer, platformLayer, true);
+        //Physics2D.IgnoreLayerCollision(enemyLayer, platformLayer, true);
 
         animator.SetFalling();
     }
@@ -40,6 +41,12 @@ public class Enemy_Jumper : Enemy
     private void OnDestroy()
     {
         manager?.Unregister(this);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        Debug.Log("Collision with " + collision.collider.name, obj);
     }
 
     protected override void FixedUpdate()
@@ -63,6 +70,31 @@ public class Enemy_Jumper : Enemy
         }
     }
 
+    protected override void CheckGrounded()
+    {
+        isGrounded = false;
+        if (rb.linearVelocityY > 0) return;
+
+        float extraHeight = 0.1f;
+
+        Debug.DrawRay(transform.position, Vector2.down * (rayLength + extraHeight), Color.green);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, rayLength + extraHeight);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Cage"))
+            {
+                isGrounded = true;
+
+                if (jumpManager)
+                {
+                    jumpManager.ResetJumps();
+                }
+
+                break;
+            }
+        }
+    }
     public void RetreatJump()
     {
         int randomSide = Random.Range(0, 2);
