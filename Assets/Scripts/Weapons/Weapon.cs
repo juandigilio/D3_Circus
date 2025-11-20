@@ -78,26 +78,26 @@ public class Weapon : MonoBehaviour
         if (weaponType == WeaponType.Pistol)
         {
             fireRate = 0.25f;
-            bulletSpeed = 10f;
-            bulletLifeDistance = 8f;
+            bulletSpeed = 15f;
+            bulletLifeDistance = 18f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
             currentAmmo = 999999999;
         }
         else if (weaponType == WeaponType.Automatic)
         {
-            fireRate = 0.1f;
-            bulletSpeed = 15f;
-            bulletLifeDistance = 10f;
+            fireRate = 0.16f;
+            bulletSpeed = 25f;
+            bulletLifeDistance = 18f;
             bulletDamage = 1;
             bulletIsDestroyable = true;
             currentAmmo = 80;
         }
         else if (weaponType == WeaponType.Rifle)
         {
-            fireRate = 0.5f;
-            bulletSpeed = 20f;
-            bulletLifeDistance = 20f;
+            fireRate = 0.35f;
+            bulletSpeed = 35f;
+            bulletLifeDistance = 30f;
             bulletDamage = 3;
             bulletIsDestroyable = false;
             currentAmmo = 40;
