@@ -80,11 +80,6 @@ public class PlayerController : MyEntity
             Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = movement;
 
-            if (PlayerInfo.GetInputType() == InputType.Combined)
-            {
-                //animator.SetWeaponDirection(SetAnimatorDirection());
-            }
-
             if (inputDirection.x != 0)
             {
                 animator.SetRunning(true);
@@ -93,37 +88,11 @@ public class PlayerController : MyEntity
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetRunning(false);
-
-            if (PlayerInfo.GetInputType() == InputType.Combined)
-            {
-                //animator.SetWeaponDirection(Vector2.zero);
-            }     
+            animator.SetRunning(false); 
         }
 
         CheckScreenLimits();
     }
-
-    //private Vector2 SetAnimatorDirection()
-    //{
-    //    Vector2 animatorDirection = Vector2.zero;
-
-    //    if (inputDirection.x != 0)
-    //    {
-    //        animatorDirection.x = 1;
-    //    }
-
-    //    if (inputDirection.y > 0)
-    //    {
-    //        animatorDirection.y = 1;
-    //    }
-    //    else if (inputDirection.y < 0)
-    //    {
-    //        animatorDirection.y = -1;
-    //    }
-
-    //    return animatorDirection;
-    //}
 
     public void Jump()
     {
@@ -225,10 +194,16 @@ public class PlayerController : MyEntity
     private void CheckScreenLimits()
     {
         float leftWorldX = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, mainCamera.nearClipPlane)).x;
+        float rightWorldX = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, mainCamera.nearClipPlane)).x;
 
-        if (transform.position.x < leftWorldX)
-        {
-            transform.position = new Vector3(leftWorldX, transform.position.y, transform.position.z);
-        }
+        Vector3 pos = transform.position;
+
+        if (pos.x < leftWorldX)
+            pos.x = leftWorldX;
+
+        if (pos.x > rightWorldX)
+            pos.x = rightWorldX;
+
+        transform.position = pos;
     }
 }

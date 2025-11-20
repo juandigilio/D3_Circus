@@ -298,7 +298,7 @@ public class PlayerAnimator : MonoBehaviour
             case Vector2 d when (d.x == 0 && d.y == 1):
             {
                 SetCurrentWeaponAnimation(currentWeaponSet.up, currentWeaponSet.firePoint_Up);
-                SetTorso(torso_Front_Up);
+                SetTorso(torso_Up);
                 break;
             }
             case Vector2 d when (d.x == 1 && d.y == 1):
@@ -322,7 +322,7 @@ public class PlayerAnimator : MonoBehaviour
             case Vector2 d when (d.x == 0 && d.y == -1):
             {
                 SetCurrentWeaponAnimation(currentWeaponSet.down, currentWeaponSet.firePoint_Down);
-                SetTorso(torso_Front_Down);
+                SetTorso(torso_Down);
                 break;
             }
             default:
