@@ -1832,6 +1832,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6096789134577301669, guid: 275c43f5151945345b23eb06a625ad36, type: 3}
+      propertyPath: torso_Front
+      value: 
+      objectReference: {fileID: 8611591701371022985}
+    - target: {fileID: 6096789134577301669, guid: 275c43f5151945345b23eb06a625ad36, type: 3}
+      propertyPath: torso_Front_Up
+      value: 
+      objectReference: {fileID: 7856091836137538363}
+    - target: {fileID: 6096789134577301669, guid: 275c43f5151945345b23eb06a625ad36, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 6380668201935724669}
@@ -1906,5 +1914,10 @@ MonoBehaviour:
 --- !u!4 &5135693157300447338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4357198783286195555, guid: 275c43f5151945345b23eb06a625ad36, type: 3}
+  m_PrefabInstance: {fileID: 8877233142009011465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7856091836137538363 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1599962473888652850, guid: 275c43f5151945345b23eb06a625ad36, type: 3}
   m_PrefabInstance: {fileID: 8877233142009011465}
   m_PrefabAsset: {fileID: 0}
