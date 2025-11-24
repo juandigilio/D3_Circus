@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
         gameData.timeBonus = 0f;
         gameData.totalTime = levelTime;
 
+        GameManager.Instance.GetMusicController().SetLevelState();
+
         PlayerController.OnPlayerDied += LoadGameOver;
         Boss.OnBossDied += LoadWin;
 
@@ -100,6 +102,8 @@ public class LevelManager : MonoBehaviour
         CalculateScore();
         PlayerInfo.SetEndGame(gameData);
         LoadEndGame();
+
+        GameManager.Instance.GetMusicController().SetDeathState();
     }
 
     private void LoadWin()
@@ -108,6 +112,8 @@ public class LevelManager : MonoBehaviour
         CalculateScore();
         PlayerInfo.SetEndGame(gameData);
         LoadEndGame();
+
+        GameManager.Instance.GetMusicController().SetCreditsState();
     }
 
     private void CalculateScore()

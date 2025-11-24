@@ -1039,6 +1039,7 @@ GameObject:
   - component: {fileID: 7352628118959276929}
   - component: {fileID: 7357428159729606719}
   - component: {fileID: 5225662429306283380}
+  - component: {fileID: 8720462021106237580}
   m_Layer: 7
   m_Name: EnemyJumper
   m_TagString: Enemy
@@ -1256,6 +1257,30 @@ MonoBehaviour:
   - {fileID: 2118079285752595469}
   - {fileID: 2739190085337846487}
   animationSpeed: 0.1
+--- !u!114 &8720462021106237580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176053963910588387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8bd47eedd81ef459c562bcd3447cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: caee5f5229c4afe41bb8a5a60e9233d5, type: 2}
+  shootEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c4bbbead7543f3f498efd16b0830f4bd, type: 2}
+  slashEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 56e8f56deda65fa49bc38d298d705f1d, type: 2}
 --- !u!1 &5772241562902994622
 GameObject:
   m_ObjectHideFlags: 0

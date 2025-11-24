@@ -97,9 +97,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7343237051048811870}
   - component: {fileID: 4483390702508243412}
+  - component: {fileID: 7998247280855342227}
   m_Layer: 0
   m_Name: Mouth
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +175,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7998247280855342227
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861759095476892294}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.15, y: 3.71}
+    newSize: {x: 5.15, y: 3.71}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.15, y: 3.71}
+  m_EdgeRadius: 0
 --- !u!1 &880781901663363271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6014911865737697545}
+  - component: {fileID: 2828535204045363917}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -1461,6 +1509,26 @@ Transform:
   - {fileID: 8039490662070909951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2828535204045363917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317789343128806470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dced8bac3c506642b976946b9dc3cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laughEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cfaabd46ccb68b1419a4808464c43f10, type: 2}
+  shootEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 69b1e5ef97645784087c7ed218e1e04b, type: 2}
 --- !u!1 &7892063816943965402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,10 +1716,14 @@ MonoBehaviour:
   rightPoint: {fileID: 3748556899366169481}
   damage: 1
   scoreValue: 10
+  mouthCollider: {fileID: 7998247280855342227}
   mouth: {fileID: 861759095476892294}
   mouthStart: {fileID: 5083362836220767949}
   mouthEnd: {fileID: 2620905271184361041}
   mouthSpeed: 1.5
+  mouthRenderer: {fileID: 4483390702508243412}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
   leftCannon: {fileID: 7087752840261079931}
   rightCannon: {fileID: 6386919328726704718}
   fireBallPrefab: {fileID: 8920439719521855458, guid: 04bbc72b50e32784bbaf913a68116080, type: 3}
@@ -1672,6 +1744,7 @@ MonoBehaviour:
   fireballSpeed: 4.5
   idleTime: 4
   attackDuration: 6
+  bossAudio: {fileID: 2828535204045363917}
 --- !u!50 &4618422851778533061
 Rigidbody2D:
   serializedVersion: 5
@@ -1706,7 +1779,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8168717652431264223}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1733,7 +1806,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.8877735, y: 0.13658047}
+  m_Offset: {x: -0.8877735, y: -1.46}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1743,7 +1816,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.778729, y: 6.3721685}
+  m_Size: {x: 4.778729, y: 3.1949158}
   m_EdgeRadius: 0
 --- !u!1 &8596887978385776295
 GameObject:

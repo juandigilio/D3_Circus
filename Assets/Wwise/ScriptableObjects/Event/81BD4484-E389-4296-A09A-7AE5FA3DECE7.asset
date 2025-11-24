@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76220372935430644acb0d70c021e782, type: 3}
+  m_Name: 81BD4484-E389-4296-A09A-7AE5FA3DECE7
+  m_EditorClassIdentifier: 
+  objectName: Play_Score
+  id: 3240049516
+  guid: 81BD4484-E389-4296-A09A-7AE5FA3DECE7
+  IsInUserDefinedSoundBank: 1

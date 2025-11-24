@@ -13,6 +13,7 @@ public class HealthUp : Item
 
     protected override void PickUp()
     {
+        GameManager.Instance.GetUIAudio().PlayHealthSound();
         playerController.HealthUp(healthAmount);
     }
 }

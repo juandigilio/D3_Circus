@@ -29,12 +29,6 @@ public class Enemy_Jumper : Enemy
         manager = GameManager.Instance.GetJumperEnemiesManager();
         manager.Register(this);
 
-        //int enemyLayer = LayerMask.NameToLayer("EnemyJumper");
-        //int platformLayer = LayerMask.NameToLayer("Platform");
-        //Debug.Log(platformLayer);
-
-        //Physics2D.IgnoreLayerCollision(enemyLayer, platformLayer, true);
-
         animator.SetFalling();
     }
 
@@ -46,7 +40,6 @@ public class Enemy_Jumper : Enemy
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
-        Debug.Log("Collision with " + collision.collider.name, obj);
     }
 
     protected override void FixedUpdate()
@@ -126,7 +119,9 @@ public class Enemy_Jumper : Enemy
 
     protected override void Attack()
     {
-        if (hasAttacked) return;
+        if (hasAttacked || state == JumperState.Idle) return;
+
+        if (playerController.CurrentHealth() <= 0) return;
 
         hasAttacked = true;
         animator.SetAttacking(true);

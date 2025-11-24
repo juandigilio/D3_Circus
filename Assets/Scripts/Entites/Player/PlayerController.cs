@@ -163,11 +163,14 @@ public class PlayerController : MyEntity
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        //characterAudio.PlayHitSound();
 
         if (health <= 0)
         {
             KillPlayer();
+        }
+        else
+        {
+            characterAudio.PlayHitSound();
         }
     }
 
@@ -186,9 +189,16 @@ public class PlayerController : MyEntity
         return animator;
     }
 
-    private void KillPlayer()
+    public void FinishGame()
     {
         OnPlayerDied?.Invoke();
+    }
+
+    private void KillPlayer()
+    {
+        GameManager.Instance.GetMusicController().SetDeathState();
+        characterAudio.PlayDeathSound();
+        animator.ShowDeath(); 
     }
 
     private void CheckScreenLimits()

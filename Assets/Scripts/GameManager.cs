@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private UIAudio uiAudio;
+    [SerializeField] private MusicController musicController;
 
 
     private InputManager inputManager;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     private LevelManager levelManager;
     private WeaponsManager weaponsManager;
     private JumperEnemiesManager jumperEnemiesManager;
+    private Boss boss;
 
 
     private void Awake()
@@ -72,6 +74,11 @@ public class GameManager : MonoBehaviour
         this.jumperEnemiesManager = jumperEnemiesManager;
     }
 
+    public void RegisterBoss(Boss boss)
+    {
+        this.boss = boss;
+    }
+
     public PlayerInput GetPlayerInput()
     {
         return playerInput;
@@ -115,5 +122,15 @@ public class GameManager : MonoBehaviour
     public JumperEnemiesManager GetJumperEnemiesManager()
     {
         return jumperEnemiesManager;
+    }
+
+    public MusicController GetMusicController()
+    {
+        return musicController;
+    }
+
+    public Boss GetBoss()
+    {
+        return boss;
     }
 }

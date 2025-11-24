@@ -25,6 +25,8 @@ public class MenuController : MonoBehaviour
         PlayerInfo.LoadPlayerData();
 
         ShowMenu();
+
+        GameManager.Instance.GetMusicController().SetGameStart();
     }
 
     private void Update()

@@ -6,8 +6,6 @@ public class SideScrollCamera : MonoBehaviour
 {
     [SerializeField] GameObject continueCollider;
     [SerializeField] private float scrollDuration = 2f;
-    //[SerializeField] private float upperThresholdY = 0.7f;
-    //[SerializeField] private float lowerThresholdY = 0.35f;
     [SerializeField] private List<Transform> baloonsSpawnPoints = new List<Transform>();
     [SerializeField] private List<Transform> jumperLateralPoints = new List<Transform>();
     [SerializeField] private List<Transform> jumperUpperPoints = new List<Transform>();

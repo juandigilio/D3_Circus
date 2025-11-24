@@ -66,12 +66,15 @@ public class Bullet : MonoBehaviour
             Baloon baloon = collision.GetComponent<Baloon>();
             if (baloon != null)
             {
+                GameManager.Instance.GetUIAudio().PlayBallonPopSound();
                 baloon.Pop();
             }
         }
 
         if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") &&
-            !collision.CompareTag("Cloud") && !collision.CompareTag("Item"))
+            !collision.CompareTag("Cloud") && !collision.CompareTag("Item") && 
+            !collision.CompareTag("Boss") && !collision.CompareTag("Bullet") &&
+            !collision.CompareTag("Fireball"))
         {
             Deactivate();
         }
@@ -83,13 +86,19 @@ public class Bullet : MonoBehaviour
                 Deactivate();
 
                 Cage cage = collision.GetComponent<Cage>();
+
                 if (cage != null)
                 {
                     cage.TakeDamage(damage);
                 }
             }
+            else if(collision.CompareTag("Boss"))
+            {
+                Deactivate();
 
-            if (collision.CompareTag("Enemy"))
+                GameManager.Instance.GetBoss().TakeDamage(damage);
+            }
+            else if (collision.CompareTag("Enemy"))
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -109,7 +118,8 @@ public class Bullet : MonoBehaviour
             }
             
             if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud") && 
-                !collision.CompareTag("Cloud") && !collision.CompareTag("Item"))
+                !collision.CompareTag("Fireball") && !collision.CompareTag("Item") &&
+                !collision.CompareTag("Bullet"))
             {
                 Deactivate();
             }

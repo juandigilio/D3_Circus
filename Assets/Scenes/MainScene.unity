@@ -223,10 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5267911cb1f0bf14194b7920cc7cbb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambianceEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 57796bcf5431f704c848a7e22e43c600, type: 2}
   onClickEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -235,6 +231,112 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 5451447f0c5deda4f81eb1de8f03dd48, type: 2}
+  smallCoinEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 786e049cf1ac4e142b4b2068f52cecd0, type: 2}
+  bigCoinEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 05dd981e6a488f440aa51e3885f0b742, type: 2}
+  ammoEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4b9304e3acf7e6f47ae526a23e133f11, type: 2}
+  healthEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 46f7afabb2efba447871c3bd39f98c00, type: 2}
+  ballonPopEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8829504f809827c4b90c1fcdbd787bee, type: 2}
+  scoreEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6f4792abf4ffde048b0157767b54ae35, type: 2}
+--- !u!1 &100108356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100108357}
+  - component: {fileID: 100108358}
+  m_Layer: 0
+  m_Name: MusicController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100108357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100108356}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.0811296, y: 1.3564487, z: -854.225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 714178304538751524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100108358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100108356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c0c88b1a79a8d4ab0caff050bf25bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAmbienceEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 57796bcf5431f704c848a7e22e43c600, type: 2}
+  menuMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a3050a88123969e4494f3fc6696029e4, type: 2}
+  gameStartState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f99ce11372d6a3e44b1474050643ade2, type: 2}
+  levelState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6765227de1e09e645bd20334dd0bc55e, type: 2}
+  bossState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: eb0165a28aae378409dfb9889f2f7473, type: 2}
+  deathState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5ae8ef293b823874cbcaf9e70ad15aa1, type: 2}
+  creditsState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b98f2c65cfe13ad4ead173bf982ba2af, type: 2}
 --- !u!1 &165080147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,6 +1956,10 @@ PrefabInstance:
       propertyPath: exitHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7017800706293845612, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
+      propertyPath: musicController
+      value: 
+      objectReference: {fileID: 100108358}
     - target: {fileID: 8069995310352529447, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -1861,12 +1967,20 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 294783420890744921, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2819503526670143209, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 100108357}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3689546881548173694, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 56986010}
   m_SourcePrefab: {fileID: 100100000, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
+--- !u!4 &714178304538751524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2819503526670143209, guid: 9cac593699566e34fbac6e1c9249543a, type: 3}
+  m_PrefabInstance: {fileID: 714178304538751523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

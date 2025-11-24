@@ -629,15 +629,15 @@ MonoBehaviour:
   hitEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: caee5f5229c4afe41bb8a5a60e9233d5, type: 2}
   shootEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: c4bbbead7543f3f498efd16b0830f4bd, type: 2}
   slashEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 56e8f56deda65fa49bc38d298d705f1d, type: 2}
 --- !u!1 &6995842046843478776
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Ammo : Item
 
     protected override void PickUp()
     {
+        GameManager.Instance.GetUIAudio().PlayAmmoSound();
         playerController.AddAmmo(weaponType, ammoAmount);
     }
 }

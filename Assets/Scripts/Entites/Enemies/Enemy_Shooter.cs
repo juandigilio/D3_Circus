@@ -41,6 +41,8 @@ public class Enemy_Shooter : Enemy
 
     protected override void Attack()
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         bool movingRight = spriteDirection > 0;
 
         if ((movingRight && playerController.transform.position.x > transform.position.x) || 
