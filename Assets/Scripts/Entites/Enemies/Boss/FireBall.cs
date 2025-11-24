@@ -6,6 +6,10 @@ public class FireBall : MonoBehaviour
     [SerializeField] float shakeAmount = 0.005f;
     [SerializeField] float shakeSpeed = 40f;
 
+    [Header("Audio")]
+    [SerializeField] private AK.Wwise.Event shootEvent;
+    private uint playingID;
+
     private Vector3 startPos;
     private Vector3 targetPos;
     private float height;
@@ -34,6 +38,9 @@ public class FireBall : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (playingID != 0)
+            AkUnitySoundEngine.StopPlayingID(playingID);
+
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;
         MenuController.OnGameStarted -= StopPause;
@@ -49,10 +56,14 @@ public class FireBall : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerController player = GameManager.Instance.GetPlayerController();
+
             if (player != null)
             {
-                player.TakeDamage(damage);
-                Destroy(gameObject);
+                if (player.CurrentHealth() > 0)
+                {
+                    player.TakeDamage(damage);
+                    Destroy(gameObject);
+                }             
             }
         }
     }
@@ -94,5 +105,7 @@ public class FireBall : MonoBehaviour
         height = arcHeight;
         duration = speed;
         timer = 0f;
+
+        playingID = shootEvent.Post(gameObject);
     }
 }
