@@ -5,10 +5,14 @@ using UnityEngine;
 public class Boss : Enemy
 {
     [Header("Mouth")]
+    [SerializeField] private Collider2D mouthCollider;
     [SerializeField] private GameObject mouth;
     [SerializeField] private Transform mouthStart;
     [SerializeField] private Transform mouthEnd;
     [SerializeField] private float mouthSpeed = 1.5f;
+    [SerializeField] private SpriteRenderer mouthRenderer;
+    [SerializeField] private Color hitColor = Color.red;
+    [SerializeField] private float flashDuration = 0.15f;
 
     [Header("Cannon")]
     [SerializeField] private Transform leftCannon;
@@ -23,8 +27,13 @@ public class Boss : Enemy
     [SerializeField] private float idleTime = 4f;
     [SerializeField] private float attackDuration = 3f;
 
+    [Header("Audio")]
+    [SerializeField] private BossAudio bossAudio;
+
     private Coroutine mouthRoutine;
     private Coroutine shootRoutine;
+    private Color originalMouthColor;
+    private Coroutine flashRoutine;
 
 
     public static event System.Action OnBossDied;
@@ -34,8 +43,12 @@ public class Boss : Enemy
     {
         base.Start();
         mouth.transform.position = mouthStart.position;
+        mouthCollider.enabled = false;
 
-        health = 15;
+        originalMouthColor = mouthRenderer.color;
+        //health = 15;
+
+        GameManager.Instance.RegisterBoss(this);
 
         Attack();
     }
@@ -43,11 +56,13 @@ public class Boss : Enemy
     protected void Update()
     {
         if (isPaused) return;
+        if (playerController.CurrentHealth() <= 0) return;
         Patroll();
     }
 
     protected override void FixedUpdate()
     {
+        if (playerController.CurrentHealth() <= 0) return;
         base.FixedUpdate();
     }
 
@@ -61,20 +76,32 @@ public class Boss : Enemy
         while (t < 1f)
         {
             t += Time.deltaTime * mouthSpeed;
-            mouth.transform.position = Vector3.Lerp(from, to, t);
+            Vector3 pos = Vector3.Lerp(from, to, t);
+            mouth.transform.position = pos;
+            mouthCollider.transform.position = pos;
+
             yield return null;
         }
     }
 
+    private IEnumerator FlashMouth()
+    {
+        mouthRenderer.color = hitColor;
+        yield return new WaitForSeconds(flashDuration);
+        mouthRenderer.color = originalMouthColor;
+    }
+
     private void ShootFireball(Transform cannon, bool lefCannon)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         Vector3 target;
 
         if (lefCannon)
         {
             target = targets[Random.Range(0, targets.Count / 2)].position;
         }
-        else 
+        else
         {
             target = targets[Random.Range(targets.Count / 2, targets.Count)].position;
         }
@@ -100,22 +127,25 @@ public class Boss : Enemy
     private IEnumerator AttackCycle()
     {
         while (true)
-        {         
-                yield return new WaitForSeconds(idleTime);
+        {
+            yield return new WaitForSeconds(idleTime);
 
-                isAttacking = true;
+            bossAudio.PlayLaughSound();
+            isAttacking = true;
+            mouthCollider.enabled = true;
 
-                yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
+            yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
 
-                shootRoutine = StartCoroutine(ShootPattern());
+            shootRoutine = StartCoroutine(ShootPattern());
 
-                yield return new WaitForSeconds(attackDuration);
+            yield return new WaitForSeconds(attackDuration);
 
-                StopCoroutine(shootRoutine);
+            StopCoroutine(shootRoutine);
 
-                yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
+            yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
+            mouthCollider.enabled = false;
 
-                isAttacking = false;
+            isAttacking = false;
         }
     }
 
@@ -128,11 +158,21 @@ public class Boss : Enemy
     {
         base.TakeDamage(damage);
 
+        if (flashRoutine != null)
+            StopCoroutine(flashRoutine);
+
+        flashRoutine = StartCoroutine(FlashMouth());
+
         if (health <= 0)
         {
             OnBossDied?.Invoke();
         }
 
         //enemyAudio.PlayHitSound();
+    }
+
+    public BossAudio GetBossAudio()
+    {
+        return bossAudio;
     }
 }
