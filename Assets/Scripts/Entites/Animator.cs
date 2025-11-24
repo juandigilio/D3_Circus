@@ -361,8 +361,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void UpdateJumpAnimation()
     {
-        if (!isJumping) return;
-
         if (currentJumpFrame >= currentLegs.Count)
         {
             currentJumpFrame = currentLegs.Count;
@@ -384,6 +382,31 @@ public class PlayerAnimator : MonoBehaviour
 
             currentJumpFrame++;
         }
+    }
+
+    public void ShowDeath()
+    {
+        HideAll();
+
+        StopAllCoroutines();
+        StartCoroutine(AnimateDeath());
+    }
+
+    private IEnumerator AnimateDeath()
+    {
+        foreach (SpriteRenderer sprite in death)
+        {
+            sprite.enabled = false;
+        }
+        for (int i = 1; i < death.Count; i++)
+        {
+            death[i - 1].enabled = false;
+            death[i].enabled = true;
+            yield return new WaitForSeconds(weaponFrameRate * 4);
+        }
+
+        yield return new WaitForSeconds(2f);
+        playerController.FinishGame();
     }
 
     private IEnumerator ShootAnimationCoroutine()
@@ -415,8 +438,10 @@ public class PlayerAnimator : MonoBehaviour
         {
             AnimateLegs();
         }
-
-        UpdateJumpAnimation();
+        else if (isJumping)
+        {
+            UpdateJumpAnimation();
+        }    
     }
 
     private void AnimateLegs()
