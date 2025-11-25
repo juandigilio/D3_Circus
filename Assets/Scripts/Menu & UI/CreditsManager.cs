@@ -11,18 +11,19 @@ public class CreditsManager : MonoBehaviour
 
     private RectTransform credits;
     private bool scrolling = false;
+    private bool paused = false;
 
     private void Start()
     {
         credits = creditsObj.GetComponent<RectTransform>();
 
-        Vector2 startPos = new Vector2(0, startY);
-        credits.anchoredPosition = startPos;
+        //ResetCredits();
+        BeginCredits();
+    }
 
-        credits.anchorMin = new Vector2(0.5f, 0);
-        credits.anchorMax = new Vector2(0.5f, 0);
-        credits.pivot = new Vector2(0.5f, 0.5f);
-
+    public void BeginCredits()
+    {
+        StopAllCoroutines();
         StartCoroutine(ShowCredits());
     }
 
@@ -30,8 +31,17 @@ public class CreditsManager : MonoBehaviour
     {
         scrolling = true;
 
+        credits = creditsObj.GetComponent<RectTransform>();
+        ResetCredits();
+
         while (scrolling)
         {
+            while (paused)
+            {
+                yield return null;
+                continue;
+            }
+
             credits.anchoredPosition += Vector2.up * scrollSpeed * Time.deltaTime;
 
             if (credits.anchoredPosition.y >= endY)
@@ -47,8 +57,23 @@ public class CreditsManager : MonoBehaviour
         LoadMainMenu();
     }
 
-    private async void LoadMainMenu()
+    public async void LoadMainMenu()
     {
         await SceneManager.GoBackToMenuAsync();
+    }
+
+    public void PauseCredits()
+    {
+        paused = !paused;
+    }
+
+    private void ResetCredits()
+    {
+        Vector2 startPos = new Vector2(0, startY);
+        credits.anchoredPosition = startPos;
+
+        credits.anchorMin = new Vector2(0.5f, 0);
+        credits.anchorMax = new Vector2(0.5f, 0);
+        credits.pivot = new Vector2(0.5f, 0.5f);
     }
 }

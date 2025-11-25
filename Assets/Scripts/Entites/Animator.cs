@@ -401,12 +401,14 @@ public class PlayerAnimator : MonoBehaviour
     {
         foreach (SpriteRenderer sprite in death)
         {
+            HideAll();
             sprite.enabled = false;
             death[0].enabled = true;
             yield return new WaitForSeconds(weaponFrameRate * 2);
         }
         for (int i = 1; i < death.Count; i++)
         {
+            HideAll();
             death[i - 1].enabled = false;
             death[i].enabled = true;
             yield return new WaitForSeconds(weaponFrameRate * 2);

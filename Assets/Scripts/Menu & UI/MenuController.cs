@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject backButtonObj;
     [SerializeField] private GameObject creditsObj;
     [SerializeField] private GameObject optionsObj;
+    [SerializeField] private CreditsManager creditsManager;
 
     private static GameObject menuButtons;
     private static GameObject backButton;
@@ -47,7 +48,9 @@ public class MenuController : MonoBehaviour
         menuButtons.SetActive(false);
         options.SetActive(false);
         credits.SetActive(true);
-        backButton.SetActive(true);
+        backButton.SetActive(false);
+
+        creditsManager.BeginCredits();
     }
 
     public static void ShowMenu()

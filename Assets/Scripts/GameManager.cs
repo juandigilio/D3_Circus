@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private WeaponsManager weaponsManager;
     private JumperEnemiesManager jumperEnemiesManager;
     private Boss boss;
+    private GameObject continueArrow;
 
 
     private void Awake()
@@ -79,6 +80,11 @@ public class GameManager : MonoBehaviour
         this.boss = boss;
     }
 
+    public void RegisterContinueArrow(GameObject continueArrow)
+    {
+        this.continueArrow = continueArrow;
+    }
+
     public PlayerInput GetPlayerInput()
     {
         return playerInput;
@@ -132,5 +138,10 @@ public class GameManager : MonoBehaviour
     public Boss GetBoss()
     {
         return boss;
+    }
+
+    public GameObject GetContinueArrow()
+    {
+        return continueArrow;
     }
 }

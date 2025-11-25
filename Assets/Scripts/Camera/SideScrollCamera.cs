@@ -53,6 +53,7 @@ public class SideScrollCamera : MonoBehaviour
     public void Unlock()
     {
         continueCollider.SetActive(true);
+        GameManager.Instance.GetContinueArrow().SetActive(true);
     }
 
     public void RestartCamera()

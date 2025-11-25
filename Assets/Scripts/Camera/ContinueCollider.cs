@@ -10,6 +10,7 @@ public class ContinueCollider : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             sideScrollCamera.Continue();
+            GameManager.Instance.GetContinueArrow().SetActive(false);
             gameObject.SetActive(false);
         }
     }
