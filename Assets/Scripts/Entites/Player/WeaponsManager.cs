@@ -48,8 +48,9 @@ public class WeaponsManager : MonoBehaviour
             }
 
             Vector2 shootDirection = (sight.transform.position - weapons[currentWeapon].GetFirePointWorldPos()).normalized;
+            float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
 
-            if (weapons[currentWeapon].Shoot(shootDirection))
+            if (weapons[currentWeapon].Shoot(shootDirection, angle))
             {
                 characterAudio.PlayShootSound();
                 animator.AnimateShoot();

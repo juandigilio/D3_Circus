@@ -45,9 +45,9 @@ public class Enemy_Shooter : Enemy
         }
     }
 
-    private void Shoot(Vector2 direction, Vector2 newFirePoint)
+    private void Shoot(Vector2 direction, Vector2 newFirePoint, float angle)
     {
-        weapon.Shoot(direction, newFirePoint);
+        weapon.Shoot(direction, newFirePoint, angle);
     }
 
     protected override void Attack()
@@ -98,7 +98,7 @@ public class Enemy_Shooter : Enemy
 
             if (hit.collider.CompareTag("Player"))
             {
-                Shoot(dir, firePoint);
+                Shoot(dir, firePoint, angle);
                 isAttacking = true;
 
                 if (spriteDirection > 0)

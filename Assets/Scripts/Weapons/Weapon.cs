@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    public bool Shoot(Vector2 direction)
+    public bool Shoot(Vector2 direction, float angle)
     {
         if (fireCooldown > fireRate)
         {
@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
             fireCooldown = 0f;
 
             Bullet newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-            newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
+            newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon, weaponType, angle);
 
             if (isPlayerWeapon && weaponType != WeaponType.Pistol)
             {
@@ -73,14 +73,14 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    public bool Shoot(Vector2 direction, Vector2 newPoint)
+    public bool Shoot(Vector2 direction, Vector2 newPoint, float angle)
     {
         if (fireCooldown > fireRate)
         {
             fireCooldown = 0f;
 
             Bullet newBullet = Instantiate(bulletPrefab, newPoint, Quaternion.identity);
-            newBullet.Activate(newPoint, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
+            newBullet.Activate(newPoint, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon, weaponType, angle);
 
             if (isPlayerWeapon && weaponType != WeaponType.Pistol)
             {

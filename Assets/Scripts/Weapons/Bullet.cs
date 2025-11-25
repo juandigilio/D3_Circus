@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer pistolBullet;
+    [SerializeField] private SpriteRenderer machineGunBullet;
+    [SerializeField] private SpriteRenderer rifleBullet;
+
     private PlayerController player;
     private Vector2 startPosition;
     private Vector2 direction;
@@ -52,7 +56,7 @@ public class Bullet : MonoBehaviour
                     Deactivate();
                 }
             }
-        }   
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,7 +76,7 @@ public class Bullet : MonoBehaviour
         }
 
         if (!collision.CompareTag("Enemy") && !collision.CompareTag("Player") &&
-            !collision.CompareTag("Cloud") && !collision.CompareTag("Item") && 
+            !collision.CompareTag("Cloud") && !collision.CompareTag("Item") &&
             !collision.CompareTag("Boss") && !collision.CompareTag("Bullet") &&
             !collision.CompareTag("Fireball"))
         {
@@ -92,7 +96,7 @@ public class Bullet : MonoBehaviour
                     cage.TakeDamage(damage);
                 }
             }
-            else if(collision.CompareTag("Boss"))
+            else if (collision.CompareTag("Boss"))
             {
                 Deactivate();
 
@@ -116,8 +120,8 @@ public class Bullet : MonoBehaviour
                     Debug.LogError("Enemy component missing on the collided object.");
                 }
             }
-            
-            if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud") && 
+
+            if (!collision.CompareTag("Player") && !collision.CompareTag("Cloud") &&
                 !collision.CompareTag("Fireball") && !collision.CompareTag("Item") &&
                 !collision.CompareTag("Bullet"))
             {
@@ -141,7 +145,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Activate(Vector2 startPosition, Vector2 direction, float speed, float lifeDistance, int damage, bool isDestroyable, bool isPlayerWeapon)
+    public void Activate(Vector2 startPosition, Vector2 direction, float speed, float lifeDistance, int damage, bool isDestroyable, bool isPlayerWeapon, WeaponType type, float angle)
     {
         transform.position = startPosition;
         this.startPosition = startPosition;
@@ -157,8 +161,50 @@ public class Bullet : MonoBehaviour
             damage = 1;
         }
 
-        isActive = true;
+        Debug.Log("Bullet type: " + type);
         gameObject.SetActive(true);
+
+        switch (type)
+        {
+            case WeaponType.Pistol:
+            {
+                pistolBullet.enabled = true;
+                machineGunBullet.enabled = false;
+                rifleBullet.enabled = false;
+                Debug.Log("Activated Pistol Bullet");
+                pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                break;
+            }
+            case WeaponType.Automatic:
+            {
+                pistolBullet.enabled = false;
+                machineGunBullet.enabled = true;                 
+                rifleBullet.enabled = false;
+                Debug.Log("Activated Machine Gun Bullet");
+                machineGunBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                break;
+            }
+            case WeaponType.Rifle:
+            {
+                pistolBullet.enabled = false;
+                machineGunBullet.enabled = false;
+                rifleBullet.enabled = true;
+                Debug.Log("Activated Rifle Bullet");
+                rifleBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                break;
+            }
+            default:
+            {
+                pistolBullet.enabled = true;
+                machineGunBullet.enabled = false;
+                rifleBullet.enabled = false;
+                Debug.Log("Activated Default Pistol Bullet");
+                pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                break;
+            }
+        }
+
+        isActive = true;
     }
 
     public bool IsPlayerBullet()
