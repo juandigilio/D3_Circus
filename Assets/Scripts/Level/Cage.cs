@@ -1,44 +1,104 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Xml;
+using UnityEngine;
+using UnityEngine.U2D;
 
 public class Cage : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer_1;
-    [SerializeField] private SpriteRenderer spriteRenderer_2;
-    [SerializeField] private int health = 8;
+    [SerializeField] private List<SpriteRenderer> lockSprites = new List<SpriteRenderer>();
+    [SerializeField] private Collider2D lockCollider;
+    [SerializeField] private GameObject colliderLeft;
+    [SerializeField] private GameObject colliderRight;
+    [SerializeField] private int maxHealth = 16;
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private int flashCount = 2;
 
-    private Color originalColor_1;
-    private Color originalColor_2;
+    private List<Color> originalColors = new List<Color>();
     private bool isFlashing = false;
+    private int currentHealth = 0;
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        if (spriteRenderer_1 != null) originalColor_1 = spriteRenderer_1.color;
-        if (spriteRenderer_2 != null) originalColor_2 = spriteRenderer_2.color;
+        originalColors.Clear();
+
+        foreach (SpriteRenderer sprite in lockSprites)
+        {
+            Color color = sprite.color;
+            originalColors.Add(color);
+            sprite.enabled = false;
+        }
+
+        lockSprites[0].enabled = true;
+
+        currentHealth = maxHealth;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        StartCoroutine(FlashRed());
-
-        if (health <= 0)
+        if (currentHealth < maxHealth * 0.30f)
         {
-            Destroy(gameObject);
+            HideAll();
+            lockSprites[2].enabled = true;
+        }
+        else if (currentHealth < maxHealth * 0.7f)
+        {
+            HideAll();
+            lockSprites[1].enabled = true;
+        }
+        
+        foreach (SpriteRenderer sprite in lockSprites)
+        {
+            if (sprite.enabled)
+            {
+                StartCoroutine(FlashRed(sprite));
+                break;
+            }
+        }
+
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(DestroyCoroutine());
         }
     }
 
-    private IEnumerator FlashRed()
+    private IEnumerator DestroyCoroutine()
+    {
+        HideAll();
+        lockSprites[3].enabled = true;
+        ResetColor();
+
+        Destroy(colliderLeft);
+        Destroy(colliderRight);
+
+        rb.constraints = RigidbodyConstraints2D.None;
+
+        lockCollider.isTrigger = false;
+
+        for (int i = 0; i < flashCount * 3; i++)
+        {
+            SetColor(lockSprites[3], new Color(1, 1, 1, 0));
+            yield return new WaitForSeconds(flashDuration);
+            ResetColor();
+            yield return new WaitForSeconds(flashDuration);
+        }
+
+        Destroy(gameObject);
+    }
+
+    private IEnumerator FlashRed(SpriteRenderer sprite)
     {
         if (isFlashing) yield break;
         isFlashing = true;
 
         for (int i = 0; i < flashCount; i++)
         {
-            SetColor(Color.red);
+            SetColor(sprite, Color.red);
             yield return new WaitForSeconds(flashDuration);
             ResetColor();
             yield return new WaitForSeconds(flashDuration);
@@ -47,15 +107,27 @@ public class Cage : MonoBehaviour
         isFlashing = false;
     }
 
-    private void SetColor(Color color)
+    private void HideAll()
     {
-        if (spriteRenderer_1 != null) spriteRenderer_1.color = color;
-        if (spriteRenderer_2 != null) spriteRenderer_2.color = color;
+        foreach (SpriteRenderer sprite in lockSprites)
+        {
+            sprite.enabled = false;
+        }
+    }
+
+    private void SetColor(SpriteRenderer sprite, Color color)
+    {
+        sprite.color = color;
     }
 
     private void ResetColor()
     {
-        if (spriteRenderer_1 != null) spriteRenderer_1.color = originalColor_1;
-        if (spriteRenderer_2 != null) spriteRenderer_2.color = originalColor_2;
+        int index = 0;
+
+        foreach (SpriteRenderer sprite in lockSprites)
+        {
+            sprite.color = originalColors[index];
+            index++;
+        }
     }
 }

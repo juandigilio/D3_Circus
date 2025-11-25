@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5069695120595349694}
   - component: {fileID: 8103910741883449089}
   - component: {fileID: 4201201540774802813}
-  - component: {fileID: 5966962863906434188}
+  - component: {fileID: 8395500668527539303}
+  - component: {fileID: 1222939045093721046}
   m_Layer: 0
   m_Name: Small Coin
   m_TagString: Item
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,6 +53,7 @@ MonoBehaviour:
   minAlpha: 0.1
   maxAlpha: 0.6
   scoreValue: 500
+  isSmallCoin: 0
 --- !u!212 &8103910741883449089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,12 +98,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6192286259664493385, guid: 5324ce253669bef449789b7e52be6c9c, type: 3}
+  m_Sprite: {fileID: -1028593142888871118, guid: 608c665a61baa9c4ca787f3cfdd46ff8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.23, y: 5.92}
+  m_Size: {x: 1.44, y: 1.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -134,8 +136,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!61 &5966962863906434188
-BoxCollider2D:
+--- !u!114 &8395500668527539303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769932482787009125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55c0aade16c7df49af5874453db76ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8103910741883449089}
+  animationFrames:
+  - {fileID: -1028593142888871118, guid: 608c665a61baa9c4ca787f3cfdd46ff8, type: 3}
+  - {fileID: -4966839899348983553, guid: 8b1ef4845e6f2ab459203ec3f3246ded, type: 3}
+  - {fileID: -4504760898656583050, guid: 10574d9e92d0fdf4ca43fcae5548aead, type: 3}
+  - {fileID: 7480110865878206642, guid: 205245bc8f47c314e95a1844d9e9a928, type: 3}
+  frameRate: 9
+  isPausable: 1
+  breath: 0
+  horizontalAmplitude: 0.15
+  pulseAmplitude: 0.15
+  pulseSpeed: 2
+--- !u!58 &1222939045093721046
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,15 +194,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.027082086, y: -0.027082443}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.99, y: 3.43}
-    newSize: {x: 5.23, y: 5.92}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.795963, y: 3.0276098}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.72
