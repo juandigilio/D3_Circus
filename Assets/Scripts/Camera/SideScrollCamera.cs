@@ -26,6 +26,7 @@ public class SideScrollCamera : MonoBehaviour
     public void Continue()
     {
         continueCollider.SetActive(false);
+        GameManager.Instance.GetContinueArrow().SetActive(false);
 
         StartCoroutine(MoveCamera());
     }

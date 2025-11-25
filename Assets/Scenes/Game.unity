@@ -5668,19 +5668,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5720,11 +5720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 797.7
+      value: -162.29999
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 340.1
+      value: -199.9
       objectReference: {fileID: 0}
     - target: {fileID: 4256753803828348819, guid: aa9cb4dfc12241d40975c9edb5e5d8a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6413,7 +6413,7 @@ MonoBehaviour:
   rifleAmmo: {fileID: 1291837062735505177, guid: 7d232c56e69f3364794753bc857b5129, type: 3}
   smallCoin: {fileID: 5866870531422514993, guid: 5e7b4364e5058b44fa8d999964ff97dd, type: 3}
   bigCoin: {fileID: 6057144601450000603, guid: d02fd97707d3d174b8f6505dd8cbef78, type: 3}
-  healthSpawnInterval: 10
+  healthSpawnInterval: 15
   coinSpawnInterval: 30
 --- !u!114 &325081276367636655 stripped
 MonoBehaviour:
