@@ -73,6 +73,25 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
+    public bool Shoot(Vector2 direction, Vector2 newPoint)
+    {
+        if (fireCooldown > fireRate)
+        {
+            fireCooldown = 0f;
+
+            Bullet newBullet = Instantiate(bulletPrefab, newPoint, Quaternion.identity);
+            newBullet.Activate(newPoint, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon);
+
+            if (isPlayerWeapon && weaponType != WeaponType.Pistol)
+            {
+                currentAmmo--;
+            }
+
+            return true;
+        }
+        return false;
+    }
+
     private void SetWeaponType()
     {
         if (weaponType == WeaponType.Pistol)

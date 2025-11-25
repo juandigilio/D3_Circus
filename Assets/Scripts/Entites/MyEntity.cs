@@ -17,6 +17,7 @@ public abstract class MyEntity : MonoBehaviour
     private bool isFrozen = false;
 
 
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -3,8 +3,12 @@ using UnityEngine;
 public class Enemy_Shooter : Enemy
 {
     [SerializeField] private Weapon weapon;
+    [SerializeField] private ShooterAnimator animator;
 
     private float shootDistance;
+
+
+    private static readonly float[] attackAngles = { 45f, 0f, -45f };
 
 
     protected override void Start()
@@ -29,14 +33,21 @@ public class Enemy_Shooter : Enemy
         {
             base.FixedUpdate();
 
-            Patroll();
-            Attack();
+            if (!animator.IsShooting())
+            {
+                Patroll();
+                Attack();
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
     }
 
-    private void Shoot(Vector2 direction)
+    private void Shoot(Vector2 direction, Vector2 newFirePoint)
     {
-        weapon.Shoot(direction);
+        weapon.Shoot(direction, newFirePoint);
     }
 
     protected override void Attack()
@@ -44,49 +55,62 @@ public class Enemy_Shooter : Enemy
         if (playerController.CurrentHealth() <= 0) return;
 
         bool movingRight = spriteDirection > 0;
+        isAttacking = false;
 
-        if ((movingRight && playerController.transform.position.x > transform.position.x) ||
-            (!movingRight && playerController.transform.position.x < transform.position.x))
+        if ((movingRight && playerController.transform.position.x < transform.position.x) ||
+            (!movingRight && playerController.transform.position.x > transform.position.x))
         {
-            Vector2 direction = (playerController.transform.position - transform.position).normalized;
-            float distance = Vector2.Distance(transform.position, playerController.transform.position);
+           
+            return;
+        }
 
-            if (distance > shootDistance)
+        int index = 0;
+
+        foreach (float angle in attackAngles)
+        {
+            Vector2 baseDir = new Vector2(spriteDirection, 0f);
+
+            Vector2 dir = Quaternion.Euler(0f, 0f, angle) * baseDir;
+
+            Vector2 firePoint = new Vector2(); ;
+
+            if (spriteDirection > 0)
             {
-                isAttacking = false;
-                return;
+                firePoint = animator.GetFirePoints()[index].position;
             }
-
-            Debug.DrawRay(weapon.GetFirePointWorldPos(), direction * distance, Color.red, 0.1f);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(weapon.GetFirePointWorldPos(), direction, distance);
-
-            isAttacking = false;
-
-            foreach (RaycastHit2D hit in hits)
+            else
             {
-                if (hit.collider == null)
-                {
-                    continue;
-                }
+                firePoint = animator.GetFirePoints()[2 - index].position;
+            }
+                
+            index++;
 
-                if (hit.collider.CompareTag("Bullet"))
-                {
-                    continue;
-                }
+            RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance);
+            Debug.DrawRay(firePoint, dir * shootDistance, Color.yellow, 0.1f);
 
-                if (hit.collider.CompareTag("Player"))
-                {
-                    Shoot(direction);
-                    isAttacking = true;
-                }
+            
+
+            if (hit.collider == null)
+                continue;
+
+            if (hit.collider.CompareTag("Bullet"))
+                continue;
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                Shoot(dir, firePoint);
+                isAttacking = true;
+
+                if (spriteDirection > 0)
+                    animator.AnimateShoot(index - 1);
+                else
+                    animator.AnimateShoot(3 - index);
+
                 break;
             }
         }
-        else
-        {
-            isAttacking = false;
-        }
     }
+
 
     public override void TakeDamage(float damage)
     {
