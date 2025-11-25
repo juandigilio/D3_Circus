@@ -52,7 +52,6 @@ public class SideScrollCamera : MonoBehaviour
 
     public void Unlock()
     {
-        Debug.Log("Camera Unlocked");
         continueCollider.SetActive(true);
     }
 

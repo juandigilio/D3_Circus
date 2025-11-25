@@ -49,6 +49,8 @@ public class InputManager : MonoBehaviour
 
     private void Move(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.SetInputDirection(callbackContext.ReadValue<Vector2>());
@@ -65,6 +67,8 @@ public class InputManager : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.Jump();
@@ -77,6 +81,8 @@ public class InputManager : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.SetShooting(true);
@@ -89,6 +95,8 @@ public class InputManager : MonoBehaviour
 
     private void Aim(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.SetAimDirection(callbackContext.ReadValue<Vector2>());
@@ -105,6 +113,8 @@ public class InputManager : MonoBehaviour
 
     private void NextWeapon(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.NextWeapon();
@@ -113,6 +123,8 @@ public class InputManager : MonoBehaviour
 
     private void PreviousWeapon(InputAction.CallbackContext callbackContext)
     {
+        if (playerController.CurrentHealth() <= 0) return;
+
         if (callbackContext.started)
         {
             playerController.PreviousWeapon();

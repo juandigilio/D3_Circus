@@ -44,9 +44,9 @@ public class Enemy_Jumper : Enemy
 
     protected override void FixedUpdate()
     {
-        if (isPaused) return;
         base.FixedUpdate();
 
+        if (isPaused) return;
         if (!isGrounded) return;
 
         switch (state)
@@ -88,6 +88,7 @@ public class Enemy_Jumper : Enemy
             }
         }
     }
+
     public void RetreatJump()
     {
         int randomSide = Random.Range(0, 2);
@@ -112,9 +113,10 @@ public class Enemy_Jumper : Enemy
 
     public override void TakeDamage(float damage)
     {
-        manager?.Unregister(this);
+        base.TakeDamage(damage);
 
-        Destroy(gameObject);
+        manager?.Unregister(this);
+        animator.AnimateDeath();
     }
 
     protected override void Attack()

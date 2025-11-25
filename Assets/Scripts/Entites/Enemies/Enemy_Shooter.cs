@@ -31,7 +31,7 @@ public class Enemy_Shooter : Enemy
 
             Patroll();
             Attack();
-        }    
+        }
     }
 
     private void Shoot(Vector2 direction)
@@ -45,13 +45,13 @@ public class Enemy_Shooter : Enemy
 
         bool movingRight = spriteDirection > 0;
 
-        if ((movingRight && playerController.transform.position.x > transform.position.x) || 
+        if ((movingRight && playerController.transform.position.x > transform.position.x) ||
             (!movingRight && playerController.transform.position.x < transform.position.x))
         {
             Vector2 direction = (playerController.transform.position - transform.position).normalized;
             float distance = Vector2.Distance(transform.position, playerController.transform.position);
 
-            if (distance > shootDistance) 
+            if (distance > shootDistance)
             {
                 isAttacking = false;
                 return;
@@ -87,4 +87,12 @@ public class Enemy_Shooter : Enemy
             isAttacking = false;
         }
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        if (health <= 0)
+            gameObject.SetActive(false);
+    }  
 }

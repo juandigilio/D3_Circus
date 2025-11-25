@@ -1356,10 +1356,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7.5
   isGrounded: 0
-  health: 50
+  health: 5
   rayLength: 0
   jumpManager: {fileID: 8277721271122332236}
-  maxHealth: 30
+  entityCollider: {fileID: 1168607410764096063}
+  deathYThreshold: -2.3
+  maxHealth: 5
   weaponsManager: {fileID: 3184320123294367803}
   aimController: {fileID: 1570147260129583636}
   startPos: {fileID: 0}

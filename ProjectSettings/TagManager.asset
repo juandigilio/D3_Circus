@@ -12,6 +12,8 @@ TagManager:
   - Item
   - Baloon
   - Platform
+  - Boss
+  - Fireball
   layers:
   - Default
   - TransparentFX

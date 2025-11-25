@@ -68,7 +68,6 @@ public abstract class Enemy : MyEntity
         if (health <= 0)
         {
             GameManager.Instance.GetLevelManager().AddKillScore(scoreValue);
-            gameObject.SetActive(false);
         }
         
         //enemyAudio.PlayHitSound();

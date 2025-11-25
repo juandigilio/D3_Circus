@@ -11,7 +11,9 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private InputSystemUIInputModule uiInputModule;
     [SerializeField] GameObject UI;
     [SerializeField] private TMP_Dropdown dropdown;
-    [SerializeField] private Slider volume;
+    [SerializeField] private Slider masterVolume;
+    [SerializeField] private Slider musicVolume;
+    [SerializeField] private Slider sfxVolume;
 
     [SerializeField] private List<GameObject> keyBoard = new List<GameObject>();
     [SerializeField] private GameObject keyBoardCombinated;
@@ -24,7 +26,9 @@ public class OptionsMenu : MonoBehaviour
 
     private PlayerInput playerInput;
 
-    private const string VolumeKey = "MasterVolume";
+    private const string masterKey = "MasterVolume";
+    private const string musicKey = "MusicVolume";
+    private const string sfxKey = "SFXVolume";
 
     private void Start()
     {
@@ -36,15 +40,17 @@ public class OptionsMenu : MonoBehaviour
         dropdown.onValueChanged.AddListener(OnDropdownChanged);
 
 
-        float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
-        volume.value = savedVolume;
+        masterVolume.value = PlayerPrefs.GetFloat(masterKey, 1f); ;
+        musicVolume.value = PlayerPrefs.GetFloat(musicKey, 1f);
+        sfxVolume.value = PlayerPrefs.GetFloat(sfxKey, 1f);
 
-        //pasar esta linea a wwise
+        AkUnitySoundEngine.SetRTPCValue("Master_Volume", masterVolume.value);
+        AkUnitySoundEngine.SetRTPCValue("Music_Volume", musicVolume.value);
+        AkUnitySoundEngine.SetRTPCValue("SFX_Volume", sfxVolume.value);
 
-        // AudioListener.volume = savedVolume;
-        AkUnitySoundEngine.SetRTPCValue("MasterVolume", savedVolume);
-
-        volume.onValueChanged.AddListener(OnVolumeChanged);
+        masterVolume.onValueChanged.AddListener(OnMasterChanged);
+        musicVolume.onValueChanged.AddListener(OnMusicChanged);
+        sfxVolume.onValueChanged.AddListener(OnSFXChanged);
 
         playerInput = GameManager.Instance.GetPlayerInput();
     }
@@ -62,11 +68,22 @@ public class OptionsMenu : MonoBehaviour
         PlayerInfo.SetInputType(selected);
     }
 
-    private void OnVolumeChanged(float value)
+    private void OnMasterChanged(float value)
     {
-        // Actualizar el volumen en Wwise
-        AkUnitySoundEngine.SetRTPCValue("MasterVolume", value);
-        PlayerPrefs.SetFloat(VolumeKey, value);
+        AkUnitySoundEngine.SetRTPCValue("Master_Volume", value);
+        PlayerPrefs.SetFloat(masterKey, value);
+    }
+
+    private void OnMusicChanged(float v)
+    {
+        AkUnitySoundEngine.SetRTPCValue("Music_Volume", v);
+        PlayerPrefs.SetFloat(musicKey, v);
+    }
+
+    private void OnSFXChanged(float v)
+    {
+        AkUnitySoundEngine.SetRTPCValue("SFX_Volume", v);
+        PlayerPrefs.SetFloat(sfxKey, v);
     }
 
     private void TurnOn(List<GameObject> turnOn)

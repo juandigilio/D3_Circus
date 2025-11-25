@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float levelTime = 300f;
     [SerializeField] private JumperEnemiesManager jumperEnemiesManager;
+    [SerializeField] private GameObject shootersParent;
 
     private GameData gameData;
     private bool isPaused = false;
+
 
     private void Start()
     {
@@ -126,5 +129,15 @@ public class LevelManager : MonoBehaviour
     private async void LoadEndGame()
     {
         await SceneManager.LoadEndSceneAsync();
+    }
+
+    public void KillAll()
+    {
+        foreach (Enemy_Shooter shooter in shootersParent.GetComponentsInChildren<Enemy_Shooter>())
+        {
+            shooter.TakeDamage(9999);
+        }
+
+        jumperEnemiesManager.KillAllJumpers();
     }
 }

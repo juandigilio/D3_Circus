@@ -73,8 +73,12 @@ public class Boss : Enemy
     private IEnumerator MoveMouth(Vector3 from, Vector3 to)
     {
         float t = 0f;
+
         while (t < 1f)
         {
+            while (isPaused)
+                yield return null;
+
             t += Time.deltaTime * mouthSpeed;
             Vector3 pos = Vector3.Lerp(from, to, t);
             mouth.transform.position = pos;
@@ -115,11 +119,12 @@ public class Boss : Enemy
     {
         while (true)
         {
-            if (!isPaused)
-            {
-                ShootFireball(leftCannon, true);
-                ShootFireball(rightCannon, false);
-            }
+            while (isPaused)
+                yield return null;
+
+            ShootFireball(leftCannon, true);
+            ShootFireball(rightCannon, false);
+
             yield return new WaitForSeconds(fireRate);
         }
     }
@@ -149,6 +154,29 @@ public class Boss : Enemy
         }
     }
 
+    private IEnumerator FallMouth()
+    {
+        isPaused = true;
+        isAttacking = false;
+
+        if (mouthCollider != null)
+            mouthCollider.isTrigger = false;
+
+        Rigidbody2D rb = mouth.GetComponent<Rigidbody2D>();
+        if (rb == null)
+            rb = mouth.AddComponent<Rigidbody2D>();
+
+        rb.gravityScale = 2f;
+        rb.freezeRotation = false;
+        rb.angularVelocity = Random.Range(-250f, 250f);
+
+        GameManager.Instance.GetLevelManager().KillAll();
+
+        yield return new WaitForSeconds(2f);
+
+        OnBossDied?.Invoke();
+    }
+
     protected override void Attack()
     {
         StartCoroutine(AttackCycle());
@@ -165,7 +193,7 @@ public class Boss : Enemy
 
         if (health <= 0)
         {
-            OnBossDied?.Invoke();
+            StartCoroutine(FallMouth());
         }
 
         //enemyAudio.PlayHitSound();

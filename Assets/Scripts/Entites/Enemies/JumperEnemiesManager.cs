@@ -10,6 +10,7 @@ public class JumperEnemiesManager : MonoBehaviour
     [SerializeField] private int maxActiveJumpers = 5;
     [SerializeField] private float spawnRate = 2f;
     [SerializeField] private int enemiesToSpawn = 5;
+    [SerializeField] private GameObject spawnParent;
 
 
     private List<Enemy_Jumper> jumpers = new List<Enemy_Jumper>();
@@ -29,6 +30,7 @@ public class JumperEnemiesManager : MonoBehaviour
 
         ClearLists();
         lastSpawn = 0f;
+        nextAttacker = 0;
 
         spawnPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetJumperUpperPoints());
         outterPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetJumperLateralPoints());
@@ -84,6 +86,11 @@ public class JumperEnemiesManager : MonoBehaviour
     {
         if (activeAttacking.Count < maxAttackers && jumpers.Count > 0)
         {
+            if (nextAttacker >= jumpers.Count)
+            {
+                nextAttacker = 0;
+            }
+
             if (!activeAttacking.Contains(jumpers[nextAttacker]))
             {
                 jumpers[nextAttacker].StartChase();
@@ -106,11 +113,12 @@ public class JumperEnemiesManager : MonoBehaviour
             spawnedEnemies++;
 
             int randomIndex = Random.Range(0, spawnPoints.Count);
-            Enemy_Jumper newEnemy = Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
+            Enemy_Jumper newEnemy = Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity, spawnParent.transform);
 
             jumpers.Add(newEnemy);
             newEnemy.StartChase();
             activeAttacking.Add(newEnemy);
+            nextAttacker++;
         }
     }
 
@@ -129,5 +137,13 @@ public class JumperEnemiesManager : MonoBehaviour
         nextAttacker = 0;
         spawnedEnemies = 0;
         lastSpawn = 0f;
+    }
+
+    public void KillAllJumpers()
+    {
+        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
+        {
+            jumper.TakeDamage(9999);
+        }
     }
 }

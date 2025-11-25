@@ -161,6 +161,9 @@ public class JumperAnimator : MonoBehaviour
 
             yield return new WaitForSeconds(animationSpeed);
         }
+
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     private void HideAll()

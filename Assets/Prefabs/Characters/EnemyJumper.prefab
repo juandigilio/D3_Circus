@@ -1136,6 +1136,8 @@ MonoBehaviour:
   health: 1
   rayLength: 0
   jumpManager: {fileID: 7357428159729606719}
+  entityCollider: {fileID: 7352628118959276929}
+  deathYThreshold: -2.3
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 0}
   damage: 1

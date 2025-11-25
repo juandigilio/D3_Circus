@@ -7,10 +7,14 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] protected float health;
     [SerializeField] protected float rayLength;
     [SerializeField] protected JumpManager jumpManager;
+    [SerializeField] private Collider2D entityCollider;
+    [SerializeField] private float deathYThreshold = -10f;
 
     protected Rigidbody2D rb;
     protected float spriteDirection = 1f;
     protected bool isPaused = false;
+    protected bool isDead = false;
+    private bool isFrozen = false;
 
 
     protected virtual void Start()
@@ -43,6 +47,18 @@ public abstract class MyEntity : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (isDead)
+        {
+            if (transform.position.y < deathYThreshold)
+            {
+                Vector2 position = transform.position;
+                position.y = deathYThreshold;
+
+                transform.position = position;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+        }
+
         if (isPaused) return;
 
         CheckGrounded();
@@ -83,7 +99,20 @@ public abstract class MyEntity : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        health -= damage; 
+        health -= damage;
+
+        if (health <= 0)
+        {
+            isDead = true;
+            isPaused = true;
+
+            if (entityCollider)
+            {
+                entityCollider.enabled = false;
+            }
+            
+            Debug.Log($"{gameObject.name} died.");
+        }
     }
 
     public bool IsPaused()
@@ -103,7 +132,7 @@ public abstract class MyEntity : MonoBehaviour
         }
     }
 
-    private void SetPaused()
+    public void SetPaused()
     {
         isPaused = true;
         if (rb)

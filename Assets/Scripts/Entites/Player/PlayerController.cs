@@ -42,10 +42,10 @@ public class PlayerController : MyEntity
 
     protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         if (!isPaused)
         {
-            base.FixedUpdate();
-
             Move();
             SetAimControllerDirection();
         }
@@ -88,7 +88,7 @@ public class PlayerController : MyEntity
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetRunning(false); 
+            animator.SetRunning(false);
         }
 
         CheckScreenLimits();
@@ -162,6 +162,8 @@ public class PlayerController : MyEntity
 
     public override void TakeDamage(float damage)
     {
+        if (health <= 0) return;
+
         base.TakeDamage(damage);
 
         if (health <= 0)
@@ -198,7 +200,7 @@ public class PlayerController : MyEntity
     {
         GameManager.Instance.GetMusicController().SetDeathState();
         characterAudio.PlayDeathSound();
-        animator.ShowDeath(); 
+        animator.ShowDeath();
     }
 
     private void CheckScreenLimits()

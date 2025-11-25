@@ -148,6 +148,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
+    private bool wasDeathShown = false;
 
     private SpriteRenderer currentTorso;
     private List<SpriteRenderer> currentLegs = new List<SpriteRenderer>();
@@ -166,6 +167,7 @@ public class PlayerAnimator : MonoBehaviour
         isGrounded = false;
         isJumping = false;
         isRunning = false;
+        wasDeathShown = false;
 
         //borrar cuando tenga las animaciones de weapon_3
         DuplicateWeapon();
@@ -386,6 +388,9 @@ public class PlayerAnimator : MonoBehaviour
 
     public void ShowDeath()
     {
+        if (wasDeathShown) return;
+
+        wasDeathShown = true;
         HideAll();
 
         StopAllCoroutines();
@@ -397,15 +402,18 @@ public class PlayerAnimator : MonoBehaviour
         foreach (SpriteRenderer sprite in death)
         {
             sprite.enabled = false;
+            death[0].enabled = true;
+            yield return new WaitForSeconds(weaponFrameRate * 2);
         }
         for (int i = 1; i < death.Count; i++)
         {
             death[i - 1].enabled = false;
             death[i].enabled = true;
-            yield return new WaitForSeconds(weaponFrameRate * 4);
+            yield return new WaitForSeconds(weaponFrameRate * 2);
         }
 
         yield return new WaitForSeconds(2f);
+
         playerController.FinishGame();
     }
 
