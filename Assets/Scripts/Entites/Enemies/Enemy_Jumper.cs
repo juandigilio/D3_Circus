@@ -40,11 +40,17 @@ public class Enemy_Jumper : Enemy
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
+        Debug.Log("Collision with: " + obj.name);
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+
+
+        ////////////////////////////
+        ///hacer que si el player esta mas abajo ignore las plataformas, sino no
+        ///
 
         if (isPaused) return;
         if (!isGrounded) return;

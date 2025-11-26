@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ public class JumperEnemiesManager : MonoBehaviour
     [SerializeField] private int maxAttackers = 2;
     [SerializeField] private int maxActiveJumpers = 5;
     [SerializeField] private float spawnRate = 2f;
-    [SerializeField] private int enemiesToSpawn = 5;
     [SerializeField] private GameObject spawnParent;
+    [SerializeField] private List<int> enemiesToSpawnPerSector = new List<int>();
 
 
     private List<Enemy_Jumper> jumpers = new List<Enemy_Jumper>();
@@ -20,6 +21,7 @@ public class JumperEnemiesManager : MonoBehaviour
     private List<Transform> spawnPoints = new List<Transform>();
     private int nextAttacker = 0;
     private int spawnedEnemies = 0;
+    private int currentSector = 0;
 
     private float lastSpawn;
 
@@ -31,6 +33,7 @@ public class JumperEnemiesManager : MonoBehaviour
         ClearLists();
         lastSpawn = 0f;
         nextAttacker = 0;
+        currentSector = 0;
 
         spawnPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetJumperUpperPoints());
         outterPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetJumperLateralPoints());
@@ -42,11 +45,20 @@ public class JumperEnemiesManager : MonoBehaviour
 
         SpawnEnemies();
         HandleJumpers();
+    }
 
-        if (spawnedEnemies >= enemiesToSpawn)
+    public void KillAllJumpers()
+    {
+        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
         {
-            levelManager.NotifyJumperEnemiesCleared();
+            jumper.TakeDamage(9999);
         }
+    }
+
+    public void LoadNextSector()
+    {
+        ClearLists();
+        currentSector++;
     }
 
     public void Register(Enemy_Jumper jumper)
@@ -82,6 +94,20 @@ public class JumperEnemiesManager : MonoBehaviour
         return player;
     }
 
+    public bool IsCleared()
+    {
+        if (spawnedEnemies < enemiesToSpawnPerSector[currentSector]) return false;
+
+        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
+        {
+            if (jumper != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void HandleJumpers()
     {
         if (activeAttacking.Count < maxAttackers && jumpers.Count > 0)
@@ -103,7 +129,7 @@ public class JumperEnemiesManager : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        if (spawnedEnemies >= enemiesToSpawn) return;
+        if (spawnedEnemies >= enemiesToSpawnPerSector[currentSector]) return;
 
         lastSpawn += Time.fixedDeltaTime;
 
@@ -129,21 +155,18 @@ public class JumperEnemiesManager : MonoBehaviour
             Destroy(jumper);
         }
 
+        foreach (Enemy_Jumper jumper in activeAttacking)
+        {
+            Destroy(jumper);
+        }
+
         jumpers.Clear();
         activeAttacking.Clear();
-        outterPoints.Clear();
-        spawnPoints.Clear();
+        //outterPoints.Clear();
+        //spawnPoints.Clear();
 
         nextAttacker = 0;
         spawnedEnemies = 0;
         lastSpawn = 0f;
-    }
-
-    public void KillAllJumpers()
-    {
-        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
-        {
-            jumper.TakeDamage(9999);
-        }
     }
 }

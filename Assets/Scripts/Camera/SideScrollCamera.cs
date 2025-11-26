@@ -12,6 +12,8 @@ public class SideScrollCamera : MonoBehaviour
 
     private Vector3 startPos;
     private Camera mainCamera;
+    private bool isMoving = false;
+    private bool isCameraLocked = true;
 
     private void Start()
     {
@@ -20,6 +22,7 @@ public class SideScrollCamera : MonoBehaviour
 
         startPos = mainCamera.transform.position;
 
+        isCameraLocked = true;
         continueCollider.SetActive(false);
     }
 
@@ -33,6 +36,7 @@ public class SideScrollCamera : MonoBehaviour
 
     private IEnumerator MoveCamera()
     {
+        isMoving = true;
         float screenWidth = mainCamera.orthographicSize * 2f * mainCamera.aspect;
         float distance = screenWidth * 0.9f;
 
@@ -49,12 +53,24 @@ public class SideScrollCamera : MonoBehaviour
         }
 
         transform.position = targetPos;
+        isMoving = false;
+        isCameraLocked = true;
+
+        GameManager.Instance.GetLevelManager().LoadNextSector();
     }
 
     public void Unlock()
     {
+        if (!isCameraLocked) return;
+
+        isCameraLocked = false;
         continueCollider.SetActive(true);
         GameManager.Instance.GetContinueArrow().SetActive(true);
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
     }
 
     public void RestartCamera()

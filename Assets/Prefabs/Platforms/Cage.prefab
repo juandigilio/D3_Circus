@@ -813,7 +813,7 @@ MonoBehaviour:
   lockCollider: {fileID: 1492682157629986235}
   colliderLeft: {fileID: 5351284706503656257}
   colliderRight: {fileID: 3051379455726271053}
-  maxHealth: 16
+  maxHealth: 40
   flashDuration: 0.1
   flashCount: 2
 --- !u!61 &2391214571241399554
