@@ -4,6 +4,7 @@ public class Enemy_Shooter : Enemy
 {
     [SerializeField] private Weapon weapon;
     [SerializeField] private ShooterAnimator animator;
+    [SerializeField] private LayerMask raycastMask;
 
 
     private ShooterEnemySpawner spawner;
@@ -112,7 +113,9 @@ public class Enemy_Shooter : Enemy
                 
             index++;
 
-            RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance);
+            //int mask = ~LayerMask.GetMask("Platform");
+            //RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance);
+            RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance, raycastMask);
             Debug.DrawRay(firePoint, dir * shootDistance, Color.yellow, 0.1f);
 
             

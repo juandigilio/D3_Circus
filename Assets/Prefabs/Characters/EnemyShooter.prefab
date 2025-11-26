@@ -1345,6 +1345,9 @@ MonoBehaviour:
   scoreValue: 10
   weapon: {fileID: 4814302803693416432}
   animator: {fileID: 8369505472268269390}
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 759
 --- !u!70 &7633012316104407698
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
