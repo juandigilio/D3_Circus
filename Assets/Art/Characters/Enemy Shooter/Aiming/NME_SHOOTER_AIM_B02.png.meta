@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_SHOOTER_AIM_B02_0: 1760425539098399513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

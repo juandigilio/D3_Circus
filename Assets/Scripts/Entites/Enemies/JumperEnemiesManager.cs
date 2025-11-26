@@ -47,7 +47,7 @@ public class JumperEnemiesManager : MonoBehaviour
         HandleJumpers();
     }
 
-    public void KillAllJumpers()
+    public void KillAll()
     {
         foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
         {

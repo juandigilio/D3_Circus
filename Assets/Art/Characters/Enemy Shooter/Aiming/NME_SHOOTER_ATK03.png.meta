@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_SHOOTER_ATK03_0: -2663136198141240132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Coin : Item
 {
+    [SerializeField] private AutoAnimator animator;
     [SerializeField] private int scoreValue = 500;
     [SerializeField] private bool isSmallCoin = false;
 
@@ -22,5 +23,10 @@ public class Coin : Item
         {
             GameManager.Instance.GetUIAudio().PlayBigCoinSound();
         }
+    }
+
+    public void TurnOff()
+    {
+        animator.TurnOff();
     }
 }

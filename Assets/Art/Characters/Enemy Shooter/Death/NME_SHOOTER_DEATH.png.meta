@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NME_SHOOTER_DEATH_0: 2166283243888139739
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

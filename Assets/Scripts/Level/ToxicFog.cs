@@ -129,7 +129,7 @@ public class ToxicFog : MonoBehaviour
 
         float yPos = Random.Range(cloudYMinRange, cloudYMaxRange);
         cloud.transform.position = new Vector3(xPos, yPos, cloudsParent.transform.position.z);
-        cloud.transform.localScale = new Vector3(toxicPercent, toxicPercent, 1);
+        cloud.transform.localScale = new Vector3(toxicPercent / 2, toxicPercent / 2, 1);
         cloud.color = cloudColor;
 
         CloudData data = cloud.gameObject.AddComponent<CloudData>();
@@ -157,7 +157,7 @@ public class ToxicFog : MonoBehaviour
             toxicPercent += 0.01f;
         }
         
-        cloudColor = new Color(0, 1, 0, toxicPercent * 2);
+        cloudColor = new Color(0, 1, 0, 0.4f);
     }
 
     private void SetPaused()

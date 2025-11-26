@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpawnCamionPuertaAF2_0: -1329771400881960073
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

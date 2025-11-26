@@ -5,6 +5,8 @@ public class Enemy_Shooter : Enemy
     [SerializeField] private Weapon weapon;
     [SerializeField] private ShooterAnimator animator;
 
+
+    private ShooterEnemySpawner spawner;
     private float shootDistance;
 
 
@@ -43,6 +45,29 @@ public class Enemy_Shooter : Enemy
                 rb.linearVelocity = Vector2.zero;
             }
         }
+    }
+
+    public void SetSpawner(ShooterEnemySpawner spawner)
+    {
+        this.spawner = spawner;
+    }
+
+    public void SetPatrollPoints(Transform pointA, Transform pointB)
+    {
+        leftPoint.position = pointA.position;
+        rightPoint.position = pointB.position;
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        if (health <= 0)
+        {
+            spawner.Unregister(this);
+            animator.AnimateDeath();
+            //gameObject.SetActive(false);
+        }        
     }
 
     private void Shoot(Vector2 direction, Vector2 newFirePoint, float angle)
@@ -110,13 +135,4 @@ public class Enemy_Shooter : Enemy
             }
         }
     }
-
-
-    public override void TakeDamage(float damage)
-    {
-        base.TakeDamage(damage);
-
-        if (health <= 0)
-            gameObject.SetActive(false);
-    }  
 }

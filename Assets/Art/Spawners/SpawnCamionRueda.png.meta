@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpawnCamionRueda_0: 8754258443386825737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Candado2_0: 7124660959402111619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

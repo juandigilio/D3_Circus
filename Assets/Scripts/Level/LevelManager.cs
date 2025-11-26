@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float levelTime = 300f;
     [SerializeField] private JumperEnemiesManager jumperEnemiesManager;
-    [SerializeField] private List<GameObject> shooterSectors = new List<GameObject>();
+    [SerializeField] private List<Sector> shooterSectors = new List<Sector>();
 
     private GameData gameData;
     private bool isPaused = false;
@@ -27,8 +27,8 @@ public class LevelManager : MonoBehaviour
 
         currentSector = 0;
 
-        HideAll();
-        shooterSectors[currentSector].SetActive(true);
+        //HideAll();
+        shooterSectors[currentSector].gameObject.SetActive(true);
 
         GameManager.Instance.GetMusicController().SetLevelState();
 
@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
             if (gameData.totalTime <= 0f)
             {
                 gameData.totalTime = 0f;
-                //LoadGameOver();
+                LoadGameOver();
             }
 
             CheckActiveEnemies();
@@ -70,8 +70,12 @@ public class LevelManager : MonoBehaviour
     {
         jumperEnemiesManager.LoadNextSector();
 
+        shooterSectors[currentSector].gameObject.SetActive(false);
         currentSector++;
-        shooterSectors[currentSector].SetActive(true);
+
+        if (currentSector >= shooterSectors.Count) return;
+
+        shooterSectors[currentSector].gameObject.SetActive(true);
     }
 
     public void AddKillScore(int value)
@@ -103,12 +107,9 @@ public class LevelManager : MonoBehaviour
 
     public void KillAll()
     {
-        foreach (Enemy_Shooter shooter in shooterSectors[currentSector].GetComponentsInChildren<Enemy_Shooter>())
-        {
-            shooter.TakeDamage(9999);
-        }
+        jumperEnemiesManager.KillAll();
 
-        jumperEnemiesManager.KillAllJumpers();
+        shooterSectors[currentSector].KillAll();
     }
 
     private void CheckActiveEnemies()
@@ -117,11 +118,17 @@ public class LevelManager : MonoBehaviour
 
         if (jumperEnemiesManager.IsCleared())
         {
-            foreach (Enemy_Shooter shooter in shooterSectors[currentSector].GetComponentsInChildren<Enemy_Shooter>())
-            {
-                if (shooter) return;
-            }
+            if (!shooterSectors[currentSector].IsSectorCleared()) return;
 
+            foreach (GameObject cage in shooterSectors[currentSector].GetComponentsInChildren<GameObject>())
+            {
+                Cage temp = cage.GetComponent<Cage>();
+
+                if (temp)
+                {
+                    temp.TurnOffCoins();
+                }
+            }
             GameManager.Instance.GetSideScrollCamera().Unlock();
         }
     }
@@ -170,9 +177,9 @@ public class LevelManager : MonoBehaviour
 
     private void HideAll()
     {
-        foreach (GameObject sector in shooterSectors)
+        foreach (Sector sector in shooterSectors)
         {
-            sector.SetActive(false);
+            sector.gameObject.SetActive(false);
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.U2D;
 public class Cage : MonoBehaviour
 {
     [SerializeField] private List<SpriteRenderer> lockSprites = new List<SpriteRenderer>();
+    [SerializeField] private List<Coin> coins = new List<Coin>();
     [SerializeField] private Collider2D lockCollider;
     [SerializeField] private GameObject colliderLeft;
     [SerializeField] private GameObject colliderRight;
@@ -37,6 +38,14 @@ public class Cage : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void TurnOffCoins()
+    {
+        foreach (Coin coin in coins)
+        {
+            coin.TurnOff();
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -51,7 +60,7 @@ public class Cage : MonoBehaviour
             HideAll();
             lockSprites[1].enabled = true;
         }
-        
+
         foreach (SpriteRenderer sprite in lockSprites)
         {
             if (sprite.enabled)

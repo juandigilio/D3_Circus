@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AutoAnimator : MonoBehaviour
@@ -55,6 +56,42 @@ public class AutoAnimator : MonoBehaviour
 
         AnimateFrames();
         BreathAndWiggle();
+    }
+
+    public void TurnOff(float duration = 0.5f, int flashes = 4)
+    {
+        StartCoroutine(TurnOffCoroutine(duration, flashes));
+    }
+
+    private IEnumerator TurnOffCoroutine(float duration, int flashes)
+    {
+        float flashTime = duration / (flashes * 2f);
+        Color originalColor = spriteRenderer.color;
+
+        for (int i = 0; i < flashes; i++)
+        {
+            for (float t = 0; t < 1f; t += Time.deltaTime / flashTime)
+            {
+                Color c = originalColor;
+                c.a = Mathf.Lerp(1f, 0f, t);
+                spriteRenderer.color = c;
+                yield return null;
+            }
+
+            for (float t = 0; t < 1f; t += Time.deltaTime / flashTime)
+            {
+                Color c = originalColor;
+                c.a = Mathf.Lerp(0f, 1f, t);
+                spriteRenderer.color = c;
+                yield return null;
+            }
+        }
+
+        Color finalC = originalColor;
+        finalC.a = 0f;
+        spriteRenderer.color = finalC;
+
+        gameObject.SetActive(false);
     }
 
     private void AnimateFrames()
