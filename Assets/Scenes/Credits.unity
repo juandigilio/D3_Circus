@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 1708814363}
   - component: {fileID: 1708814365}
   - component: {fileID: 1708814364}
+  - component: {fileID: 1708814366}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -254,10 +255,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1527977006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708814364
 MonoBehaviour:
@@ -272,14 +273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2264019553407294369, guid: 9d3c405573e09be49b639fc1bd23490d, type: 3}
+  m_Sprite: {fileID: 6315645358872147417, guid: 5d48a4905d2fc65439ab925f73509f96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -297,6 +298,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708814362}
   m_CullTransparentMesh: 1
+--- !u!114 &1708814366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708814362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5d075b610b8df4597f6486dbaa112d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1708814364}
+  animationFrames:
+  - {fileID: 6315645358872147417, guid: 5d48a4905d2fc65439ab925f73509f96, type: 3}
+  - {fileID: 4949699512385861637, guid: 2f4ed61ce0c61b8488feabbd32d41227, type: 3}
+  frameRate: 3
+  randomStartFrame: 0
+  breath: 0
+  horizontalAmplitude: 6
+  pulseAmplitude: 0.1
+  pulseSpeed: 2
+  isPausable: 0
 --- !u!1001 &4041324983204982163
 PrefabInstance:
   m_ObjectHideFlags: 0
