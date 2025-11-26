@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,11 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float levelTime = 300f;
     [SerializeField] private JumperEnemiesManager jumperEnemiesManager;
-    [SerializeField] private GameObject shootersParent;
+    [SerializeField] private List<GameObject> shooterSectors = new List<GameObject>();
 
     private GameData gameData;
     private bool isPaused = false;
+    private int currentSector = 0;
 
 
     private void Start()
@@ -22,6 +24,11 @@ public class LevelManager : MonoBehaviour
         gameData.collectedItems = 0;
         gameData.timeBonus = 0f;
         gameData.totalTime = levelTime;
+
+        currentSector = 0;
+
+        HideAll();
+        shooterSectors[currentSector].SetActive(true);
 
         GameManager.Instance.GetMusicController().SetLevelState();
 
@@ -54,12 +61,17 @@ public class LevelManager : MonoBehaviour
                 gameData.totalTime = 0f;
                 //LoadGameOver();
             }
-        }
+
+            CheckActiveEnemies();
+        }  
     }
 
-    public void NotifyJumperEnemiesCleared()
+    public void LoadNextSector()
     {
-       GameManager.Instance.GetSideScrollCamera().Unlock();
+        jumperEnemiesManager.LoadNextSector();
+
+        currentSector++;
+        shooterSectors[currentSector].SetActive(true);
     }
 
     public void AddKillScore(int value)
@@ -87,6 +99,31 @@ public class LevelManager : MonoBehaviour
     public int GetCurrentScore()
     {
         return gameData.killsScore + gameData.collectablesScore;
+    }
+
+    public void KillAll()
+    {
+        foreach (Enemy_Shooter shooter in shooterSectors[currentSector].GetComponentsInChildren<Enemy_Shooter>())
+        {
+            shooter.TakeDamage(9999);
+        }
+
+        jumperEnemiesManager.KillAllJumpers();
+    }
+
+    private void CheckActiveEnemies()
+    {
+        if (GameManager.Instance.GetSideScrollCamera().IsMoving()) return;
+
+        if (jumperEnemiesManager.IsCleared())
+        {
+            foreach (Enemy_Shooter shooter in shooterSectors[currentSector].GetComponentsInChildren<Enemy_Shooter>())
+            {
+                if (shooter) return;
+            }
+
+            GameManager.Instance.GetSideScrollCamera().Unlock();
+        }
     }
 
     private void SetPaused()
@@ -129,15 +166,13 @@ public class LevelManager : MonoBehaviour
     private async void LoadEndGame()
     {
         await SceneManager.LoadEndSceneAsync();
-    }
+    } 
 
-    public void KillAll()
+    private void HideAll()
     {
-        foreach (Enemy_Shooter shooter in shootersParent.GetComponentsInChildren<Enemy_Shooter>())
+        foreach (GameObject sector in shooterSectors)
         {
-            shooter.TakeDamage(9999);
+            sector.SetActive(false);
         }
-
-        jumperEnemiesManager.KillAllJumpers();
     }
 }
