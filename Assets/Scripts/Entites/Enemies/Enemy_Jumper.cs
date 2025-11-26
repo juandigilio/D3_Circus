@@ -47,7 +47,6 @@ public class Enemy_Jumper : Enemy
     {
         base.FixedUpdate();
 
-
         ////////////////////////////
         ///hacer que si el player esta mas abajo ignore las plataformas, sino no
         ///
@@ -132,9 +131,9 @@ public class Enemy_Jumper : Enemy
         if (playerController.CurrentHealth() <= 0) return;
 
         hasAttacked = true;
-        animator.SetAttacking(true);
-        playerController.TakeDamage(1);
         state = JumperState.Idle;
+        playerController.TakeDamage(1);
+        animator.SetAttacking(true);
         manager.NotifyAttack(this);
     }
 

@@ -36,7 +36,6 @@ public abstract class Item : MonoBehaviour
     {
         if (outlineRenderer == null)
         {
-            Debug.Log("null outline render in item");
             return;
         }
 

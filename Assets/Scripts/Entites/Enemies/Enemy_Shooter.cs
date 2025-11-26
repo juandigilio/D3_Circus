@@ -31,10 +31,10 @@ public class Enemy_Shooter : Enemy
 
     protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         if (!isPaused)
         {
-            base.FixedUpdate();
-
             if (!animator.IsShooting())
             {
                 Patroll();
@@ -54,8 +54,8 @@ public class Enemy_Shooter : Enemy
 
     public void SetPatrollPoints(Transform pointA, Transform pointB)
     {
-        leftPoint.position = pointA.position;
-        rightPoint.position = pointB.position;
+        leftPoint = pointA;
+        rightPoint = pointB;
     }
 
     public override void TakeDamage(float damage)
@@ -64,7 +64,9 @@ public class Enemy_Shooter : Enemy
 
         if (health <= 0)
         {
-            spawner.Unregister(this);
+            if (spawner != null)
+                spawner.Unregister(this);
+
             animator.AnimateDeath();
             //gameObject.SetActive(false);
         }        

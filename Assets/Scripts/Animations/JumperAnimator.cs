@@ -134,7 +134,7 @@ public class JumperAnimator : MonoBehaviour
         }
 
         jumper.RetreatJump();
-        SetWalking(true);
+        SetIsJumping();
     }
 
     public void AnimateDeath()
@@ -144,7 +144,6 @@ public class JumperAnimator : MonoBehaviour
         isJumping = false;
         isWalking = false;
         isAttaking = false;
-
 
         StopAllCoroutines();
         StartCoroutine(DeathCoroutine());

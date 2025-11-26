@@ -15,6 +15,7 @@ public abstract class MyEntity : MonoBehaviour
     protected bool isPaused = false;
     protected bool isDead = false;
     private bool isFrozen = false;
+    private float lastYPosition = -1000f;
 
 
 
@@ -50,7 +51,15 @@ public abstract class MyEntity : MonoBehaviour
     {
         if (isDead)
         {
-            if (transform.position.y < deathYThreshold)
+            if (lastYPosition != -1000f)
+            {
+                Vector2 position = transform.position;
+                position.y = lastYPosition;
+
+                transform.position = position;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+            else if (transform.position.y < deathYThreshold)
             {
                 Vector2 position = transform.position;
                 position.y = deathYThreshold;
@@ -106,6 +115,11 @@ public abstract class MyEntity : MonoBehaviour
         {
             isDead = true;
             isPaused = true;
+
+            if (isGrounded)
+            {
+                lastYPosition = transform.position.y;
+            }
 
             if (entityCollider)
             {

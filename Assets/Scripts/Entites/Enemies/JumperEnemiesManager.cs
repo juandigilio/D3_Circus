@@ -22,6 +22,8 @@ public class JumperEnemiesManager : MonoBehaviour
     private int nextAttacker = 0;
     private int spawnedEnemies = 0;
     private int currentSector = 0;
+    private float lastAdded = 0;
+    private float addingRate = 1.0f;
 
     private float lastSpawn;
 
@@ -58,6 +60,12 @@ public class JumperEnemiesManager : MonoBehaviour
     public void LoadNextSector()
     {
         ClearLists();
+
+        if (currentSector + 1 >= enemiesToSpawnPerSector.Count)
+        {
+            return;
+        }
+
         currentSector++;
     }
 
@@ -112,6 +120,11 @@ public class JumperEnemiesManager : MonoBehaviour
     {
         if (activeAttacking.Count < maxAttackers && jumpers.Count > 0)
         {
+            lastAdded += Time.fixedDeltaTime;
+            if (lastAdded < addingRate) return;
+
+            lastAdded = 0f;
+
             if (nextAttacker >= jumpers.Count)
             {
                 nextAttacker = 0;

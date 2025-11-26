@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +7,16 @@ public class ShooterEnemySpawner : MonoBehaviour
 {
     [SerializeField] private Enemy_Shooter shooterEnemyPrefab;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite closedSprite;
-    [SerializeField] private Sprite openedSprite;
+    [SerializeField] private SpriteRenderer closedSprite;
+    [SerializeField] private SpriteRenderer openedSprite;
     [SerializeField] private int enemiesToSpawn = 5;
     [SerializeField] private GameObject pointA;
     [SerializeField] private GameObject pointB;
+    [SerializeField] private float spawnRate = 1f;
 
     private List<Enemy_Shooter> spawnedEnemies = new List<Enemy_Shooter>();
     private int totalSpawned = 0;
+    private float spawnTimer = 0f;
 
 
 
@@ -23,7 +25,7 @@ public class ShooterEnemySpawner : MonoBehaviour
         ClearAll();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         SpawnEnemies();
     }
@@ -33,13 +35,30 @@ public class ShooterEnemySpawner : MonoBehaviour
         if (spawnedEnemies.Count > 0) return;
         if (totalSpawned >= enemiesToSpawn) return;
 
-        Enemy_Shooter newEnemy = Instantiate(shooterEnemyPrefab, spawnPoint.position, Quaternion.identity);
+        spawnTimer += Time.fixedDeltaTime;
 
+        if (spawnTimer >= spawnRate)
+        {
+            StartCoroutine(SpawnEnemiesCoroutine());
+            spawnTimer = 0f;
+        }
+    }
+
+    private IEnumerator SpawnEnemiesCoroutine()
+    {
+        closedSprite.enabled = false;
+        openedSprite.enabled = true;
+
+        Enemy_Shooter newEnemy = Instantiate(shooterEnemyPrefab, spawnPoint.position, Quaternion.identity);
         newEnemy.SetSpawner(this);
         newEnemy.SetPatrollPoints(pointA.transform, pointB.transform);
         spawnedEnemies.Add(newEnemy);
-
         totalSpawned++;
+
+        yield return new WaitForSeconds(1f);
+
+        closedSprite.enabled = true;
+        openedSprite.enabled = false;
     }
 
     public void Unregister(Enemy_Shooter obj)

@@ -6,6 +6,7 @@ public class Sector : MonoBehaviour
 {
     [SerializeField] private List<ShooterEnemySpawner> spawners = new List<ShooterEnemySpawner>();
     [SerializeField] private List<Enemy_Shooter> shooters = new List<Enemy_Shooter>();
+    [SerializeField] private List<Cage> cages = new List<Cage>();
 
 
     public bool IsSectorCleared()
@@ -41,5 +42,10 @@ public class Sector : MonoBehaviour
         {
             spawner.KillAllEnemies();
         }
+    }
+
+    public List<Cage> GetCages()
+    {
+        return cages;
     }
 }

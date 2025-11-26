@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 
 
@@ -156,7 +157,7 @@ public class PlayerAnimator : MonoBehaviour
     private CurrentWeaponAnimation currentWeaponAnimation = new CurrentWeaponAnimation();
     private bool isRunning;
     private Vector2 lastDirection = new Vector2();
-
+    private bool isDead = false;
 
     private void Start()
     {
@@ -168,6 +169,7 @@ public class PlayerAnimator : MonoBehaviour
         isJumping = false;
         isRunning = false;
         wasDeathShown = false;
+        isDead = false;
 
         //borrar cuando tenga las animaciones de weapon_3
         DuplicateWeapon();
@@ -182,6 +184,8 @@ public class PlayerAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) return;
+  
         CheckGround(playerController.IsGrounded());
         Animate();
     }
@@ -399,6 +403,8 @@ public class PlayerAnimator : MonoBehaviour
 
     private IEnumerator AnimateDeath()
     {
+        isDead = true;
+
         foreach (SpriteRenderer sprite in death)
         {
             HideAll();

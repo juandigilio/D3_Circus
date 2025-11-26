@@ -70,11 +70,11 @@ public class LevelManager : MonoBehaviour
     {
         jumperEnemiesManager.LoadNextSector();
 
-        shooterSectors[currentSector].gameObject.SetActive(false);
+        shooterSectors[currentSector].gameObject.SetActive(false);  
+
+        if (currentSector + 1 >= shooterSectors.Count) return;
+
         currentSector++;
-
-        if (currentSector >= shooterSectors.Count) return;
-
         shooterSectors[currentSector].gameObject.SetActive(true);
     }
 
@@ -120,15 +120,11 @@ public class LevelManager : MonoBehaviour
         {
             if (!shooterSectors[currentSector].IsSectorCleared()) return;
 
-            foreach (GameObject cage in shooterSectors[currentSector].GetComponentsInChildren<GameObject>())
+            foreach (Cage cage in shooterSectors[currentSector].GetCages())
             {
-                Cage temp = cage.GetComponent<Cage>();
-
-                if (temp)
-                {
-                    temp.TurnOffCoins();
-                }
+                cage.TurnOffCoins();
             }
+
             GameManager.Instance.GetSideScrollCamera().Unlock();
         }
     }
