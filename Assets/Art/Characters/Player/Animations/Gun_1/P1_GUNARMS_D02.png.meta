@@ -103,10 +103,10 @@ TextureImporter:
       name: P1_GUNARMS_D02_0
       rect:
         serializedVersion: 2
-        x: 303
-        y: 286
-        width: 310
-        height: 457
+        x: 578
+        y: 419
+        width: 246
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      P1_GUNARMS_D02_0: -6255790390520984699
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

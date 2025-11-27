@@ -293,6 +293,7 @@ public class PlayerAnimator : MonoBehaviour
     public void AnimateJump()
     {
         isJumping = true;
+        isRunning = false;
 
         SetLegs(legs_Jumping);
     }
@@ -450,14 +451,15 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Animate()
     {
-        if (isRunning)
+        
+        if(isJumping)
+        {
+            UpdateJumpAnimation();
+        }
+        else if(isRunning)
         {
             AnimateLegs();
         }
-        else if (isJumping)
-        {
-            UpdateJumpAnimation();
-        }    
     }
 
     private void AnimateLegs()
