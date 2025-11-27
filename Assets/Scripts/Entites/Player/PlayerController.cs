@@ -75,15 +75,31 @@ public class PlayerController : MyEntity
 
     private void Move()
     {
-        if (inputDirection != Vector2.zero)
+        if (inputDirection.x != 0)
         {
-            Vector2 movement = new Vector2(inputDirection.x * speed, rb.linearVelocity.y);
+            Vector2 movement = new Vector2(inputDirection.x, rb.linearVelocity.y);
+
+            if (movement.x > 0)
+            {
+                movement.x = 1 * speed;
+            }
+            else if (movement.x < 0)
+            {
+                movement.x = -1 * speed;
+            }
+
             rb.linearVelocity = movement;
 
-            if (inputDirection.x != 0)
-            {
-                animator.SetRunning(true);
-            }
+            animator.SetRunning(true);
+
+            //if (inputDirection.x != 0)
+            //{
+                
+            //}
+            //else
+            //{
+            //    animator.SetRunning(false);
+            //}
         }
         else
         {

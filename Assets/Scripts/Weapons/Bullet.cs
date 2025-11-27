@@ -161,7 +161,6 @@ public class Bullet : MonoBehaviour
             damage = 1;
         }
 
-        Debug.Log("Bullet type: " + type);
         gameObject.SetActive(true);
 
         switch (type)
@@ -171,7 +170,6 @@ public class Bullet : MonoBehaviour
                 pistolBullet.enabled = true;
                 machineGunBullet.enabled = false;
                 rifleBullet.enabled = false;
-                Debug.Log("Activated Pistol Bullet");
                 pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
                 break;
             }
@@ -180,7 +178,6 @@ public class Bullet : MonoBehaviour
                 pistolBullet.enabled = false;
                 machineGunBullet.enabled = true;                 
                 rifleBullet.enabled = false;
-                Debug.Log("Activated Machine Gun Bullet");
                 machineGunBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
                 break;
             }
@@ -189,7 +186,6 @@ public class Bullet : MonoBehaviour
                 pistolBullet.enabled = false;
                 machineGunBullet.enabled = false;
                 rifleBullet.enabled = true;
-                Debug.Log("Activated Rifle Bullet");
                 rifleBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
                 break;
             }
@@ -198,7 +194,6 @@ public class Bullet : MonoBehaviour
                 pistolBullet.enabled = true;
                 machineGunBullet.enabled = false;
                 rifleBullet.enabled = false;
-                Debug.Log("Activated Default Pistol Bullet");
                 pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
                 break;
             }

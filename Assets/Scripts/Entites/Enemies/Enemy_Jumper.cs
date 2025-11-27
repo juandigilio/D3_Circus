@@ -37,12 +37,6 @@ public class Enemy_Jumper : Enemy
         manager?.Unregister(this);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        Debug.Log("Collision with: " + obj.name);
-    }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

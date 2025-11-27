@@ -125,8 +125,6 @@ public abstract class MyEntity : MonoBehaviour
             {
                 entityCollider.enabled = false;
             }
-            
-            Debug.Log($"{gameObject.name} died.");
         }
     }
 
