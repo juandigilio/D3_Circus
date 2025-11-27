@@ -1241,7 +1241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.543274, y: 78.07007}
+  m_AnchoredPosition: {x: -1.58, y: 78.07007}
   m_SizeDelta: {x: 143.4897, y: 58.976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505092184
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6640904292351167151, guid: 71ee943b0478ceb498836c7e6063e8c3, type: 3}
+  m_Sprite: {fileID: 8351640782812777991, guid: 12e13b94b72acaf4e9a6ebc774204b64, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4097,7 +4097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.954712, y: 77.421555}
+  m_AnchoredPosition: {x: 0.34, y: 77.421555}
   m_SizeDelta: {x: 148.3222, y: 40.403}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1282791123
@@ -4120,7 +4120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8944848269066579226, guid: d32c32a29fc0c1641be9ed535fd84a6d, type: 3}
+  m_Sprite: {fileID: 3104155585124713018, guid: 8e5a1e2d541adf040b2be51b0123e979, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4695,6 +4695,8 @@ MonoBehaviour:
   mountains_1: {fileID: 1919431282}
   ground: {fileID: 1859420932}
   ground_1: {fileID: 1117705359}
+  powerPlant: {fileID: 497184888}
+  powerPlant_1: {fileID: 842264312}
   skySpeed: -0.9
   fogSpeed: -0.8
   mountainsSpeed: -0.7
@@ -4948,7 +4950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4540482670669111220, guid: 4b01e34531cdbcc419baabfeb61e5396, type: 3}
+  m_Sprite: {fileID: -1605527082047723150, guid: 5188a464e1e85484b90179dcd462465f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

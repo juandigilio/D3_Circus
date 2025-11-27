@@ -185,7 +185,8 @@ public class PlayerAnimator : MonoBehaviour
     private void FixedUpdate()
     {
         if (isDead) return;
-  
+        if (playerController.IsPaused()) return;
+
         CheckGround(playerController.IsGrounded());
         Animate();
     }
@@ -408,6 +409,10 @@ public class PlayerAnimator : MonoBehaviour
 
         foreach (SpriteRenderer sprite in death)
         {
+            while (playerController.IsPaused())
+            {
+                yield return null;
+            }
             HideAll();
             sprite.enabled = false;
             death[0].enabled = true;
@@ -415,10 +420,19 @@ public class PlayerAnimator : MonoBehaviour
         }
         for (int i = 1; i < death.Count; i++)
         {
+            while (playerController.IsPaused())
+            {
+                yield return null;
+            }
             HideAll();
             death[i - 1].enabled = false;
             death[i].enabled = true;
             yield return new WaitForSeconds(weaponFrameRate * 2);
+        }
+
+        while (playerController.IsPaused())
+        {
+            yield return null;
         }
 
         yield return new WaitForSeconds(2f);

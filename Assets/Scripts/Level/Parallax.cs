@@ -12,6 +12,8 @@ public class Parallax : MonoBehaviour
     [SerializeField] private Transform mountains_1;
     [SerializeField] private Transform ground;
     [SerializeField] private Transform ground_1;
+    [SerializeField] private Transform powerPlant;
+    [SerializeField] private Transform powerPlant_1;
 
     [Header("Speeds")]
     [SerializeField] private float skySpeed = 0.1f;
@@ -39,6 +41,7 @@ public class Parallax : MonoBehaviour
         MoveLayer(fog, fog_1, delta.x, fogSpeed);
         MoveLayer(mountains, mountains_1, delta.x, mountainsSpeed);
         MoveLayer(ground, ground_1, delta.x, groundSpeed);
+        MoveLayerOnce(powerPlant, powerPlant_1, delta.x, mountainsSpeed);
 
         prevCamPos = cam.position;
     }
@@ -58,5 +61,13 @@ public class Parallax : MonoBehaviour
         {
             b.position = new Vector3(a.position.x + width, b.position.y, b.position.z);
         }
-    }  
+    }
+
+    private void MoveLayerOnce(Transform a, Transform b, float deltaX, float speed)
+    {
+        a.position += Vector3.left * deltaX * speed;
+        b.position += Vector3.left * deltaX * speed;
+
+       
+    }
 }

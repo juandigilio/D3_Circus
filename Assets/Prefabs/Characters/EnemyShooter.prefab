@@ -1421,6 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b3e010554d6a24c96ef69598dea9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: {fileID: 5590270447912996863}
   walking:
   - {fileID: 7319731632323659161}
   - {fileID: 4423247038732664842}
@@ -2053,7 +2054,7 @@ SpriteRenderer:
   m_Size: {x: 9.1, y: 5.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4814302803693416432

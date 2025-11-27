@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4b01e34531cdbcc419baabfeb61e5396
+guid: 5188a464e1e85484b90179dcd462465f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4540482670669111220
-    second: PistolaV_0
+      213: -1605527082047723150
+    second: WEAPON_PISTOL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PistolaV_0
+      name: WEAPON_PISTOL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 910
-        height: 519
+        width: 358
+        height: 232
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4063f94117fcf0c0800000000000000
-      internalID: -4540482670669111220
+      spriteID: 279a64510a508b9e0800000000000000
+      internalID: -1605527082047723150
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      PistolaV_0: -4540482670669111220
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

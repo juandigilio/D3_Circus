@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Processors;
 
 public class ShooterAnimator : MonoBehaviour
 {
+    [SerializeField] private Enemy_Shooter shooter;
     [SerializeField] private List<SpriteRenderer> walking = new List<SpriteRenderer>();
     [SerializeField] private List<SpriteRenderer> aiming_Front_Up = new List<SpriteRenderer>();
     [SerializeField] private Transform firePoint_Front_Up;
@@ -35,6 +36,8 @@ public class ShooterAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (shooter.IsPaused()) return;
+
         if (!isShooting && !isDead)
         {
             AnimateWalk();

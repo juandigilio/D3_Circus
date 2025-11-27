@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 71ee943b0478ceb498836c7e6063e8c3
+guid: 12e13b94b72acaf4e9a6ebc774204b64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6640904292351167151
-    second: EscopetaV_0
+      213: 8351640782812777991
+    second: WEAPON_SMG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EscopetaV_0
+      name: WEAPON_SMG_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 1712
-        height: 603
+        width: 937
+        height: 433
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 155ba0b2bb4c6d3a0800000000000000
-      internalID: -6640904292351167151
+      spriteID: 70e88370b0df6e370800000000000000
+      internalID: 8351640782812777991
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      EscopetaV_0: -6640904292351167151
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

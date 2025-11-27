@@ -24,7 +24,10 @@ public class JumpManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyBetterJumpPhysics();
+        if (GameManager.Instance.GetPlayerController().IsPaused()) return;
+        {
+            ApplyBetterJumpPhysics();
+        }
     }
 
     public void Jump()

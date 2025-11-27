@@ -24,27 +24,23 @@ public class Enemy_Shooter : Enemy
 
     private void Update()
     {
-        if (!isPaused)
-        {
-
-        }
+        if (isPaused) return;
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
 
-        if (!isPaused)
+        if (isPaused) return;
+
+        if (!animator.IsShooting())
         {
-            if (!animator.IsShooting())
-            {
-                Patroll();
-                Attack();
-            }
-            else
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
+            Patroll();
+            Attack();
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -69,8 +65,7 @@ public class Enemy_Shooter : Enemy
                 spawner.Unregister(this);
 
             animator.AnimateDeath();
-            //gameObject.SetActive(false);
-        }        
+        }
     }
 
     private void Shoot(Vector2 direction, Vector2 newFirePoint, float angle)
@@ -81,6 +76,7 @@ public class Enemy_Shooter : Enemy
     protected override void Attack()
     {
         if (playerController.CurrentHealth() <= 0) return;
+        if (isPaused) return;
 
         bool movingRight = spriteDirection > 0;
         isAttacking = false;
@@ -88,7 +84,7 @@ public class Enemy_Shooter : Enemy
         if ((movingRight && playerController.transform.position.x < transform.position.x) ||
             (!movingRight && playerController.transform.position.x > transform.position.x))
         {
-           
+
             return;
         }
 
@@ -110,15 +106,11 @@ public class Enemy_Shooter : Enemy
             {
                 firePoint = animator.GetFirePoints()[2 - index].position;
             }
-                
+
             index++;
 
-            //int mask = ~LayerMask.GetMask("Platform");
-            //RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance);
             RaycastHit2D hit = Physics2D.Raycast(firePoint, dir, shootDistance, raycastMask);
             Debug.DrawRay(firePoint, dir * shootDistance, Color.yellow, 0.1f);
-
-            
 
             if (hit.collider == null)
                 continue;
