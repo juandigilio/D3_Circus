@@ -14,6 +14,8 @@ public class MenuController : MonoBehaviour
     private static GameObject credits;
     private static GameObject options;
 
+    private static bool gameLoaded = false;
+
     public static event System.Action OnGameStarted;
 
     private void Start()
@@ -59,10 +61,15 @@ public class MenuController : MonoBehaviour
         credits.SetActive(false);
         backButton.SetActive(false);
         menuButtons.SetActive(true);
+
+        gameLoaded = false;
     }
 
     public async void LoadGame()
     {
+        if (gameLoaded) return;
+
+        gameLoaded = true;
         OnGameStarted?.Invoke();
 
         await SceneManager.LoadGameAsync();
