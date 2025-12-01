@@ -12,6 +12,7 @@ public static class SceneManager
     private static CustomScene gameLoaderScene;
     private static CustomScene mainScene;
     private static CustomScene mainMenuScene;
+    private static CustomScene cutScene;
     private static List<CustomScene> scenesPool = new List<CustomScene>();
     private static CustomScene endScene;
     private static CustomScene creditsScene;
@@ -70,11 +71,12 @@ public static class SceneManager
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(mainScene.sceneName));
     }
 
-    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, List<CustomScene> sceneDictionary, CustomScene end, CustomScene credits)
+    public static void SetScenes(CustomScene gameLoader, CustomScene main, CustomScene menu, CustomScene cutSceneScene, List<CustomScene> sceneDictionary, CustomScene end, CustomScene credits)
     {
         gameLoaderScene = gameLoader;
         mainScene = main;
         mainMenuScene = menu;
+        cutScene = cutSceneScene;
         endScene = end;
         creditsScene = credits;
 
@@ -105,9 +107,9 @@ public static class SceneManager
 
     public static async Task LoadGameAsync()
     {
-        await LoadTutorialSceneAsync();    
-        await UnloadSceneAsync(mainMenuScene);
-        await UnloadSceneAsync(mainMenuScene);
+        await LoadScenePoolAsync();    
+        await UnloadSceneAsync(cutScene);
+        await UnloadSceneAsync(cutScene);
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(scenesPool[0].sceneName));
     }
 
@@ -120,7 +122,15 @@ public static class SceneManager
         await UnloadSceneAsync(gameLoaderScene);
     }
 
-    public static async Task LoadTutorialSceneAsync()
+    public static async Task LoadCutSceneAsync()
+    {
+        await UnloadAll();
+        await UnloadSceneAsync(mainMenuScene);
+        await UnloadSceneAsync(mainMenuScene);
+        await LoadSceneAsync(cutScene);
+    }
+
+    public static async Task LoadScenePoolAsync()
     {
         index = 0;
         await LoadSceneAsync(scenesPool[index]);

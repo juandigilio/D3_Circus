@@ -23,7 +23,7 @@ public class FireBall : MonoBehaviour
     {
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
-        MenuController.OnGameStarted += StopPause;
+        CutSceneManager.OnGameStarted += StopPause;
     }
 
     private void SetPaused()
@@ -43,7 +43,7 @@ public class FireBall : MonoBehaviour
 
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;
-        MenuController.OnGameStarted -= StopPause;
+        CutSceneManager.OnGameStarted -= StopPause;
     }
 
     private void Update()

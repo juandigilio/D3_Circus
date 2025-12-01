@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
 
     private static bool gameLoaded = false;
 
-    public static event System.Action OnGameStarted;
+    
 
     private void Start()
     {
@@ -70,9 +70,8 @@ public class MenuController : MonoBehaviour
         if (gameLoaded) return;
 
         gameLoaded = true;
-        OnGameStarted?.Invoke();
 
-        await SceneManager.LoadGameAsync();
+        await SceneManager.LoadCutSceneAsync();
     }
 
     private void CheckInput()

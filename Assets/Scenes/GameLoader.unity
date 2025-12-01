@@ -157,6 +157,9 @@ MonoBehaviour:
   mainMenu:
     sceneName: MainMenu
     actionMapType: 0
+  cutScene:
+    sceneName: CutScene
+    actionMapType: 0
   scenesPool:
   - sceneName: Game
     actionMapType: 0

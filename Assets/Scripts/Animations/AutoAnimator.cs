@@ -41,14 +41,14 @@ public class AutoAnimator : MonoBehaviour
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
-        MenuController.OnGameStarted += StopPause;
+        CutSceneManager.OnGameStarted += StopPause;
     }
 
     private void OnDestroy()
     {
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;
-        MenuController.OnGameStarted -= StopPause;
+        CutSceneManager.OnGameStarted -= StopPause;
     }
 
     private void Update()

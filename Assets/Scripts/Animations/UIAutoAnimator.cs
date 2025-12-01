@@ -50,14 +50,14 @@ public class UIAutoAnimator : MonoBehaviour
 
         PauseHandler.OnGamePaused += Pause;
         PauseHandler.OnGameContinue += Unpause;
-        MenuController.OnGameStarted += Unpause;
+        CutSceneManager.OnGameStarted += Unpause;
     }
 
     private void OnDestroy()
     {
         PauseHandler.OnGamePaused -= Pause;
         PauseHandler.OnGameContinue -= Unpause;
-        MenuController.OnGameStarted -= Unpause;
+        CutSceneManager.OnGameStarted -= Unpause;
     }
 
     private void Update()
