@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID BOSS_STATE = 2952419348U;
         static const AkUniqueID CREDITS_STATE = 3945631183U;
+        static const AkUniqueID CUTSCENE_STATE = 624397667U;
         static const AkUniqueID DEATH_STATE = 1599309491U;
         static const AkUniqueID GAME_START = 733168346U;
         static const AkUniqueID LEVEL_STATE = 453242039U;
@@ -56,6 +57,7 @@ namespace AK
             {
                 static const AkUniqueID BOSS = 1560169506U;
                 static const AkUniqueID CREDITS = 2201105581U;
+                static const AkUniqueID CUTSCENE = 1182958561U;
                 static const AkUniqueID DEATH = 779278001U;
                 static const AkUniqueID GAMEPLAY = 89505537U;
                 static const AkUniqueID MENU = 2607556080U;

@@ -313,6 +313,12 @@ MonoBehaviour:
     groupIdInternal: 0
     groupGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: f99ce11372d6a3e44b1474050643ade2, type: 2}
+  cutSceneState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f5d73e25c8453e841bc458271fb1d534, type: 2}
   levelState:
     idInternal: 0
     valueGuidInternal: 

@@ -30,6 +30,8 @@ public class CutSceneManager : MonoBehaviour
             speachDuration += t;
         }
         speachDuration += toneDuration;
+
+        GameManager.Instance.GetMusicController().SetCutSceneState();
     }
 
 
