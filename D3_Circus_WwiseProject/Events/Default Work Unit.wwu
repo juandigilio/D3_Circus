@@ -384,6 +384,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Cutscene_State" ID="{BD08B47D-906F-45A4-9C28-6D2388664018}"/>
 					</ChildrenList>
 				</Folder>
 				<Event Name="Play_Fireball" ID="{7B549382-911B-400C-A52A-6BB85159FEE4}">

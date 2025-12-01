@@ -11,6 +11,7 @@
 						<State Name="Boss" ID="{9AB45658-A738-4467-9DE2-4B07EF6A6CA0}"/>
 						<State Name="Credits" ID="{C04FDB05-A6E4-480D-AD09-5923ECA0B5F0}"/>
 						<State Name="Death" ID="{82F556D9-C738-4094-85D6-01A1DB44D22C}"/>
+						<State Name="Cutscene" ID="{C4D38C1D-43FC-49F7-B968-386784A09ACD}"/>
 					</ChildrenList>
 				</StateGroup>
 			</ChildrenList>

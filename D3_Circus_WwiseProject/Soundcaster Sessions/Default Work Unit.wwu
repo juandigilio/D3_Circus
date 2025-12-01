@@ -17,15 +17,15 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="Master_Volume" ID="{74E68310-76BB-4AE7-8B1C-16AAA7A53A17}"/>
-							<Value>50</Value>
+							<Value>100</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="Music_Volume" ID="{D46B1BE0-324B-4FBA-84B5-CEE63B7A9C42}"/>
-							<Value>50</Value>
+							<Value>100</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="Menu" ID="{D70683F5-A6C9-4C4F-A2CF-373F8DE02B31}"/>
+						<CurrentStateRef Name="Gameplay" ID="{5143EE51-70E2-409C-A44F-1B8ED7A79839}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

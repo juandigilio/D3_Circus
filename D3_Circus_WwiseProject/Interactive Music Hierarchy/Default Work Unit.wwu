@@ -165,6 +165,51 @@
 												</SourceFadeOut>
 											</TransitionInfo>
 										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{0CB5EFB0-CCAA-48BA-9AA3-92AE75BAE588}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="0"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Cutscene_Audio" ID="{57B264F1-3F16-4698-B741-F7AFC4E407AA}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Menu_Music" ID="{8EF46A8B-C70D-4758-AF7F-4816491086E5}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<SourceFadeOut>
+													<MusicFade Name="Source Fade-out" ID="{F71CD7F4-AC39-4D54-9844-5E4456CAA520}">
+														<PropertyList>
+															<Property Name="FadeTime" Type="Real64" Value="3.2"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</SourceFadeOut>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{4C36BFA5-EFFE-4360-8F32-C4838A1A97AF}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Gameplay_Music" ID="{EA31FA95-79D0-405E-BB2E-BF0C2538B568}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Cutscene_Audio" ID="{57B264F1-3F16-4698-B741-F7AFC4E407AA}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Transition" ID="{77377F40-3A5D-428C-AAC2-700ED067E480}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+											</TransitionInfo>
+										</MusicTransition>
 									</ChildrenList>
 									<TransitionInfo/>
 								</MusicTransition>
@@ -806,6 +851,137 @@
 								</ObjectList>
 							</ObjectLists>
 						</MusicSegment>
+						<MusicPlaylistContainer Name="Cutscene_Audio" ID="{57B264F1-3F16-4698-B741-F7AFC4E407AA}" ShortID="823423789">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{BE431EB8-1571-4267-9D7E-3C168E5CF329}" ShortID="594641773">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{804E6251-133A-4BF9-9502-67126BFB0988}" ShortID="868804432">
+													<PropertyList>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{B7094084-ED3A-4C8E-88C6-0726726C3192}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{28E9D77A-3C86-49E9-A23E-ED73407A5A96}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{B495A5E7-0CD8-4075-A21B-0AA33309F141}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{B7094084-ED3A-4C8E-88C6-0726726C3192}" ShortID="348422519">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="42370.1875"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{C2A58B04-9583-4F10-BB95-2AF4242F29E4}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{A6A7A298-C2E9-41BF-8553-90F883ED1A29}" ShortID="537293832">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{AF33627A-4C0A-41E6-84F4-4FA202BBFD07}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{0CF08E00-0B07-40B0-8049-3FF6A6C76973}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{1C9670AE-7E9A-4521-94FC-C191C544F418}">
+													<Language>SFX</Language>
+													<AudioFile>TheCarnivalShow - Cutscene - 11 CUTSCENE START.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="967210221"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{4B1EE9F6-39CE-494C-B02D-BE5986C02FE2}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{3E6D4A45-A9DE-40F3-9759-440652F26D4D}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="42370.1875"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="TheCarnivalShow - Cutscene - 11 CUTSCENE START" ID="{1C9670AE-7E9A-4521-94FC-C191C544F418}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{67649CD7-19BA-4639-B056-2525881EE433}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{F80F91AD-4EB6-48D6-AFB3-BB149A876559}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="42370.1875"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
 					</ChildrenList>
 					<StateInfo>
 						<StateGroupList>
@@ -833,6 +1009,10 @@
 							<CustomState>
 								<StateRef Name="Credits" ID="{C04FDB05-A6E4-480D-AD09-5923ECA0B5F0}"/>
 								<CustomState Name="" ID="{AEBF4F43-2273-4A28-8E56-31306B84A35B}" ShortID="294719038"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Cutscene" ID="{C4D38C1D-43FC-49F7-B968-386784A09ACD}"/>
+								<CustomState Name="" ID="{4E858597-47B1-4CC9-BD7B-C5359F5D93C1}" ShortID="977587158"/>
 							</CustomState>
 							<CustomState>
 								<StateRef Name="Menu" ID="{D70683F5-A6C9-4C4F-A2CF-373F8DE02B31}"/>
@@ -931,6 +1111,24 @@
 											<ObjectList Name="EntryPath">
 												<Reference>
 													<ObjectRef Name="Death" ID="{82F556D9-C738-4094-85D6-01A1DB44D22C}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{6679E24F-0265-4585-B83B-996353465D67}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Cutscene_Audio" ID="{57B264F1-3F16-4698-B741-F7AFC4E407AA}" WorkUnitID="{1E503D13-B745-4EEC-BAC6-BEA32E94CBC7}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Cutscene" ID="{C4D38C1D-43FC-49F7-B968-386784A09ACD}" WorkUnitID="{33CB305A-57B0-4429-8A32-8513F87F4780}"/>
 												</Reference>
 											</ObjectList>
 										</ObjectLists>
