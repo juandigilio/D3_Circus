@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 9.1, y: 5.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4316171253727818329
@@ -104,14 +104,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   bulletPrefab: {fileID: 7608452157467363585, guid: dd4dd78d0ccada44582e3057cb8dbe95, type: 3}
-  firePoint: {fileID: 1225298187436604022}
-  magazineSize: 0
   fireRate: 0
   bulletSpeed: 0
   bulletLifeDistance: 0
   bulletDamage: 0
   bulletIsDestroyable: 0
   isPlayerWeapon: 1
+  firePoint: {fileID: 1225298187436604022}
 --- !u!1 &4145556705743943315
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +150,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4145556705743943315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -238,7 +237,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8916420958721125781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

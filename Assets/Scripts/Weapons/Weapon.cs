@@ -4,7 +4,7 @@ public enum WeaponType
 {
     Pistol,
     Automatic,
-    Rifle,
+    ShotGun,
 }
 
 public class Weapon : MonoBehaviour
@@ -112,7 +112,7 @@ public class Weapon : MonoBehaviour
             bulletIsDestroyable = true;
             currentAmmo = 80;
         }
-        else if (weaponType == WeaponType.Rifle)
+        else if (weaponType == WeaponType.ShotGun)
         {
             fireRate = 0.35f;
             bulletSpeed = 35f;

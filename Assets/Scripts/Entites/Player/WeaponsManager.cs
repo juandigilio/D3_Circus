@@ -147,7 +147,7 @@ public class WeaponsManager : MonoBehaviour
     {
         foreach (Weapon weapon in weapons)
         {
-            if (weapon.GetWeaponType() == WeaponType.Rifle)
+            if (weapon.GetWeaponType() == WeaponType.ShotGun)
             {
                 return weapon.GetCurrentAmmo();
             }

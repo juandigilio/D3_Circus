@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
                 machineGun.SetActive(true);
                 rifle.SetActive(false);
             }
-            else if (playerController.GetCurrentWeaponType() == WeaponType.Rifle)
+            else if (playerController.GetCurrentWeaponType() == WeaponType.ShotGun)
             {
                 pistol.SetActive(false);
                 machineGun.SetActive(false);

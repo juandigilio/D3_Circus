@@ -8,6 +8,7 @@ public class AutoAnimator : MonoBehaviour
     [SerializeField] private Sprite[] animationFrames;
     [SerializeField] private float frameRate = 4f;
     [SerializeField] private bool isPausable = false;
+    [SerializeField] private bool isLooping = true;
 
     [Header("Breath + Wiggle")]
     [SerializeField] private bool breath = false;
@@ -101,7 +102,24 @@ public class AutoAnimator : MonoBehaviour
         if (timer >= 1f / frameRate)
         {
             timer -= 1f / frameRate;
-            currentFrame = (currentFrame + 1) % animationFrames.Length;
+            currentFrame++;
+
+            if (!isLooping)
+            {
+                if (currentFrame >= animationFrames.Length)
+                {
+                    //currentFrame = animationFrames.Length - 1;
+                    spriteRenderer.enabled = false;
+                    enabled = false;
+                    return;
+                }
+            }
+
+            if (currentFrame >= animationFrames.Length)
+            {
+                currentFrame = 0;
+            }
+
             spriteRenderer.sprite = animationFrames[currentFrame];
         }
     }

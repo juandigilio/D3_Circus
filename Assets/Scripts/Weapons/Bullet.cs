@@ -4,8 +4,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer pistolBullet;
+    [SerializeField] private GameObject pistolAnimator;
     [SerializeField] private SpriteRenderer machineGunBullet;
-    [SerializeField] private SpriteRenderer rifleBullet;
+    [SerializeField] private GameObject machineGunAnimator;
+    [SerializeField] private SpriteRenderer shotGunBullet;
+    [SerializeField] private GameObject shotGunAnimator;
 
     private PlayerController player;
     private Vector2 startPosition;
@@ -169,33 +172,51 @@ public class Bullet : MonoBehaviour
             {
                 pistolBullet.enabled = true;
                 machineGunBullet.enabled = false;
-                rifleBullet.enabled = false;
+                shotGunBullet.enabled = false;
                 pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                break;
+                pistolAnimator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                machineGunAnimator.SetActive(false);
+                shotGunAnimator.SetActive(false);
+                pistolAnimator.SetActive(true);
+                Debug.Log("Pistol bullet activated" + pistolAnimator.activeSelf);
+                    break;
             }
             case WeaponType.Automatic:
             {
                 pistolBullet.enabled = false;
                 machineGunBullet.enabled = true;                 
-                rifleBullet.enabled = false;
+                shotGunBullet.enabled = false;
                 machineGunBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                break;
+                machineGunAnimator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                pistolAnimator.SetActive(false);
+                pistolAnimator.isStatic = true;
+                machineGunAnimator.SetActive(true);
+                shotGunAnimator.SetActive(false);
+                    break;
             }
-            case WeaponType.Rifle:
+            case WeaponType.ShotGun:
             {
                 pistolBullet.enabled = false;
                 machineGunBullet.enabled = false;
-                rifleBullet.enabled = true;
-                rifleBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                shotGunBullet.enabled = true;
+                shotGunBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                shotGunAnimator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                pistolAnimator.SetActive(false);
+                machineGunAnimator.SetActive(false);
+                shotGunAnimator.SetActive(true);
                 break;
             }
             default:
             {
                 pistolBullet.enabled = true;
                 machineGunBullet.enabled = false;
-                rifleBullet.enabled = false;
+                shotGunBullet.enabled = false;
                 pistolBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                break;
+                pistolAnimator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                pistolAnimator.SetActive(true);
+                machineGunAnimator.SetActive(false);
+                shotGunAnimator.SetActive(false);
+                    break;
             }
         }
 
