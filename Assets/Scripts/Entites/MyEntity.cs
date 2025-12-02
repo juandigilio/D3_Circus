@@ -38,7 +38,7 @@ public abstract class MyEntity : MonoBehaviour
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
         CutSceneManager.OnGameStarted += StopPause;
-        Boss.OnBossDied += LockWin;
+        Boss.OnEndGame += LockWin;
     }
 
     private void OnDestroy()
@@ -46,7 +46,7 @@ public abstract class MyEntity : MonoBehaviour
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;
         CutSceneManager.OnGameStarted -= StopPause;
-        Boss.OnBossDied -= LockWin;
+        Boss.OnEndGame -= LockWin;
     }
 
     protected virtual void FixedUpdate()
@@ -108,7 +108,7 @@ public abstract class MyEntity : MonoBehaviour
     {
         isDead = true;
         isPaused = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //.constraints = RigidbodyConstraints2D.FreezeAll;
         //rb.linearVelocity = Vector2.zero;
     }
 

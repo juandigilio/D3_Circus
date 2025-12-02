@@ -27,6 +27,7 @@ public class JumperEnemiesManager : MonoBehaviour
     private float addingRate = 1.0f;
 
     private float lastSpawn;
+    private bool isBossDead = false;
 
 
     private void Awake()
@@ -42,20 +43,23 @@ public class JumperEnemiesManager : MonoBehaviour
         outterPoints.AddRange(GameManager.Instance.GetSideScrollCamera().GetJumperLateralPoints());
     }
 
+    private void Start()
+    {
+        Boss.OnBossDied += SetBossDead;
+    }
+
+    private void OnDestroy()
+    {
+        Boss.OnBossDied -= SetBossDead;
+    }
+
     private void FixedUpdate()
     {
         if (player == null || GameManager.Instance.GetPlayerController().IsPaused()) return;
+        if (isBossDead) return;
 
         SpawnEnemies();
         HandleJumpers();
-    }
-
-    public void KillAll()
-    {
-        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
-        {
-            jumper.TakeDamage(9999);
-        }
     }
 
     public void LoadNextSector()
@@ -195,5 +199,10 @@ public class JumperEnemiesManager : MonoBehaviour
         nextAttacker = 0;
         spawnedEnemies = 0;
         lastSpawn = 0f;
+    }
+
+    private void SetBossDead()
+    {
+        isBossDead = true;
     }
 }

@@ -26,6 +26,13 @@ public abstract class Enemy : MyEntity
         }
 
         PlayerController.OnPlayerDied += SetPaused;
+        Boss.OnBossDied += SetPaused;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.OnPlayerDied -= SetPaused;
+        Boss.OnBossDied -= SetPaused;
     }
 
     protected override void FixedUpdate()

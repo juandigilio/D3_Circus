@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WEAPON_SHOTGUN_MUZZLE_01_0: -8164346948440463689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

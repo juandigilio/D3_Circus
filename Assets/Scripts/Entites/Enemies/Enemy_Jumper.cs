@@ -31,10 +31,13 @@ public class Enemy_Jumper : Enemy
         manager.Register(this);
 
         animator.SetFalling();
+
+        Boss.OnBossDied += TakeDamage;
     }
 
     private void OnDestroy()
     {
+        Boss.OnBossDied -= TakeDamage;
         manager?.Unregister(this);
     }
 
@@ -124,6 +127,18 @@ public class Enemy_Jumper : Enemy
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+
+        entityCollider.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        isDead = true;
+        manager?.Unregister(this);
+        animator.AnimateDeath();
+    }
+
+    private void TakeDamage()
+    {
+        base.TakeDamage(9999);
 
         entityCollider.enabled = false;
         rb.linearVelocity = Vector2.zero;

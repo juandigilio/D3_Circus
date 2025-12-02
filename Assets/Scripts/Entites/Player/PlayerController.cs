@@ -38,6 +38,13 @@ public class PlayerController : MyEntity
         transform.position = startPos.position;
 
         GameManager.Instance.GetSideScrollCamera().RestartCamera();
+
+        Boss.OnBossDied += SetPaused;
+    }
+
+    private void OnDestroy()
+    {
+        Boss.OnBossDied -= SetPaused;
     }
 
     protected override void FixedUpdate()

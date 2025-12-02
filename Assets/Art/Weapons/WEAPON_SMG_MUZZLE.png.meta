@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WEAPON_SMG_MUZZLE_0: 8502493639494957384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

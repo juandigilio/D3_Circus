@@ -20,6 +20,13 @@ public class Enemy_Shooter : Enemy
 
         health = 1;
         shootDistance = weapon.GetWeaponRange();
+
+        Boss.OnBossDied += TakeDamage;
+    }
+
+    private void OnDestroy()
+    {
+        Boss.OnBossDied -= TakeDamage;
     }
 
     private void Update()
@@ -59,6 +66,20 @@ public class Enemy_Shooter : Enemy
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+
+        if (health <= 0)
+        {
+            if (spawner != null)
+                spawner.Unregister(this);
+
+            isDead = true;
+            animator.AnimateDeath();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        base.TakeDamage(9999);
 
         if (health <= 0)
         {

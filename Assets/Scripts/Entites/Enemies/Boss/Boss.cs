@@ -35,9 +35,11 @@ public class Boss : Enemy
     private Coroutine shootRoutine;
     private Color originalMouthColor;
     private Coroutine flashRoutine;
+    private bool mouthFallen = false;
 
 
     public static event System.Action OnBossDied;
+    public static event System.Action OnEndGame;
 
 
     protected override void Start()
@@ -158,10 +160,11 @@ public class Boss : Enemy
     {
         isPaused = true;
         isAttacking = false;
+        mouthFallen = true;
+
+        OnBossDied?.Invoke();
 
         mouthCollider.TurnOffRigidbody();
-        //if (mouthCollider != null)
-        //    mouthCollider.isTrigger = false;
 
         Rigidbody2D rb = mouth.GetComponent<Rigidbody2D>();
         if (rb == null)
@@ -171,11 +174,11 @@ public class Boss : Enemy
         rb.freezeRotation = false;
         rb.angularVelocity = Random.Range(-250f, 250f);
 
-        GameManager.Instance.GetLevelManager().KillAll();
+        //GameManager.Instance.GetLevelManager().KillAll();
 
         yield return new WaitForSeconds(2f);
 
-        OnBossDied?.Invoke();
+        OnEndGame?.Invoke();
     }
 
     protected override void Attack()
@@ -190,10 +193,12 @@ public class Boss : Enemy
         if (flashRoutine != null)
             StopCoroutine(flashRoutine);
 
-        flashRoutine = StartCoroutine(FlashMouth());
+        if (health > 0)
+            flashRoutine = StartCoroutine(FlashMouth());
 
-        if (health <= 0)
+        if (health <= 0 && !mouthFallen)
         {
+            mouthFallen = true;
             StartCoroutine(FallMouth());
         }
 

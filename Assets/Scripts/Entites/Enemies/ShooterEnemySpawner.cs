@@ -28,12 +28,14 @@ public class ShooterEnemySpawner : MonoBehaviour
         Boss.OnBossDied += SetBossDead;
     }
 
+    private void OnDestroy()
+    {
+        Boss.OnBossDied -= SetBossDead;
+    }
+
     private void FixedUpdate()
     {
-        if (isBossDead)
-        {
-            KillAllEnemies();
-        }
+        if (isBossDead) return;
 
         SpawnEnemies();
     }
@@ -94,18 +96,6 @@ public class ShooterEnemySpawner : MonoBehaviour
 
         spawnedEnemies.Clear();
         totalSpawned = 0;
-    }
-
-    public void KillAllEnemies()
-    {
-        foreach (Enemy_Shooter enemy in spawnedEnemies)
-        {
-            if (enemy)
-            {
-                Unregister(enemy);
-                enemy.TakeDamage(9999);
-            }
-        }
     }
 
     private void SetBossDead()

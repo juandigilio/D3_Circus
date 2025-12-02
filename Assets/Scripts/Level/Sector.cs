@@ -28,21 +28,21 @@ public class Sector : MonoBehaviour
         return true;
     }
 
-    public void KillAll()
-    {
-        foreach (Enemy_Shooter shooter in shooters)
-        {
-            if (shooter)
-            {
-                shooter.TakeDamage(9999);
-            }
-        }
+    //public void KillAll()
+    //{
+    //    foreach (Enemy_Shooter shooter in shooters)
+    //    {
+    //        if (shooter)
+    //        {
+    //            shooter.TakeDamage(9999);
+    //        }
+    //    }
 
-        foreach (ShooterEnemySpawner spawner in spawners)
-        {
-            spawner.KillAllEnemies();
-        }
-    }
+    //    foreach (ShooterEnemySpawner spawner in spawners)
+    //    {
+    //        spawner.KillAllEnemies();
+    //    }
+    //}
 
     public List<Cage> GetCages()
     {

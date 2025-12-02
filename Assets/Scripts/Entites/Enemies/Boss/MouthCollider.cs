@@ -24,6 +24,6 @@ public class MouthCollider : MonoBehaviour
     public void TurnOffRigidbody()
     {
         //rb.bodyType = RigidbodyType2D.Dynamic;
-        Destroy(rb);
+        //Destroy(rb);
     }
 }

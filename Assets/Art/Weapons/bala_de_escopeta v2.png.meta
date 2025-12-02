@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bala_de_escopeta v2_0: -5420334268229925816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

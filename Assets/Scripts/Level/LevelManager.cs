@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.GetMusicController().SetLevelState();
 
         PlayerController.OnPlayerDied += LoadGameOver;
-        Boss.OnBossDied += LoadWin;
+        Boss.OnEndGame += LoadWin;
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
     private void OnDestroy()
     {
         PlayerController.OnPlayerDied -= LoadGameOver;
-        Boss.OnBossDied -= LoadWin;
+        Boss.OnEndGame -= LoadWin;
 
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;
@@ -105,12 +105,12 @@ public class LevelManager : MonoBehaviour
         return gameData.killsScore + gameData.collectablesScore;
     }
 
-    public void KillAll()
-    {
-        jumperEnemiesManager.KillAll();
+    //public void KillAll()
+    //{
+    //    jumperEnemiesManager.KillAll();
 
-        shooterSectors[currentSector].KillAll();
-    }
+    //    //shooterSectors[currentSector].KillAll();
+    //}
 
     private void CheckActiveEnemies()
     {
