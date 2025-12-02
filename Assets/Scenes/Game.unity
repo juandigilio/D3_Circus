@@ -1397,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.23
+      value: 9.76
       objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2816,7 +2816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1850683636982666994, guid: 76a4298d8b705e243ac632438043884c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9554133
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 1850683636982666994, guid: 76a4298d8b705e243ac632438043884c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3025,7 +3025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5970737331237472157, guid: d9fd2b40925c4f8448835c41d351547b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.38
+      value: 10.04
       objectReference: {fileID: 0}
     - target: {fileID: 5970737331237472157, guid: d9fd2b40925c4f8448835c41d351547b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4313,8 +4313,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 2116850943}
     m_Modifications:
     - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: spawnRate
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: enemiesToSpawn
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
@@ -4830,7 +4834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6541368293004667290, guid: e582836e8e43ce040a1e837080f13505, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.6
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 6541368293004667290, guid: e582836e8e43ce040a1e837080f13505, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5718,7 +5722,7 @@ MonoBehaviour:
   maxActiveJumpers: 5
   spawnRate: 2
   spawnParent: {fileID: 1469640579}
-  enemiesToSpawnPerSector: 0800000005000000030000000a000000
+  enemiesToSpawnPerSector: 0800000007000000070000000a00000019000000
 --- !u!1 &1872818434
 GameObject:
   m_ObjectHideFlags: 0
@@ -6921,9 +6925,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1880706629}
     m_Modifications:
+    - target: {fileID: 2233392550782472075, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2350757081142562800, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.04
+      value: -7.59
       objectReference: {fileID: 0}
     - target: {fileID: 2350757081142562800, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6960,6 +6968,18 @@ PrefabInstance:
     - target: {fileID: 2350757081142562800, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932586350680333035, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880588819186127875, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329030191620283160, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7498288859285287717, guid: 81b1e0ad3e12e2349a877e271935c0d3, type: 3}
       propertyPath: m_Name
