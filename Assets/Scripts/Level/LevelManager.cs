@@ -31,7 +31,6 @@ public class LevelManager : MonoBehaviour
         shooterSectors[currentSector].gameObject.SetActive(true);
 
         GameManager.Instance.GetMusicController().SetLevelState();
-        GameManager.Instance.GetMusicController().SetLevelState();
 
         PlayerController.OnPlayerDied += LoadGameOver;
         Boss.OnEndGame += LoadWin;
