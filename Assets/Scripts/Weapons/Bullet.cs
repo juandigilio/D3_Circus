@@ -65,6 +65,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isActive) return;
+        if (isPaused) return;
 
         if (collision.CompareTag("Baloon"))
         {

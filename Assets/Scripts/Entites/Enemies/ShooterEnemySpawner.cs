@@ -17,16 +17,24 @@ public class ShooterEnemySpawner : MonoBehaviour
     private List<Enemy_Shooter> spawnedEnemies = new List<Enemy_Shooter>();
     private int totalSpawned = 0;
     private float spawnTimer = 0f;
+    private bool isBossDead = false;
 
 
 
     private void Start()
     {
         ClearAll();
+
+        Boss.OnBossDied += SetBossDead;
     }
 
     private void FixedUpdate()
     {
+        if (isBossDead)
+        {
+            KillAllEnemies();
+        }
+
         SpawnEnemies();
     }
 
@@ -98,5 +106,10 @@ public class ShooterEnemySpawner : MonoBehaviour
                 enemy.TakeDamage(9999);
             }
         }
+    }
+
+    private void SetBossDead()
+    {
+        isBossDead = true;
     }
 }

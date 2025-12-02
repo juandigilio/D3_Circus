@@ -5,7 +5,8 @@ using UnityEngine;
 public class Boss : Enemy
 {
     [Header("Mouth")]
-    [SerializeField] private Collider2D mouthCollider;
+    [SerializeField] private MouthCollider mouthCollider;
+    [SerializeField] private Collider2D mouthTrigger;
     [SerializeField] private GameObject mouth;
     [SerializeField] private Transform mouthStart;
     [SerializeField] private Transform mouthEnd;
@@ -43,10 +44,9 @@ public class Boss : Enemy
     {
         base.Start();
         mouth.transform.position = mouthStart.position;
-        mouthCollider.enabled = false;
+        mouthTrigger.enabled = false;
 
         originalMouthColor = mouthRenderer.color;
-        //health = 15;
 
         GameManager.Instance.RegisterBoss(this);
 
@@ -82,7 +82,7 @@ public class Boss : Enemy
             t += Time.deltaTime * mouthSpeed;
             Vector3 pos = Vector3.Lerp(from, to, t);
             mouth.transform.position = pos;
-            mouthCollider.transform.position = pos;
+            mouthTrigger.transform.position = pos;
 
             yield return null;
         }
@@ -137,7 +137,7 @@ public class Boss : Enemy
 
             bossAudio.PlayLaughSound();
             isAttacking = true;
-            mouthCollider.enabled = true;
+            mouthTrigger.enabled = true;
 
             yield return StartCoroutine(MoveMouth(mouthStart.position, mouthEnd.position));
 
@@ -148,7 +148,7 @@ public class Boss : Enemy
             StopCoroutine(shootRoutine);
 
             yield return StartCoroutine(MoveMouth(mouthEnd.position, mouthStart.position));
-            mouthCollider.enabled = false;
+            mouthTrigger.enabled = false;
 
             isAttacking = false;
         }
@@ -159,8 +159,9 @@ public class Boss : Enemy
         isPaused = true;
         isAttacking = false;
 
-        if (mouthCollider != null)
-            mouthCollider.isTrigger = false;
+        mouthCollider.TurnOffRigidbody();
+        //if (mouthCollider != null)
+        //    mouthCollider.isTrigger = false;
 
         Rigidbody2D rb = mouth.GetComponent<Rigidbody2D>();
         if (rb == null)

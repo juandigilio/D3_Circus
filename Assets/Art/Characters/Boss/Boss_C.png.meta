@@ -103,10 +103,10 @@ TextureImporter:
       name: Boss_C_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 181
-        width: 515
-        height: 371
+        x: 449
+        y: 504
+        width: 450
+        height: 351
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Boss_C_0: -7801154309180679004
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
