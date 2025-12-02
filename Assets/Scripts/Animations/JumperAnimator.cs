@@ -30,13 +30,6 @@ public class JumperAnimator : MonoBehaviour
     {
         if (isDeath)
         {
-            deathTimer += Time.fixedDeltaTime;
-
-            if (deathTimer >= 0.4f)
-            {
-                HideAll();
-                death[1].enabled = true;
-            }
             return;
         }
 
@@ -178,11 +171,31 @@ public class JumperAnimator : MonoBehaviour
             HideAll();
             death[i].enabled = true;
 
-            yield return new WaitForSeconds(animationSpeed);
+            yield return new WaitForSeconds(0.14f);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
+
+        float blinkTime = 0.1f;
+        int blinkCount = 8;
+
+        for (int i = 0; i < blinkCount; i++)
+        {
+            SetDeathSpritesVisible(false);
+            yield return new WaitForSeconds(blinkTime * 1.6f);
+
+            SetDeathSpritesVisible(true);
+            yield return new WaitForSeconds(blinkTime);
+
+            blinkTime -= 0.01f;
+        }
+
         Destroy(gameObject);
+    }
+
+    private void SetDeathSpritesVisible(bool visible)
+    {
+        death[1].enabled = visible;
     }
 
     private void HideAll()

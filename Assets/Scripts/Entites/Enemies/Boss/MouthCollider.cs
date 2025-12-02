@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouthCollider : MonoBehaviour
 {
-    [SerializeField] private Collider2D mouthCollider;
+    [SerializeField] public Collider2D mouthCollider;
 
     private Rigidbody2D rb;
 
@@ -11,7 +11,7 @@ public class MouthCollider : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other == null) return;
 

@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 7998247280855342227}
   - component: {fileID: 9179846210263569444}
   - component: {fileID: 4281175861167034148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mouth
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1092,7 +1092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7087752840261079931}
   - component: {fileID: 7218169145858510823}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6386919328726704718}
   - component: {fileID: 8153508771674720520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right  Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

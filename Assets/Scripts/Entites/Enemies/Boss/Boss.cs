@@ -164,17 +164,16 @@ public class Boss : Enemy
 
         OnBossDied?.Invoke();
 
-        mouthCollider.TurnOffRigidbody();
-
         Rigidbody2D rb = mouth.GetComponent<Rigidbody2D>();
         if (rb == null)
             rb = mouth.AddComponent<Rigidbody2D>();
 
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 2f;
         rb.freezeRotation = false;
         rb.angularVelocity = Random.Range(-250f, 250f);
 
-        //GameManager.Instance.GetLevelManager().KillAll();
+        mouthCollider.mouthCollider.isTrigger = false;
 
         yield return new WaitForSeconds(2f);
 
@@ -201,8 +200,6 @@ public class Boss : Enemy
             mouthFallen = true;
             StartCoroutine(FallMouth());
         }
-
-        //enemyAudio.PlayHitSound();
     }
 
     public BossAudio GetBossAudio()

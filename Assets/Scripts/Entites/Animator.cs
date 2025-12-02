@@ -299,6 +299,12 @@ public class PlayerAnimator : MonoBehaviour
         SetLegs(legs_Jumping);
     }
 
+    public void RestartPosition()
+    {
+        SetCurrentWeaponAnimation(currentWeaponSet.front, currentWeaponSet.firePoint_Front);
+        SetTorso(torso_Front);
+    }
+
     private void UpdateWeaponDirection()
     {
         switch (lastDirection)

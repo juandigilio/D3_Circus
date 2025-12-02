@@ -45,10 +45,6 @@ public class Enemy_Jumper : Enemy
     {
         base.FixedUpdate();
 
-        ////////////////////////////
-        ///hacer que si el player esta mas abajo ignore las plataformas, sino no
-        ///
-
         if (isDead)
         {
             deadTimer += Time.fixedDeltaTime;
@@ -57,7 +53,15 @@ public class Enemy_Jumper : Enemy
             {
                 Destroy(gameObject);
             }
+
+            return;
         }
+
+        
+
+        ////////////////////////////
+        ///hacer que si el player esta mas abajo ignore las plataformas, sino no
+        ///
 
         if (isPaused) return;
         if (!isGrounded) return;

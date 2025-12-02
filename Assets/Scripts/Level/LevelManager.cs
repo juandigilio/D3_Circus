@@ -105,13 +105,6 @@ public class LevelManager : MonoBehaviour
         return gameData.killsScore + gameData.collectablesScore;
     }
 
-    //public void KillAll()
-    //{
-    //    jumperEnemiesManager.KillAll();
-
-    //    //shooterSectors[currentSector].KillAll();
-    //}
-
     private void CheckActiveEnemies()
     {
         if (GameManager.Instance.GetSideScrollCamera().IsMoving()) return;
@@ -169,7 +162,7 @@ public class LevelManager : MonoBehaviour
 
     private async void LoadEndGame()
     {
-        HideAll();
+        //HideAll();
         await SceneManager.LoadEndSceneAsync();
     } 
 

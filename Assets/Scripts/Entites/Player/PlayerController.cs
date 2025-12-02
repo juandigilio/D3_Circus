@@ -17,6 +17,7 @@ public class PlayerController : MyEntity
     private CharacterAudio characterAudio;
     private Camera mainCamera;
     private Vector2 inputDirection;
+    private bool isBossDead = false;
 
     private void OnEnable()
     {
@@ -40,15 +41,22 @@ public class PlayerController : MyEntity
         GameManager.Instance.GetSideScrollCamera().RestartCamera();
 
         Boss.OnBossDied += SetPaused;
+        Boss.OnBossDied += SetBossDead;
     }
 
     private void OnDestroy()
     {
         Boss.OnBossDied -= SetPaused;
+        Boss.OnBossDied -= SetBossDead;
     }
 
     protected override void FixedUpdate()
     {
+        if (isBossDead)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
         base.FixedUpdate();
 
         if (!isPaused)
@@ -56,6 +64,12 @@ public class PlayerController : MyEntity
             Move();
             SetAimControllerDirection();
         }
+    }
+
+    private void SetBossDead()
+    {
+        isBossDead = true;
+        animator.RestartPosition();
     }
 
     public void SetInputDirection(Vector2 newDirection)
@@ -176,6 +190,7 @@ public class PlayerController : MyEntity
 
     public override void TakeDamage(float damage)
     {
+        if (isBossDead) return;
         if (health <= 0) return;
 
         base.TakeDamage(damage);
