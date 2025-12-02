@@ -10,8 +10,6 @@ public class ToxicFog : MonoBehaviour
     [SerializeField] private Transform cloudsParent;
     [SerializeField] private float cloudYMinRange = 0.5f;
     [SerializeField] private float cloudYMaxRange = 6f;
-    [SerializeField] private float cloudSpawnDistance = 25f;
-    [SerializeField] private float cloudDespawnX = -30f;
     [SerializeField] private float baseCloudSpeed = 0.8f;
     [SerializeField] private float cloudSpeedVariation = 0.4f;
 
@@ -26,7 +24,6 @@ public class ToxicFog : MonoBehaviour
 
     private PlayerController player;
     private Transform cam;
-    private float nextCloudX;
     private float levelTime;
     private float restingTime;
     private float damageTimer = 1f;
@@ -38,7 +35,6 @@ public class ToxicFog : MonoBehaviour
         player = GameManager.Instance.GetPlayerController();
         cam = Camera.main.transform;
 
-        nextCloudX = cam.position.x + cloudSpawnDistance;
         levelTime = levelManager.GetLevelTime();
         restingTime = levelManager.GetTotalTime();
         toxicPercent = 0;
@@ -46,8 +42,6 @@ public class ToxicFog : MonoBehaviour
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
     }
-
-    
 
     private void FixedUpdate()
     {
@@ -83,26 +77,25 @@ public class ToxicFog : MonoBehaviour
 
     private void HandleCloudsSpawn()
     {
-        if (cam.position.x >= nextCloudX)
-        {
-            UpdateToxicPercen();
-            nextCloudX += cloudSpawnDistance * toxicPercent;
-            SpawnRandomCloud(nextCloudX);
-        }
-
         cloudSpawnTimer += Time.fixedDeltaTime;
+
+        if (toxicPercent < minToxicPercent)
+        {
+            toxicPercent = minToxicPercent;
+        }
 
         if (cloudSpawnTimer >= (cloudSpawnInterval / toxicPercent))
         {
             cloudSpawnTimer = 0f;
             UpdateToxicPercen();
-            float spawnX = cam.position.x + (cloudSpawnDistance * toxicPercent);
-            SpawnRandomCloud(spawnX);
+            SpawnRandomCloud();
         }
     }
 
     private void MoveClouds()
     {
+        float camLeft = cam.position.x - Camera.main.orthographicSize * Camera.main.aspect;
+
         for (int i = cloudsParent.childCount - 1; i >= 0; i--)
         {
             Transform c = cloudsParent.GetChild(i);
@@ -115,21 +108,34 @@ public class ToxicFog : MonoBehaviour
             float windY = Mathf.Sin(Time.time * data.windFrequency + data.randomOffset) * data.windAmplitude;
             c.position = new Vector3(c.position.x, data.baseY + windY, c.position.z);
 
-            if (c.position.x < cam.position.x + cloudDespawnX)
+            SpriteRenderer renderer = c.GetComponent<SpriteRenderer>();
+            float halfWidth = renderer.bounds.size.x * 0.5f;
+
+            if (c.position.x + halfWidth < camLeft)
                 Destroy(c.gameObject);
         }
     }
 
-    private void SpawnRandomCloud(float xPos)
+    private void SpawnRandomCloud()
     {
         if (cloudPrefabs.Count == 0) return;
 
         SpriteRenderer prefab = cloudPrefabs[Random.Range(0, cloudPrefabs.Count)];
+
         SpriteRenderer cloud = Instantiate(prefab, cloudsParent);
 
+        float spriteWidth = cloud.bounds.size.x;
+        float halfWidth = spriteWidth * 0.5f;
+
+        float camRight = cam.position.x + Camera.main.orthographicSize * Camera.main.aspect;
+
+        float spawnX = camRight + halfWidth;
+
         float yPos = Random.Range(cloudYMinRange, cloudYMaxRange);
-        cloud.transform.position = new Vector3(xPos, yPos, cloudsParent.transform.position.z);
+        cloud.transform.position = new Vector3(spawnX, yPos, cloudsParent.transform.position.z);
+
         cloud.transform.localScale = new Vector3(toxicPercent / 2, toxicPercent / 2, 1);
+
         cloud.color = cloudColor;
 
         CloudData data = cloud.gameObject.AddComponent<CloudData>();
@@ -150,7 +156,9 @@ public class ToxicFog : MonoBehaviour
             toxicPercent = 1f - (restingTime / levelTime);
 
             if (toxicPercent < minToxicPercent)
+            {
                 toxicPercent = minToxicPercent;
+            }
         }
         else
         {

@@ -59,6 +59,28 @@ public class Weapon : MonoBehaviour
 
             fireCooldown = 0f;
 
+            if (isPlayerWeapon && weaponType == WeaponType.ShotGun)
+            {
+                float spread = 10f;
+
+                CreateBullet(firePoint.position, direction, angle);
+
+                CreateBullet(
+                    firePoint.position,
+                    RotateVector(direction, spread),
+                    angle + spread
+                );
+
+                CreateBullet(
+                    firePoint.position,
+                    RotateVector(direction, -spread),
+                    angle - spread
+                );
+
+                currentAmmo--;
+                return true;
+            }
+
             Bullet newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             newBullet.Activate(firePoint.position, direction, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon, weaponType, angle);
 
@@ -66,7 +88,7 @@ public class Weapon : MonoBehaviour
             {
                 currentAmmo--;
             }
-                
+
             return true;
         }
 
@@ -90,6 +112,24 @@ public class Weapon : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void CreateBullet(Vector2 pos, Vector2 dir, float angle)
+    {
+        Bullet b = Instantiate(bulletPrefab, pos, Quaternion.identity);
+        b.Activate(pos, dir, bulletSpeed, bulletLifeDistance, bulletDamage, bulletIsDestroyable, isPlayerWeapon, weaponType, angle);
+    }
+
+    private Vector2 RotateVector(Vector2 v, float degrees)
+    {
+        float rad = degrees * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(rad);
+        float sin = Mathf.Sin(rad);
+
+        return new Vector2(
+            v.x * cos - v.y * sin,
+            v.x * sin + v.y * cos
+        );
     }
 
     private void SetWeaponType()

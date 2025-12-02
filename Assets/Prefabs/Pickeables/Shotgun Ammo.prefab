@@ -108,7 +108,7 @@ MonoBehaviour:
   minAlpha: 0.1
   maxAlpha: 0.6
   weaponType: 2
-  ammoAmount: 150
+  ammoAmount: 20
 --- !u!50 &7333680129544063873
 Rigidbody2D:
   serializedVersion: 5

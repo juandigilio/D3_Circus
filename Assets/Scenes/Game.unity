@@ -319,6 +319,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1667427341}
     m_Modifications:
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.04
@@ -875,6 +879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 526145856}
     m_Modifications:
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.85
@@ -1390,6 +1398,10 @@ PrefabInstance:
     - target: {fileID: 390410255808385944, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2296,6 +2308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 54375127}
     m_Modifications:
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.85
@@ -4318,7 +4334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: enemiesToSpawn
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
@@ -5150,6 +5166,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 591870389}
     m_Modifications:
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.85
@@ -5389,6 +5409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1667427341}
     m_Modifications:
+    - target: {fileID: 3743413047418860653, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3906552209739579506, guid: 516c2edd4e212f94c930463ec9169911, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.85
@@ -5722,7 +5746,7 @@ MonoBehaviour:
   maxActiveJumpers: 5
   spawnRate: 2
   spawnParent: {fileID: 1469640579}
-  enemiesToSpawnPerSector: 0800000007000000070000000a00000019000000
+  enemiesToSpawnPerSector: 0f0000000f0000000f0000000f0000001e000000
 --- !u!1 &1872818434
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,6 +6658,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: damagePerSecond
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
+      propertyPath: minToxicPercent
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249048799176735161, guid: eae22d638dc60fa488ac14a5ea82f3ca, type: 3}
       propertyPath: cloudSpawnDistance
       value: 55
       objectReference: {fileID: 0}
@@ -7300,12 +7332,20 @@ PrefabInstance:
       value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7177021883241126403, guid: 55d701eeae746da4a984ba31717a9da8, type: 3}
+      propertyPath: health
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177021883241126403, guid: 55d701eeae746da4a984ba31717a9da8, type: 3}
       propertyPath: fireRate
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7177021883241126403, guid: 55d701eeae746da4a984ba31717a9da8, type: 3}
       propertyPath: idleTime
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177021883241126403, guid: 55d701eeae746da4a984ba31717a9da8, type: 3}
+      propertyPath: scoreValue
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 7177021883241126403, guid: 55d701eeae746da4a984ba31717a9da8, type: 3}
       propertyPath: availableLives

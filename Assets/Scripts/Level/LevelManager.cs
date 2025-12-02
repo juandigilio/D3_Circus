@@ -31,9 +31,11 @@ public class LevelManager : MonoBehaviour
         shooterSectors[currentSector].gameObject.SetActive(true);
 
         GameManager.Instance.GetMusicController().SetLevelState();
+        GameManager.Instance.GetMusicController().SetLevelState();
 
         PlayerController.OnPlayerDied += LoadGameOver;
         Boss.OnEndGame += LoadWin;
+        Boss.OnBossDied += SetPaused;
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
@@ -43,6 +45,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerController.OnPlayerDied -= LoadGameOver;
         Boss.OnEndGame -= LoadWin;
+        Boss.OnBossDied -= SetPaused;
 
         PauseHandler.OnGameContinue -= StopPause;
         PauseHandler.OnGamePaused -= SetPaused;

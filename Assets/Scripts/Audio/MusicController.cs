@@ -33,6 +33,7 @@ public class MusicController : MonoBehaviour
     public void SetLevelState()
     {
         levelState.SetValue();
+        Debug.Log("Level State Set in MusicController");
     }
 
     public void SetBossState()

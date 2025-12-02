@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class MenuController : MonoBehaviour
@@ -43,6 +44,10 @@ public class MenuController : MonoBehaviour
         credits.SetActive(false);
         options.SetActive(true);
         backButton.SetActive(true);
+
+        var first = backButton;
+        if (first != null)
+            EventSystem.current.SetSelectedGameObject(first.gameObject);
     }
 
     public void ShowCredits()
@@ -53,6 +58,10 @@ public class MenuController : MonoBehaviour
         backButton.SetActive(false);
 
         creditsManager.BeginCredits();
+
+        var first = options.GetComponentInChildren<UnityEngine.UI.Button>();
+        if (first != null)
+            EventSystem.current.SetSelectedGameObject(first.gameObject);
     }
 
     public static void ShowMenu()
@@ -61,6 +70,10 @@ public class MenuController : MonoBehaviour
         credits.SetActive(false);
         backButton.SetActive(false);
         menuButtons.SetActive(true);
+
+        var firstButton = menuButtons.GetComponentInChildren<UnityEngine.UI.Button>();
+        if (firstButton != null)
+            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
 
         gameLoaded = false;
     }

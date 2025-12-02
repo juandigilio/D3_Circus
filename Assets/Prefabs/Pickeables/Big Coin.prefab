@@ -53,7 +53,7 @@ MonoBehaviour:
   minAlpha: 0.1
   maxAlpha: 0.6
   animator: {fileID: 0}
-  scoreValue: 2500
+  scoreValue: 2000
   isSmallCoin: 0
 --- !u!212 &996309920342011733
 SpriteRenderer:
