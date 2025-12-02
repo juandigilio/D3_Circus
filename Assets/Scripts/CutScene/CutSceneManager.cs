@@ -37,13 +37,13 @@ public class CutSceneManager : MonoBehaviour
         GameManager.Instance.GetMusicController().SetCutSceneState();
     }
 
-    private void Update()
-    {
-        if (!gameLoaded && AnyInputPressed())
-        {
-            LoadGame();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (!gameLoaded && AnyInputPressed())
+    //    {
+    //        LoadGame();
+    //    }
+    //}
 
     private void FixedUpdate()
     {
