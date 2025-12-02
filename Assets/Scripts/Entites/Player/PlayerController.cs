@@ -91,15 +91,6 @@ public class PlayerController : MyEntity
             rb.linearVelocity = movement;
 
             animator.SetRunning(true);
-
-            //if (inputDirection.x != 0)
-            //{
-                
-            //}
-            //else
-            //{
-            //    animator.SetRunning(false);
-            //}
         }
         else
         {
@@ -216,6 +207,7 @@ public class PlayerController : MyEntity
     {
         GameManager.Instance.GetMusicController().SetDeathState();
         characterAudio.PlayDeathSound();
+        GameManager.Instance.GetLevelManager().HideAll();
         animator.ShowDeath();
     }
 

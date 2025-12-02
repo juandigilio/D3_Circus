@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class JumperEnemiesManager : MonoBehaviour
@@ -105,6 +106,19 @@ public class JumperEnemiesManager : MonoBehaviour
     public bool IsCleared()
     {
         if (spawnedEnemies < enemiesToSpawnPerSector[currentSector]) return false;
+
+        int deadJumpers = 0;
+
+        foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
+        {
+            if (jumper.IsDead())
+            {
+                deadJumpers++;
+            }
+        }
+
+        if (deadJumpers >= spawnParent.GetComponentsInChildren<Enemy_Jumper>().Count())
+            return true;
 
         foreach (Enemy_Jumper jumper in spawnParent.GetComponentsInChildren<Enemy_Jumper>())
         {

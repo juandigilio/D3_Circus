@@ -141,6 +141,7 @@ public class LevelManager : MonoBehaviour
 
     private void LoadGameOver()
     {
+        jumperEnemiesManager.gameObject.SetActive(false);
         gameData.gameOver = true;
         CalculateScore();
         PlayerInfo.SetEndGame(gameData);
@@ -168,10 +169,11 @@ public class LevelManager : MonoBehaviour
 
     private async void LoadEndGame()
     {
+        HideAll();
         await SceneManager.LoadEndSceneAsync();
     } 
 
-    private void HideAll()
+    public void HideAll()
     {
         foreach (Sector sector in shooterSectors)
         {

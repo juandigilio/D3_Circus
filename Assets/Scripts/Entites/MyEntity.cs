@@ -7,7 +7,7 @@ public abstract class MyEntity : MonoBehaviour
     [SerializeField] protected float health;
     [SerializeField] protected float rayLength;
     [SerializeField] protected JumpManager jumpManager;
-    [SerializeField] private Collider2D entityCollider;
+    [SerializeField] protected Collider2D entityCollider;
     [SerializeField] private float deathYThreshold = -10f;
 
     protected Rigidbody2D rb;
@@ -27,13 +27,13 @@ public abstract class MyEntity : MonoBehaviour
             Debug.LogError("Rigidbody2D component missing from this gameobject");
         }
 
-        Collider2D col = GetComponent<Collider2D>();
-        if (col == null)
+        entityCollider = GetComponent<Collider2D>();
+        if (entityCollider == null)
         {
             Debug.LogError("Collider2D component missing from this gameobject");
         }
 
-        rayLength = col.bounds.extents.y;
+        rayLength = entityCollider.bounds.extents.y;
 
         PauseHandler.OnGameContinue += StopPause;
         PauseHandler.OnGamePaused += SetPaused;
@@ -114,7 +114,7 @@ public abstract class MyEntity : MonoBehaviour
         if (health <= 0)
         {
             isDead = true;
-            isPaused = true;
+            //isPaused = true;
 
             if (isGrounded)
             {
@@ -143,6 +143,11 @@ public abstract class MyEntity : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     public void SetPaused()

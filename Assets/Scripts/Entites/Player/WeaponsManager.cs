@@ -40,6 +40,12 @@ public class WeaponsManager : MonoBehaviour
 
     private void Shoot()
     {
+        if (playerController.IsDead())
+        {
+            isShooting = false;
+            return;
+        }
+
         if (isShooting)
         {
             if (!weapons[currentWeapon].HasAmmo())

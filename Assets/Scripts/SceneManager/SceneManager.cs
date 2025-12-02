@@ -143,7 +143,7 @@ public static class SceneManager
 
     public static async Task LoadEndSceneAsync()
     {
-        await UnloadAll();
+        //await UnloadAll();
         await LoadSceneAsync(endScene);
     }
 

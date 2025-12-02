@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class CutSceneManager : MonoBehaviour
@@ -34,6 +37,13 @@ public class CutSceneManager : MonoBehaviour
         GameManager.Instance.GetMusicController().SetCutSceneState();
     }
 
+    private void Update()
+    {
+        if (!gameLoaded && AnyInputPressed())
+        {
+            LoadGame();
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -86,5 +96,22 @@ public class CutSceneManager : MonoBehaviour
         OnGameStarted?.Invoke();
 
         await SceneManager.LoadGameAsync();
+    }
+
+    private bool AnyInputPressed()
+    {
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+            return true;
+
+        if (Mouse.current != null &&
+            (Mouse.current.leftButton.wasPressedThisFrame ||
+             Mouse.current.rightButton.wasPressedThisFrame ||
+             Mouse.current.middleButton.wasPressedThisFrame))
+            return true;
+
+        if (Gamepad.current != null && Gamepad.current.allControls.Any(c => c is ButtonControl b && b.wasPressedThisFrame))
+            return true;
+
+        return false;
     }
 }

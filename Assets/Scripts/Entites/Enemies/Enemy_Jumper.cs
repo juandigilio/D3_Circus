@@ -22,6 +22,7 @@ public class Enemy_Jumper : Enemy
     private JumperEnemiesManager manager;
     private JumperState state = JumperState.Idle;
     private bool hasAttacked = false;
+    private float deadTimer = 0f;
 
     protected override void Start()
     {
@@ -44,6 +45,16 @@ public class Enemy_Jumper : Enemy
         ////////////////////////////
         ///hacer que si el player esta mas abajo ignore las plataformas, sino no
         ///
+
+        if (isDead)
+        {
+            deadTimer += Time.fixedDeltaTime;
+
+            if (deadTimer >= 2f)
+            {
+                Destroy(gameObject);
+            }
+        }
 
         if (isPaused) return;
         if (!isGrounded) return;
@@ -114,6 +125,10 @@ public class Enemy_Jumper : Enemy
     {
         base.TakeDamage(damage);
 
+        entityCollider.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        isDead = true;
         manager?.Unregister(this);
         animator.AnimateDeath();
     }
@@ -170,6 +185,7 @@ public class Enemy_Jumper : Enemy
     private void JumpToPlayer()
     {
         if (!isGrounded) return;
+        if (isDead) return;
 
         animator.SetIsJumping();
 

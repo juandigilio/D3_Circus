@@ -17,6 +17,8 @@ public class JumperAnimator : MonoBehaviour
     private bool isWalking = false;
     private bool isAttaking = false;
     private bool isJumping = false;
+    private bool isDeath = false;
+    private float deathTimer = 0f;
 
     private void Start()
     {
@@ -26,7 +28,19 @@ public class JumperAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (jumper.IsPaused()) return;
+        if (isDeath)
+        {
+            deathTimer += Time.fixedDeltaTime;
+
+            if (deathTimer >= 0.4f)
+            {
+                HideAll();
+                death[1].enabled = true;
+            }
+            return;
+        }
+
+        if (jumper.IsPaused() || jumper.IsDead()) return;
        
         UpdateAnimations();
     }
@@ -52,7 +66,7 @@ public class JumperAnimator : MonoBehaviour
         isJumping = !attacking;
 
         StopAllCoroutines();
-        StartCoroutine(AnimateAttak());
+        StartCoroutine(AnimateAttack());
     }
 
     public void SetIsJumping()
@@ -123,15 +137,19 @@ public class JumperAnimator : MonoBehaviour
         }
     }
 
-    private IEnumerator AnimateAttak()
+    private IEnumerator AnimateAttack()
     {
         for (int i = 0; i < attaking.Count; i++)
         {
+            if (jumper.IsDead()) yield break;
+
             HideAll();
             attaking[i].enabled = true;
 
             yield return new WaitForSeconds(animationSpeed);
         }
+
+        if (jumper.IsDead()) yield break;
 
         jumper.RetreatJump();
         SetIsJumping();
@@ -139,11 +157,13 @@ public class JumperAnimator : MonoBehaviour
 
     public void AnimateDeath()
     {
-        StopAllCoroutines();
+        if (isDeath)
+            return;
         
         isJumping = false;
         isWalking = false;
         isAttaking = false;
+        isDeath = true;
 
         StopAllCoroutines();
         StartCoroutine(DeathCoroutine());

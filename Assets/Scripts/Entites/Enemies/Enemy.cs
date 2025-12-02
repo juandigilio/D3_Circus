@@ -23,7 +23,9 @@ public abstract class Enemy : MyEntity
         if (leftPoint != null && rightPoint != null)
         {      
             transform.position = leftPoint.position;
-        }       
+        }
+
+        PlayerController.OnPlayerDied += SetPaused;
     }
 
     protected override void FixedUpdate()

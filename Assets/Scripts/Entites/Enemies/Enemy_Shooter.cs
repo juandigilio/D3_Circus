@@ -32,6 +32,7 @@ public class Enemy_Shooter : Enemy
         base.FixedUpdate();
 
         if (isPaused) return;
+        if (isDead) return;
 
         if (!animator.IsShooting())
         {
@@ -64,6 +65,7 @@ public class Enemy_Shooter : Enemy
             if (spawner != null)
                 spawner.Unregister(this);
 
+            isDead = true;
             animator.AnimateDeath();
         }
     }

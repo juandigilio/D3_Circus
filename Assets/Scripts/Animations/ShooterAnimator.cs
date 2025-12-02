@@ -37,6 +37,7 @@ public class ShooterAnimator : MonoBehaviour
     private void Update()
     {
         if (shooter.IsPaused()) return;
+        if (isDead) return;
 
         if (!isShooting && !isDead)
         {
