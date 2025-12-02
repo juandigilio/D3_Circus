@@ -103,10 +103,10 @@ TextureImporter:
       name: P1_SHOARMS_A03_0
       rect:
         serializedVersion: 2
-        x: 114
-        y: 464
-        width: 588
-        height: 443
+        x: 311
+        y: 554
+        width: 651
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      P1_SHOARMS_A03_0: -1564096852939343347
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

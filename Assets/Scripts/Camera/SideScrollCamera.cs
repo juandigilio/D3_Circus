@@ -44,6 +44,7 @@ public class SideScrollCamera : MonoBehaviour
         Vector3 targetPos = startPos + new Vector3(distance, 0f, 0f);
         
         float t = 0f;
+        GameManager.Instance.GetLevelManager().LoadNextSector();
 
         while (t < 1f)
         {
@@ -55,8 +56,6 @@ public class SideScrollCamera : MonoBehaviour
         transform.position = targetPos;
         isMoving = false;
         isCameraLocked = true;
-
-        GameManager.Instance.GetLevelManager().LoadNextSector();
     }
 
     public void Unlock()

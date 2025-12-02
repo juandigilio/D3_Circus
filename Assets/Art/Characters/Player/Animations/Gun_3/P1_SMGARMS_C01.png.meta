@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dd430bf7b6d6f714abd9469bc1363e47
+guid: 8e363b0460059d24493f41d1c822af0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2688590767660747486
-    second: P1_SHOARMS_A05_0
+      213: -3825100049612459297
+    second: P1_SMGARMS_C01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P1_SHOARMS_A05_0
+      name: P1_SMGARMS_C01_0
       rect:
         serializedVersion: 2
-        x: 109
-        y: 458
-        width: 674
-        height: 297
+        x: 483
+        y: 468
+        width: 503
+        height: 439
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eda40d4fe0bcf4520800000000000000
-      internalID: 2688590767660747486
+      spriteID: fd2358865c38aeac0800000000000000
+      internalID: -3825100049612459297
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      P1_SHOARMS_A05_0: 2688590767660747486
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

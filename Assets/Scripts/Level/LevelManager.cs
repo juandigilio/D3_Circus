@@ -162,7 +162,6 @@ public class LevelManager : MonoBehaviour
 
     private async void LoadEndGame()
     {
-        //HideAll();
         await SceneManager.LoadEndSceneAsync();
     } 
 

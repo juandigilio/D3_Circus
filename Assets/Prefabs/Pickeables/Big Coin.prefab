@@ -52,6 +52,7 @@ MonoBehaviour:
   pulseSpeed: 3.5
   minAlpha: 0.1
   maxAlpha: 0.6
+  animator: {fileID: 0}
   scoreValue: 2500
   isSmallCoin: 0
 --- !u!212 &996309920342011733
@@ -131,7 +132,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -156,6 +157,7 @@ MonoBehaviour:
   - {fileID: 7480110865878206642, guid: 205245bc8f47c314e95a1844d9e9a928, type: 3}
   frameRate: 9
   isPausable: 0
+  isLooping: 1
   breath: 0
   horizontalAmplitude: 0.15
   pulseAmplitude: 0.15

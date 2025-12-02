@@ -172,7 +172,7 @@ public class PlayerAnimator : MonoBehaviour
         isDead = false;
 
         //borrar cuando tenga las animaciones de weapon_3
-        DuplicateWeapon();
+        //DuplicateWeapon();
 
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
@@ -200,24 +200,6 @@ public class PlayerAnimator : MonoBehaviour
         UpdateWeaponDirection();
     }
 
-    private void DuplicateWeapon()
-    {
-        gun_3_Up.AddRange(gun_2_Up);
-        gun_3_FirePoint_Up = gun_2_FirePoint_Up;
-
-        gun_3_Front_Up.AddRange(gun_2_Front_Up);
-        gun_3_FirePoint_Front_Up = gun_2_FirePoint_Front_Up;
-
-        gun_3_Front.AddRange(gun_2_Front);
-        gun_3_FirePoint_Front = gun_2_FirePoint_Front;
-
-        gun_3_Front_Down.AddRange(gun_2_Front_Down);
-        gun_3_FirePoint_FrontDown = gun_2_FirePoint_FrontDown;
-
-        gun_3_Down.AddRange(gun_2_Down);
-        gun_3_FirePoint_Down = gun_2_FirePoint_Down;
-    }
-
     public void SetWeapon(int weapon)
     {
         switch (weapon)
@@ -236,23 +218,23 @@ public class PlayerAnimator : MonoBehaviour
             case 1:
                 {
                     ActivateWeapon(
-                    gun_2_Up, gun_2_FirePoint_Up,
-                    gun_2_Front_Up, gun_2_FirePoint_Front_Up,
-                    gun_2_Front, gun_2_FirePoint_Front,
-                    gun_2_Front_Down, gun_2_FirePoint_FrontDown,
-                    gun_2_Down, gun_2_FirePoint_Down
-                    );
+                   gun_3_Up, gun_3_FirePoint_Up,
+                   gun_3_Front_Up, gun_3_FirePoint_Front_Up,
+                   gun_3_Front, gun_3_FirePoint_Front,
+                   gun_3_Front_Down, gun_3_FirePoint_FrontDown,
+                   gun_3_Down, gun_3_FirePoint_Down
+                   );
                     break;
                 }
             case 2:
                 {
                     ActivateWeapon(
-                    gun_3_Up, gun_3_FirePoint_Up,
-                    gun_3_Front_Up, gun_3_FirePoint_Front_Up,
-                    gun_3_Front, gun_3_FirePoint_Front,
-                    gun_3_Front_Down, gun_3_FirePoint_FrontDown,
-                    gun_3_Down, gun_3_FirePoint_Down
-                    );
+                    gun_2_Up, gun_2_FirePoint_Up,
+                    gun_2_Front_Up, gun_2_FirePoint_Front_Up,
+                    gun_2_Front, gun_2_FirePoint_Front,
+                    gun_2_Front_Down, gun_2_FirePoint_FrontDown,
+                    gun_2_Down, gun_2_FirePoint_Down
+                    );     
                     break;
                 }
             default:

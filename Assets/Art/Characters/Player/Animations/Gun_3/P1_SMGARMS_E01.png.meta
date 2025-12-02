@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: aba92cce29fec734a8560c4c01cf9d63
+guid: 1eade3644077ac3448c71516cca8bc89
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7848513485212970899
-    second: P1_SHOARMS_A01_0
+      213: -6358370549872432309
+    second: P1_SMGARMS_E01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P1_SHOARMS_A01_0
+      name: P1_SMGARMS_E01_0
       rect:
         serializedVersion: 2
-        x: 371
-        y: 554
-        width: 685
-        height: 253
+        x: 530
+        y: 338
+        width: 304
+        height: 609
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d609403819a741390800000000000000
-      internalID: -7848513485212970899
+      spriteID: b4b6c884ca782c7a0800000000000000
+      internalID: -6358370549872432309
       vertices: []
       indices: 
       edges: []

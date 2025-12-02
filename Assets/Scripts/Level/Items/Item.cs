@@ -49,7 +49,7 @@ public abstract class Item : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Platform"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Cage"))
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
