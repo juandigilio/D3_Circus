@@ -95,19 +95,21 @@ public class ItmesSpawner : MonoBehaviour
     {
         lastAmmoSpawnTime += Time.fixedDeltaTime;
 
-        if (lastAmmoSpawnTime < healthSpawnInterval)
+        if (lastAmmoSpawnTime < healthSpawnInterval * 5)
             return;
 
-        if (playerController.GetWeaponsManager().GetMachineGunAmmo() < 30)
+        int randomWeapon = Random.Range(0, 2);
+
+        if (randomWeapon == 0)
         {
             SpawnBaloon(machinegunAmmo);
-            lastAmmoSpawnTime = 0f;
         }
-        else if (playerController.GetWeaponsManager().GetRifleAmmo() < 15)
+        else
         {
             SpawnBaloon(rifleAmmo);
-            lastAmmoSpawnTime = 0f;
         }
+
+        lastAmmoSpawnTime = 0f;
     }
 
     private void SpawnBaloon(Baloon baloon)
