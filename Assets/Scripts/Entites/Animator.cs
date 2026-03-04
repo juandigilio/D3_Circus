@@ -133,6 +133,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private SpriteRenderer legs_Stand;
     [SerializeField] private List<SpriteRenderer> legs_Running = new List<SpriteRenderer>();
     [SerializeField] private List<SpriteRenderer> legs_Jumping = new List<SpriteRenderer>();
+    [SerializeField] private List<SpriteRenderer> legs_Crouching = new List<SpriteRenderer>();
 
     [Header("Death")]
     [SerializeField] private List<SpriteRenderer> death;
@@ -149,15 +150,16 @@ public class PlayerAnimator : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
+    private bool isCrouching;
+    private bool isRunning;
     private bool wasDeathShown = false;
+    private bool isDead = false;
 
     private SpriteRenderer currentTorso;
     private List<SpriteRenderer> currentLegs = new List<SpriteRenderer>();
     private CurrentWeaponSet currentWeaponSet = new CurrentWeaponSet();
     private CurrentWeaponAnimation currentWeaponAnimation = new CurrentWeaponAnimation();
-    private bool isRunning;
     private Vector2 lastDirection = new Vector2();
-    private bool isDead = false;
 
     private void Start()
     {
@@ -168,11 +170,9 @@ public class PlayerAnimator : MonoBehaviour
         isGrounded = false;
         isJumping = false;
         isRunning = false;
+        isCrouching = false;
         wasDeathShown = false;
         isDead = false;
-
-        //borrar cuando tenga las animaciones de weapon_3
-        //DuplicateWeapon();
 
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
@@ -452,8 +452,7 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     private void Animate()
-    {
-        
+    {   
         if(isJumping)
         {
             UpdateJumpAnimation();
