@@ -86,6 +86,22 @@ public class PlayerAnimator : MonoBehaviour
 
     [SerializeField] private PlayerController playerController;
 
+    [Header("Body GameObjects")]
+    [SerializeField] private GameObject torso_gameObject;
+    [SerializeField] private GameObject gun_1_gameObject; 
+    [SerializeField] private GameObject gun_2_gameObject;
+    [SerializeField] private GameObject gun_3_gameObject;
+
+
+    private Vector3 torso_standPos;
+    private Vector3 torso_crouchedPos;
+    private Vector3 gun_1_standPos;
+    private Vector3 gun_1_crouchedPos;
+    private Vector3 gun_2_standPos;
+    private Vector3 gun_2_crouchedPos;
+    private Vector3 gun_3_standPos;
+    private Vector3 gun_3_crouchedPos;
+
     [Header("Gun 1")]
     [SerializeField] private List<SpriteRenderer> gun_1_Up = new List<SpriteRenderer>();
     [SerializeField] private Transform gun_1_FirePoint_Up;
@@ -142,6 +158,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private float legsFrameRate = 0.1f;
     [SerializeField] private float jumpFrameRate = 0.01f;
     [SerializeField] private float weaponFrameRate = 0.2f;
+    [SerializeField] private float offsetY_crouched = 1.0f;
 
     private float legsTimer;
     private float jumpTimer;
@@ -177,6 +194,7 @@ public class PlayerAnimator : MonoBehaviour
         currentWeaponSet.Start();
         currentWeaponAnimation.Start();
 
+        SetLocalPositions();
         HideAll();
         SetWeapon(0);
         ShowStand();
@@ -187,6 +205,7 @@ public class PlayerAnimator : MonoBehaviour
         if (isDead) return;
         if (playerController.IsPaused()) return;
 
+        UpdatePositions();
         CheckGround(playerController.IsGrounded());
         Animate();
     }
@@ -265,11 +284,25 @@ public class PlayerAnimator : MonoBehaviour
 
         if (isRunning)
         {
-            SetLegs(legs_Running);
+            if (isCrouching)
+            {
+                SetLegs(legs_Crouching);
+            }
+            else
+            {
+                SetLegs(legs_Running);
+            }         
         }
         else
         {
-            SetLegs(legs_Stand);
+            if (isCrouching)
+            {
+                SetLegs(legs_Crouching[0]);
+            }
+            else
+            {
+                SetLegs(legs_Stand);
+            }        
         }
     }
 
@@ -346,7 +379,15 @@ public class PlayerAnimator : MonoBehaviour
             }
             else
             {
-                SetLegs(legs_Stand);
+                if (isCrouching)
+                {
+                    SetLegs(legs_Crouching[0]);
+                }
+                else
+                {
+                    SetLegs(legs_Stand);
+                }
+                   
             }
         }
         else if (!isGrounded && !isJumping)
@@ -623,5 +664,42 @@ public class PlayerAnimator : MonoBehaviour
         HideLegs();
 
         HideGuns();
+    }
+
+    private void SetLocalPositions()
+    {
+        torso_standPos = torso_gameObject.transform.localPosition;
+        torso_crouchedPos = torso_standPos - new Vector3(0, offsetY_crouched, 0);
+
+        gun_1_standPos = gun_1_gameObject.transform.localPosition;
+        gun_1_crouchedPos = gun_1_standPos - new Vector3(0, offsetY_crouched, 0);
+
+        gun_2_standPos = gun_2_gameObject.transform.localPosition;
+        gun_2_crouchedPos = gun_2_standPos - new Vector3(0, offsetY_crouched, 0);
+
+        gun_3_standPos = gun_3_gameObject.transform.localPosition;
+        gun_3_crouchedPos = gun_3_standPos - new Vector3(0, offsetY_crouched, 0);
+    }
+
+    private void UpdatePositions()
+    {
+        if (isCrouching == playerController.IsCrouching()) return;
+
+        isCrouching = playerController.IsCrouching();
+
+        if (isCrouching)
+        {
+            torso_gameObject.transform.localPosition = torso_crouchedPos;
+            gun_1_gameObject.transform.localPosition = gun_1_crouchedPos;
+            gun_2_gameObject.transform.localPosition = gun_2_crouchedPos;
+            gun_3_gameObject.transform.localPosition = gun_3_crouchedPos;
+        }
+        else
+        {
+            torso_gameObject.transform.localPosition = torso_standPos;
+            gun_1_gameObject.transform.localPosition = gun_1_standPos;
+            gun_2_gameObject.transform.localPosition = gun_2_standPos;
+            gun_3_gameObject.transform.localPosition = gun_3_standPos;
+        }
     }
 }

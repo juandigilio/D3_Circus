@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private string moveAction = "Move";
     [SerializeField] private string jumpAction = "Jump";
+    [SerializeField] private string crouchAction = "Crouch";
     [SerializeField] private string shootAction = "Shoot";
     [SerializeField] private string aimAction = "Aim";
     [SerializeField] private string nextWeaponAction = "NextWeapon";
@@ -79,6 +80,20 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void Crouch(InputAction.CallbackContext callbackContext)
+    {
+        if (playerController.CurrentHealth() <= 0) return;
+
+        if (callbackContext.started)
+        {
+            playerController.SetCrouching(true);
+        }
+        if (callbackContext.canceled)
+        {
+            playerController.SetCrouching(false);
+        }
+    }
+
     private void Shoot(InputAction.CallbackContext callbackContext)
     {
         if (playerController.CurrentHealth() <= 0) return;
@@ -143,6 +158,9 @@ public class InputManager : MonoBehaviour
 
             playerInput.currentActionMap.FindAction(jumpAction).started += Jump;
             playerInput.currentActionMap.FindAction(jumpAction).canceled += Jump;
+
+            playerInput.currentActionMap.FindAction(crouchAction).started += Crouch;
+            playerInput.currentActionMap.FindAction(crouchAction).canceled += Crouch;
 
             playerInput.currentActionMap.FindAction(shootAction).started += Shoot;
             playerInput.currentActionMap.FindAction(shootAction).canceled += Shoot;

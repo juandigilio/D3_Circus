@@ -17,6 +17,7 @@ public class PlayerController : MyEntity
     private CharacterAudio characterAudio;
     private Camera mainCamera;
     private Vector2 inputDirection;
+    private bool isCrauching = false;
     private bool isBossDead = false;
 
     private void OnEnable()
@@ -66,12 +67,6 @@ public class PlayerController : MyEntity
         }
     }
 
-    private void SetBossDead()
-    {
-        isBossDead = true;
-        animator.RestartPosition();
-    }
-
     public void SetInputDirection(Vector2 newDirection)
     {
         inputDirection = newDirection.normalized;
@@ -87,39 +82,6 @@ public class PlayerController : MyEntity
     public void SetAimDirection(Vector2 aimDirection)
     {
         aimController.SetAimDirection(aimDirection);
-    }
-
-    private void SetAimControllerDirection()
-    {
-        aimController.SetDirection(spriteDirection);
-    }
-
-    private void Move()
-    {
-        if (inputDirection.x != 0)
-        {
-            Vector2 movement = new Vector2(inputDirection.x, rb.linearVelocity.y);
-
-            if (movement.x > 0)
-            {
-                movement.x = 1 * speed;
-            }
-            else if (movement.x < 0)
-            {
-                movement.x = -1 * speed;
-            }
-
-            rb.linearVelocity = movement;
-
-            animator.SetRunning(true);
-        }
-        else
-        {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetRunning(false);
-        }
-
-        CheckScreenLimits();
     }
 
     public void Jump()
@@ -225,6 +187,16 @@ public class PlayerController : MyEntity
         OnPlayerDied?.Invoke();
     }
 
+    public bool IsCrouching()
+    {
+        return isCrauching;
+    }
+
+    public void SetCrouching(bool crouching)
+    {
+        isCrauching = crouching;
+    }
+
     private void KillPlayer()
     {
         GameManager.Instance.GetMusicController().SetDeathState();
@@ -248,4 +220,44 @@ public class PlayerController : MyEntity
 
         transform.position = pos;
     }
+
+    private void SetBossDead()
+    {
+        isBossDead = true;
+        animator.RestartPosition();
+    }
+
+    private void SetAimControllerDirection()
+    {
+        aimController.SetDirection(spriteDirection);
+    }
+
+    private void Move()
+    {
+        if (inputDirection.x != 0)
+        {
+            Vector2 movement = new Vector2(inputDirection.x, rb.linearVelocity.y);
+
+            if (movement.x > 0)
+            {
+                movement.x = 1 * speed;
+            }
+            else if (movement.x < 0)
+            {
+                movement.x = -1 * speed;
+            }
+
+            rb.linearVelocity = movement;
+
+            animator.SetRunning(true);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetRunning(false);
+        }
+
+        CheckScreenLimits();
+    }
+
 }
