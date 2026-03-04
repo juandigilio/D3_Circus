@@ -179,7 +179,6 @@ public class Bullet : MonoBehaviour
                 machineGunAnimator.SetActive(false);
                 shotGunAnimator.SetActive(false);
                 pistolAnimator.SetActive(true);
-                Debug.Log("Pistol bullet activated" + pistolAnimator.activeSelf);
                     break;
             }
             case WeaponType.Automatic:

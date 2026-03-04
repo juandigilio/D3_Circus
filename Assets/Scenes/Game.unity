@@ -8581,9 +8581,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4578406654615916032}
     - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: offsetY_crouched
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: torso_gameObject
       value: 
       objectReference: {fileID: 4578406654615916035}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: legs_Crouching.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1678286093}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[1]'
+      value: 
+      objectReference: {fileID: 702820612}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1992963490}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1825301126}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1847877823}
+    - target: {fileID: 3435791215817483692, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
+      propertyPath: 'legs_Crouching.Array.data[5]'
+      value: 
+      objectReference: {fileID: 883780498}
     - target: {fileID: 5665066579459253203, guid: 38a32da5aa984b840965d4b9a58198a4, type: 3}
       propertyPath: m_IsActive
       value: 1

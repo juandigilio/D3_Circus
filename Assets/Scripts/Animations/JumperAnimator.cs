@@ -164,8 +164,6 @@ public class JumperAnimator : MonoBehaviour
 
     private IEnumerator DeathCoroutine()
     {
-        Debug.Log("Animating Death");
-
         for (int i = 0; i < death.Count; i++)
         {
             HideAll();

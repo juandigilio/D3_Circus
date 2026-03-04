@@ -498,7 +498,8 @@ public class PlayerAnimator : MonoBehaviour
         {
             UpdateJumpAnimation();
         }
-        else if(isRunning)
+        //else if(isRunning)
+        else
         {
             AnimateLegs();
         }
@@ -532,8 +533,16 @@ public class PlayerAnimator : MonoBehaviour
     private void ShowStand()
     {
         SetCurrentWeaponAnimation(gun_1_Front, gun_1_FirePoint_Front);
-        SetLegs(legs_Stand);
         SetTorso(torso_Front);
+
+        if (isCrouching)
+        {
+            SetLegs(legs_Crouching[0]);
+        }
+        else
+        {
+            SetLegs(legs_Stand);
+        }     
     }
 
     private void SetLegs(List<SpriteRenderer> legs)
@@ -628,12 +637,17 @@ public class PlayerAnimator : MonoBehaviour
     {
         legs_Stand.enabled = false;
 
-        foreach (var sprite in legs_Running)
+        foreach (SpriteRenderer sprite in legs_Running)
         {
             sprite.enabled = false;
         }
 
-        foreach (var sprite in legs_Jumping)
+        foreach (SpriteRenderer sprite in legs_Jumping)
+        {
+            sprite.enabled = false;
+        }
+
+        foreach (SpriteRenderer sprite in legs_Crouching)
         {
             sprite.enabled = false;
         }
@@ -693,6 +707,15 @@ public class PlayerAnimator : MonoBehaviour
             gun_1_gameObject.transform.localPosition = gun_1_crouchedPos;
             gun_2_gameObject.transform.localPosition = gun_2_crouchedPos;
             gun_3_gameObject.transform.localPosition = gun_3_crouchedPos;
+
+            if (isRunning)
+            {
+                SetLegs(legs_Crouching);
+            }
+            else
+            {
+                SetLegs(legs_Crouching[0]);
+            }
         }
         else
         {
@@ -700,6 +723,15 @@ public class PlayerAnimator : MonoBehaviour
             gun_1_gameObject.transform.localPosition = gun_1_standPos;
             gun_2_gameObject.transform.localPosition = gun_2_standPos;
             gun_3_gameObject.transform.localPosition = gun_3_standPos;
+
+            if (isRunning)
+            {
+                SetLegs(legs_Running);
+            }
+            else
+            {
+                SetLegs(legs_Stand);
+            }
         }
     }
 }
