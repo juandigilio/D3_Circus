@@ -9,6 +9,8 @@ public class PlayerController : MyEntity
     [SerializeField] private AimController aimController;
     [SerializeField] private Transform startPos;
     [SerializeField] private PlayerAnimator animator;
+    [SerializeField] private CapsuleCollider2D standingCollider;
+    [SerializeField] private CapsuleCollider2D crouchingCollider;
 
 
     public static event Action OnPlayerDied;
@@ -29,8 +31,9 @@ public class PlayerController : MyEntity
     {
         base.Start();
 
-        mainCamera = Camera.main;
+        crouchingCollider.enabled = false;
 
+        mainCamera = Camera.main;
 
         SideScrollCamera sideScrollCamera = GameManager.Instance.GetSideScrollCamera();
 
@@ -195,6 +198,9 @@ public class PlayerController : MyEntity
     public void SetCrouching(bool crouching)
     {
         isCrauching = crouching;
+
+        standingCollider.enabled = !crouching;
+        crouchingCollider.enabled = crouching;
     }
 
     private void KillPlayer()
