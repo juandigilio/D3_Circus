@@ -225,7 +225,7 @@
                 {
                     "name": "",
                     "id": "fcb7d087-7288-4cec-95d7-1241f85dfc42",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -258,7 +258,7 @@
                 {
                     "name": "",
                     "id": "100a08a0-d272-4274-b9a6-4a064800bdac",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

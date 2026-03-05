@@ -50,6 +50,8 @@ public abstract class Enemy : MyEntity
 
     protected void Patroll()
     {
+        if (isPaused) return;
+
         if (isAttacking)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
